@@ -1,0 +1,70 @@
+{
+  "id": "spider-train-0",
+  "source": "spider",
+  "input_text": "How many heads of the departments are older than 56 ?",
+  "trajectory": null,
+  "code": null,
+  "sql": "SELECT count(*) FROM head WHERE age  >  56",
+  "rtl": null,
+  "metadata": {
+    "db_id": "department_management",
+    "split": "train",
+    "sql": {
+      "from": {
+        "table_units": [
+          [
+            "table_unit",
+            1
+          ]
+        ],
+        "conds": []
+      },
+      "select": [
+        false,
+        [
+          [
+            3,
+            [
+              0,
+              [
+                0,
+                0,
+                false
+              ],
+              null
+            ]
+          ]
+        ]
+      ],
+      "where": [
+        [
+          false,
+          3,
+          [
+            0,
+            [
+              0,
+              10,
+              false
+            ],
+            null
+          ],
+          56.0,
+          null
+        ]
+      ],
+      "groupBy": [],
+      "having": [],
+      "orderBy": [],
+      "limit": null,
+      "intersect": null,
+      "union": null,
+      "except": null
+    }
+  },
+  "raw_payload": {
+    "question": "How many heads of the departments are older than 56 ?",
+    "query": "SELECT count(*) FROM head WHERE age  >  56",
+    "db_id": "department_management"
+  }
+}

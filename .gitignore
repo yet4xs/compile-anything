@@ -1,3 +1,16 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# real benchmark data: never commit, only metadata
+data/raw/.cache/
+data/raw/humaneval/
+data/raw/mbpp/
+data/raw/spider/
+data/raw/toolbench/
+data/raw/verilogeval/
+data/raw/apibank/
+data/raw/bird/
+data/compiler_corpus_v2/train.jsonl
+data/compiler_corpus_v2/val.jsonl
+data/compiler_corpus_v2/test.jsonl

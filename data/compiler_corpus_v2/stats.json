@@ -1,0 +1,140 @@
+{
+  "toolbench": {
+    "samples": 15,
+    "lifted": 15,
+    "valid": 15,
+    "executed": 15,
+    "lift_coverage_pct": 100.0,
+    "valid_coverage_pct": 100.0,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "EXEC_ACTION": 95,
+      "SEARCH": 34,
+      "EXTRACT": 19,
+      "GENERATE": 15,
+      "VERIFY": 15,
+      "FETCH": 15,
+      "QUERY_DB": 2,
+      "CODEGEN": 1,
+      "EXTRACT_ENTITIES": 1
+    },
+    "reject_reasons": {},
+    "taskir_graph": {
+      "nodes_mean": 13.133,
+      "depth_max": 20,
+      "width_max": 1,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.0892
+    }
+  },
+  "humaneval": {
+    "samples": 164,
+    "lifted": 12,
+    "valid": 12,
+    "executed": 12,
+    "lift_coverage_pct": 7.32,
+    "valid_coverage_pct": 7.32,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "FILTER": 6,
+      "TRANSFORM": 5,
+      "SUM": 2,
+      "COUNT": 1,
+      "JOIN": 1
+    },
+    "reject_reasons": {
+      "LOOP": 87,
+      "PATTERN_UNSUPPORTED": 65
+    },
+    "taskir_graph": {
+      "nodes_mean": 1.25,
+      "depth_max": 3,
+      "width_max": 1,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.0
+    }
+  },
+  "mbpp": {
+    "samples": 974,
+    "lifted": 32,
+    "valid": 32,
+    "executed": 32,
+    "lift_coverage_pct": 3.29,
+    "valid_coverage_pct": 3.29,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "TRANSFORM": 27,
+      "SUM": 3,
+      "FILTER": 2,
+      "MIN": 1,
+      "COUNT": 1
+    },
+    "reject_reasons": {
+      "PATTERN_UNSUPPORTED": 503,
+      "LOOP": 439
+    },
+    "taskir_graph": {
+      "nodes_mean": 1.062,
+      "depth_max": 2,
+      "width_max": 1,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.0
+    }
+  },
+  "spider": {
+    "samples": 8034,
+    "lifted": 8034,
+    "valid": 8034,
+    "executed": 8034,
+    "lift_coverage_pct": 100.0,
+    "valid_coverage_pct": 100.0,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "QUERY_DB": 8034,
+      "GENERATE": 8034,
+      "VERIFY": 8034,
+      "EXTRACT": 2211
+    },
+    "reject_reasons": {},
+    "taskir_graph": {
+      "nodes_mean": 3.275,
+      "depth_max": 4,
+      "width_max": 1,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.3104
+    }
+  },
+  "verilogeval": {
+    "samples": 312,
+    "lifted": 312,
+    "valid": 312,
+    "executed": 312,
+    "lift_coverage_pct": 100.0,
+    "valid_coverage_pct": 100.0,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "LOAD": 312,
+      "EXTRACT": 312,
+      "SEARCH": 312,
+      "CODEGEN": 312,
+      "VERIFY": 312
+    },
+    "reject_reasons": {},
+    "taskir_graph": {
+      "nodes_mean": 5.0,
+      "depth_max": 4,
+      "width_max": 2,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.4
+    }
+  },
+  "CORPUS": {
+    "real_records": 8405,
+    "synthetic_records": 9027,
+    "total": 17432,
+    "train": 15690,
+    "val": 871,
+    "test": 871,
+    "note": "synthetic records are explicitly labeled source=synthetic:*"
+  }
+}
