@@ -1,0 +1,21 @@
+{
+  "tiers": {
+    "B": 15460,
+    "A": 15755,
+    "C": 39546
+  },
+  "tier_A_B_real": 31215,
+  "tier_C": 39546,
+  "real_C_before_synthetic": 39546,
+  "splits": {
+    "train": 28093,
+    "val": 1561,
+    "test": 1561
+  },
+  "leakage": {
+    "cross_split_exact_duplicates": 0,
+    "cross_split_near_duplicates": 0
+  },
+  "tier_policy": "first-round SFT = A+B only; C (fallback or synthetic) for ablation/augmentation",
+  "targets": "plan_target is the SFT target (no policy tail); execution_target kept for runtime-oriented experiments"
+}

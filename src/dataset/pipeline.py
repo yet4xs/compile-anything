@@ -20,9 +20,13 @@ from .adapters import adapters_for
 
 def run_pipeline(raw_root: pathlib.Path,
                  sources: Optional[List[str]] = None,
-                 simulate: bool = True):
+                 simulate: bool = True,
+                 view: str = "execution"):
     """Returns (samples, lifted) where lifted is a list of dicts:
-    {sample, module, valid, warnings, result, metrics}."""
+    {sample, module, valid, warnings, result, metrics}.
+
+    view: "plan" (pure lowering, no compiler policy tail — SFT target) or
+    "execution" (with GENERATE/VERIFY policy tail)."""
     all_samples: List[Dict] = []
     lifted: List[Dict] = []
     for adapter in adapters_for(sources):
@@ -34,7 +38,7 @@ def run_pipeline(raw_root: pathlib.Path,
         for s in samples:
             s["_lifter_input"] = to_lifter_input(s)
             all_samples.append(s)
-            mod, reason, lifter = lift_sample(s["_lifter_input"])
+            mod, reason, lifter = lift_sample(s["_lifter_input"], view=view)
             if mod is None:
                 lifted.append({"sample": s, "module": None, "reason": reason,
                                "lifter": lifter})

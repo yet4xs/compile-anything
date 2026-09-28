@@ -139,7 +139,7 @@ class HumanEvalLifter(BenchmarkLifter):
         code = sample.get("code") or sample.get("canonical_solution")
         return bool(sample.get("prompt") or sample.get("text")) and bool(code)
 
-    def lift(self, sample: Dict) -> Optional[Module]:
+    def lift(self, sample: Dict, view: str = "execution") -> Optional[Module]:
         code = sample.get("code") or sample.get("canonical_solution") or ""
         prompt = sample.get("prompt") or sample.get("text") or ""
         try:
@@ -175,7 +175,9 @@ class HumanEvalLifter(BenchmarkLifter):
             "provenance": {"source": self.name,
                            "task_id": str(sample.get("task_id", ""))}})
 
-    def lift_with_reason(self, sample: Dict) -> Tuple[Optional[Module], Optional[str]]:
+    def lift_with_reason(self, sample: Dict,
+                         view: str = "execution"
+                         ) -> Tuple[Optional[Module], Optional[str]]:
         code = sample.get("code") or sample.get("canonical_solution") or ""
         if not (sample.get("prompt") or sample.get("text")):
             return None, "missing prompt"

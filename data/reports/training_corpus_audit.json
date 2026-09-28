@@ -1,0 +1,198 @@
+{
+  "note": "plan view (no policy tail); lift/validator/execution coverage lives in dataset_coverage.json — fallbacks are NOT counted as semantic coverage here",
+  "lowering_provenance_pct": {
+    "fallback": 55.2,
+    "heuristic": 29.22,
+    "exact": 15.58
+  },
+  "exec_action_split": {
+    "intentional": 2382,
+    "unknown_fallback": 56588
+  },
+  "per_dataset": {
+    "toolbench": {
+      "samples": 15,
+      "calls": 148,
+      "exact": 10,
+      "heuristic": 43,
+      "fallback": 95,
+      "zero_fallback": 0,
+      "all_fallback": 2,
+      "fallback_rate_pct": 64.19,
+      "semantic_mapping_coverage_pct": 0.0
+    },
+    "toolbench_static": {
+      "samples": 2356,
+      "calls": 2356,
+      "exact": 496,
+      "heuristic": 593,
+      "fallback": 1267,
+      "zero_fallback": 1089,
+      "all_fallback": 1267,
+      "fallback_rate_pct": 53.78,
+      "semantic_mapping_coverage_pct": 46.22
+    },
+    "xlam": {
+      "samples": 60000,
+      "calls": 100011,
+      "exact": 15464,
+      "heuristic": 29321,
+      "fallback": 55226,
+      "zero_fallback": 21736,
+      "all_fallback": 28074,
+      "fallback_rate_pct": 55.22,
+      "semantic_mapping_coverage_pct": 36.23
+    },
+    "humaneval": {
+      "samples": 12,
+      "calls": 0,
+      "exact": 0,
+      "heuristic": 0,
+      "fallback": 0,
+      "zero_fallback": 12,
+      "all_fallback": 0,
+      "fallback_rate_pct": 0.0,
+      "semantic_mapping_coverage_pct": 100.0
+    },
+    "mbpp": {
+      "samples": 32,
+      "calls": 0,
+      "exact": 0,
+      "heuristic": 0,
+      "fallback": 0,
+      "zero_fallback": 32,
+      "all_fallback": 0,
+      "fallback_rate_pct": 0.0,
+      "semantic_mapping_coverage_pct": 100.0
+    },
+    "spider": {
+      "samples": 8034,
+      "calls": 0,
+      "exact": 0,
+      "heuristic": 0,
+      "fallback": 0,
+      "zero_fallback": 8034,
+      "all_fallback": 0,
+      "fallback_rate_pct": 0.0,
+      "semantic_mapping_coverage_pct": 100.0
+    },
+    "verilogeval": {
+      "samples": 312,
+      "calls": 0,
+      "exact": 0,
+      "heuristic": 0,
+      "fallback": 0,
+      "zero_fallback": 312,
+      "all_fallback": 0,
+      "fallback_rate_pct": 0.0,
+      "semantic_mapping_coverage_pct": 100.0
+    }
+  },
+  "xlam_detail": {
+    "total": 60000,
+    "zero_fallback": 21736,
+    "some_fallback": 10190,
+    "all_fallback": 28074
+  },
+  "skill_mapping_kind_distribution": {
+    "EXEC_ACTION": {
+      "fallback": 56588,
+      "exact": 2382
+    },
+    "SEARCH": {
+      "heuristic": 9370,
+      "exact": 3857
+    },
+    "FETCH": {
+      "heuristic": 15193
+    },
+    "CODEGEN": {
+      "exact": 2778
+    },
+    "EXTRACT_ENTITIES": {
+      "exact": 1580
+    },
+    "QUERY_DB": {
+      "heuristic": 394,
+      "exact": 3202
+    },
+    "SEND": {
+      "heuristic": 1804
+    },
+    "CLASSIFY": {
+      "exact": 1465
+    },
+    "CONVERT": {
+      "exact": 241
+    },
+    "CALCULATE": {
+      "heuristic": 3196
+    },
+    "TRANSLATE": {
+      "exact": 189
+    },
+    "SUMMARIZE": {
+      "exact": 276
+    }
+  },
+  "policy_tail_effect": {
+    "op_distribution_plan_view": {
+      "EXEC_ACTION": 58970,
+      "FETCH": 15193,
+      "SEARCH": 13539,
+      "QUERY_DB": 11630,
+      "EXTRACT": 6687,
+      "CALCULATE": 3196,
+      "CODEGEN": 3090,
+      "SEND": 1804,
+      "EXTRACT_ENTITIES": 1580,
+      "CLASSIFY": 1465,
+      "LOAD": 312,
+      "VERIFY": 312,
+      "SUMMARIZE": 276,
+      "CONVERT": 241,
+      "TRANSLATE": 189,
+      "TRANSFORM": 32,
+      "FILTER": 8,
+      "SUM": 5,
+      "COUNT": 2,
+      "JOIN": 1,
+      "MIN": 1
+    },
+    "op_distribution_with_policy_tail": {
+      "VERIFY": 70717,
+      "GENERATE": 70405,
+      "EXEC_ACTION": 58970,
+      "FETCH": 15193,
+      "SEARCH": 13539,
+      "QUERY_DB": 11630,
+      "EXTRACT": 6687,
+      "CALCULATE": 3196,
+      "CODEGEN": 3090,
+      "SEND": 1804,
+      "EXTRACT_ENTITIES": 1580,
+      "CLASSIFY": 1465,
+      "LOAD": 312,
+      "SUMMARIZE": 276,
+      "CONVERT": 241,
+      "TRANSLATE": 189,
+      "TRANSFORM": 32,
+      "FILTER": 8,
+      "SUM": 5,
+      "COUNT": 2,
+      "JOIN": 1,
+      "MIN": 1
+    }
+  },
+  "instruction_only_ambiguity": {
+    "exact_groups": 58743,
+    "exact_ambiguous": 499,
+    "near_groups": 10381,
+    "near_ambiguous": 386,
+    "ambig_ctx_differ": 0,
+    "ambig_ctx_same": 499,
+    "exact_ambiguity_rate_pct": 0.85,
+    "near_ambiguity_rate_pct": 3.72,
+    "interpretation": "ambig_ctx_differ > 0 means a capability context (view B) could disambiguate those groups; ambig_ctx_same groups are ambiguous even with full context"
+  }
+}

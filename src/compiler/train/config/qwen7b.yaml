@@ -1,0 +1,19 @@
+# Qwen2.5-7B-Instruct LoRA — Neural Compiler main experiment
+model_family: qwen2.5-7b-instruct
+quantization: none          # 48GB GPU; 24GB -> set 4bit (QLoRA)
+lora_r: 32
+lora_alpha: 64
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+epochs: 2
+batch_size: 2
+grad_accum: 8
+lr: 5.0e-5
+scheduler: cosine
+warmup_ratio: 0.03
+max_seq_length: 2048
+logging_steps: 20
+eval_steps: 200
+save_steps: 500
+bf16: true
+gradient_checkpointing: true

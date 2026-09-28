@@ -201,14 +201,51 @@ LOOP/递归 524 个拒绝是主因（ISA 缺口第一优先），局部变量赋
 个是 lifter 能力问题（赋值=SSA def，可修）。v0.2 ISA 优先级被真实
 数据重排：LOOP > STRING_OP > GROUP/TABLE_SCAN；JOIN 无需新增。
 
-## 下一步（Phase 5B：Neural Compiler Training）
+## Phase 5B-0：Corpus 质量关（quality gate）
 
-- Qwen-7B / Qwen2.5-Coder LoRA：NL → TaskIR text（SFT 数据 =
-  `data/compiler_corpus/`（9027 train / 475 val，含 taskir_text 监督）
-  + `data/train/sft/`）
-- 推理输出走 `src/ir/parser.py` → validator → `benchmark/compiler_eval.py
-  --predictions`（训练/评测协议已对齐）
-- 真实数据替换：`build_compiler_corpus.py --raw-dir`（schema 见
-  docs/dataset-design.md）；真实 HumanEval/Spider 的覆盖率是 ISA 缺口
-  （docs/missing-skills.md）的量化证据
-- effect system v0.2 实施（docs/effect-system-proposal.md 落地顺序）
+诊断三个"指标虚高"来源并修复——fallback 冒充语义、policy 尾巴当监督
+信号、随机切分泄漏：
+
+- **Task 1** `toolmap.map_tool()` 返回 `mapping_kind`（exact/heuristic/
+  fallback）+ `matched_rule` + `confidence`；provenance 只进
+  `meta.provenance.lowering`，不污染语义体（有测试断言）
+- **Task 2** `scripts/audit_training_corpus.py` →
+  `data/reports/training_corpus_audit.{json,md}`：**fallback 占调用
+  55.2%**（EXEC_ACTION 中 56,588 unknown-fallback vs 2,382
+  intentional）；xLAM 语义覆盖（零 fallback）仅 **36.2%**（21,736 条）；
+  新指标 `semantic_mapping_coverage` 与 lift/validator/execution 覆盖
+  分离上报
+- **Task 3** 双 view：`plan_target`（纯 lowering，无 GENERATE/VERIFY——
+  第一轮 SFT 目标）与 `execution_target`（允许 policy 尾巴）；同一
+  trajectory 两个 view 均 validator 通过（有测试）
+- **Task 4** `src/dataset/dedup.py`（MinHash-LSH 近重复 + 同 op-seq
+  并查集 + group-aware 切分）：**cross-split exact = 0，near = 0**
+- **Task 5** instruction-only 歧义审计：exact 组歧义率 **0.85%**、
+  近重复族 **3.72%**，且歧义组 capability 上下文全部相同（上下文无
+  助于消歧）——单指令输入对 xLAM 基本充分
+- **Task 6** quality tiers：**A 15,755 / B 15,460 / C 39,546**（真实
+  数据），A+B 进 `data/compiler_corpus_v3/{train,val,test}.jsonl`
+  （28,093/1,561/1,561），C 另存 `tier_c.jsonl` 仅供 ablation
+- **Task 7** 训练 harness（未训练）：`src/compiler/train/`（dataset/
+  train_lora/infer + qwen3b/qwen7b 配置，LoRA+QLoRA，模型路径全参数化）
+  + `scripts/prepare_sft.py` + `scripts/run_neural_compiler.py` +
+  `benchmark/neural_compiler_eval.py`（parse→validator→execution 三级
+  闸门、op-seq/技能 P-R/图编辑相似度/generic-action 率、**seen vs
+  unseen composition**）+ `docs/training.md`（ModelScope 权重下载 +
+  服务器 runbook）
+
+顺带修复（oracle 自检发现）：多行 description 的 printer/parser
+roundtrip 漏洞（HumanEval docstring/ToolBench 换行指令曾导致两个源
+plan_target 不可解析）；eval 报告结构 bug。
+
+## 下一步（Phase 5B-1：Qwen Neural Compiler LoRA 实验）
+
+- 训练数据：`data/compiler_corpus_v3/`（A+B，plan_target 目标，
+  28,093/1,561/1,561，zero leakage）——runbook 见 `docs/training.md`
+- 3B sanity（QLoRA）→ 7B 主实验（LoRA/QLoRA）；`--capability-context`
+  做 view A/B 对照（审计显示 xLAM 上提升有限，留作消融）
+- 评测走 `scripts/run_neural_compiler.py`：三级闸门 + seen/unseen
+  composition（判别"编译 vs 背模板"的核心指标）
+- 效果系统 v0.2 实施（docs/effect-system-proposal.md 落地顺序）
+- code 域覆盖率前置修复：lifter"赋值=SSA"（预计 HE/MBPP 3-7% → ~15%）
+  与 LOOP region（docs/missing-skills.md #1）

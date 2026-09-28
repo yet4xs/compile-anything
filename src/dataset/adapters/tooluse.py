@@ -85,6 +85,29 @@ class ToolBenchAdapter:
                            raw_payload={"instruction": instruction})
 
 
+def semantic_capabilities(tool_defs) -> List[str]:
+    """Normalize a raw tool list into semantic capability phrases (Task 5B:
+    the compiler's capability context). Concrete API names stay out."""
+    from ...lifter import toolmap
+    seen, out = set(), []
+    for t in tool_defs or []:
+        name = ""
+        if isinstance(t, str):
+            name = t
+        elif isinstance(t, dict):
+            name = t.get("name") or t.get("api_name") or ""
+        if not name:
+            continue
+        m = toolmap.map_tool(name, {})
+        cap = m["skill"]
+        if m["params"].get("domain"):
+            cap += f"({m['params']['domain']})"
+        if cap not in seen:
+            seen.add(cap)
+            out.append(cap)
+    return out
+
+
 class XlamAdapter:
     """REAL Salesforce/xLAM function-calling 60k (via ModelScope mirror).
     Record shape: {id, query, tools[...], answers: "<json string of
@@ -133,6 +156,7 @@ class XlamAdapter:
         return make_sample(
             id=f"xlam-{rec.get('id', '')}", source="xlam",
             input_text=question, trajectory=calls,
+            metadata={"capabilities": semantic_capabilities(rec.get("tools"))},
             raw_payload={"answer": str(rec.get("answers", ""))[:200]})
 
 
@@ -194,6 +218,8 @@ class ToolBenchStaticAdapter:
             return {}
         return make_sample(id=f"tbs-{sid}", source="toolbench_static",
                            input_text=instruction, trajectory=calls,
+                           metadata={"capabilities":
+                                     semantic_capabilities(rec.get("tools"))},
                            raw_payload={})
 
 

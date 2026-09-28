@@ -26,11 +26,20 @@ def lift_trajectory(question: str,
                     calls: List[Dict[str, Any]],
                     source: str,
                     task_id: str = "",
-                    tail: bool = True) -> Module:
+                    view: str = "execution") -> Module:
+    """view:
+       - "execution": append the compiler policy tail (GENERATE + VERIFY
+         with retry) — the runtime-oriented program;
+       - "plan": pure trajectory lowering, NO policy tail — the SFT target
+         for the first-round Neural Compiler (model learns task -> semantic
+         program, not "always emit GENERATE+VERIFY").
+    Lowering provenance (mapping_kind/confidence per call) is recorded in
+    meta.provenance.lowering — never in the semantic body."""
     nodes: List[Node] = []
     prev: Optional[str] = None
     prev_type: Optional[str] = None
     tool_names: List[str] = []
+    lowering: List[Dict[str, Any]] = []
 
     for i, call in enumerate(calls):
         lowered = toolmap.map_tool(call.get("name", ""), call.get("arguments") or {})
@@ -62,8 +71,12 @@ def lift_trajectory(question: str,
         prev = nodes[-1].id
         prev_type = out_t or (spec and _infer(spec, new_types)) or "Any"
         tool_names.append(call.get("name", ""))
+        lowering.append({"tool": call.get("name", ""), "skill": skill,
+                         "mapping_kind": lowered["mapping_kind"],
+                         "matched_rule": lowered["matched_rule"],
+                         "confidence": lowered["confidence"]})
 
-    if tail:
+    if view == "execution":
         gen_inputs = [prev, "@task"] if prev else ["@task"]
         gen = Node(id="%ans", op="GENERATE", inputs=gen_inputs,
                    params={"role": "final_answer",
@@ -85,5 +98,7 @@ def lift_trajectory(question: str,
     return Module(program=prog, meta={
         "name": name,
         "provenance": {"source": source, "task_id": task_id,
-                       "tools": tool_names},     # raw names live HERE only
+                       "tools": tool_names,     # raw names live HERE only
+                       "view": view,
+                       "lowering": lowering},   # mapping provenance
     })

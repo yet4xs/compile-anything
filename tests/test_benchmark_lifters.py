@@ -150,6 +150,17 @@ class TestTextParser(unittest.TestCase):
         self.assertEqual(n1.retry, n2.retry)
         self.assertEqual(module_to_dict(m2), module_to_dict(m))
 
+    def test_roundtrip_multiline_description(self):
+        from src.ir.taskir import Module, Program, Node
+        m = Module(program=Program(
+            name="t", description="line1\nline2 with ; semi\ntail",
+            inputs=[{"name": "@task", "type": "Str"}],
+            nodes=[Node(id="%1", op="SEARCH", inputs=["@task"])],
+            output="%1"),
+            meta={"name": "t", "provenance": {"source": "x"}})
+        m2 = parse_text(to_text(m))
+        self.assertEqual(module_to_dict(m2), module_to_dict(m))
+
     def test_syntax_error(self):
         with self.assertRaises(TaskIRSyntaxError):
             parse_text("not a taskir program at all")

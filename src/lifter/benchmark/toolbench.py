@@ -40,18 +40,21 @@ class ToolBenchLifter(BenchmarkLifter):
         return ("instruction" in sample and "trajectory" in sample) or \
                ("question" in sample and "steps" in sample)
 
-    def lift(self, sample: Dict) -> Optional[Module]:
+    def lift(self, sample: Dict, view: str = "execution") -> Optional[Module]:
         question = sample.get("instruction") or sample.get("question") or ""
         calls = _extract_calls(sample)
         if not question or not calls:
             return None
         return lift_trajectory(question, calls,
                                source=self.name,
-                               task_id=sample.get("task_id", ""))
+                               task_id=sample.get("task_id", ""),
+                               view=view)
 
-    def lift_with_reason(self, sample: Dict) -> Tuple[Optional[Module], Optional[str]]:
+    def lift_with_reason(self, sample: Dict,
+                         view: str = "execution"
+                         ) -> Tuple[Optional[Module], Optional[str]]:
         if not (sample.get("instruction") or sample.get("question")):
             return None, "missing instruction"
         if not _extract_calls(sample):
             return None, "empty trajectory"
-        return self.lift(sample), None
+        return self.lift(sample, view=view), None

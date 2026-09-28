@@ -1,0 +1,173 @@
+{
+  "predictions": 1561,
+  "train_opseqs": 283,
+  "per_skill": {
+    "SUM": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 1
+    },
+    "CODEGEN": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 90
+    },
+    "SEND": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 41
+    },
+    "QUERY_DB": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 695
+    },
+    "SUMMARIZE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 16
+    },
+    "MIN": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 1
+    },
+    "TRANSLATE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 16
+    },
+    "EXTRACT_ENTITIES": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 34
+    },
+    "TRANSFORM": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 2
+    },
+    "EXTRACT": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 318
+    },
+    "CALCULATE": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 44
+    },
+    "CLASSIFY": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 45
+    },
+    "CONVERT": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 9
+    },
+    "FETCH": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 733
+    },
+    "EXEC_ACTION": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 81
+    },
+    "FILTER": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 1
+    },
+    "SEARCH": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "support": 400
+    }
+  },
+  "per_source": {
+    "humaneval": {
+      "n": 1,
+      "parse_rate_pct": 100.0,
+      "validator_pass_pct": 100.0,
+      "execution_pct": 100.0,
+      "opseq_exact_pct": 100.0,
+      "graph_edit_similarity_mean": 1.0,
+      "skill_precision_mean": 1.0,
+      "skill_recall_mean": 1.0,
+      "generic_action_rate_pct": 0.0,
+      "unseen_composition": {
+        "n": 1,
+        "opseq_exact_pct": 100.0,
+        "validator_pass_pct_of_unseen": 100.0
+      }
+    },
+    "mbpp": {
+      "n": 2,
+      "parse_rate_pct": 100.0,
+      "validator_pass_pct": 100.0,
+      "execution_pct": 100.0,
+      "opseq_exact_pct": 100.0,
+      "graph_edit_similarity_mean": 1.0,
+      "skill_precision_mean": 1.0,
+      "skill_recall_mean": 1.0,
+      "generic_action_rate_pct": 0.0,
+      "unseen_composition": {
+        "n": 1,
+        "opseq_exact_pct": 100.0,
+        "validator_pass_pct_of_unseen": 100.0
+      }
+    },
+    "spider": {
+      "n": 555,
+      "parse_rate_pct": 100.0,
+      "validator_pass_pct": 100.0,
+      "execution_pct": 100.0,
+      "opseq_exact_pct": 100.0,
+      "graph_edit_similarity_mean": 1.0,
+      "skill_precision_mean": 1.0,
+      "skill_recall_mean": 1.0,
+      "generic_action_rate_pct": 0.0,
+      "unseen_composition": {
+        "n": 0,
+        "opseq_exact_pct": 0.0,
+        "validator_pass_pct_of_unseen": 0.0
+      }
+    },
+    "toolbench_static": {
+      "n": 9,
+      "parse_rate_pct": 100.0,
+      "validator_pass_pct": 100.0,
+      "execution_pct": 100.0,
+      "opseq_exact_pct": 100.0,
+      "graph_edit_similarity_mean": 1.0,
+      "skill_precision_mean": 1.0,
+      "skill_recall_mean": 1.0,
+      "generic_action_rate_pct": 11.11,
+      "unseen_composition": {
+        "n": 0,
+        "opseq_exact_pct": 0.0,
+        "validator_pass_pct_of_unseen": 0.0
+      }
+    },
+    "xlam": {
+      "n": 994,
+      "parse_rate_pct": 100.0,
+      "validator_pass_pct": 100.0,
+      "execution_pct": 100.0,
+      "opseq_exact_pct": 100.0,
+      "graph_edit_similarity_mean": 1.0,
+      "skill_precision_mean": 1.0,
+      "skill_recall_mean": 1.0,
+      "generic_action_rate_pct": 4.39,
+      "unseen_composition": {
+        "n": 42,
+        "opseq_exact_pct": 100.0,
+        "validator_pass_pct_of_unseen": 100.0
+      }
+    }
+  }
+}

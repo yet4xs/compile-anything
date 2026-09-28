@@ -25,11 +25,13 @@ class BenchmarkLifter:
     def can_handle(self, sample: Dict) -> bool:
         raise NotImplementedError
 
-    def lift(self, sample: Dict) -> Optional[Module]:
+    def lift(self, sample: Dict, view: str = "execution") -> Optional[Module]:
         raise NotImplementedError
 
-    def lift_with_reason(self, sample: Dict) -> Tuple[Optional[Module], Optional[str]]:
-        mod = self.lift(sample)
+    def lift_with_reason(self, sample: Dict,
+                         view: str = "execution"
+                         ) -> Tuple[Optional[Module], Optional[str]]:
+        mod = self.lift(sample, view=view)
         if mod is None:
             return None, "unsupported"
         return mod, None
@@ -43,10 +45,14 @@ def register(cls):
     return cls
 
 
-def lift_sample(sample: Dict) -> Tuple[Optional[Module], Optional[str], Optional[str]]:
-    """Dispatch by schema sniffing. Returns (module, reason, lifter_name)."""
+def lift_sample(sample: Dict, view: str = "execution"
+                ) -> Tuple[Optional[Module], Optional[str], Optional[str]]:
+    """Dispatch by schema sniffing. Returns (module, reason, lifter_name).
+
+    view: "execution" (compiler policy tail allowed) or "plan" (pure
+    lowering — the first-round SFT target)."""
     for lifter in LIFTERS:
         if lifter.can_handle(sample):
-            mod, reason = lifter.lift_with_reason(sample)
+            mod, reason = lifter.lift_with_reason(sample, view=view)
             return mod, reason, lifter.name
     return None, "no lifter can_handle", None

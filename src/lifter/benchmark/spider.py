@@ -47,7 +47,7 @@ class SpiderLifter(BenchmarkLifter):
         return bool(sample.get("query") and sample.get("question")) \
             and bool(re.match(r"(?is)^\s*select\b", sample.get("query", "")))
 
-    def lift(self, sample: Dict) -> Optional[Module]:
+    def lift(self, sample: Dict, view: str = "execution") -> Optional[Module]:
         sql = (sample.get("query") or "").strip().rstrip(";")
         question = sample.get("question") or ""
         m = re.match(r"(?is)^select\s+(.+?)\s+from\s+([a-z_][\w]*)\b(.*)$",
@@ -70,18 +70,25 @@ class SpiderLifter(BenchmarkLifter):
             nodes.append(Node(id="%c1", op="EXTRACT", inputs=["%c0"],
                               params={"fields": plain_cols}))
         prev = nodes[-1].id
-        gen = Node(id="%ans", op="GENERATE", inputs=[prev, "@task"],
-                   params={"role": "final_answer"})
-        ver = Node(id="%verify", op="VERIFY", inputs=["%ans"],
-                   params={"check": "answer_matches_query_result"})
-        gen.retry = Retry(max_attempts=2, on="%verify")
-        nodes.extend([gen, ver])
+
+        # execution view only: the GENERATE/VERIFY tail is compiler policy,
+        # not Spider ground truth — the plan view stops at the query program
+        if view == "execution":
+            gen = Node(id="%ans", op="GENERATE", inputs=[prev, "@task"],
+                       params={"role": "final_answer"})
+            ver = Node(id="%verify", op="VERIFY", inputs=["%ans"],
+                       params={"check": "answer_matches_query_result"})
+            gen.retry = Retry(max_attempts=2, on="%verify")
+            nodes.extend([gen, ver])
+            output = "%ans"
+        else:
+            output = prev
 
         name = re.sub(r"[^0-9A-Za-z_]+", "_", question[:40]).strip("_").lower() \
             or f"sql_{sample.get('task_id', 'task')}"
         prog = Program(name=name, description=question,
                        inputs=[{"name": "@task", "type": "Str"}],
-                       nodes=nodes, output="%ans")
+                       nodes=nodes, output=output)
         return Module(program=prog, meta={
             "name": name,
             "provenance": {
@@ -92,11 +99,13 @@ class SpiderLifter(BenchmarkLifter):
                 "decomposed": plain_cols is not None,
             }})
 
-    def lift_with_reason(self, sample: Dict) -> Tuple[Optional[Module], Optional[str]]:
+    def lift_with_reason(self, sample: Dict,
+                         view: str = "execution"
+                         ) -> Tuple[Optional[Module], Optional[str]]:
         if not sample.get("query"):
             return None, "missing query"
         if not re.match(r"(?is)^\s*select\b", sample.get("query", "")):
             return None, "non-SELECT sql"
-        if self.lift(sample) is None:
+        if self.lift(sample, view=view) is None:
             return None, "unparseable FROM clause"
-        return self.lift(sample), None
+        return self.lift(sample, view=view), None

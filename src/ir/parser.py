@@ -114,6 +114,10 @@ def _parse_kv(items: List[str]) -> Dict[str, Any]:
     return out
 
 
+def _unescape(s: str) -> str:
+    return s.replace("\\n", "\n").replace("\\\\", "\\")
+
+
 def parse_text(text: str) -> Module:
     name, description = "program", ""
     provenance: Dict[str, Any] = {}
@@ -130,10 +134,11 @@ def parse_text(text: str) -> Module:
                 if m:
                     name = m.group(1)
             elif line.startswith("; task:"):
-                description = line[len("; task:"):].strip()
+                description = _unescape(line[len("; task:"):].strip())
             elif line.startswith("; provenance."):
                 key, _, val = line[len("; provenance."):].partition(":")
-                provenance[key.strip()] = _parse_value(val.strip())
+                provenance[key.strip()] = _parse_value(
+                    _unescape(val.strip()))
             continue
         if line.startswith("inputs:"):
             body = line[len("inputs:"):].strip()

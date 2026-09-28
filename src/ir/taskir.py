@@ -156,13 +156,17 @@ def _fmt_value(v: Any) -> str:
 
 
 def to_text(m: Module) -> str:
-    """One-way pretty printer (human / debug / training-target format)."""
+    """One-way pretty printer (human / debug / training-target format).
+    Multi-line descriptions are escaped to a single header line so the
+    text form stays parser-roundtrippable."""
     p = m.program
     lines = [f"; TaskIR v0.1  module={m.meta.get('name', p.name)}"]
     if p.description:
-        lines.append(f"; task: {p.description}")
+        esc = p.description.replace("\\", "\\\\").replace("\n", "\\n")
+        lines.append(f"; task: {esc}")
     for k, v in (m.meta.get("provenance") or {}).items():
-        lines.append(f"; provenance.{k}: {v}")
+        esc_v = str(v).replace("\\", "\\\\").replace("\n", "\\n")
+        lines.append(f"; provenance.{k}: {esc_v}")
     if p.inputs:
         lines.append("inputs: " + ", ".join(f"{i['name']}: {i.get('type', 'Any')}"
                                             for i in p.inputs))

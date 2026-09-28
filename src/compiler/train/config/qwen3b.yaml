@@ -1,0 +1,19 @@
+# Qwen2.5-3B-Instruct LoRA — Neural Compiler sanity run
+model_family: qwen2.5-3b-instruct
+quantization: 4bit          # 24GB GPUs; set 'none' on 48GB+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+epochs: 2
+batch_size: 4
+grad_accum: 4
+lr: 1.0e-4
+scheduler: cosine
+warmup_ratio: 0.03
+max_seq_length: 2048
+logging_steps: 20
+eval_steps: 200
+save_steps: 500
+bf16: true
+gradient_checkpointing: true
