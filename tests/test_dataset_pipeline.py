@@ -7,7 +7,10 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from src.dataset.registry import REGISTRY, available, unavailable
 from src.dataset.schema import make_sample, to_lifter_input
-from src.dataset.adapters.tooluse import ToolBenchAdapter, _find_tool_calls
+from src.dataset.adapters.tooluse import (ToolBenchAdapter,  # noqa: E402
+                                          _find_tool_calls, XlamAdapter,
+                                          ToolBenchStaticAdapter,
+                                          _parse_react_target)
 from src.dataset.adapters.code import HumanEvalAdapter, MBPPAdapter
 from src.dataset.adapters.sql import SpiderAdapter
 from src.dataset.adapters.rtl import VerilogEvalAdapter, _signals_from_verilog
@@ -78,6 +81,33 @@ class TestAdapters(unittest.TestCase):
         _find_tool_calls({"role": "function", "name": "f", "content": "ok"},
                          calls)
         self.assertEqual(calls, [])          # results are not calls
+
+    def test_xlam_normalize_answers_field(self):
+        s = XlamAdapter().normalize(
+            {"id": 7, "query": "find giveaways",
+             "tools": [],
+             "answers": '[{"name": "live_giveaways_by_type", '
+                        '"arguments": {"type": "beta"}}]'})
+        self.assertEqual(s["source"], "xlam")
+        self.assertEqual(s["trajectory"][0]["tool"], "live_giveaways_by_type")
+        self.assertEqual(s["trajectory"][0]["args"], {"type": "beta"})
+
+    def test_xlam_normalize_empty_answers_rejected(self):
+        self.assertEqual(XlamAdapter().normalize(
+            {"id": 8, "query": "q", "answers": "[]"}), {})
+
+    def test_toolbench_static_react_target(self):
+        target = ("Thought: \nAction: spott\nAction Input: {\n"
+                  '  "is_id": "city center"\n}\n')
+        calls = _parse_react_target(target)
+        self.assertEqual(calls, [{"tool": "spott",
+                                  "args": {"is_id": "city center"}}])
+        s = ToolBenchStaticAdapter().normalize(
+            {"messages": [{"role": "system", "content": "tools"},
+                          {"role": "user", "content": "find a place"}],
+             "target": target, "tools": []}, "in-0")
+        self.assertEqual(s["input_text"], "find a place")
+        self.assertEqual(s["trajectory"][0]["tool"], "spott")
 
     def test_humaneval_normalize_concat(self):
         s = HumanEvalAdapter().normalize(

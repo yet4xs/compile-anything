@@ -85,6 +85,118 @@ class ToolBenchAdapter:
                            raw_payload={"instruction": instruction})
 
 
+class XlamAdapter:
+    """REAL Salesforce/xLAM function-calling 60k (via ModelScope mirror).
+    Record shape: {id, query, tools[...], answers: "<json string of
+    [{name, arguments}]>"} — the trajectory lives in `answers`."""
+    sources = ["xlam"]
+
+    def load(self, raw_dir: pathlib.Path) -> List[Dict[str, Any]]:
+        import glob as _glob
+        files = sorted(_glob.glob(str(raw_dir / "xlam" / "*.json*")))
+        out: List[Dict[str, Any]] = []
+        for fp in files:
+            text = pathlib.Path(fp).read_text(encoding="utf-8",
+                                              errors="replace").strip()
+            if not text:
+                continue
+            data = json.loads(text)
+            if isinstance(data, dict):
+                data = [data]
+            for rec in data:
+                s = self.normalize(rec)
+                if s:
+                    out.append(s)
+        return out
+
+    def normalize(self, rec: Dict[str, Any]) -> Dict[str, Any]:
+        question = rec.get("query") or rec.get("question") or ""
+        raw_answers = rec.get("answers")
+        calls: List[Dict[str, Any]] = []
+        if isinstance(raw_answers, str):
+            try:
+                raw_answers = json.loads(raw_answers)
+            except json.JSONDecodeError:
+                raw_answers = []
+        for a in raw_answers if isinstance(raw_answers, list) else []:
+            if isinstance(a, dict) and a.get("name"):
+                args = a.get("arguments") or {}
+                if isinstance(args, str):
+                    try:
+                        args = json.loads(args)
+                    except json.JSONDecodeError:
+                        args = {}
+                calls.append({"tool": a["name"],
+                              "args": args if isinstance(args, dict) else {}})
+        if not question or not calls:
+            return {}
+        return make_sample(
+            id=f"xlam-{rec.get('id', '')}", source="xlam",
+            input_text=question, trajectory=calls,
+            raw_payload={"answer": str(rec.get("answers", ""))[:200]})
+
+
+_ACTION_RE = None
+
+
+def _parse_react_target(target: str) -> List[Dict[str, Any]]:
+    """ToolBench-Static ground truth is ReAct text:
+    'Action: <tool>\\nAction Input: {json}' (repeated for multi-step)."""
+    import re as _re
+    global _ACTION_RE
+    if _ACTION_RE is None:
+        _ACTION_RE = _re.compile(
+            r"Action:\s*([A-Za-z0-9_.\-]+)\s*\nAction Input:\s*(\{.*?\})\s*(?=\n|$)",
+            _re.S)
+    calls = []
+    for name, argstr in _ACTION_RE.findall(target or ""):
+        try:
+            args = json.loads(argstr)
+        except json.JSONDecodeError:
+            args = {}
+        calls.append({"tool": name,
+                      "args": args if isinstance(args, dict) else {}})
+    return calls
+
+
+class ToolBenchStaticAdapter:
+    """REAL ToolBench static eval subset (via ModelScope mirror): messages
+    [system(tools), user(instruction)] + ReAct-format ground truth target."""
+    sources = ["toolbench_static"]
+
+    def load(self, raw_dir: pathlib.Path) -> List[Dict[str, Any]]:
+        out: List[Dict[str, Any]] = []
+        for fname in ("in_domain.jsonl", "out_of_domain.jsonl"):
+            f = raw_dir / "toolbench_static" / fname
+            if not f.exists():
+                continue
+            for i, line in enumerate(f.read_text(encoding="utf-8",
+                                                 errors="replace").splitlines()):
+                if not line.strip():
+                    continue
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                s = self.normalize(rec, f"{fname}-{i}")
+                if s:
+                    out.append(s)
+        return out
+
+    def normalize(self, rec: Dict[str, Any], sid: str) -> Dict[str, Any]:
+        instruction = ""
+        for m in reversed(rec.get("messages") or []):
+            if m.get("role") == "user":
+                instruction = m.get("content") or ""
+                break
+        calls = _parse_react_target(rec.get("target") or "")
+        if not instruction or not calls:
+            return {}
+        return make_sample(id=f"tbs-{sid}", source="toolbench_static",
+                           input_text=instruction, trajectory=calls,
+                           raw_payload={})
+
+
 class ApiBankAdapter:
     """Registered for when a mirror is located; tolerant parser kept."""
     sources = ["apibank"]

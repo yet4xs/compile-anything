@@ -9,30 +9,35 @@
 
 | dataset | 真实样本 | 来源 | license | 备注 |
 |---|---|---|---|---|
+| xlam | 60000 | ModelScope `LLM-Research/xlam-function-calling-60k`（Salesforce/xLAM 镜像） | CC-BY-4.0 | function-calling 主集 |
 | spider | 8034 (7000 train + 1034 dev) | taoyds/spider 官方仓 | CC-BY-SA-4.0 | 文本→SQL |
+| toolbench_static | 2356 | ModelScope `AI-ModelScope/ToolBench-Static` | 见上游 | ToolBench 静态评测集（ReAct 真值） |
 | mbpp | 974 | GitHub 镜像（原 Google MBPP cleaned） | CC-BY-4.0 | Python 函数 |
 | verilogeval | 312 (2 tracks) | NVlabs/verilog-eval 官方仓 | 见上游 | HDLBits 派生 RTL |
 | humaneval | 164 | openai/human-eval 官方仓 | MIT | Python 函数 |
 | toolbench | 15 | OpenBMB/ToolBench 官方仓 data_example | Apache-2.0(代码) | G1/G2/G3 答案轨迹 |
-| **合计** | **9499** | | | 端到端通过 8405 |
+| **合计** | **71855** | | | 端到端通过 70449 |
 
-不可得（已注册、原因如实记录）：BIRD（上游表单门槛）、API-Bank（探
-测路径 404，仓库疑似迁移）、AgentBench（数据经 HF LMUData 分发，本环境
-HF 不可达）、ToolBench 全量（HF 分发）、HDLBits（无再分发 dump，经
-VerilogEval 间接覆盖）。在 HF 可达环境重跑 `download_datasets.py` 即
-可扩充，零代码改动。
+数据获取说明：HF 直连在本环境不可达且 ToolBench/xLAM 原仓为 token 门控
+（hf-mirror.com 同样绕不开门控）；**ModelScope 国内镜像**提供了这两个
+数据集的无门槛副本（downloader 新增 `modelscope` plan 类型）。仍不可得：
+BIRD（上游表单门槛 + ModelScope 副本损坏）、API-Bank（仓库迁移）、
+AgentBench（HF LMUData）、ToolBench 全量 1.8GB 轨迹（单文件过大，暂缓）。
 
 ## 1. 哪些 benchmark 可以被 TaskIR 表达？
 
 | dataset | lift 覆盖 | valid | 执行 | 结论 |
 |---|---|---|---|---|
+| xlam | **100%** (60000/60000) | 100% | 100% | 完全可表达（语义化 toolmap + EXTRACT 桥接） |
 | spider | **100%** | 100% | 100% | 完全可表达（保守 lowering：复杂 SQL 留在 QUERY_DB 内） |
+| toolbench_static | **100%** (2356/2356) | 100% | 100% | 完全可表达（ReAct 真值解析） |
 | verilogeval | **100%** | 100% | 100% | 完全可表达（LOAD→EXTRACT→SEARCH→CODEGEN+VERIFY 骨架） |
-| toolbench | **100%** | 100% | 100% | 完全可表达（语义化 toolmap + EXTRACT 桥接） |
+| toolbench | **100%** | 100% | 100% | 完全可表达 |
 | humaneval | **7.3%** (12/164) | 100% | 100% | 大部分不可表达 |
 | mbpp | **3.3%** (32/974) | 100% | 100% | 大部分不可表达 |
 
-关键观察：**工具/SQL/RTL 类任务已可用；代码算法类任务是表达力黑洞**。
+关键观察：**tool-use/SQL/RTL 类任务已大规模可用（6 万级）；代码算法类
+任务是表达力黑洞**。
 
 ## 2. 哪些失败？（拒绝直方图，n=9499）
 

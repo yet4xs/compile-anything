@@ -14,3 +14,5 @@ data/raw/bird/
 data/compiler_corpus_v2/train.jsonl
 data/compiler_corpus_v2/val.jsonl
 data/compiler_corpus_v2/test.jsonl
+data/raw/xlam/
+data/raw/toolbench_static/

@@ -27,6 +27,73 @@
       "parallel_ratio_mean": 0.0892
     }
   },
+  "toolbench_static": {
+    "samples": 2356,
+    "lifted": 2356,
+    "valid": 2356,
+    "executed": 2356,
+    "lift_coverage_pct": 100.0,
+    "valid_coverage_pct": 100.0,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "GENERATE": 2356,
+      "VERIFY": 2356,
+      "EXEC_ACTION": 1280,
+      "SEARCH": 396,
+      "FETCH": 274,
+      "QUERY_DB": 149,
+      "CODEGEN": 73,
+      "EXTRACT_ENTITIES": 62,
+      "SEND": 45,
+      "CLASSIFY": 23,
+      "CONVERT": 23,
+      "CALCULATE": 13,
+      "TRANSLATE": 13,
+      "SUMMARIZE": 5
+    },
+    "reject_reasons": {},
+    "taskir_graph": {
+      "nodes_mean": 3.0,
+      "depth_max": 3,
+      "width_max": 1,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.3333
+    }
+  },
+  "xlam": {
+    "samples": 60000,
+    "lifted": 60000,
+    "valid": 60000,
+    "executed": 60000,
+    "lift_coverage_pct": 100.0,
+    "valid_coverage_pct": 100.0,
+    "execution_pct_of_valid": 100.0,
+    "skill_coverage": {
+      "GENERATE": 60000,
+      "VERIFY": 60000,
+      "EXEC_ACTION": 57453,
+      "FETCH": 14904,
+      "SEARCH": 13211,
+      "EXTRACT": 4296,
+      "QUERY_DB": 3390,
+      "CALCULATE": 3291,
+      "CODEGEN": 2492,
+      "SEND": 1781,
+      "EXTRACT_ENTITIES": 1497,
+      "CLASSIFY": 1335,
+      "SUMMARIZE": 271,
+      "CONVERT": 218,
+      "TRANSLATE": 168
+    },
+    "reject_reasons": {},
+    "taskir_graph": {
+      "nodes_mean": 3.738,
+      "depth_max": 54,
+      "width_max": 1,
+      "branch_ratio_mean": 0.0,
+      "parallel_ratio_mean": 0.2804
+    }
+  },
   "humaneval": {
     "samples": 164,
     "lifted": 12,
@@ -129,12 +196,12 @@
     }
   },
   "CORPUS": {
-    "real_records": 8405,
+    "real_records": 70761,
     "synthetic_records": 9027,
-    "total": 17432,
-    "train": 15690,
-    "val": 871,
-    "test": 871,
+    "total": 79788,
+    "train": 71810,
+    "val": 3989,
+    "test": 3989,
     "note": "synthetic records are explicitly labeled source=synthetic:*"
   }
 }

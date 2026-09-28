@@ -183,17 +183,20 @@ mean makespan = 37.9%；rtl_debug 的 makespan(1070ms) < 顺序和(1098ms)
   原始数据 gitignore）
 - `src/dataset/adapters/` — tooluse/code/sql/rtl 四类（load+normalize），
   只做字段映射，lifting 逻辑不复制
-- `scripts/download_datasets.py` — 实拉 5 个真实数据集：Spider 8034、
-  MBPP 974、VerilogEval 312、HumanEval 164、ToolBench 15（=9499 真实
-  样本；BIRD/API-Bank/AgentBench/HF 全量因门槛或网络不可达，已注册）
+- `scripts/download_datasets.py` — 实拉 **7 个真实数据集（71855 样本）**：
+  xLAM 60000（ModelScope 国内镜像，HF 原仓 token 门控）、Spider 8034、
+  ToolBench-Static 2356（ModelScope）、MBPP 974、VerilogEval 312、
+  HumanEval 164、ToolBench 样例 15；BIRD/API-Bank/AgentBench/ToolBench
+  全量因门槛或体积不可达，已注册（downloader 支持 file/github-dir/
+  modelscope 三种 plan）
 - `scripts/analyze_dataset_coverage.py` — 覆盖率/拒绝直方图/图统计 →
   `data/reports/dataset_coverage.{json,md}`
-- `scripts/build_real_corpus.py` — **compiler_corpus_v2**：真实 8405 +
-  标注 synthetic 9027（train 15690 / val 871 / test 871）
+- `scripts/build_real_corpus.py` — **compiler_corpus_v2**：真实 70761 +
+  标注 synthetic 9027（train 71810 / val 3989 / test 3989）
 - `docs/dataset-audit.md` — 四问回答（真实数字）
 
-**核心发现（真实覆盖率，非 synthetic 估计）**：Spider/VerilogEval/
-ToolBench 100% 可表达；**真实 HumanEval 仅 7.3%、MBPP 仅 3.3%**——
+**核心发现（真实覆盖率，非 synthetic 估计）**：tool-use/SQL/RTL 全部
+100%（xLAM 6 万条全过）；**真实 HumanEval 仅 7.3%、MBPP 仅 3.3%**——
 LOOP/递归 524 个拒绝是主因（ISA 缺口第一优先），局部变量赋值返回 137
 个是 lifter 能力问题（赋值=SSA def，可修）。v0.2 ISA 优先级被真实
 数据重排：LOOP > STRING_OP > GROUP/TABLE_SCAN；JOIN 无需新增。

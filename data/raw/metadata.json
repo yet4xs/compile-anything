@@ -3278,5 +3278,49 @@
     "status": "ok",
     "files_ok": 624,
     "files_failed": 0
+  },
+  "xlam": {
+    "dataset": "xlam",
+    "version": "",
+    "url": "https://modelscope.cn/datasets/LLM-Research/xlam-function-calling-60k (mirror of Salesforce/xLAM)",
+    "license": "CC-BY-4.0",
+    "download_time": "2026-09-28T23:30:44",
+    "sha256": "",
+    "files": [
+      {
+        "path": "xlam\\xlam_function_calling_60k.json",
+        "url": "https://www.modelscope.cn/datasets/LLM-Research/xlam-function-calling-60k/resolve/master/xlam_function_calling_60k.json",
+        "sha256": "4ef5c6f0dc552f2231f93f5853a9ef431e9e806d7aa514d0f6b615606ce576c6",
+        "mirror": "modelscope"
+      }
+    ],
+    "status": "ok",
+    "files_ok": 1,
+    "files_failed": 0
+  },
+  "toolbench_static": {
+    "dataset": "toolbench_static",
+    "version": "",
+    "url": "https://modelscope.cn/datasets/AI-ModelScope/ToolBench-Static (mirror of OpenBMB ToolBench static eval)",
+    "license": "see upstream ToolBench",
+    "download_time": "2026-09-28T23:31:23",
+    "sha256": "",
+    "files": [
+      {
+        "path": "toolbench_static\\in_domain.jsonl",
+        "url": "https://www.modelscope.cn/datasets/AI-ModelScope/ToolBench-Static/resolve/master/in_domain.jsonl",
+        "sha256": "2add1d40c613ca7977766e4d3e3ddebf69eb6427f87245145bf357e2032850d7",
+        "mirror": "modelscope"
+      },
+      {
+        "path": "toolbench_static\\out_of_domain.jsonl",
+        "url": "https://www.modelscope.cn/datasets/AI-ModelScope/ToolBench-Static/resolve/master/out_of_domain.jsonl",
+        "sha256": "026f32be30b818b511cdc0b1804cf6b508537244298b8965138f1f8633721ba3",
+        "mirror": "modelscope"
+      }
+    ],
+    "status": "ok",
+    "files_ok": 2,
+    "files_failed": 0
   }
 }

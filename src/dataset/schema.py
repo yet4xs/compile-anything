@@ -33,7 +33,8 @@ def to_lifter_input(sample: Dict[str, Any]) -> Dict[str, Any]:
     (src/lifter/benchmark/*). Pure field mapping — lifting logic is NOT
     duplicated here."""
     src = sample["source"]
-    if src in ("toolbench", "apibank", "agentbench"):
+    if src in ("toolbench", "toolbench_static", "apibank", "agentbench",
+               "xlam"):
         return {"task_id": sample["id"],
                 "instruction": sample.get("input_text") or "",
                 "trajectory": [{"tool": c.get("tool", ""),

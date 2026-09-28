@@ -15,7 +15,11 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Optional, Tuple
 
-Plan = Tuple[str, dict]     # ("file", {...}) | ("github-dir", {...})
+Plan = Tuple[str, dict]     # ("file", ...) | ("github-dir", ...) | ("modelscope", ...)
+
+
+def _ms(ns: str, name: str, files: List[str]) -> Plan:
+    return ("modelscope", {"ns": ns, "name": name, "files": files})
 
 
 @dataclass(frozen=True)
@@ -95,6 +99,26 @@ REGISTRY: dict = {s.name: s for s in [
                   "dataset_spec-to-rtl/", ["_prompt.txt", "_test.sv"],
                   dest_dir="spec-to-rtl")],
         notes="312 real RTL problems (HDLBits-derived prompts)"),
+    DatasetSpec(
+        name="xlam",
+        source_url="https://modelscope.cn/datasets/LLM-Research/"
+                   "xlam-function-calling-60k (mirror of Salesforce/xLAM)",
+        license="CC-BY-4.0",
+        task_type="tooluse", adapter="xlam", expected_size=60000,
+        plan=[_ms("LLM-Research", "xlam-function-calling-60k",
+                  ["xlam_function_calling_60k.json"])],
+        notes="REAL xLAM function-calling 60k via ModelScope (HF original "
+              "is token-gated in this environment)"),
+    DatasetSpec(
+        name="toolbench_static",
+        source_url="https://modelscope.cn/datasets/AI-ModelScope/"
+                   "ToolBench-Static (mirror of OpenBMB ToolBench static eval)",
+        license="see upstream ToolBench",
+        task_type="tooluse", adapter="toolbench_static", expected_size=5000,
+        plan=[_ms("AI-ModelScope", "ToolBench-Static",
+                  ["in_domain.jsonl", "out_of_domain.jsonl"])],
+        notes="REAL ToolBench static eval subset (29MB) via ModelScope; "
+              "full 1.8GB trajectory corpus deferred (single-file size)"),
     # ---- registered but gated / unreachable from this environment ----
     DatasetSpec(
         name="bird",

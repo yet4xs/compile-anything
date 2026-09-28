@@ -78,6 +78,21 @@ def download_dataset(name: str, raw_root: pathlib.Path = RAW_ROOT,
                                        "url": p["url"], "sha256": sha})
             else:
                 n_fail += 1
+        elif kind == "modelscope":
+            # domestic mirror for HF-gated/unreachable datasets (no auth for
+            # public repos): resolve-style download
+            base = ("https://www.modelscope.cn/datasets/"
+                    f"{p['ns']}/{p['name']}/resolve/{p.get('rev', 'master')}/")
+            for rel in p["files"]:
+                dest = dest_dir / rel.replace("/", "_")
+                sha = _fetch(base + rel, dest, timeout=600)
+                if sha:
+                    n_ok += 1
+                    entry["files"].append(
+                        {"path": str(dest.relative_to(root)), "url": base + rel,
+                         "sha256": sha, "mirror": "modelscope"})
+                else:
+                    n_fail += 1
         elif kind == "github-dir":
             paths = _github_tree(p["repo"], p["ref"], root / ".cache")
             wanted = [q for q in paths

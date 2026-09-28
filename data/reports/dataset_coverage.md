@@ -91,6 +91,36 @@
 
 ### graph: nodes mean 13.133, depth max 20, width max 1, branch ratio 0.0, parallel ratio 0.0892
 
+## toolbench_static
+
+- samples: **2356**  lifted: 2356 (100.0%)  valid: 2356 (100.0%)  executed/valid: 100.0%
+
+### reject reasons
+
+| reason | count |
+|---|---|
+
+### skill coverage
+
+| skill | count |
+|---|---|
+| GENERATE | 2356 |
+| VERIFY | 2356 |
+| EXEC_ACTION | 1280 |
+| SEARCH | 396 |
+| FETCH | 274 |
+| QUERY_DB | 149 |
+| CODEGEN | 73 |
+| EXTRACT_ENTITIES | 62 |
+| SEND | 45 |
+| CLASSIFY | 23 |
+| CONVERT | 23 |
+| CALCULATE | 13 |
+| TRANSLATE | 13 |
+| SUMMARIZE | 5 |
+
+### graph: nodes mean 3.0, depth max 3, width max 1, branch ratio 0.0, parallel ratio 0.3333
+
 ## verilogeval
 
 - samples: **312**  lifted: 312 (100.0%)  valid: 312 (100.0%)  executed/valid: 100.0%
@@ -111,3 +141,34 @@
 | VERIFY | 312 |
 
 ### graph: nodes mean 5.0, depth max 4, width max 2, branch ratio 0.0, parallel ratio 0.4
+
+## xlam
+
+- samples: **60000**  lifted: 60000 (100.0%)  valid: 60000 (100.0%)  executed/valid: 100.0%
+
+### reject reasons
+
+| reason | count |
+|---|---|
+
+### skill coverage
+
+| skill | count |
+|---|---|
+| GENERATE | 60000 |
+| VERIFY | 60000 |
+| EXEC_ACTION | 57453 |
+| FETCH | 14904 |
+| SEARCH | 13211 |
+| EXTRACT | 4296 |
+| QUERY_DB | 3390 |
+| CALCULATE | 3291 |
+| CODEGEN | 2492 |
+| SEND | 1781 |
+| EXTRACT_ENTITIES | 1497 |
+| CLASSIFY | 1335 |
+| SUMMARIZE | 271 |
+| CONVERT | 218 |
+| TRANSLATE | 168 |
+
+### graph: nodes mean 3.738, depth max 54, width max 1, branch ratio 0.0, parallel ratio 0.2804
