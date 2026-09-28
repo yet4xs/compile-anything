@@ -1,0 +1,924 @@
+[
+  {
+    "id": "xlam-1724",
+    "instruction": "Please provide the liquidity value of Cardano (ADA) and the market trends for gainers in the US. Also, what is the summary of the stock performance for Alphabet Inc. (GOOG)?",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-3400",
+    "instruction": "Could you find out the current liquidity value of Litecoin (LTC) and the market trends for losers in the US? Also, what's the summary of Amazon (AMZN) stock performance?",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-4946",
+    "instruction": "Fetch reviews for '75319' in English and French, no sorting, and what is the default currency on Airbnb?",
+    "reference_ops": [
+      "SEARCH",
+      "EXTRACT",
+      "CONVERT"
+    ],
+    "predicted_ops": [
+      "SEARCH",
+      "EXTRACT",
+      "CONVERT"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-5840",
+    "instruction": "Could you fetch the liquidity value of EOS and the market trends for currencies in the US? Additionally, provide the summary of the stock performance for Netflix (NFLX).",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-8986",
+    "instruction": "Please provide the modifiers of supply for Dogecoin and the latest news about it. Also, check for any SPAC redemption dates.",
+    "reference_ops": [
+      "FETCH",
+      "SEARCH",
+      "EXEC_ACTION"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "SEARCH",
+      "EXEC_ACTION"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-11297",
+    "instruction": "Can you classify the text 'Latest AI breakthroughs in healthcare' using the IAB taxonomy and also translate the phrase 'Hello, how are you?' to Spanish?",
+    "reference_ops": [
+      "CLASSIFY",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "CLASSIFY",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-20934",
+    "instruction": "I need to check the details of QR codes with references 'Q1234' and 'Q5678'. Can you also tell me what the original URLs were for these shortened links: goo.gl/f4K8s and is.gd/5L6mN?",
+    "reference_ops": [
+      "CODEGEN",
+      "CODEGEN",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "CODEGEN",
+      "CODEGEN",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-21687",
+    "instruction": "Retrieve the latest summary for Amazon's stock and generate a Litecoin wallet with a mnemonic 'efficient market hypothesis...'.",
+    "reference_ops": [
+      "SUMMARIZE",
+      "EXTRACT_ENTITIES"
+    ],
+    "predicted_ops": [
+      "SUMMARIZE",
+      "EXTRACT_ENTITIES"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-22058",
+    "instruction": "I need to know the liquidity value of Ripple (XRP) and also the market trends for climate leaders in the US. Additionally, provide the stock summary for Microsoft (MSFT).",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-23989",
+    "instruction": "Could you fetch details for the apps '101112' and '131415'? Also, generate 8 Visa card numbers.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-24098",
+    "instruction": "I need the liquidity value of Stellar (XLM) and the market trends for indexes in the Americas. Also, could you give me the summary of the stock performance for Facebook (FB)?",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "SUMMARIZE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-25013",
+    "instruction": "How many reviews are there for '86420' in English, sorted by guest verification, and what currency is used in Dutch listings?",
+    "reference_ops": [
+      "SEARCH",
+      "EXTRACT",
+      "CONVERT"
+    ],
+    "predicted_ops": [
+      "SEARCH",
+      "EXTRACT",
+      "CONVERT"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-31460",
+    "instruction": "I'm looking for remote jobs at 'Netflix' in 'Data Science' and 'Content Curation', and also need a resume for a 'Film Studies' graduate from 'UCLA' with skills in 'Film Editing, Screenwriting'.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-31926",
+    "instruction": "What are the hourly exchange rates for AUD and NZD against USD? Also, retrieve the market data for AMZN and the peers for FB.",
+    "reference_ops": [
+      "CONVERT",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "CONVERT",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-36224",
+    "instruction": "What are the trading signals for BTC on Binance, Bybit, Huobi, Kucoin, Coinex, MXC, and Gate for both SPOT and FUTURES markets?",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-36265",
+    "instruction": "Is 'aol.com' a valid email domain? I also need the details of the products with IDs 888, 999, and 1010.",
+    "reference_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-37053",
+    "instruction": "Find the domain of Oracle and extract the field and field invite IDs for a document with ID '68000' from SignNow. I also want translations for the sentence 'See you later' from English to Swedish.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-40746",
+    "instruction": "Check if 'protonmail.com' is a valid email domain. I also need the details of the products with IDs 444, 555, 666, and 777.",
+    "reference_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-42240",
+    "instruction": "Find the top-level domains for '.de', '.es', and '.fr'. Also, fetch autocomplete suggestions for USA zip codes starting with '11' and get a list of video categories from the YouTube API available in Germany.",
+    "reference_ops": [
+      "FETCH",
+      "CODEGEN",
+      "CLASSIFY"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "CODEGEN",
+      "CLASSIFY"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-44506",
+    "instruction": "Check if 'mailinator.com' is a valid email domain. I also need the details of the products with IDs 1313, 1414, 1515, and 1616.",
+    "reference_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-46242",
+    "instruction": "Can you help me find the domain of IBM and extract the field and field invite IDs for a document with ID '57900' from SignNow? Also, I need translations for the sentence 'Thank you' from English to Dutch.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-47192",
+    "instruction": "I'd like to know the dividends and splits data for General Electric Co. (ticker ID: 22746), Honeywell International Inc. (ticker ID: 26868), and 3M Co. (ticker ID: 26911) using the stock_get_dividends_splits function. Additionally, can you fetch the asset allocation for the ETF with the security ID ",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-47613",
+    "instruction": "Can you find the stock profile data for Apple Inc., Microsoft Corporation, and Amazon.com, Inc. in the US, and also provide 6 months of historical daily stock prices for these companies?",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-47653",
+    "instruction": "What are the option expiration dates for Comcast Corporation (CMCSA) and the real-time stock price for Verizon Communications Inc. (VZ)? Additionally, please provide the latest securities report data for Toshiba Corporation (securities code: 6502) and the real-time stock price for Merck & Co., Inc. ",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "CODEGEN",
+      "QUERY_DB"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "CODEGEN",
+      "QUERY_DB"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-47930",
+    "instruction": "Could you fetch the ICO calendar for completed ICOs in the categories of Gaming and Finance, sorted by funds raised? Also, I need the market trends for most active stocks in the US and climate leaders worldwide.",
+    "reference_ops": [
+      "EXEC_ACTION",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "predicted_ops": [
+      "EXEC_ACTION",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-49515",
+    "instruction": "Please provide the latitude and longitude of the following cities: Rome, Beijing, and Sydney. Additionally, can you place an order at Whole Foods in New York for a medium-sized order of oranges, lemons, and limes?",
+    "reference_ops": [
+      "CODEGEN",
+      "CODEGEN",
+      "CODEGEN",
+      "SEARCH"
+    ],
+    "predicted_ops": [
+      "CODEGEN",
+      "CODEGEN",
+      "CODEGEN",
+      "SEARCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-49692",
+    "instruction": "Find the top-level domains for '.uk', '.jp', and '.au'. Also, get autocomplete suggestions for USA zip codes starting with '20' and retrieve video categories available in the UK from the YouTube API.",
+    "reference_ops": [
+      "FETCH",
+      "CODEGEN",
+      "CLASSIFY"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "CODEGEN",
+      "CLASSIFY"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-49756",
+    "instruction": "Get the funding rate history for the ETH/USDT derivative product with a 1-day interval from January 15, 2022, to January 21, 2022, in the inverse category. Additionally, retrieve financial information for the NYSE:FB stock, including the enterprise value and enterprise value-to-revenue. Lastly, get ",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-49992",
+    "instruction": "What are the option expiration dates for Home Depot, Inc. (HD) and the real-time stock price for AT&T Inc. (T)? Additionally, please provide the latest securities report data for Toyota Industries Corporation (securities code: 6201) and the real-time stock price for Caterpillar Inc. (CAT).",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "CODEGEN",
+      "QUERY_DB"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "CODEGEN",
+      "QUERY_DB"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-50260",
+    "instruction": "What were the railway periods for the UTC dates of the first and last days of each month in 2021?",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-50481",
+    "instruction": "Fetch quotes from 2001 and 2002, and retrieve the quote with ID 131415. Also, find movies with the name 'The Lord of the Rings: The Fellowship of the Ring'.",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-50529",
+    "instruction": "Fetch the funding rate history for the BTC/USDT derivative product with a 1-hour interval from January 1, 2022, to January 7, 2022, in the linear category. Also, retrieve financial information for the NASDAQ:TSLA stock, including the average volume, market cap, and price-to-earnings ratio. Lastly, g",
+    "reference_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-51969",
+    "instruction": "Fetch broadband information for the property listing with ID 45678. Also, fetch the translation for the word 'Goodbye' from English to French using the 'search_translations' function.",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-53278",
+    "instruction": "I need to know the domain of Apple and extract the field and field invite IDs for a document with ID '46800' from SignNow. Please also fetch translations for the sentence 'How are you?' from English to Portuguese.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-54002",
+    "instruction": "Fetch the zodiac sign predictions for today for Leo, Virgo, and Libra, and generate a signature for the TikTok API URL 'https://www.tiktok.com/@user3'.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-54048",
+    "instruction": "Fetch broadband information for the property listing with ID 35790. Also, fetch the translation for the word 'Hello' from English to Spanish using the 'search_translations' function.",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-56541",
+    "instruction": "Is 'gmx.com' a valid email domain? I also need the details of the products with IDs 1717, 1818, and 1919.",
+    "reference_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "SEND",
+      "FETCH",
+      "FETCH",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-56625",
+    "instruction": "Fetch torrent search results for the TV shows 'Breaking Bad' and 'Game of Thrones', and generate a UUIDv3 for the domain 'example.com' using the 'dns' namespace.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "EXTRACT_ENTITIES"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-57417",
+    "instruction": "Could you provide me with the earnings data for BHP Group, Rio Tinto, and Fortescue Metals Group, which are listed in the Australian stock exchange? I'm also interested in the latest block on the Ethereum blockchain.",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "FETCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-57990",
+    "instruction": "Get the latitude and longitude for 'NW1 5LR' and 'SE1 8TL'. Additionally, I want to know the Food Hygiene Rating for 'Dishoom' and 'Hawksmoor'?",
+    "reference_ops": [
+      "CODEGEN",
+      "CODEGEN",
+      "SEARCH",
+      "EXTRACT",
+      "SEARCH"
+    ],
+    "predicted_ops": [
+      "CODEGEN",
+      "CODEGEN",
+      "SEARCH",
+      "EXTRACT",
+      "SEARCH"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-58082",
+    "instruction": "Find the domain of Facebook and extract the field and field invite IDs for a document with ID '12345' from SignNow. Also, search for translations of the sentence 'Hello, world!' from English to Spanish using MyMemory.",
+    "reference_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "predicted_ops": [
+      "FETCH",
+      "FETCH",
+      "TRANSLATE"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "xlam-58514",
+    "instruction": "Get the earnings data for the top 5 companies in the NASDAQ index and the TSX index (Canadian stock market) with the highest market capitalization.",
+    "reference_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "predicted_ops": [
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB",
+      "EXTRACT",
+      "QUERY_DB"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "HumanEval_151",
+    "instruction": "\ndef double_the_difference(lst):\n    '''\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n    \n    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10\n    double_the_difference([-1, -2, 0]) == ",
+    "reference_ops": [
+      "FILTER",
+      "TRANSFORM",
+      "SUM"
+    ],
+    "predicted_ops": [
+      "FILTER",
+      "TRANSFORM",
+      "SUM"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  },
+  {
+    "id": "mbpp-62",
+    "instruction": "Write a python function to find smallest number in a list.",
+    "reference_ops": [
+      "MIN"
+    ],
+    "predicted_ops": [
+      "MIN"
+    ],
+    "parsed": true,
+    "validator_errors": [],
+    "graph_edit_similarity": 1.0
+  }
+]

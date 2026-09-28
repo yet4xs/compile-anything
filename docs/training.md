@@ -2,83 +2,82 @@
 
 > 本目录只准备代码与数据，**不在本环境训练**（无 GPU/依赖）。整个
 > `compile-anything/` 目录拷到服务器即可运行。
+> **冻结基线**：`experiments/phase5b1/manifest.json`（corpus SHA256 +
+> toolmap/spec/prompt 哈希）；`tests/test_phase5b1_freeze.py` 守护——
+> 实验期间改动冻结文件会直接 fail 测试。发现问题记录 issue，留到 5B-2。
 
-## 1. 权重下载（国内环境建议 ModelScope）
-
-```bash
-pip install modelscope
-modelscope download --model Qwen/Qwen2.5-3B-Instruct --local_dir ./weights/Qwen2.5-3B-Instruct
-modelscope download --model Qwen/Qwen2.5-7B-Instruct --local_dir ./weights/Qwen2.5-7B-Instruct
-```
-
-依赖：`pip install transformers peft accelerate bitsandbytes trl datasets
-pyyaml`（CUDA 环境）。
-
-## 2. 数据（已在仓库生成）
-
-- `data/compiler_corpus_v3/{train,val,test}.jsonl` — Tier A+B（第一轮
-  SFT 只用这些），group-aware 切分，exact leakage = 0
-- `data/compiler_corpus_v3/tier_c.jsonl` — Tier C（fallback/synthetic），
-  仅用于 ablation/augmentation
-- 每条含 `plan_target`（纯 lowering，**第一轮训练目标**）、
-  `execution_target`（含 policy tail，备用）、`capabilities`（语义能力
-  上下文，输入 view B 用）
+## 0. 一键流程（服务器）
 
 ```bash
-# 生成 chat 格式（可选，train_lora.py 也会现场构建）
-python scripts/prepare_sft.py                        # plan_target, A+B
-python scripts/prepare_sft.py --capability-context   # 输入 view B
+pip install -r requirements-training.txt     # 版本已锁定 + resolve 验证
+bash scripts/run_phase5b1.sh preflight       # 失败禁止开训
+bash scripts/run_phase5b1.sh e0              # 3B zero-shot baseline
+bash scripts/run_phase5b1.sh e1-sanity       # 3B QLoRA 50 步 sanity
+bash scripts/run_phase5b1.sh e1              # 3B QLoRA 全量（自动 resume）
+#   → 检查 Go/No-Go：python scripts/collect_phase5b1_results.py
+bash scripts/run_phase5b1.sh e2              # 7B zero-shot（3B 过闸后）
+bash scripts/run_phase5b1.sh e3              # 7B 主实验
+bash scripts/run_phase5b1.sh eval-all        # 汇总表 data/reports/phase5b1_results.md
+python scripts/make_phase5b1_manifest.py --runtime   # 回填 CUDA/torch 信息
 ```
 
-## 3. 训练
+TRL 版本说明：锁定 `trl==0.12.2`（数据参数在 `SFTConfig`）；
+`train_lora.make_sft_args_class()` 带 0.13+（`max_seq_length→max_length`
+改名）兼容 shim；preflight 会核对已装版本与 pin 的一致性。
+
+## 1. 权重（已用 ModelScope 国内源下载，禁止提交 Git）
+
+- `weights/Qwen2.5-3B-Instruct/`（E0/E1）
+- `weights/Qwen2.5-7B-Instruct/`（E2/E3，48GB 卡 bf16 LoRA / 24GB 卡
+  `--quantize 4bit` QLoRA batch_size=1）
+- `python scripts/verify_weights.py [--full-hash]` → `weights/MANIFEST.json`
+  （文件清单/大小/关键文件 sha256）
 
 ```bash
-# 3B sanity（24GB 卡默认 QLoRA 4bit；48GB 卡 --quantize none）
-python -m src.compiler.train.train_lora \
-    --config src/compiler/train/config/qwen3b.yaml \
-    --model ./weights/Qwen2.5-3B-Instruct \
-    --train data/compiler_corpus_v3/train.jsonl \
-    --val   data/compiler_corpus_v3/val.jsonl \
-    --out runs/qwen3b-lora
-
-# 7B 主实验（48GB 卡 LoRA；24GB 用 4bit QLoRA）
-python -m src.compiler.train.train_lora \
-    --config src/compiler/train/config/qwen7b.yaml \
-    --model ./weights/Qwen2.5-7B-Instruct \
-    --train data/compiler_corpus_v3/train.jsonl \
-    --val   data/compiler_corpus_v3/val.jsonl \
-    --out runs/qwen7b-lora
+# 重下（如需）
+modelscope download --model Qwen/Qwen2.5-3B-Instruct --local_dir weights/Qwen2.5-3B-Instruct
+modelscope download --model Qwen/Qwen2.5-7B-Instruct  --local_dir weights/Qwen2.5-7B-Instruct
 ```
 
-关键开关：`--target-field plan_target|execution_target`、
-`--capability-context`（view A/B 对照）、`--tiers A,B`。
+## 2. 数据（冻结）
 
-## 4. 推理 + 评测（禁止只报 loss）
+- `data/compiler_corpus_v3/{train,val,test}.jsonl` = Tier A+B
+  （28,093/1,561/1,561），**目标 = plan_target**，capability context OFF
+- token 审计（近似，`scripts/audit_token_lengths.py`，服务器可用
+  `--tokenizer` 精确化）：total p50=381 / p99=846，>2048 仅 0.04% ——
+  2048 定长合理，本轮 frozen
 
-```bash
-python scripts/run_neural_compiler.py --model runs/qwen7b-lora/final \
-    [--capability-context] [--limit 500]
-```
+## 3. 实验矩阵与闸门
 
-指标（`benchmark/neural_compiler_eval.py` →
-`data/reports/neural_compiler_eval.{json,md}`）：
-parse rate → validator pass → execution success；
-op-sequence exact、per-skill precision/recall、graph edit similarity、
-generic-action rate；分 source；**seen vs unseen semantic composition**
-（unseen = 参考算子序列未在 train 出现——背模板 vs 真编译的判别指标）。
+| 实验 | 模型 | 训练 | 说明 |
+|---|---|---|---|
+| E0 | 3B zero-shot | 0 | 基线下界 |
+| E1 | 3B QLoRA | 28,093 | sanity 50 步 → 全量 |
+| E2 | 7B zero-shot | 0 | 规模对照 |
+| E3 | 7B LoRA/QLoRA | 28,093 | 主实验 |
+
+E1 后的 Go/No-Go（`collect_phase5b1_results.py` 自动判定）：parse/valid/
+F1/seen 提升、execute 不降、unseen 不塌方；seen 高 + unseen≈0 触发
+**template memorization suspected**（unseen 逐例 dump 在
+`runs/phase5b1/*/unseen_cases.json`，test 集含 44 条 unseen composition）。
+
+## 4. 本轮禁止（留给 5B-2 消融）
+
+Tier C 训练 / capability context / execution_target 目标 / 扩 toolmap /
+LOOP / STRING_OP / 换 split / RL / optimizer-aware training。
 
 ## 5. 显存参考
 
 | 配置 | 卡 | 方式 |
 |---|---|---|
-| Qwen2.5-3B | 24GB (4090) | QLoRA 4bit（qwen3b.yaml 默认） |
-| Qwen2.5-7B | 48GB (A6000/L40) | LoRA bf16（qwen7b.yaml 默认） |
-| Qwen2.5-7B | 24GB (4090) | `--quantize 4bit` QLoRA，batch_size 降 1 |
+| 3B QLoRA | 24GB (4090) | 4bit NF4 + bf16 compute（默认） |
+| 7B LoRA | 48GB (A6000/L40) | bf16 LoRA |
+| 7B QLoRA | 24GB (4090) | `--quantize 4bit`，batch 1 + grad accum |
 
-## 6. 复现数据管线（如需重建 corpus v3）
+## 6. 复现数据管线（重建 corpus v3，实验期间禁止）
 
 ```bash
-python scripts/download_datasets.py                # 7 个真实数据集
-python scripts/build_real_corpus.py                # v3: tiers + group split
-python scripts/audit_training_corpus.py            # 质量审计
+python scripts/download_datasets.py
+python scripts/build_real_corpus.py
+python scripts/audit_training_corpus.py
 ```

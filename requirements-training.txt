@@ -1,0 +1,15 @@
+# Phase 5B-1 frozen training environment (server-side).
+# Resolution-verified via `pip install --dry-run` (PyPI mirror 2026-09);
+# runtime compatibility is enforced by scripts/training_preflight.py —
+# run preflight BEFORE training; do not start on failure.
+#
+# Python >= 3.10, CUDA >= 12.1 recommended (torch 2.5.1 cu121 wheels).
+torch==2.5.1
+transformers==4.46.3
+peft==0.13.2
+trl==0.12.2
+accelerate==1.2.1
+datasets==3.1.0
+bitsandbytes==0.44.1
+pyyaml==6.0.2
+modelscope==1.40.1

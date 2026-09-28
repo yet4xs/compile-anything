@@ -64,13 +64,16 @@ def skill_prf(ref_ops: list, pred_ops: list):
     return round(prec, 4), round(rec, 4)
 
 
-def evaluate(predictions: list, train_opseqs: set) -> dict:
+def evaluate(predictions: list, train_opseqs: set,
+             dump_unseen: str = None) -> dict:
     per_source = defaultdict(lambda: {
         "n": 0, "parsed": 0, "valid": 0, "executed": 0, "opseq_exact": 0,
         "ges_sum": 0.0, "prec_sum": 0.0, "rec_sum": 0.0,
         "exec_action_ops": 0, "total_ops": 0,
-        "unseen_n": 0, "unseen_opseq_exact": 0, "unseen_valid": 0})
+        "unseen_n": 0, "unseen_opseq_exact": 0, "unseen_valid": 0,
+        "tp": 0, "fp": 0, "fn": 0})
     skill_tp, skill_fp, skill_fn = Counter(), Counter(), Counter()
+    unseen_dump = []
 
     for p in predictions:
         src = p.get("source", "?")
@@ -85,7 +88,16 @@ def evaluate(predictions: list, train_opseqs: set) -> dict:
             pass
         try:
             pred_mod = parse_text(p.get("output_text", ""))
-        except TaskIRSyntaxError:
+        except TaskIRSyntaxError as e:
+            if "|".join(ref_ops) not in train_opseqs and ref_ops:
+                s["unseen_n"] += 1
+                unseen_dump.append({
+                    "id": p.get("id", ""),
+                    "instruction": (p.get("input_text") or "")[:300],
+                    "reference_ops": ref_ops, "predicted_ops": None,
+                    "parsed": False,
+                    "validator_errors": [f"syntax: {e}"],
+                    "graph_edit_similarity": 0.0})
             continue
         s["parsed"] += 1
         if not validate(pred_mod).valid:
@@ -102,8 +114,16 @@ def evaluate(predictions: list, train_opseqs: set) -> dict:
             s["unseen_n"] += 1
             if ref_ops == pred_ops:
                 s["unseen_opseq_exact"] += 1
-            if validate(pred_mod).valid:
-                s["unseen_valid"] += 1
+            s["unseen_valid"] += 1
+            unseen_dump.append({
+                "id": p.get("id", ""),
+                "instruction": (p.get("input_text") or "")[:300],
+                "reference_ops": ref_ops,
+                "predicted_ops": pred_ops,
+                "parsed": True,
+                "validator_errors": [],
+                "graph_edit_similarity": graph_edit_similarity(ref_mod,
+                                                               pred_mod)})
         if ref_ops == pred_ops:
             s["opseq_exact"] += 1
         s["ges_sum"] += graph_edit_similarity(ref_mod, pred_mod)
@@ -113,6 +133,9 @@ def evaluate(predictions: list, train_opseqs: set) -> dict:
         s["exec_action_ops"] += pred_ops.count("EXEC_ACTION")
         s["total_ops"] += len(pred_ops)
         rc, pc = Counter(ref_ops), Counter(pred_ops)
+        s["tp"] += sum((rc & pc).values())
+        s["fp"] += sum((pc - rc).values())
+        s["fn"] += sum((rc - pc).values())
         for op in (rc & pc):
             skill_tp[op] += (rc & pc)[op]
         for op in (pc - rc):
@@ -120,8 +143,18 @@ def evaluate(predictions: list, train_opseqs: set) -> dict:
         for op in (rc - pc):
             skill_fn[op] += (rc - pc)[op]
 
+    if dump_unseen and unseen_dump:
+        pathlib.Path(dump_unseen).parent.mkdir(parents=True, exist_ok=True)
+        pathlib.Path(dump_unseen).write_text(
+            json.dumps(unseen_dump, indent=2, ensure_ascii=False),
+            encoding="utf-8")
+
     def pct(a, b):
         return round(100 * a / b, 2) if b else 0.0
+
+    def f1(tp, fp, fn):
+        return round(2 * tp / (2 * tp + fp + fn), 4) if (2 * tp + fp + fn) \
+            else 0.0
 
     out = {}
     for src, s in sorted(per_source.items()):
@@ -137,6 +170,7 @@ def evaluate(predictions: list, train_opseqs: set) -> dict:
             if s["n"] else 0.0,
             "skill_recall_mean": round(s["rec_sum"] / s["n"], 4)
             if s["n"] else 0.0,
+            "skill_f1_micro": f1(s["tp"], s["fp"], s["fn"]),
             "generic_action_rate_pct": pct(s["exec_action_ops"],
                                            s["total_ops"]),
             "unseen_composition": {
@@ -150,6 +184,7 @@ def evaluate(predictions: list, train_opseqs: set) -> dict:
         if skill_tp[op] + skill_fp[op] else 0.0,
         "recall": round(skill_tp[op] / (skill_tp[op] + skill_fn[op]), 4)
         if skill_tp[op] + skill_fn[op] else 0.0,
+        "f1": f1(skill_tp[op], skill_fp[op], skill_fn[op]),
         "support": skill_tp[op] + skill_fn[op]}
         for op in set(skill_tp) | set(skill_fp) | set(skill_fn)}
     return out
@@ -161,6 +196,8 @@ def main() -> int:
                     help="jsonl {id, source, output_text, reference_plan}")
     ap.add_argument("--train", default=None,
                     help="corpus train.jsonl for seen/unseen composition")
+    ap.add_argument("--dump-unseen", default=None,
+                    help="write per-case unseen-composition records here")
     ap.add_argument("--out", default=str(ROOT / "data" / "reports"
                                          / "neural_compiler_eval.json"))
     args = ap.parse_args()
@@ -183,7 +220,7 @@ def main() -> int:
 
     report = {"predictions": len(preds),
               "train_opseqs": len(train_opseqs)}
-    ev = evaluate(preds, train_opseqs)
+    ev = evaluate(preds, train_opseqs, dump_unseen=args.dump_unseen)
     report["per_skill"] = ev.pop("per_skill", {})
     report["per_source"] = ev
 
@@ -193,9 +230,9 @@ def main() -> int:
                    encoding="utf-8")
     md = out.with_suffix(".md")
     L = ["# Neural Compiler Eval", "",
-         "| source | n | parse% | valid% | exec% | opseq% | GES | P | R | "
+         "| source | n | parse% | valid% | exec% | opseq% | GES | P | R | F1 | "
          "generic-action% | unseen n | unseen opseq% |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for src, s in report["per_source"].items():
         if src == "per_skill":
             continue
@@ -204,6 +241,7 @@ def main() -> int:
                  f"| {s['validator_pass_pct']} | {s['execution_pct']} "
                  f"| {s['opseq_exact_pct']} | {s['graph_edit_similarity_mean']} "
                  f"| {s['skill_precision_mean']} | {s['skill_recall_mean']} "
+                 f"| {s['skill_f1_micro']} "
                  f"| {s['generic_action_rate_pct']} | {u['n']} "
                  f"| {u['opseq_exact_pct']} |")
     md.write_text("\n".join(L) + "\n", encoding="utf-8")

@@ -1,0 +1,91 @@
+{
+  "experiment": "phase5b1",
+  "git_commit": "4889184c601ee406a9c06b7b9eb01f2d1a85864d",
+  "taskir_version": "0.1",
+  "prompt": {
+    "version": "v1",
+    "system_prompt_sha256": "af50751f07ac4c3c1f7f159a9bf6b1c0d778122c7a462569d3125d957c26fee2",
+    "capability_context": "OFF (frozen for 5B-1)"
+  },
+  "frozen_inputs": {
+    "src/lifter/toolmap.py": {
+      "sha256": "bd98e7a83894ad31ccb574f77480a795c6fbebc02c6f0d42d7af8ed3c11f0f02",
+      "bytes": 5711
+    },
+    "spec/taskir-spec.md": {
+      "sha256": "dda5478d4053d9bfdf5692690bdf49e31b8b476929d62ebbfe026b55fbcbf675",
+      "bytes": 7883
+    },
+    "spec/skill-isa.md": {
+      "sha256": "253259ae6bcb7cd6a293e2f753050817c329468d23acdaa5995fbcb9b271a55d",
+      "bytes": 6633
+    },
+    "src/compiler/prompt_format.py": {
+      "sha256": "7e40de09e98a2db3db88f46ee80f01f7de1069809b39867f1e05e71f4a296d2c",
+      "bytes": 2338
+    },
+    "data/compiler_corpus_v3/train.jsonl": {
+      "sha256": "6abf0066706fb2da646dd896098c4ab51f59598cab426d9b7c5d1240853a164d",
+      "bytes": 91310981
+    },
+    "data/compiler_corpus_v3/val.jsonl": {
+      "sha256": "9c020b825147c1aa00b0965ae1ab8f8d63890c3466cc34b79e9d224d05993a43",
+      "bytes": 4972324
+    },
+    "data/compiler_corpus_v3/test.jsonl": {
+      "sha256": "c16cfd9d10bc090c44b81480705948bc0023f01a471cac925a7b889fa9a6b898",
+      "bytes": 4999644
+    }
+  },
+  "corpus": {
+    "train": {
+      "lines": 28093
+    },
+    "val": {
+      "lines": 1561
+    },
+    "test": {
+      "lines": 1561
+    },
+    "tiers": {
+      "B": 15460,
+      "A": 15755,
+      "C": 39546
+    },
+    "leakage": {
+      "cross_split_exact_duplicates": 0,
+      "cross_split_near_duplicates": 0
+    }
+  },
+  "seed": 42,
+  "dependencies": {
+    "torch": "2.5.1",
+    "transformers": "4.46.3",
+    "peft": "0.13.2",
+    "trl": "0.12.2",
+    "accelerate": "1.2.1",
+    "datasets": "3.1.0",
+    "bitsandbytes": "0.44.1",
+    "pyyaml": "6.0.2",
+    "modelscope": "1.40.1"
+  },
+  "runtime": {
+    "cuda": null,
+    "gpu": null,
+    "torch": null,
+    "transformers": null,
+    "trl": null,
+    "note": "fill via --runtime on the server"
+  },
+  "models": {
+    "e0_e1": "weights/Qwen2.5-3B-Instruct",
+    "e2_e3": "weights/Qwen2.5-7B-Instruct"
+  },
+  "prohibited_changes": [
+    "src/lifter/toolmap.py",
+    "data/compiler_corpus_v3/*",
+    "spec/taskir-spec.md",
+    "train/test split",
+    "(record issues -> Phase 5B-2)"
+  ]
+}

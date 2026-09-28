@@ -238,6 +238,31 @@ LOOP/递归 524 个拒绝是主因（ISA 缺口第一优先），局部变量赋
 roundtrip 漏洞（HumanEval docstring/ToolBench 换行指令曾导致两个源
 plan_target 不可解析）；eval 报告结构 bug。
 
+## Phase 5B-1：可复现 baseline 训练包（本机零训练，零伪造数字）
+
+冻结 + 服务器包，本机完成所有 GPU-free 工作：
+
+- **冻结**：`experiments/phase5b1/manifest.json`（commit、corpus v3
+  train/val/test SHA256、tier 计数、TaskIR/prompt 哈希、seed、依赖 pin）；
+  `tests/test_phase5b1_freeze.py` 守护冻结文件（改动即 fail）
+- **依赖锁定**：`requirements-training.txt`（torch 2.5.1 / transformers
+  4.46.3 / peft 0.13.2 / trl 0.12.2 / bnb 0.44.1 …，pip --dry-run resolve
+  验证）；`train_lora.py` 适配 TRL 0.12 `SFTConfig` API + 0.13+ 改名
+  shim、`--max-steps` sanity、auto-resume、log_history 落盘
+- **preflight**：`scripts/training_preflight.py`（版本核对/CUDA+bf16/4bit
+  加载/chat template/LoRA target 存在/10 条 tokenize/forward/1 步
+  optimizer/checkpoint 往返；失败禁止开训；`--static` 模式本机已全绿）
+- **权重**：ModelScope 国内源下载中（3B/7B），`weights/MANIFEST.json`
+  记录文件清单与 sha256；`weights/` 已 gitignore
+- **token 审计**：`scripts/audit_token_lengths.py`（近似模式已跑：
+  total p50=381 / p99=846，>2048 仅 0.04% → 2048 定长合理）
+- **实验编排**：`scripts/run_phase5b1.sh`（preflight/e0/e1-sanity/e1/e2/
+  e3/eval-all）+ `scripts/collect_phase5b1_results.py`（E0-E3 表 +
+  per-source + E0-vs-E1 Go/No-Go 闸门 + template-memorization 判定；
+  未跑实验标 PENDING，不造数）
+- **eval 增强**：skill F1（micro + per-skill）、`--dump-unseen` 逐例
+  dump（oracle 自检 44 条 unseen 全字段）
+
 ## 下一步（Phase 5B-1：Qwen Neural Compiler LoRA 实验）
 
 - 训练数据：`data/compiler_corpus_v3/`（A+B，plan_target 目标，
