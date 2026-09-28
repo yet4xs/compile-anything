@@ -1,0 +1,48 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "find_cheapest_flight",
+    "provenance": {"source": "handwritten", "author": "phase1-toy"}
+  },
+  "program": {
+    "name": "find_cheapest_flight",
+    "description": "Find the cheapest flight arriving before 8 PM",
+    "inputs": [{"name": "@task", "type": "Str"}],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": ["@task"],
+        "params": {"domain": "flight"},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Flight]",
+        "hints": {"resource_class": "api"}
+      },
+      {
+        "id": "%2",
+        "op": "FILTER",
+        "inputs": ["%1"],
+        "params": {"predicate": "arrive_time < '20:00'"},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Flight]",
+        "hints": {"resource_class": "python"}
+      },
+      {
+        "id": "%3",
+        "op": "ARGMIN",
+        "inputs": ["%2"],
+        "params": {"key": "price"},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "Flight",
+        "hints": {"resource_class": "python"}
+      }
+    ],
+    "output": "%3"
+  }
+}

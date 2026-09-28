@@ -1,0 +1,111 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "find_directions_from_sea_to_paris_and_tr",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0034",
+      "tools": [
+        "MapsService.get_directions",
+        "Translator.translate"
+      ]
+    }
+  },
+  "program": {
+    "name": "find_directions_from_sea_to_paris_and_tr",
+    "description": "Find directions from SEA to Paris and translate the summary into Chinese.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "maps",
+          "query": "SEA Paris"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Maps]",
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "TRANSLATE",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "lang": "Chinese"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Find directions from SEA to Paris and translate the summary into Chinese.",
+          "reference": "Done. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

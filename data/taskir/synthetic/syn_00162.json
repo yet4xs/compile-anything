@@ -1,0 +1,85 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00162",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_linear"
+    }
+  },
+  "program": {
+    "name": "synthetic_00162",
+    "description": "Find the best articles matching my constraints and explain the choice.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "news"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[News]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "SORT",
+        "inputs": [
+          "%1"
+        ],
+        "params": {
+          "key": "date",
+          "order": "asc"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "ARGMIN",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "key": "date"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "GENERATE",
+        "inputs": [
+          "%3",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%4"
+  }
+}

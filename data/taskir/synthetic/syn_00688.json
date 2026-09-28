@@ -1,0 +1,69 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00688",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_linear"
+    }
+  },
+  "program": {
+    "name": "synthetic_00688",
+    "description": "Find the best products matching my constraints and explain the choice.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "product"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Product]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "MIN",
+        "inputs": [
+          "%1"
+        ],
+        "params": {
+          "key": "price"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "GENERATE",
+        "inputs": [
+          "%2",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%3"
+  }
+}

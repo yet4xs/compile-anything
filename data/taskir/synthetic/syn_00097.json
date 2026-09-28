@@ -1,0 +1,69 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00097",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_linear"
+    }
+  },
+  "program": {
+    "name": "synthetic_00097",
+    "description": "Find the best routes matching my constraints and explain the choice.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "maps"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Maps]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "MAX",
+        "inputs": [
+          "%1"
+        ],
+        "params": {
+          "key": "distance_km"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "GENERATE",
+        "inputs": [
+          "%2",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%3"
+  }
+}

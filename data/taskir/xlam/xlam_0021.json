@@ -1,0 +1,95 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "check_the_weather_in_miami_on_2026_10_12",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0021",
+      "tools": [
+        "WeatherAPI.forecast",
+        "CalendarService.create_event"
+      ]
+    }
+  },
+  "program": {
+    "name": "check_the_weather_in_miami_on_2026_10_12",
+    "description": "Check the weather in Miami on 2026-10-12, then schedule my product review that morning.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "weather",
+          "query": "Miami 2026-10-12"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Weather]",
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "EXEC_ACTION",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "action": "create_event",
+          "query": "product review 2026-10-12 10:00"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Check the weather in Miami on 2026-10-12, then schedule my product review that morning.",
+          "reference": "Done. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

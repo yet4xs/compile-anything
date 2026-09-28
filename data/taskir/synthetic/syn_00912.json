@@ -1,0 +1,103 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00912",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_linear"
+    }
+  },
+  "program": {
+    "name": "synthetic_00912",
+    "description": "Find the best routes matching my constraints and explain the choice.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "maps"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Maps]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "SORT",
+        "inputs": [
+          "%1"
+        ],
+        "params": {
+          "key": "distance_km",
+          "order": "asc"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "ARGMIN",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "key": "distance_km"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "GENERATE",
+        "inputs": [
+          "%3",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%5"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": [
+          "%4"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%4"
+  }
+}

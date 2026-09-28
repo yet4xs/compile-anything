@@ -1,0 +1,113 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "find_hotels_in_paris_from_2026_11_20_to",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0045",
+      "tools": [
+        "HotelDB.find",
+        "CurrencyConverter.convert"
+      ]
+    }
+  },
+  "program": {
+    "name": "find_hotels_in_paris_from_2026_11_20_to",
+    "description": "Find hotels in Paris from 2026-11-20 to 2026-11-01 and convert the nightly rate to AUD.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "hotel",
+          "query": "Paris 2026-11-20 2026-11-01"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Hotel]",
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "CONVERT",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "from": "USD",
+          "to": "AUD",
+          "amount": 540
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Find hotels in Paris from 2026-11-20 to 2026-11-01 and convert the nightly rate to AUD.",
+          "reference": "That completes the task. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

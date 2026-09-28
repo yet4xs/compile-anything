@@ -1,0 +1,67 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00884",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_entities"
+    }
+  },
+  "program": {
+    "name": "synthetic_00884",
+    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "news"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[News]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "EXTRACT_ENTITIES",
+        "inputs": [
+          "%1"
+        ],
+        "params": {},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "GENERATE",
+        "inputs": [
+          "%2",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%3"
+  }
+}

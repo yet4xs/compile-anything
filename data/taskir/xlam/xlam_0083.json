@@ -1,0 +1,145 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "look_up_the_current_nvda_price_project",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0083",
+      "tools": [
+        "StockQuote.get_price",
+        "Calculator.evaluate",
+        "EmailClient.send"
+      ]
+    }
+  },
+  "program": {
+    "name": "look_up_the_current_nvda_price_project",
+    "description": "Look up the current NVDA price, project it 5% higher and send the number to Alex.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "QUERY_DB",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "table": "market",
+          "query": "NVDA"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "CALCULATE",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "expr": "{s} price * 1.05"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%b2",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c1"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c2",
+        "op": "SEND",
+        "inputs": [
+          "%b2"
+        ],
+        "params": {
+          "channel": "email",
+          "query": "{name}@example.com {s} update"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c2",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Look up the current NVDA price, project it 5% higher and send the number to Alex.",
+          "reference": "All set. (result synthesized from 3 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

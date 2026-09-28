@@ -1,0 +1,113 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "find_flights_from_denver_to_tokyo_on_202",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0070",
+      "tools": [
+        "FlightSearch.search",
+        "CurrencyConverter.convert"
+      ]
+    }
+  },
+  "program": {
+    "name": "find_flights_from_denver_to_tokyo_on_202",
+    "description": "Find flights from Denver to Tokyo on 2026-11-01 and tell me the cheapest price in JPY.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "flight",
+          "query": "Denver Tokyo 2026-11-01"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Flight]",
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "CONVERT",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "from": "USD",
+          "to": "JPY",
+          "amount": 450
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Find flights from Denver to Tokyo on 2026-11-01 and tell me the cheapest price in JPY.",
+          "reference": "Done. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

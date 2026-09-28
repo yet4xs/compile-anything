@@ -1,0 +1,111 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "search_for_a_fusion_energy_tutorial_and",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0056",
+      "tools": [
+        "WebSearch.query",
+        "TextSummarizer.summarize"
+      ]
+    }
+  },
+  "program": {
+    "name": "search_for_a_fusion_energy_tutorial_and",
+    "description": "Search for a fusion energy tutorial and summarize the key steps for me.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "web",
+          "query": "{t} tutorial"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Web]",
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "SEND",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "channel": "sms"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Search for a fusion energy tutorial and summarize the key steps for me.",
+          "reference": "Here you go. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

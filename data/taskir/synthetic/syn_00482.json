@@ -1,0 +1,101 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00482",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_parallel"
+    }
+  },
+  "program": {
+    "name": "synthetic_00482",
+    "description": "Compare forecasts and papers options for my request and recommend the better one.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "weather"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Weather]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "paper"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Paper]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
+        ],
+        "params": {},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "GENERATE",
+        "inputs": [
+          "%3",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%5"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": [
+          "%4"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%4"
+  }
+}

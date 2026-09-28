@@ -1,0 +1,59 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "branch_select_demo",
+    "provenance": {"source": "handwritten", "author": "phase1-toy"}
+  },
+  "program": {
+    "name": "branch_select_demo",
+    "description": "Answer from retrieved facts if verification passes, otherwise fall back to a generic answer (branch via guard + SELECT)",
+    "inputs": [{"name": "@task", "type": "Str"}],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": ["@task"],
+        "params": {"domain": "news"},
+        "output_type": "List[News]"
+      },
+      {
+        "id": "%2",
+        "op": "EXTRACT",
+        "inputs": ["%1"],
+        "params": {"fields": ["title", "source", "date"]}
+      },
+      {
+        "id": "%3",
+        "op": "GENERATE",
+        "inputs": ["%2", "@task"],
+        "params": {"role": "draft"}
+      },
+      {
+        "id": "%4",
+        "op": "VERIFY",
+        "inputs": ["%3"],
+        "params": {"check": "factual_consistency"}
+      },
+      {
+        "id": "%5",
+        "op": "GENERATE",
+        "inputs": ["%3"],
+        "params": {"role": "polished_answer"},
+        "guard": {"cond": "%4", "expect": true}
+      },
+      {
+        "id": "%6",
+        "op": "GENERATE",
+        "inputs": ["@task"],
+        "params": {"role": "fallback_answer"},
+        "guard": {"cond": "%4", "expect": false}
+      },
+      {
+        "id": "%7",
+        "op": "SELECT",
+        "inputs": ["%4", "%5", "%6"]
+      }
+    ],
+    "output": "%7"
+  }
+}

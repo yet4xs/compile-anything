@@ -1,0 +1,83 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00810",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_parallel"
+    }
+  },
+  "program": {
+    "name": "synthetic_00810",
+    "description": "Compare articles and products options for my request and recommend the better one.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "news"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[News]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "product"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Product]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
+        ],
+        "params": {},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "GENERATE",
+        "inputs": [
+          "%3",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%4"
+  }
+}

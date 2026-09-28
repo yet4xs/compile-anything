@@ -1,0 +1,87 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00044",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_linear"
+    }
+  },
+  "program": {
+    "name": "synthetic_00044",
+    "description": "Find the best hotels matching my constraints and explain the choice.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "hotel"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Hotel]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "ARGMIN",
+        "inputs": [
+          "%1"
+        ],
+        "params": {
+          "key": "price_per_night"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "GENERATE",
+        "inputs": [
+          "%2",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%4"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "VERIFY",
+        "inputs": [
+          "%3"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%3"
+  }
+}

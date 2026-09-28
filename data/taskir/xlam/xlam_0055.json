@@ -1,0 +1,113 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "find_hotels_in_berlin_from_2026_11_01_to",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0055",
+      "tools": [
+        "HotelDB.find",
+        "CurrencyConverter.convert"
+      ]
+    }
+  },
+  "program": {
+    "name": "find_hotels_in_berlin_from_2026_11_01_to",
+    "description": "Find hotels in Berlin from 2026-11-01 to 2026-10-05 and convert the nightly rate to GBP.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "hotel",
+          "query": "Berlin 2026-11-01 2026-10-05"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Hotel]",
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "CONVERT",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "from": "USD",
+          "to": "GBP",
+          "amount": 810
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Find hotels in Berlin from 2026-11-01 to 2026-10-05 and convert the nightly rate to GBP.",
+          "reference": "That completes the task. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

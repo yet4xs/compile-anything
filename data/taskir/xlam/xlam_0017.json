@@ -1,0 +1,111 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "find_a_flight_from_bos_to_london_on_2026",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0017",
+      "tools": [
+        "FlightSearch.search",
+        "FlightBook.book"
+      ]
+    }
+  },
+  "program": {
+    "name": "find_a_flight_from_bos_to_london_on_2026",
+    "description": "Find a flight from BOS to London on 2026-11-01 and book the best option for Morgan.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "domain": "flight",
+          "query": "BOS London 2026-11-01"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Flight]",
+        "hints": {}
+      },
+      {
+        "id": "%b1",
+        "op": "EXTRACT",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "fields": [
+            "result"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "SEARCH",
+        "inputs": [
+          "%b1"
+        ],
+        "params": {
+          "domain": "flight"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Flight]",
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Find a flight from BOS to London on 2026-11-01 and book the best option for Morgan.",
+          "reference": "Here you go. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

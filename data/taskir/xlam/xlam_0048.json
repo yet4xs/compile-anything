@@ -1,0 +1,94 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "translate_my_project_update_into_chinese",
+    "provenance": {
+      "source": "xlam",
+      "task_id": "xlam-sample-0048",
+      "tools": [
+        "Translator.translate",
+        "EmailClient.send"
+      ]
+    }
+  },
+  "program": {
+    "name": "translate_my_project_update_into_chinese",
+    "description": "Translate my project update into Chinese and send it to Morgan.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%c0",
+        "op": "TRANSLATE",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "lang": "Chinese"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%c1",
+        "op": "SEND",
+        "inputs": [
+          "%c0"
+        ],
+        "params": {
+          "channel": "email",
+          "query": "{name}@example.com Update ({lang})"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%ans",
+        "op": "GENERATE",
+        "inputs": [
+          "%c1",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer",
+          "instruction": "Translate my project update into Chinese and send it to Morgan.",
+          "reference": "Here you go. (result synthesized from 2 tool calls)."
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%verify"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%verify",
+        "op": "VERIFY",
+        "inputs": [
+          "%ans"
+        ],
+        "params": {
+          "check": "answer_grounded_in_tool_results"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%ans"
+  }
+}

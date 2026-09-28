@@ -1,0 +1,136 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "synthetic_00970",
+    "provenance": {
+      "source": "synthetic",
+      "archetype": "gen_compute"
+    }
+  },
+  "program": {
+    "name": "synthetic_00970",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger.",
+    "inputs": [
+      {
+        "name": "@task",
+        "type": "Str"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "LOAD",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "source": "dataset.csv"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "EXTRACT",
+        "inputs": [
+          "%1"
+        ],
+        "params": {
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "CALCULATE",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "expr": "mean(value_a)"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "CALCULATE",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "expr": "mean(value_b)"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "COMPARE",
+        "inputs": [
+          "%3",
+          "%4"
+        ],
+        "params": {
+          "op": ">"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "GENERATE",
+        "inputs": [
+          "%5",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%7"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%7",
+        "op": "VERIFY",
+        "inputs": [
+          "%6"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      }
+    ],
+    "output": "%6"
+  }
+}
