@@ -4,12 +4,12 @@
     "name": "synthetic_00888",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00888",
-    "description": "Find the best stocks matching my constraints and explain the choice.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with sources for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -24,17 +24,17 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "DEDUP",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
           "%1"
         ],
@@ -47,28 +47,31 @@
       },
       {
         "id": "%3",
-        "op": "ARGMAX",
+        "op": "GENERATE",
         "inputs": [
-          "%2"
+          "%2",
+          "@task"
         ],
         "params": {
-          "key": "price"
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
-        "retry": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%4"
+        },
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "GENERATE",
+        "op": "VERIFY",
         "inputs": [
-          "%3",
-          "@task"
+          "%3"
         ],
         "params": {
-          "role": "final_answer"
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -77,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%3"
   }
 }

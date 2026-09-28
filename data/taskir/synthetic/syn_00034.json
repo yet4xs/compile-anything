@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00034",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Fetch the document at the URL and give me a summary I can act on before my 9 AM meeting within my loyalty program.",
     "inputs": [
       {
         "name": "@task",

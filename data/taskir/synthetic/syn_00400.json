@@ -4,12 +4,12 @@
     "name": "synthetic_00400",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_branch"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00400",
-    "description": "Answer my question about papers from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Compare articles and flights options for my request and explain the choice rated 4 stars or higher.",
     "inputs": [
       {
         "name": "@task",
@@ -24,39 +24,37 @@
           "@task"
         ],
         "params": {
-          "domain": "paper"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "GENERATE",
+        "op": "SEARCH",
         "inputs": [
-          "%1",
           "@task"
         ],
         "params": {
-          "role": "draft"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "VERIFY",
+        "op": "MERGE",
         "inputs": [
+          "%1",
           "%2"
         ],
-        "params": {
-          "check": "factual_consistency"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -65,18 +63,16 @@
       },
       {
         "id": "%4",
-        "op": "GENERATE",
+        "op": "SORT",
         "inputs": [
-          "%2"
+          "%3"
         ],
         "params": {
-          "role": "polished_answer"
+          "key": "date",
+          "order": "asc"
         },
         "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": true
-        },
+        "guard": null,
         "retry": null,
         "output_type": null,
         "hints": {}
@@ -85,29 +81,30 @@
         "id": "%5",
         "op": "GENERATE",
         "inputs": [
+          "%4",
           "@task"
         ],
         "params": {
-          "role": "fallback_answer"
+          "role": "final_answer"
         },
         "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": false
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%6"
         },
-        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%6",
-        "op": "SELECT",
+        "op": "VERIFY",
         "inputs": [
-          "%3",
-          "%4",
           "%5"
         ],
-        "params": {},
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -115,6 +112,6 @@
         "hints": {}
       }
     ],
-    "output": "%6"
+    "output": "%5"
   }
 }

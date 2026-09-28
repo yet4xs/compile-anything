@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00056",
-    "description": "Find the best flights matching my constraints and explain the choice.",
+    "description": "Find the top-rated articles matching my constraints and and justify it with the data with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -24,22 +24,22 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "ARGMIN",
+        "op": "MIN",
         "inputs": [
           "%1"
         ],
         "params": {
-          "key": "price"
+          "key": "date"
         },
         "after": [],
         "guard": null,

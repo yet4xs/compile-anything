@@ -4,12 +4,12 @@
     "name": "synthetic_00393",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00393",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Compare stocks and forecasts options for my request and and summarize the reasoning in two bullets for a party of two.",
     "inputs": [
       {
         "name": "@task",
@@ -19,24 +19,40 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "weather"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Weather]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,10 +62,10 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -62,6 +78,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

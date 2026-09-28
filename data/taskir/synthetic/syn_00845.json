@@ -4,12 +4,12 @@
     "name": "synthetic_00845",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00845",
-    "description": "Compare articles and stocks options for my request and recommend the better one.",
+    "description": "Find the most reliable routes matching my constraints and explain the choice bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,39 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "SORT",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "stock"
+          "key": "distance_km",
+          "order": "asc"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "MAX",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "key": "distance_km"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -74,7 +76,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 2,
+          "max_attempts": 3,
           "on": "%5"
         },
         "output_type": null,

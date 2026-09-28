@@ -4,12 +4,12 @@
     "name": "synthetic_00885",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00885",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with sources rated 4 stars or higher.",
     "inputs": [
       {
         "name": "@task",
@@ -19,22 +19,22 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
           "%1"
         ],

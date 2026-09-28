@@ -1,13 +1,25 @@
-# Compile Anything — Phase 1
+# Compile Anything
 
-> **"LLVM for AI tasks" 的最小闭环**：NL task → TaskIR → validator → runtime
-> simulator → execution trace + cost report。
+> **A Neural Compiler and Runtime Architecture for General AI Tasks.**
+> Phase 1: "LLVM for AI tasks" 的最小闭环 —— NL task → TaskIR → validator →
+> runtime simulator → execution trace + cost report。
 > 这不是 Agent Framework，是一条 AI 任务编译器 + 异构执行架构的研究原型。
 
 ```
 Human Task ──▶ Neural Compiler ──▶ TaskIR ──▶ Validator ──▶ Runtime Simulator ──▶ Trace + Cost
-              (Phase 1: 手工/lift)   (LLVM IR)  (verify pass)   (mock executors)     (workload)
+              (Phase 1: 手工/lift;   (LLVM IR)  (verify pass)   (mock executors)     (workload)
+               Phase 2: Qwen2B SFT)
 ```
+
+## 论文结构映射
+
+| 论文章节 | 对应组件 |
+|---|---|
+| §3 Neural Compiler | `src/compiler/`（prompt 格式、SFT 数据）+ `src/lifter/`（数据前端） |
+| §4 TaskIR | `spec/taskir-spec.md` + `src/ir/` + `src/validator/` |
+| §4.5 Skill ISA | `spec/skill-isa.md` + `src/isa/`（31 skills + 2 控制指令，含 latency/FLOPs/energy/memory 成本） |
+| §5 Runtime Architecture | `src/runtime/`（依赖驱动执行、VERIFY、retry 回滚、成本核算）；scheduler/optimizer 为 v0.2 接口 |
+| §6 Evaluation | `data/reports/`（cost report + dataset statistics）+ `benchmark/`（规划中） |
 
 ## 目录
 
@@ -18,13 +30,15 @@ compile-anything/
 │   └── skill-isa.md          # Skill ISA v0.1（31 条 skill + 2 条控制指令 + 成本模型）
 ├── src/
 │   ├── ir/                   # TaskIR 数据结构 + JSON canonical + 文本 printer
-│   ├── isa/                  # Skill registry（签名的唯一权威来源）
+│   ├── isa/                  # Skill registry（签名+成本：latency/flops/energy/memory）
 │   ├── validator/            # V1–V6 静态验证 + 死代码警告（数据质量闸门）
 │   ├── lifter/               # xLAM → TaskIR（tool → semantic skill 两层 lowering）
+│   ├── compiler/             # Neural Compiler 训练侧：prompt 格式 + SFT 数据构建
 │   ├── runtime/              # 依赖驱动模拟器：guard / VERIFY / retry 回滚 / trace
 │   ├── cost/                 # 成本聚合 + 报告（名义成本，含 70B baseline 对照）
-│   ├── optimizer/            # placeholder（fusion/DCE/并行化，v0.2）
+│   ├── optimizer/            # placeholder（仅 pass manager 接口，v0.2）
 │   └── scheduler/            # placeholder（executor 绑定与调度，v0.2）
+├── benchmark/                # 评测规划（xlam/toolbench/rtl，见其 README）
 ├── data/
 │   ├── raw/                  # xLAM-schema 样例（合成，见其 README）
 │   ├── taskir/               # examples/3 + synthetic/1000 + xlam/100（全部过 validator）
@@ -44,6 +58,7 @@ python scripts/demo_flight.py
 python scripts/gen_synthetic.py -n 1000 --seed 42     # 1000 条 synthetic TaskIR
 python scripts/gen_xlam_sample.py -n 100              # xLAM-schema 样例
 python scripts/run_xlam_pipeline.py                   # lift + validate + 训练对
+python scripts/build_sft.py                           # Qwen2B Compiler SFT 数据集
 
 # 统计与 QC
 python scripts/dataset_stats.py                       # workload characteristics
@@ -62,11 +77,15 @@ python -m unittest discover -s tests
 | 3 | simulator | ✅ | `src/runtime/`，guard/verify/retry 回滚/trace/成本 |
 | 4 | 1000 条 synthetic TaskIR | ✅ | `data/taskir/synthetic/`（100% valid）|
 | 5 | 100 条 xLAM 转换 TaskIR | ✅ | `data/taskir/xlam/`（schema 样例，见 raw/README）|
-| 6 | cost report | ✅ | `data/reports/cost_report_flight.md` |
+| 6 | cost report | ✅ | `data/reports/cost_report_flight.md`（latency/FLOPs/energy/memory + executor + critical path） |
 
-Dataset statistics（写入 `data/reports/dataset_stats.md`）：1103 programs，
-nodes mean 4.80，depth mean 4.36，width mean 1.45，44.5% 含并行结构，
-46.9% 含 retry。
+Dataset statistics（写入 `data/reports/dataset_stats.md`）：1105 programs，
+nodes mean 4.79，depth mean 4.35，width mean 1.44，43.6% 含并行结构，
+47.1% 含 retry。
+
+**Neural Compiler SFT 数据**：`python scripts/build_sft.py` 从训练对构建
+chat 格式数据集（`data/train/sft/{train,val}.jsonl`，当前 593/31 条——
+按 NL 任务文本去重后的唯一任务数；换入真实 xLAM 后规模随之增长）。
 
 ## 核心设计决定（Phase 1）
 

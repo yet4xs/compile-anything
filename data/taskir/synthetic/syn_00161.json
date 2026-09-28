@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00161",
-    "description": "Load the dataset, compute both metrics and tell me which one is larger.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, with confidence intervals with the shortest layover.",
     "inputs": [
       {
         "name": "@task",

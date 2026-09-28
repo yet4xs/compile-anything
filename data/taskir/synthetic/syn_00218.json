@@ -4,12 +4,12 @@
     "name": "synthetic_00218",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00218",
-    "description": "Find the best flights matching my constraints and explain the choice.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with their roles bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -24,24 +24,21 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SORT",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
           "%1"
         ],
-        "params": {
-          "key": "price",
-          "order": "asc"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -50,24 +47,9 @@
       },
       {
         "id": "%3",
-        "op": "MIN",
-        "inputs": [
-          "%2"
-        ],
-        "params": {
-          "key": "price"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%2",
           "@task"
         ],
         "params": {
@@ -77,16 +59,16 @@
         "guard": null,
         "retry": {
           "max_attempts": 3,
-          "on": "%5"
+          "on": "%4"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%5",
+        "id": "%4",
         "op": "VERIFY",
         "inputs": [
-          "%4"
+          "%3"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -98,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%3"
   }
 }

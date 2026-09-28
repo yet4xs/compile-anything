@@ -4,12 +4,12 @@
     "name": "synthetic_00873",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00873",
-    "description": "Find the best hotels matching my constraints and explain the choice.",
+    "description": "Compare forecasts and products options for my request and and flag any risks under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -24,38 +24,37 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "weather"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[Weather]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "FILTER",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
         ],
         "params": {
-          "predicate": "price_per_night in acceptable_range"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MAX",
+        "op": "MERGE",
         "inputs": [
+          "%1",
           "%2"
         ],
-        "params": {
-          "key": "price_per_night"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,

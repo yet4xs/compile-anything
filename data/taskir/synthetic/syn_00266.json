@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00266",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with dates for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -47,24 +47,9 @@
       },
       {
         "id": "%3",
-        "op": "FILTER",
-        "inputs": [
-          "%2"
-        ],
-        "params": {
-          "predicate": "date in acceptable_range"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%2",
           "@task"
         ],
         "params": {
@@ -73,17 +58,17 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 2,
-          "on": "%5"
+          "max_attempts": 3,
+          "on": "%4"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%5",
+        "id": "%4",
         "op": "VERIFY",
         "inputs": [
-          "%4"
+          "%3"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -95,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%3"
   }
 }

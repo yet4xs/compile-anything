@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00564",
-    "description": "Find the best hotels matching my constraints and explain the choice.",
+    "description": "Find the highest-value routes matching my constraints and tell me why within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -24,22 +24,22 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "ARGMAX",
         "inputs": [
           "%1"
         ],
         "params": {
-          "key": "price_per_night"
+          "key": "distance_km"
         },
         "after": [],
         "guard": null,
@@ -60,7 +60,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 2,
+          "max_attempts": 3,
           "on": "%4"
         },
         "output_type": null,

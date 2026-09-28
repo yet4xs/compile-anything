@@ -1,0 +1,52 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "rtl_debug",
+    "provenance": {"source": "handwritten", "author": "phase1-toy",
+                   "domain": "eda/rtl"}
+  },
+  "program": {
+    "name": "rtl_debug",
+    "description": "The FIFO overflow assertion in fifo_ctrl.sv fires in simulation; load the design artifacts and waveform, find the failing window, retrieve similar known bugs, and generate a verified RTL fix",
+    "inputs": [{"name": "@task", "type": "Str"}],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "LOAD",
+        "inputs": ["@task"],
+        "params": {"source": "fifo_ctrl.sv + waveform.vcd", "kind": "design_artifacts"},
+        "hints": {"resource_class": "python"}
+      },
+      {
+        "id": "%2",
+        "op": "EXTRACT",
+        "inputs": ["%1"],
+        "params": {"fields": ["assertion_failures", "fifo_count", "depth"]},
+        "hints": {"resource_class": "python"}
+      },
+      {
+        "id": "%3",
+        "op": "SEARCH",
+        "inputs": ["@task"],
+        "params": {"domain": "rtl", "corpus": "known_bug_db"},
+        "output_type": "List[Rtl]",
+        "hints": {"resource_class": "db"}
+      },
+      {
+        "id": "%4",
+        "op": "CODEGEN",
+        "inputs": ["%2", "%3", "@task"],
+        "params": {"role": "rtl_fix", "target": "fifo_ctrl.sv"},
+        "retry": {"max_attempts": 3, "on": "%5"},
+        "hints": {"model_class": "small"}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": ["%4", "%2"],
+        "params": {"check": "syntax_and_lint_and_assertion_pass"}
+      }
+    ],
+    "output": "%4"
+  }
+}

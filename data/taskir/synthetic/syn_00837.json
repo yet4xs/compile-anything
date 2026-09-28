@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00837",
-    "description": "Find the best products matching my constraints and explain the choice.",
+    "description": "Find the cheapest stocks matching my constraints and and flag any risks arriving before 8 PM.",
     "inputs": [
       {
         "name": "@task",
@@ -24,21 +24,24 @@
           "@task"
         ],
         "params": {
-          "domain": "product"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Product]",
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "DEDUP",
+        "op": "SORT",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "price",
+          "order": "asc"
+        },
         "after": [],
         "guard": null,
         "retry": null,

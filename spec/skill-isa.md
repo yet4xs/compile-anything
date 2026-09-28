@@ -110,13 +110,25 @@ TaskIR 节点引用 semantic skill                （如 SEARCH domain=flight）
 
 ## 4. 成本模型（名义值）
 
-- `flops_per_token = 2 × n_params`：
-  - 2B 小模型执行器：`4e9` FLOPs/token；
-  - 70B 单次直答 baseline：`1.4e11` FLOPs/token。
-- lm 类指令的 flops = `(tokens_in + tokens_out) × 4e9`；
-- python 类指令名义 `1e6` FLOPs；api/db 类 flops 记 0（延迟为主）。
-- **所有成本是名义常量**，供 simulator 做 workload 对比与 cost report，不是实测值。
-  真实 profiling 接入是后续工作（scheduler / real runtime 阶段）。
+每条 skill 的名义成本包含五个维度（`src/isa/registry.py: Cost`）：
+
+| 字段 | 说明 | 典型值 |
+|---|---|---|
+| `latency_ms` | 单次调用延迟 | python 1–20ms；api 40–150ms；lm 200–900ms |
+| `tokens_in/out` | lm 类指令的 token 数（成本与输入长度相关） | 见指令表 |
+| `flops` | 计算量；lm = (in+out) × `flops_per_token` | 2B：4e9/token |
+| `energy_j` | 单次调用能耗 | python ~0.005J；lm ≈ 0.02J/token |
+| `memory_mb` | 执行单元驻留内存 | python ~30MB；2B lm ≈ 4600MB |
+
+常量：
+
+- `flops_per_token = 2 × n_params`：2B 执行器 `4e9`；70B baseline `1.4e11`。
+- 70B 单次直答 baseline（名义、摊销）：~2500ms、1800 tokens、~900J、~140GB。
+
+**所有成本是名义常量**，供 simulator 做 workload 对比、scheduler 做优化目标
+（`min: latency + λ·energy` 的前提是 ISA 携带这些维度），不是实测值。
+真实 profiling 接入是后续工作（scheduler / real runtime 阶段）。
+Peak memory 目前按"最大单节点足迹"上报，重叠驻留建模留给 scheduler。
 
 ---
 

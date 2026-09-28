@@ -4,12 +4,12 @@
     "name": "synthetic_00072",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_branch"
     }
   },
   "program": {
     "name": "synthetic_00072",
-    "description": "Find the best articles matching my constraints and explain the choice.",
+    "description": "Answer my question about products from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly near the city center.",
     "inputs": [
       {
         "name": "@task",
@@ -24,22 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "ARGMAX",
+        "op": "GENERATE",
         "inputs": [
-          "%1"
+          "%1",
+          "@task"
         ],
         "params": {
-          "key": "date"
+          "role": "draft"
         },
         "after": [],
         "guard": null,
@@ -49,32 +50,64 @@
       },
       {
         "id": "%3",
-        "op": "GENERATE",
+        "op": "VERIFY",
         "inputs": [
-          "%2",
-          "@task"
+          "%2"
         ],
         "params": {
-          "role": "final_answer"
+          "check": "factual_consistency"
         },
         "after": [],
         "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%4"
-        },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "VERIFY",
+        "op": "GENERATE",
         "inputs": [
-          "%3"
+          "%2"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "role": "polished_answer"
         },
+        "after": [],
+        "guard": {
+          "cond": "%3",
+          "expect": true
+        },
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "GENERATE",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
+          "role": "fallback_answer"
+        },
+        "after": [],
+        "guard": {
+          "cond": "%3",
+          "expect": false
+        },
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "SELECT",
+        "inputs": [
+          "%3",
+          "%4",
+          "%5"
+        ],
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -82,6 +115,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%6"
   }
 }

@@ -4,12 +4,12 @@
     "name": "synthetic_00783",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_compute"
     }
   },
   "program": {
     "name": "synthetic_00783",
-    "description": "Compare papers and stocks options for my request and recommend the better one.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, with the exact gap with the shortest layover.",
     "inputs": [
       {
         "name": "@task",
@@ -19,42 +19,46 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "LOAD",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "paper"
+          "source": "dataset.csv"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "stock"
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "CALCULATE",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "expr": "mean(value_a)"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -63,13 +67,12 @@
       },
       {
         "id": "%4",
-        "op": "SORT",
+        "op": "CALCULATE",
         "inputs": [
-          "%3"
+          "%2"
         ],
         "params": {
-          "key": "citations",
-          "order": "asc"
+          "expr": "mean(value_b)"
         },
         "after": [],
         "guard": null,
@@ -79,31 +82,29 @@
       },
       {
         "id": "%5",
-        "op": "GENERATE",
+        "op": "COMPARE",
         "inputs": [
-          "%4",
-          "@task"
+          "%3",
+          "%4"
         ],
         "params": {
-          "role": "final_answer"
+          "op": ">"
         },
         "after": [],
         "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%6"
-        },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%6",
-        "op": "VERIFY",
+        "op": "GENERATE",
         "inputs": [
-          "%5"
+          "%5",
+          "@task"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
@@ -112,6 +113,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%6"
   }
 }

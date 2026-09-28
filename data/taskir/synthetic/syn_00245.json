@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00245",
-    "description": "Load the dataset, compute both metrics and tell me which one is larger.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, with confidence intervals under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -105,24 +105,6 @@
         ],
         "params": {
           "role": "final_answer"
-        },
-        "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 2,
-          "on": "%7"
-        },
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%7",
-        "op": "VERIFY",
-        "inputs": [
-          "%6"
-        ],
-        "params": {
-          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

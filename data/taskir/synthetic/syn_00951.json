@@ -4,12 +4,12 @@
     "name": "synthetic_00951",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00951",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Find the top-rated papers matching my constraints and tell me why arriving before 8 PM.",
     "inputs": [
       {
         "name": "@task",
@@ -19,26 +19,28 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "MAX",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "citations"
+        },
         "after": [],
         "guard": null,
         "retry": null,

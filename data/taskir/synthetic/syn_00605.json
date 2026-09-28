@@ -4,12 +4,12 @@
     "name": "synthetic_00605",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00605",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Find the cheapest flights matching my constraints and explain the choice departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,21 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "ARGMAX",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "price"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -58,7 +60,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%4"
         },
         "output_type": null,

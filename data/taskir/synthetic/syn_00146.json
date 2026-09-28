@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00146",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with their roles for a week-long trip.",
     "inputs": [
       {
         "name": "@task",
@@ -47,11 +47,13 @@
       },
       {
         "id": "%3",
-        "op": "DEDUP",
+        "op": "FILTER",
         "inputs": [
           "%2"
         ],
-        "params": {},
+        "params": {
+          "predicate": "date in acceptable_range"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -71,7 +73,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%5"
         },
         "output_type": null,

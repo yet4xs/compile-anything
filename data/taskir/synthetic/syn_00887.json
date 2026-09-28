@@ -4,12 +4,12 @@
     "name": "synthetic_00887",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_compute"
     }
   },
   "program": {
     "name": "synthetic_00887",
-    "description": "Compare stocks and flights options for my request and recommend the better one.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, as a percentage with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -19,42 +19,46 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "LOAD",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "source": "dataset.csv"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "flight"
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "CALCULATE",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "expr": "mean(value_a)"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -63,12 +67,12 @@
       },
       {
         "id": "%4",
-        "op": "FILTER",
+        "op": "CALCULATE",
         "inputs": [
-          "%3"
+          "%2"
         ],
         "params": {
-          "predicate": "price in acceptable_range"
+          "expr": "mean(value_b)"
         },
         "after": [],
         "guard": null,
@@ -78,9 +82,25 @@
       },
       {
         "id": "%5",
+        "op": "COMPARE",
+        "inputs": [
+          "%3",
+          "%4"
+        ],
+        "params": {
+          "op": ">"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
         "op": "GENERATE",
         "inputs": [
-          "%4",
+          "%5",
           "@task"
         ],
         "params": {
@@ -93,6 +113,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%6"
   }
 }

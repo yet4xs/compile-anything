@@ -47,6 +47,8 @@ class TraceEvent:
     tokens_out: int
     flops: float
     resource_class: str
+    energy_j: float = 0.0
+    memory_mb: float = 0.0
     value_digest: str = ""
     note: str = ""
 
@@ -74,6 +76,8 @@ class ExecutionResult:
     node_calls: int = 0
     retries: int = 0
     skipped: int = 0
+    energy_j: float = 0.0
+    peak_memory_mb: float = 0.0   # max single-node footprint; no overlap modeled
 
     def to_dict(self) -> Dict[str, Any]:
         d = {k: v for k, v in self.__dict__.items()
@@ -130,6 +134,10 @@ class Simulator:
         res.retries = sum(max(0, self.attempts.get(n.id, 1) - 1)
                           for n in self.nodes.values() if n.retry is not None)
         res.skipped = sum(1 for e in self.events if e.status == "skipped")
+        res.energy_j = round(sum(e.energy_j for e in self.events
+                                 if e.status != "skipped"), 4)
+        res.peak_memory_mb = max((e.memory_mb for e in self.events
+                                  if e.status != "skipped"), default=0.0)
         return res
 
     # ------------------------------------------------------------------ eval
@@ -241,6 +249,8 @@ class Simulator:
             tokens_out=(c.tokens_out if status == "ok" and c else 0),
             flops=(c.flops if status == "ok" and c else 0.0),
             resource_class=(spec.resource_class if spec else "python"),
+            energy_j=(c.energy_j if status == "ok" and c else 0.0),
+            memory_mb=(c.memory_mb if status == "ok" and c else 0.0),
             value_digest=_digest(value),
             note=note,
         )

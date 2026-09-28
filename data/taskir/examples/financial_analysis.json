@@ -1,0 +1,60 @@
+{
+  "taskir_version": "0.1",
+  "meta": {
+    "name": "financial_analysis",
+    "provenance": {"source": "handwritten", "author": "phase1-toy",
+                   "domain": "finance"}
+  },
+  "program": {
+    "name": "financial_analysis",
+    "description": "Analyze the company's annual report, find the fastest growing business segment and explain why it grew",
+    "inputs": [{"name": "@task", "type": "Str"}],
+    "nodes": [
+      {
+        "id": "%1",
+        "op": "SEARCH",
+        "inputs": ["@task"],
+        "params": {"domain": "finance", "corpus": "annual_report"},
+        "output_type": "List[Finance]",
+        "hints": {"resource_class": "db"}
+      },
+      {
+        "id": "%2",
+        "op": "EXTRACT",
+        "inputs": ["%1"],
+        "params": {"fields": ["segment", "revenue", "growth_rate", "region"]},
+        "hints": {"resource_class": "python"}
+      },
+      {
+        "id": "%3",
+        "op": "FILTER",
+        "inputs": ["%2"],
+        "params": {"predicate": "growth_rate > 0"},
+        "output_type": "List[Any]",
+        "hints": {"resource_class": "python"}
+      },
+      {
+        "id": "%4",
+        "op": "ARGMAX",
+        "inputs": ["%3"],
+        "params": {"key": "growth_rate"},
+        "hints": {"resource_class": "python"}
+      },
+      {
+        "id": "%5",
+        "op": "GENERATE",
+        "inputs": ["%4", "%2", "@task"],
+        "params": {"role": "explanation"},
+        "retry": {"max_attempts": 2, "on": "%6"},
+        "hints": {"model_class": "small"}
+      },
+      {
+        "id": "%6",
+        "op": "VERIFY",
+        "inputs": ["%5", "%4"],
+        "params": {"check": "numbers_match_report"}
+      }
+    ],
+    "output": "%5"
+  }
+}

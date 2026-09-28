@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00025",
-    "description": "Find the best forecasts matching my constraints and explain the choice.",
+    "description": "Find the highest-value routes matching my constraints and and flag any risks with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -24,22 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "SORT",
         "inputs": [
           "%1"
         ],
         "params": {
-          "key": "temp_c"
+          "key": "distance_km",
+          "order": "asc"
         },
         "after": [],
         "guard": null,
@@ -49,9 +50,24 @@
       },
       {
         "id": "%3",
+        "op": "ARGMAX",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "key": "distance_km"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -64,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

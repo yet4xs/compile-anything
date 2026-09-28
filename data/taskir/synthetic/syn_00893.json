@@ -4,12 +4,12 @@
     "name": "synthetic_00893",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00893",
-    "description": "Find the best products matching my constraints and explain the choice.",
+    "description": "Compare papers and routes options for my request and and flag any risks departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,23 +24,37 @@
           "@task"
         ],
         "params": {
-          "domain": "product"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Product]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
         ],
         "params": {
-          "key": "price"
+          "domain": "maps"
         },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Maps]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
+        ],
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -48,10 +62,23 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
+        "op": "DEDUP",
+        "inputs": [
+          "%3"
+        ],
+        "params": {},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%4",
           "@task"
         ],
         "params": {
@@ -64,6 +91,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%5"
   }
 }

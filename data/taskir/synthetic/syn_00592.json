@@ -4,12 +4,12 @@
     "name": "synthetic_00592",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00592",
-    "description": "Find the best hotels matching my constraints and explain the choice.",
+    "description": "Compare papers and stocks options for my request and and flag any risks rated 4 stars or higher.",
     "inputs": [
       {
         "name": "@task",
@@ -24,36 +24,37 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "DEDUP",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
         ],
-        "params": {},
+        "params": {
+          "domain": "stock"
+        },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "ARGMAX",
+        "op": "MERGE",
         "inputs": [
+          "%1",
           "%2"
         ],
-        "params": {
-          "key": "price_per_night"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,

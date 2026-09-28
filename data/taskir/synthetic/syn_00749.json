@@ -4,12 +4,12 @@
     "name": "synthetic_00749",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00749",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Find the highest-value hotels matching my constraints and explain the choice under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -19,26 +19,28 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "hotel"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Hotel]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "MAX",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "price_per_night"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -58,7 +60,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%4"
         },
         "output_type": null,

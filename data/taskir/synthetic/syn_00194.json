@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00194",
-    "description": "Answer my question about flights from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Answer my question about forecasts from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "domain": "weather"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": "List[Weather]",
         "hints": {}
       },
       {

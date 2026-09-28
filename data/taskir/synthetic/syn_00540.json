@@ -4,12 +4,12 @@
     "name": "synthetic_00540",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00540",
-    "description": "Compare flights and articles options for my request and recommend the better one.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with dates bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -24,21 +24,6 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": "List[Flight]",
-        "hints": {}
-      },
-      {
-        "id": "%2",
-        "op": "SEARCH",
-        "inputs": [
-          "@task"
-        ],
-        "params": {
           "domain": "news"
         },
         "after": [],
@@ -48,11 +33,10 @@
         "hints": {}
       },
       {
-        "id": "%3",
-        "op": "MERGE",
+        "id": "%2",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
-          "%1",
-          "%2"
+          "%1"
         ],
         "params": {},
         "after": [],
@@ -62,25 +46,10 @@
         "hints": {}
       },
       {
-        "id": "%4",
-        "op": "FILTER",
-        "inputs": [
-          "%3"
-        ],
-        "params": {
-          "predicate": "price in acceptable_range"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
+        "id": "%3",
         "op": "GENERATE",
         "inputs": [
-          "%4",
+          "%2",
           "@task"
         ],
         "params": {
@@ -90,16 +59,16 @@
         "guard": null,
         "retry": {
           "max_attempts": 2,
-          "on": "%6"
+          "on": "%4"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%6",
+        "id": "%4",
         "op": "VERIFY",
         "inputs": [
-          "%5"
+          "%3"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -111,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%3"
   }
 }

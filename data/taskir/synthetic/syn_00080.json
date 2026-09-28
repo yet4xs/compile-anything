@@ -4,12 +4,12 @@
     "name": "synthetic_00080",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00080",
-    "description": "Compare routes and hotels options for my request and recommend the better one.",
+    "description": "Find the most reliable products matching my constraints and and justify it with the data near the city center.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "MIN",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "hotel"
+          "key": "price"
         },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": "List[Hotel]",
-        "hints": {}
-      },
-      {
-        "id": "%3",
-        "op": "MERGE",
-        "inputs": [
-          "%1",
-          "%2"
-        ],
-        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -62,10 +48,10 @@
         "hints": {}
       },
       {
-        "id": "%4",
+        "id": "%3",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%2",
           "@task"
         ],
         "params": {
@@ -78,6 +64,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%3"
   }
 }

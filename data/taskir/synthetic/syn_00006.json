@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00006",
-    "description": "Compare stocks and routes options for my request and recommend the better one.",
+    "description": "Compare papers and forecasts options for my request and and justify it with the data with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "domain": "weather"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": "List[Weather]",
         "hints": {}
       },
       {
@@ -63,12 +63,13 @@
       },
       {
         "id": "%4",
-        "op": "FILTER",
+        "op": "SORT",
         "inputs": [
           "%3"
         ],
         "params": {
-          "predicate": "price in acceptable_range"
+          "key": "citations",
+          "order": "asc"
         },
         "after": [],
         "guard": null,
@@ -85,6 +86,24 @@
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%6"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "VERIFY",
+        "inputs": [
+          "%5"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

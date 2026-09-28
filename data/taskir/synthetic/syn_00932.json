@@ -4,12 +4,12 @@
     "name": "synthetic_00932",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00932",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Find the cheapest routes matching my constraints and and flag any risks rated 4 stars or higher.",
     "inputs": [
       {
         "name": "@task",
@@ -19,26 +19,28 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "ARGMAX",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "distance_km"
+        },
         "after": [],
         "guard": null,
         "retry": null,

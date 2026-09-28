@@ -4,12 +4,12 @@
     "name": "synthetic_00428",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_summary"
     }
   },
   "program": {
     "name": "synthetic_00428",
-    "description": "Compare forecasts and papers options for my request and recommend the better one.",
+    "description": "Fetch the document at the URL and give me a summary I can act on before my 9 AM meeting under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -19,66 +19,37 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "FETCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "url": "input_url"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "SUMMARIZE",
         "inputs": [
-          "@task"
+          "%1"
         ],
-        "params": {
-          "domain": "paper"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
-        "inputs": [
-          "%1",
-          "%2"
-        ],
-        "params": {},
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%4",
-        "op": "DEDUP",
-        "inputs": [
-          "%3"
-        ],
-        "params": {},
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%4",
+          "%2",
           "@task"
         ],
         "params": {
@@ -87,17 +58,17 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
-          "on": "%6"
+          "max_attempts": 2,
+          "on": "%4"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%6",
+        "id": "%4",
         "op": "VERIFY",
         "inputs": [
-          "%5"
+          "%3"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -109,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%3"
   }
 }

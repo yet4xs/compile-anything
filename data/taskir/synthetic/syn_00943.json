@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00943",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with sources departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -58,7 +58,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%4"
         },
         "output_type": null,

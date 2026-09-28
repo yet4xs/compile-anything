@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00606",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Fetch the document at the URL and give me a summary I can act on as talking points within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -54,24 +54,6 @@
         ],
         "params": {
           "role": "final_answer"
-        },
-        "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 2,
-          "on": "%4"
-        },
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%4",
-        "op": "VERIFY",
-        "inputs": [
-          "%3"
-        ],
-        "params": {
-          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

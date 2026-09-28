@@ -4,12 +4,12 @@
     "name": "synthetic_00340",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00340",
-    "description": "Find the best papers matching my constraints and explain the choice.",
+    "description": "Compare hotels and stocks options for my request and explain the choice departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,19 +24,35 @@
           "@task"
         ],
         "params": {
-          "domain": "paper"
+          "domain": "hotel"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": "List[Hotel]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "DEDUP",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "stock"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Stock]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,14 +62,12 @@
         "hints": {}
       },
       {
-        "id": "%3",
-        "op": "MIN",
+        "id": "%4",
+        "op": "DEDUP",
         "inputs": [
-          "%2"
+          "%3"
         ],
-        "params": {
-          "key": "citations"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -61,14 +75,32 @@
         "hints": {}
       },
       {
-        "id": "%4",
+        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%4",
           "@task"
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%6"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "VERIFY",
+        "inputs": [
+          "%5"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -77,6 +109,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%5"
   }
 }

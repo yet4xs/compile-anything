@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00035",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Fetch the document at the URL and give me a summary I can act on as talking points departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -58,7 +58,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 2,
+          "max_attempts": 3,
           "on": "%4"
         },
         "output_type": null,

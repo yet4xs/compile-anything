@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00073",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Fetch the document at the URL and give me a summary I can act on in plain language near the city center.",
     "inputs": [
       {
         "name": "@task",

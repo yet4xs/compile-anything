@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00295",
-    "description": "Compare papers and stocks options for my request and recommend the better one.",
+    "description": "Compare products and papers options for my request and and summarize the reasoning in two bullets arriving before 8 PM.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "paper"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
@@ -63,9 +63,24 @@
       },
       {
         "id": "%4",
+        "op": "FILTER",
+        "inputs": [
+          "%3"
+        ],
+        "params": {
+          "predicate": "price in acceptable_range"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%4",
           "@task"
         ],
         "params": {
@@ -75,16 +90,16 @@
         "guard": null,
         "retry": {
           "max_attempts": 3,
-          "on": "%5"
+          "on": "%6"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%5",
+        "id": "%6",
         "op": "VERIFY",
         "inputs": [
-          "%4"
+          "%5"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -96,6 +111,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%5"
   }
 }

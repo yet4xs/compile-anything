@@ -4,12 +4,12 @@
     "name": "synthetic_00200",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00200",
-    "description": "Find the best hotels matching my constraints and explain the choice.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with sources under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -24,23 +24,21 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "ARGMIN",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
           "%1"
         ],
-        "params": {
-          "key": "price_per_night"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,

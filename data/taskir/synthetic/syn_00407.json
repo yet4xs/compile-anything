@@ -4,12 +4,12 @@
     "name": "synthetic_00407",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_branch"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00407",
-    "description": "Answer my question about hotels from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with sources for this weekend.",
     "inputs": [
       {
         "name": "@task",
@@ -24,24 +24,21 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "GENERATE",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
-          "%1",
-          "@task"
+          "%1"
         ],
-        "params": {
-          "role": "draft"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -50,64 +47,14 @@
       },
       {
         "id": "%3",
-        "op": "VERIFY",
-        "inputs": [
-          "%2"
-        ],
-        "params": {
-          "check": "factual_consistency"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2"
-        ],
-        "params": {
-          "role": "polished_answer"
-        },
-        "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": true
-        },
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
-        "op": "GENERATE",
-        "inputs": [
+          "%2",
           "@task"
         ],
         "params": {
-          "role": "fallback_answer"
+          "role": "final_answer"
         },
-        "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": false
-        },
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%6",
-        "op": "SELECT",
-        "inputs": [
-          "%3",
-          "%4",
-          "%5"
-        ],
-        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -115,6 +62,6 @@
         "hints": {}
       }
     ],
-    "output": "%6"
+    "output": "%3"
   }
 }

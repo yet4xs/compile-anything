@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00332",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with dates with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -54,6 +54,24 @@
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%4"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
+        "op": "VERIFY",
+        "inputs": [
+          "%3"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

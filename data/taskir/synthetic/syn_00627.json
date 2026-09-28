@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00627",
-    "description": "Load the dataset, compute both metrics and tell me which one is larger.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, with confidence intervals within my loyalty program.",
     "inputs": [
       {
         "name": "@task",

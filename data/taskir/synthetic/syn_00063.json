@@ -4,12 +4,12 @@
     "name": "synthetic_00063",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00063",
-    "description": "Compare flights and routes options for my request and recommend the better one.",
+    "description": "Find the highest-value hotels matching my constraints and tell me why for this weekend.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,39 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "domain": "hotel"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": "List[Hotel]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "SORT",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "maps"
+          "key": "price_per_night",
+          "order": "asc"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "ARGMAX",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "key": "price_per_night"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -74,7 +76,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%5"
         },
         "output_type": null,

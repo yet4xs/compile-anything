@@ -19,6 +19,8 @@ BIG_MODEL_BASELINE = {        # nominal "one big model answers directly" referen
     "tokens_in": 1200,
     "tokens_out": 600,
     "latency_ms": 2500.0,
+    "energy_j": 900.0,         # amortized serving energy (nominal)
+    "memory_mb": 140000.0,     # ~8x H100-80GB class deployment
 }
 
 
@@ -29,15 +31,19 @@ class Cost:
     tokens_out: int = 0
     flops: float = 1e6        # nominal for python-class ops
     calls: int = 1
+    energy_j: float = 0.005   # nominal per invocation (python-class default)
+    memory_mb: float = 30.0   # resident footprint of the executing unit
 
 
 def _lm_cost(latency_ms: float, t_in: int, t_out: int) -> Cost:
     return Cost(latency_ms=latency_ms, tokens_in=t_in, tokens_out=t_out,
-                flops=(t_in + t_out) * FLOPS_PER_TOKEN_2B)
+                flops=(t_in + t_out) * FLOPS_PER_TOKEN_2B,
+                energy_j=0.02 * (t_in + t_out),   # 2B executor, nominal
+                memory_mb=4600.0)                 # 2B fp16 weights + KV cache
 
 
 def _api_cost(latency_ms: float) -> Cost:
-    return Cost(latency_ms=latency_ms, flops=0.0)
+    return Cost(latency_ms=latency_ms, flops=0.0, energy_j=0.005, memory_mb=0.0)
 
 
 @dataclass

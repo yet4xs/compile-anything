@@ -4,12 +4,12 @@
     "name": "synthetic_00159",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00159",
-    "description": "Compare routes and flights options for my request and recommend the better one.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with dates with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,36 @@
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
-          "@task"
+          "%1"
         ],
-        "params": {
-          "domain": "flight"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "FILTER",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "predicate": "date in acceptable_range"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -70,6 +69,24 @@
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%5"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": [
+          "%4"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

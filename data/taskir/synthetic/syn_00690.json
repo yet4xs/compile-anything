@@ -4,12 +4,12 @@
     "name": "synthetic_00690",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00690",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Find the best papers matching my constraints and and summarize the reasoning in two bullets with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -19,22 +19,22 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "DEDUP",
         "inputs": [
           "%1"
         ],
@@ -47,9 +47,24 @@
       },
       {
         "id": "%3",
+        "op": "ARGMIN",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "key": "citations"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -62,6 +77,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

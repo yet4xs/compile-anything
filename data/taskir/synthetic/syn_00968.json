@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00968",
-    "description": "Compare stocks and routes options for my request and recommend the better one.",
+    "description": "Compare products and flights options for my request and tell me why under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {
@@ -74,7 +74,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%5"
         },
         "output_type": null,

@@ -4,12 +4,12 @@
     "name": "synthetic_00053",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_compute"
     }
   },
   "program": {
     "name": "synthetic_00053",
-    "description": "Find the best articles matching my constraints and explain the choice.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, as a percentage bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -19,26 +19,31 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "LOAD",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "source": "dataset.csv"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "DEDUP",
+        "op": "EXTRACT",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -47,12 +52,12 @@
       },
       {
         "id": "%3",
-        "op": "MAX",
+        "op": "CALCULATE",
         "inputs": [
           "%2"
         ],
         "params": {
-          "key": "date"
+          "expr": "mean(value_a)"
         },
         "after": [],
         "guard": null,
@@ -62,31 +67,44 @@
       },
       {
         "id": "%4",
-        "op": "GENERATE",
+        "op": "CALCULATE",
         "inputs": [
-          "%3",
-          "@task"
+          "%2"
         ],
         "params": {
-          "role": "final_answer"
+          "expr": "mean(value_b)"
         },
         "after": [],
         "guard": null,
-        "retry": {
-          "max_attempts": 2,
-          "on": "%5"
-        },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%5",
-        "op": "VERIFY",
+        "op": "COMPARE",
         "inputs": [
+          "%3",
           "%4"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "op": ">"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "GENERATE",
+        "inputs": [
+          "%5",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
@@ -95,6 +113,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%6"
   }
 }

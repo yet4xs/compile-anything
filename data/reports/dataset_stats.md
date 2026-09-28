@@ -4,57 +4,60 @@ Metric definitions in `src/stats.py`: depth = longest dependency chain; width = 
 
 ### subset: examples
 
-- programs: **3**  (total nodes: 15)
-- nodes: mean 5, median 5, p90 7, min 3, max 7
-- depth: mean 4.667, median 5, p90 6, min 3, max 6
-- width: mean 1.333, median 1, p90 2, min 1, max 2
-- branch_ratio: mean 0.143, median 0.0, p90 0.4286, min 0.0, max 0.4286
-- parallel_ratio: mean 0.114, median 0.143, p90 0.2, min 0.0, max 0.2
-- programs with width>1: 33.3%
-- programs with retry:   33.3%
+- programs: **5**  (total nodes: 26)
+- nodes: mean 5.2, median 5, p90 7, min 3, max 7
+- depth: mean 4.8, median 5, p90 6, min 3, max 6
+- width: mean 1.4, median 1, p90 2, min 1, max 2
+- branch_ratio: mean 0.086, median 0.0, p90 0.4286, min 0.0, max 0.4286
+- parallel_ratio: mean 0.182, median 0.167, p90 0.4, min 0.0, max 0.4
+- programs with width>1: 40.0%
+- programs with retry:   60.0%
 
 | skill | count |
 |---|---|
-| GENERATE | 4 |
-| SEARCH | 3 |
-| FILTER | 2 |
+| SEARCH | 5 |
+| GENERATE | 5 |
+| VERIFY | 4 |
+| EXTRACT | 3 |
+| FILTER | 3 |
 | ARGMIN | 2 |
-| VERIFY | 2 |
-| EXTRACT | 1 |
+| ARGMAX | 1 |
 | SELECT | 1 |
+| LOAD | 1 |
+| CODEGEN | 1 |
 
 ### subset: synthetic
 
-- programs: **1000**  (total nodes: 4761)
-- nodes: mean 4.761, median 5.0, p90 6, min 3, max 7
-- depth: mean 4.271, median 4.0, p90 5, min 3, max 6
-- width: mean 1.49, median 1.0, p90 2, min 1, max 2
-- branch_ratio: mean 0.086, median 0.0, p90 0.5, min 0.0, max 0.5
-- parallel_ratio: mean 0.173, median 0.167, p90 0.2857, min 0.0, max 0.4
-- programs with width>1: 49.0%
-- programs with retry:   41.6%
+- programs: **1000**  (total nodes: 4744)
+- nodes: mean 4.744, median 5.0, p90 6, min 3, max 7
+- depth: mean 4.264, median 4.0, p90 5, min 3, max 6
+- width: mean 1.48, median 1.0, p90 2, min 1, max 2
+- branch_ratio: mean 0.08, median 0.0, p90 0.5, min 0.0, max 0.5
+- parallel_ratio: mean 0.173, median 0.183, p90 0.2857, min 0.0, max 0.4
+- programs with width>1: 48.0%
+- programs with retry:   41.7%
 
 | skill | count |
 |---|---|
-| GENERATE | 1344 |
-| SEARCH | 837 |
-| VERIFY | 588 |
-| CALCULATE | 324 |
-| EXTRACT_ENTITIES | 191 |
-| SELECT | 172 |
-| LOAD | 162 |
-| EXTRACT | 162 |
-| COMPARE | 162 |
-| FETCH | 157 |
-| SUMMARIZE | 157 |
+| GENERATE | 1318 |
+| SEARCH | 823 |
+| VERIFY | 576 |
+| CALCULATE | 330 |
+| EXTRACT_ENTITIES | 189 |
+| FETCH | 168 |
+| SUMMARIZE | 168 |
+| LOAD | 165 |
+| EXTRACT | 165 |
+| COMPARE | 165 |
+| SELECT | 159 |
 | MERGE | 156 |
-| SORT | 70 |
+| DEDUP | 76 |
 | FILTER | 63 |
-| DEDUP | 54 |
-| MAX | 54 |
-| MIN | 37 |
-| ARGMAX | 37 |
-| ARGMIN | 34 |
+| SORT | 60 |
+| ARGMAX | 52 |
+| MAX | 39 |
+| MIN | 36 |
+| ARGMIN | 36 |
 
 ### subset: xlam
 
@@ -82,38 +85,39 @@ Metric definitions in `src/stats.py`: depth = longest dependency chain; width = 
 
 ### subset: ALL
 
-- programs: **1103**  (total nodes: 5296)
-- nodes: mean 4.801, median 5, p90 6, min 3, max 7
-- depth: mean 4.356, median 4, p90 6, min 3, max 7
-- width: mean 1.445, median 1, p90 2, min 1, max 2
-- branch_ratio: mean 0.078, median 0.0, p90 0.5, min 0.0, max 0.5
+- programs: **1105**  (total nodes: 5290)
+- nodes: mean 4.787, median 5, p90 6, min 3, max 7
+- depth: mean 4.351, median 4, p90 5, min 3, max 7
+- width: mean 1.436, median 1, p90 2, min 1, max 2
+- branch_ratio: mean 0.072, median 0.0, p90 0.5, min 0.0, max 0.5
 - parallel_ratio: mean 0.175, median 0.2, p90 0.2857, min 0.0, max 0.4
-- programs with width>1: 44.5%
-- programs with retry:   46.9%
+- programs with width>1: 43.6%
+- programs with retry:   47.1%
 
 | skill | count |
 |---|---|
-| GENERATE | 1448 |
-| SEARCH | 930 |
-| VERIFY | 690 |
-| CALCULATE | 334 |
-| EXTRACT | 253 |
-| EXTRACT_ENTITIES | 191 |
-| SELECT | 173 |
-| LOAD | 162 |
-| COMPARE | 162 |
-| FETCH | 157 |
-| SUMMARIZE | 157 |
+| GENERATE | 1423 |
+| SEARCH | 918 |
+| VERIFY | 680 |
+| CALCULATE | 340 |
+| EXTRACT | 258 |
+| EXTRACT_ENTITIES | 189 |
+| FETCH | 168 |
+| SUMMARIZE | 168 |
+| LOAD | 166 |
+| COMPARE | 165 |
+| SELECT | 160 |
 | MERGE | 156 |
-| SORT | 70 |
-| FILTER | 65 |
+| DEDUP | 76 |
+| FILTER | 66 |
+| SORT | 60 |
 | SEND | 60 |
-| DEDUP | 54 |
-| MAX | 54 |
-| MIN | 37 |
-| ARGMAX | 37 |
-| ARGMIN | 36 |
+| ARGMAX | 53 |
+| MAX | 39 |
+| ARGMIN | 38 |
+| MIN | 36 |
 | EXEC_ACTION | 20 |
 | TRANSLATE | 20 |
 | CONVERT | 20 |
 | QUERY_DB | 10 |
+| CODEGEN | 1 |

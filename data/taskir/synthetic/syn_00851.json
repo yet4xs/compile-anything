@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00851",
-    "description": "Compare articles and forecasts options for my request and recommend the better one.",
+    "description": "Compare routes and products options for my request and explain the choice within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
@@ -63,13 +63,12 @@
       },
       {
         "id": "%4",
-        "op": "SORT",
+        "op": "FILTER",
         "inputs": [
           "%3"
         ],
         "params": {
-          "key": "date",
-          "order": "asc"
+          "predicate": "distance_km in acceptable_range"
         },
         "after": [],
         "guard": null,

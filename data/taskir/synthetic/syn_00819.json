@@ -4,12 +4,12 @@
     "name": "synthetic_00819",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_compute"
     }
   },
   "program": {
     "name": "synthetic_00819",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, with the exact gap bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -19,26 +19,31 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "LOAD",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "source": "dataset.csv"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "EXTRACT",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -47,31 +52,59 @@
       },
       {
         "id": "%3",
-        "op": "GENERATE",
+        "op": "CALCULATE",
         "inputs": [
-          "%2",
-          "@task"
+          "%2"
         ],
         "params": {
-          "role": "final_answer"
+          "expr": "mean(value_a)"
         },
         "after": [],
         "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%4"
-        },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "VERIFY",
+        "op": "CALCULATE",
         "inputs": [
-          "%3"
+          "%2"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "expr": "mean(value_b)"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "COMPARE",
+        "inputs": [
+          "%3",
+          "%4"
+        ],
+        "params": {
+          "op": ">"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "GENERATE",
+        "inputs": [
+          "%5",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
@@ -80,6 +113,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%6"
   }
 }

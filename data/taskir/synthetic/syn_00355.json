@@ -4,12 +4,12 @@
     "name": "synthetic_00355",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00355",
-    "description": "Find the best articles matching my constraints and explain the choice.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with their roles with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -34,13 +34,11 @@
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
           "%1"
         ],
-        "params": {
-          "key": "date"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -60,7 +58,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
+          "max_attempts": 2,
           "on": "%4"
         },
         "output_type": null,

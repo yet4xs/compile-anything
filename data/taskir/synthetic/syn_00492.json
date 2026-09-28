@@ -4,12 +4,12 @@
     "name": "synthetic_00492",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_branch"
+      "archetype": "gen_summary"
     }
   },
   "program": {
     "name": "synthetic_00492",
-    "description": "Answer my question about articles from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Fetch the document at the URL and give me a summary I can act on as talking points for a party of two.",
     "inputs": [
       {
         "name": "@task",
@@ -19,29 +19,26 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "FETCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "url": "input_url"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "GENERATE",
+        "op": "SUMMARIZE",
         "inputs": [
-          "%1",
-          "@task"
+          "%1"
         ],
-        "params": {
-          "role": "draft"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -50,64 +47,32 @@
       },
       {
         "id": "%3",
-        "op": "VERIFY",
+        "op": "GENERATE",
         "inputs": [
-          "%2"
+          "%2",
+          "@task"
         ],
         "params": {
-          "check": "factual_consistency"
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
-        "retry": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%4"
+        },
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "GENERATE",
+        "op": "VERIFY",
         "inputs": [
-          "%2"
+          "%3"
         ],
         "params": {
-          "role": "polished_answer"
+          "check": "grounded_in_retrieved_evidence"
         },
-        "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": true
-        },
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
-        "op": "GENERATE",
-        "inputs": [
-          "@task"
-        ],
-        "params": {
-          "role": "fallback_answer"
-        },
-        "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": false
-        },
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%6",
-        "op": "SELECT",
-        "inputs": [
-          "%3",
-          "%4",
-          "%5"
-        ],
-        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -115,6 +80,6 @@
         "hints": {}
       }
     ],
-    "output": "%6"
+    "output": "%3"
   }
 }

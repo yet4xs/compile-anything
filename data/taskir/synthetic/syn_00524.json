@@ -4,12 +4,12 @@
     "name": "synthetic_00524",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_summary"
     }
   },
   "program": {
     "name": "synthetic_00524",
-    "description": "Find the best forecasts matching my constraints and explain the choice.",
+    "description": "Fetch the document at the URL and give me a summary I can act on as talking points for this weekend.",
     "inputs": [
       {
         "name": "@task",
@@ -19,28 +19,26 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "FETCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "url": "input_url"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "SUMMARIZE",
         "inputs": [
           "%1"
         ],
-        "params": {
-          "key": "temp_c"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -56,24 +54,6 @@
         ],
         "params": {
           "role": "final_answer"
-        },
-        "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%4"
-        },
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%4",
-        "op": "VERIFY",
-        "inputs": [
-          "%3"
-        ],
-        "params": {
-          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

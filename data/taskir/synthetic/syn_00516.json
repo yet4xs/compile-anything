@@ -4,12 +4,12 @@
     "name": "synthetic_00516",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00516",
-    "description": "Compare products and flights options for my request and recommend the better one.",
+    "description": "Find the highest-value papers matching my constraints and and summarize the reasoning in two bullets with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -24,68 +24,56 @@
           "@task"
         ],
         "params": {
-          "domain": "product"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Product]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "ARGMAX",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "flight"
+          "key": "citations"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "GENERATE",
         "inputs": [
-          "%1",
-          "%2"
+          "%2",
+          "@task"
         ],
-        "params": {},
+        "params": {
+          "role": "final_answer"
+        },
         "after": [],
         "guard": null,
-        "retry": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%4"
+        },
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "SORT",
+        "op": "VERIFY",
         "inputs": [
           "%3"
         ],
         "params": {
-          "key": "price",
-          "order": "asc"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
-        "op": "GENERATE",
-        "inputs": [
-          "%4",
-          "@task"
-        ],
-        "params": {
-          "role": "final_answer"
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -94,6 +82,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%3"
   }
 }

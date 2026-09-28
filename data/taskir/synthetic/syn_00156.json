@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00156",
-    "description": "Answer my question about forecasts from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Answer my question about stocks from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {

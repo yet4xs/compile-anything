@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00336",
-    "description": "Answer my question about papers from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Answer my question about products from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "paper"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {

@@ -4,12 +4,12 @@
     "name": "synthetic_00772",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00772",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Compare stocks and papers options for my request and and summarize the reasoning in two bullets with the shortest layover.",
     "inputs": [
       {
         "name": "@task",
@@ -24,19 +24,35 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "paper"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Paper]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,10 +62,26 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
+        "op": "SORT",
+        "inputs": [
+          "%3"
+        ],
+        "params": {
+          "key": "price",
+          "order": "asc"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%4",
           "@task"
         ],
         "params": {
@@ -59,16 +91,16 @@
         "guard": null,
         "retry": {
           "max_attempts": 3,
-          "on": "%4"
+          "on": "%6"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%4",
+        "id": "%6",
         "op": "VERIFY",
         "inputs": [
-          "%3"
+          "%5"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -80,6 +112,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%5"
   }
 }

@@ -4,12 +4,12 @@
     "name": "synthetic_00285",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_branch"
     }
   },
   "program": {
     "name": "synthetic_00285",
-    "description": "Compare articles and routes options for my request and recommend the better one.",
+    "description": "Answer my question about papers from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly rated 4 stars or higher.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,39 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "GENERATE",
         "inputs": [
+          "%1",
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "role": "draft"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "VERIFY",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "check": "factual_consistency"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -63,13 +65,18 @@
       },
       {
         "id": "%4",
-        "op": "DEDUP",
+        "op": "GENERATE",
         "inputs": [
-          "%3"
+          "%2"
         ],
-        "params": {},
+        "params": {
+          "role": "polished_answer"
+        },
         "after": [],
-        "guard": null,
+        "guard": {
+          "cond": "%3",
+          "expect": true
+        },
         "retry": null,
         "output_type": null,
         "hints": {}
@@ -78,12 +85,29 @@
         "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%4",
           "@task"
         ],
         "params": {
-          "role": "final_answer"
+          "role": "fallback_answer"
         },
+        "after": [],
+        "guard": {
+          "cond": "%3",
+          "expect": false
+        },
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "SELECT",
+        "inputs": [
+          "%3",
+          "%4",
+          "%5"
+        ],
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -91,6 +115,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%6"
   }
 }

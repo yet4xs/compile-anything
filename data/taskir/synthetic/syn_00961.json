@@ -4,12 +4,12 @@
     "name": "synthetic_00961",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_branch"
     }
   },
   "program": {
     "name": "synthetic_00961",
-    "description": "Compare stocks and hotels options for my request and recommend the better one.",
+    "description": "Answer my question about articles from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly for a week-long trip.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,39 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "GENERATE",
         "inputs": [
+          "%1",
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "role": "draft"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "VERIFY",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "check": "factual_consistency"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -65,30 +67,47 @@
         "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%3",
-          "@task"
+          "%2"
         ],
         "params": {
-          "role": "final_answer"
+          "role": "polished_answer"
         },
         "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%5"
+        "guard": {
+          "cond": "%3",
+          "expect": true
         },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%5",
-        "op": "VERIFY",
+        "op": "GENERATE",
         "inputs": [
-          "%4"
+          "@task"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "role": "fallback_answer"
         },
+        "after": [],
+        "guard": {
+          "cond": "%3",
+          "expect": false
+        },
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "SELECT",
+        "inputs": [
+          "%3",
+          "%4",
+          "%5"
+        ],
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -96,6 +115,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%6"
   }
 }

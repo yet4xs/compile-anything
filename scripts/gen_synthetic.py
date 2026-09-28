@@ -32,6 +32,123 @@ PRICE_KEY = {"flight": "price", "hotel": "price_per_night", "weather": "temp_c",
              "news": "date", "maps": "distance_km", "product": "price",
              "paper": "citations", "stock": "price"}
 
+# NL diversity: randomized qualifiers/intents so dedup-by-task keeps most pairs
+QUALIFIERS = ["under $500", "for next month", "with the best reviews",
+              "arriving before 8 PM", "with free cancellation",
+              "for a party of two", "rated 4 stars or higher",
+              "departing early morning", "for this weekend",
+              "with flexible dates", "near the city center",
+              "within my loyalty program", "for a week-long trip",
+              "with the shortest layover", "bookable today"]
+SUPERLATIVE = ["best", "cheapest", "top-rated", "fastest", "most reliable",
+               "highest-value"]
+EXPLAIN = ["explain the choice", "tell me why", "and justify it with the data",
+           "and summarize the reasoning in two bullets", "and flag any risks"]
+
+
+def _q(rng, archetype_nl: str) -> str:
+    return f"{archetype_nl} {rng.choice(QUALIFIERS)}."
+
+
+def gen_linear(rng):
+    d1 = rng.choice(DOMAINS)
+    q = _q(rng, f"Find the {rng.choice(SUPERLATIVE)} {PLURAL[d1]} matching my "
+                f"constraints and {rng.choice(EXPLAIN)}")
+    nodes = [Node(id="%1", op="SEARCH", inputs=["@task"],
+                  params={"domain": d1}, output_type=f"List[{d1.capitalize()}]")]
+    cur = _maybe_list_op(rng, nodes, "%1", d1)
+    agg = Node(id=f"%{len(nodes)+1}", op=rng.choice(["ARGMIN", "ARGMAX", "MIN", "MAX"]),
+               inputs=[cur], params={"key": PRICE_KEY[d1]})
+    nodes.append(agg)
+    out = _tail(rng, nodes, agg.id)
+    return q, nodes, out
+
+
+def gen_parallel(rng):
+    d1, d2 = rng.sample(DOMAINS, 2)
+    q = _q(rng, f"Compare {PLURAL[d1]} and {PLURAL[d2]} options for my request "
+                f"and {rng.choice(EXPLAIN)}")
+    nodes = [
+        Node(id="%1", op="SEARCH", inputs=["@task"], params={"domain": d1},
+             output_type=f"List[{d1.capitalize()}]"),
+        Node(id="%2", op="SEARCH", inputs=["@task"], params={"domain": d2},
+             output_type=f"List[{d2.capitalize()}]"),
+        Node(id="%3", op="MERGE", inputs=["%1", "%2"]),
+    ]
+    cur = _maybe_list_op(rng, nodes, "%3", d1)
+    out = _tail(rng, nodes, cur)
+    return q, nodes, out
+
+
+def gen_branch(rng):
+    d1 = rng.choice(DOMAINS)
+    q = _q(rng, f"Answer my question about {PLURAL[d1]} from retrieved evidence, "
+                f"only trust the answer if it checks out, otherwise say so "
+                f"plainly")
+    nodes = [
+        Node(id="%1", op="SEARCH", inputs=["@task"], params={"domain": d1},
+             output_type=f"List[{d1.capitalize()}]"),
+        Node(id="%2", op="GENERATE", inputs=["%1", "@task"],
+             params={"role": "draft"}),
+        Node(id="%3", op="VERIFY", inputs=["%2"],
+             params={"check": "factual_consistency"}),
+        Node(id="%4", op="GENERATE", inputs=["%2"],
+             params={"role": "polished_answer"},
+             guard=Guard(cond="%3", expect=True)),
+        Node(id="%5", op="GENERATE", inputs=["@task"],
+             params={"role": "fallback_answer"},
+             guard=Guard(cond="%3", expect=False)),
+        Node(id="%6", op="SELECT", inputs=["%3", "%4", "%5"]),
+    ]
+    return q, nodes, "%6"
+
+
+def gen_compute(rng):
+    gap = rng.choice(["with the exact gap", "as a percentage",
+                      "with confidence intervals"])
+    q = _q(rng, "Load the dataset, compute both metrics and tell me which one "
+                f"is larger, {gap}")
+    nodes = [
+        Node(id="%1", op="LOAD", inputs=["@task"],
+             params={"source": "dataset.csv"}),
+        Node(id="%2", op="EXTRACT", inputs=["%1"],
+             params={"fields": ["value_a", "value_b"]}),
+        Node(id="%3", op="CALCULATE", inputs=["%2"],
+             params={"expr": "mean(value_a)"}),
+        Node(id="%4", op="CALCULATE", inputs=["%2"],
+             params={"expr": "mean(value_b)"}),
+        Node(id="%5", op="COMPARE", inputs=["%3", "%4"], params={"op": ">"}),
+    ]
+    out = _tail(rng, nodes, "%5")
+    return q, nodes, out
+
+
+def gen_summary(rng):
+    style = rng.choice(["before my 9 AM meeting", "in plain language",
+                        "as talking points"])
+    q = _q(rng, "Fetch the document at the URL and give me a summary I can "
+                f"act on {style}")
+    nodes = [
+        Node(id="%1", op="FETCH", inputs=["@task"], params={"url": "input_url"}),
+        Node(id="%2", op="SUMMARIZE", inputs=["%1"]),
+    ]
+    out = _tail(rng, nodes, "%2")
+    return q, nodes, out
+
+
+def gen_entities(rng):
+    detail = rng.choice(["with their roles", "with dates", "with sources"])
+    q = _q(rng, "Search the news for my topic, list the key entities and "
+                f"brief me on them {detail}")
+    nodes = [
+        Node(id="%1", op="SEARCH", inputs=["@task"], params={"domain": "news"},
+             output_type="List[News]"),
+        Node(id="%2", op="EXTRACT_ENTITIES", inputs=["%1"]),
+    ]
+    cur = _maybe_list_op(rng, nodes, "%2", "news")
+    out = _tail(rng, nodes, cur)
+    return q, nodes, out
+
 
 def _maybe_list_op(rng, nodes, prev_id, domain):
     """Insert an optional list->list transform (type-preserving)."""
@@ -57,96 +174,6 @@ def _tail(rng, nodes, out_id, nl_role="final_answer"):
         nodes.append(ver)
         gen.retry = Retry(max_attempts=rng.choice([2, 3]), on=ver.id)
     return gen.id
-
-
-def gen_linear(rng):
-    d1 = rng.choice(DOMAINS)
-    q = f"Find the best {PLURAL[d1]} matching my constraints and explain the choice."
-    nodes = [Node(id="%1", op="SEARCH", inputs=["@task"],
-                  params={"domain": d1}, output_type=f"List[{d1.capitalize()}]")]
-    cur = _maybe_list_op(rng, nodes, "%1", d1)
-    agg = Node(id=f"%{len(nodes)+1}", op=rng.choice(["ARGMIN", "ARGMAX", "MIN", "MAX"]),
-               inputs=[cur], params={"key": PRICE_KEY[d1]})
-    nodes.append(agg)
-    out = _tail(rng, nodes, agg.id)
-    return q, nodes, out
-
-
-def gen_parallel(rng):
-    d1, d2 = rng.sample(DOMAINS, 2)
-    q = (f"Compare {PLURAL[d1]} and {PLURAL[d2]} options for my request and "
-         f"recommend the better one.")
-    nodes = [
-        Node(id="%1", op="SEARCH", inputs=["@task"], params={"domain": d1},
-             output_type=f"List[{d1.capitalize()}]"),
-        Node(id="%2", op="SEARCH", inputs=["@task"], params={"domain": d2},
-             output_type=f"List[{d2.capitalize()}]"),
-        Node(id="%3", op="MERGE", inputs=["%1", "%2"]),
-    ]
-    cur = _maybe_list_op(rng, nodes, "%3", d1)
-    out = _tail(rng, nodes, cur)
-    return q, nodes, out
-
-
-def gen_branch(rng):
-    d1 = rng.choice(DOMAINS)
-    q = (f"Answer my question about {PLURAL[d1]} from retrieved evidence, and "
-         f"only trust the answer if it checks out.")
-    nodes = [
-        Node(id="%1", op="SEARCH", inputs=["@task"], params={"domain": d1},
-             output_type=f"List[{d1.capitalize()}]"),
-        Node(id="%2", op="GENERATE", inputs=["%1", "@task"],
-             params={"role": "draft"}),
-        Node(id="%3", op="VERIFY", inputs=["%2"],
-             params={"check": "factual_consistency"}),
-        Node(id="%4", op="GENERATE", inputs=["%2"],
-             params={"role": "polished_answer"},
-             guard=Guard(cond="%3", expect=True)),
-        Node(id="%5", op="GENERATE", inputs=["@task"],
-             params={"role": "fallback_answer"},
-             guard=Guard(cond="%3", expect=False)),
-        Node(id="%6", op="SELECT", inputs=["%3", "%4", "%5"]),
-    ]
-    return q, nodes, "%6"
-
-
-def gen_compute(rng):
-    q = "Load the dataset, compute both metrics and tell me which one is larger."
-    nodes = [
-        Node(id="%1", op="LOAD", inputs=["@task"],
-             params={"source": "dataset.csv"}),
-        Node(id="%2", op="EXTRACT", inputs=["%1"],
-             params={"fields": ["value_a", "value_b"]}),
-        Node(id="%3", op="CALCULATE", inputs=["%2"],
-             params={"expr": "mean(value_a)"}),
-        Node(id="%4", op="CALCULATE", inputs=["%2"],
-             params={"expr": "mean(value_b)"}),
-        Node(id="%5", op="COMPARE", inputs=["%3", "%4"], params={"op": ">"}),
-    ]
-    out = _tail(rng, nodes, "%5")
-    return q, nodes, out
-
-
-def gen_summary(rng):
-    q = "Fetch the document at the URL and give me a summary I can act on."
-    nodes = [
-        Node(id="%1", op="FETCH", inputs=["@task"], params={"url": "input_url"}),
-        Node(id="%2", op="SUMMARIZE", inputs=["%1"]),
-    ]
-    out = _tail(rng, nodes, "%2")
-    return q, nodes, out
-
-
-def gen_entities(rng):
-    q = "Search the news for my topic, list the key entities and brief me on them."
-    nodes = [
-        Node(id="%1", op="SEARCH", inputs=["@task"], params={"domain": "news"},
-             output_type="List[News]"),
-        Node(id="%2", op="EXTRACT_ENTITIES", inputs=["%1"]),
-    ]
-    cur = _maybe_list_op(rng, nodes, "%2", "news")
-    out = _tail(rng, nodes, cur)
-    return q, nodes, out
 
 
 ARCHETYPES = [gen_linear, gen_parallel, gen_branch,

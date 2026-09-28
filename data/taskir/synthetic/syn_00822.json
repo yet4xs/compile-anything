@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00822",
-    "description": "Find the best flights matching my constraints and explain the choice.",
+    "description": "Find the top-rated papers matching my constraints and and flag any risks within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -24,23 +24,21 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "ARGMIN",
+        "op": "DEDUP",
         "inputs": [
           "%1"
         ],
-        "params": {
-          "key": "price"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -49,31 +47,28 @@
       },
       {
         "id": "%3",
-        "op": "GENERATE",
+        "op": "MIN",
         "inputs": [
-          "%2",
-          "@task"
+          "%2"
         ],
         "params": {
-          "role": "final_answer"
+          "key": "citations"
         },
         "after": [],
         "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%4"
-        },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "VERIFY",
+        "op": "GENERATE",
         "inputs": [
-          "%3"
+          "%3",
+          "@task"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
@@ -82,6 +77,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

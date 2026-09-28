@@ -4,12 +4,12 @@
     "name": "synthetic_00103",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_branch"
+      "archetype": "gen_compute"
     }
   },
   "program": {
     "name": "synthetic_00103",
-    "description": "Answer my question about flights from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, with confidence intervals within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -19,28 +19,30 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "LOAD",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "source": "dataset.csv"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "GENERATE",
+        "op": "EXTRACT",
         "inputs": [
-          "%1",
-          "@task"
+          "%1"
         ],
         "params": {
-          "role": "draft"
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
         },
         "after": [],
         "guard": null,
@@ -50,12 +52,12 @@
       },
       {
         "id": "%3",
-        "op": "VERIFY",
+        "op": "CALCULATE",
         "inputs": [
           "%2"
         ],
         "params": {
-          "check": "factual_consistency"
+          "expr": "mean(value_a)"
         },
         "after": [],
         "guard": null,
@@ -65,49 +67,45 @@
       },
       {
         "id": "%4",
-        "op": "GENERATE",
+        "op": "CALCULATE",
         "inputs": [
           "%2"
         ],
         "params": {
-          "role": "polished_answer"
+          "expr": "mean(value_b)"
         },
         "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": true
-        },
+        "guard": null,
         "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%5",
-        "op": "GENERATE",
+        "op": "COMPARE",
         "inputs": [
-          "@task"
+          "%3",
+          "%4"
         ],
         "params": {
-          "role": "fallback_answer"
+          "op": ">"
         },
         "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": false
-        },
+        "guard": null,
         "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%6",
-        "op": "SELECT",
+        "op": "GENERATE",
         "inputs": [
-          "%3",
-          "%4",
-          "%5"
+          "%5",
+          "@task"
         ],
-        "params": {},
+        "params": {
+          "role": "final_answer"
+        },
         "after": [],
         "guard": null,
         "retry": null,

@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00222",
-    "description": "Load the dataset, compute both metrics and tell me which one is larger.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, as a percentage arriving before 8 PM.",
     "inputs": [
       {
         "name": "@task",

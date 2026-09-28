@@ -4,12 +4,12 @@
     "name": "synthetic_00365",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00365",
-    "description": "Compare papers and routes options for my request and recommend the better one.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with sources departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,35 +24,19 @@
           "@task"
         ],
         "params": {
-          "domain": "paper"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Paper]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
-          "@task"
-        ],
-        "params": {
-          "domain": "maps"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": "List[Maps]",
-        "hints": {}
-      },
-      {
-        "id": "%3",
-        "op": "MERGE",
-        "inputs": [
-          "%1",
-          "%2"
+          "%1"
         ],
         "params": {},
         "after": [],
@@ -62,13 +46,13 @@
         "hints": {}
       },
       {
-        "id": "%4",
+        "id": "%3",
         "op": "FILTER",
         "inputs": [
-          "%3"
+          "%2"
         ],
         "params": {
-          "predicate": "citations in acceptable_range"
+          "predicate": "date in acceptable_range"
         },
         "after": [],
         "guard": null,
@@ -77,32 +61,14 @@
         "hints": {}
       },
       {
-        "id": "%5",
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%4",
+          "%3",
           "@task"
         ],
         "params": {
           "role": "final_answer"
-        },
-        "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 2,
-          "on": "%6"
-        },
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%6",
-        "op": "VERIFY",
-        "inputs": [
-          "%5"
-        ],
-        "params": {
-          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -111,6 +77,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%4"
   }
 }

@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00206",
-    "description": "Answer my question about papers from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Answer my question about papers from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly with the best reviews.",
     "inputs": [
       {
         "name": "@task",

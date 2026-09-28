@@ -4,12 +4,12 @@
     "name": "synthetic_00719",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00719",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Find the highest-value papers matching my constraints and and justify it with the data near the city center.",
     "inputs": [
       {
         "name": "@task",
@@ -24,21 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "FILTER",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "predicate": "citations in acceptable_range"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -47,9 +49,24 @@
       },
       {
         "id": "%3",
+        "op": "MAX",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "key": "citations"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -62,6 +79,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

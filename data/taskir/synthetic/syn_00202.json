@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00202",
-    "description": "Answer my question about hotels from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Answer my question about articles from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly near the city center.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {

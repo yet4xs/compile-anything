@@ -4,12 +4,12 @@
     "name": "synthetic_00785",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00785",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Compare stocks and papers options for my request and tell me why within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -19,24 +19,40 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "paper"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Paper]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,14 +62,48 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
+        "op": "SORT",
+        "inputs": [
+          "%3"
+        ],
+        "params": {
+          "key": "price",
+          "order": "asc"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%4",
           "@task"
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%6"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "VERIFY",
+        "inputs": [
+          "%5"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -62,6 +112,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%5"
   }
 }

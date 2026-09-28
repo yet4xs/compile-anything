@@ -4,12 +4,12 @@
     "name": "synthetic_00708",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00708",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Compare stocks and routes options for my request and and flag any risks for a party of two.",
     "inputs": [
       {
         "name": "@task",
@@ -24,19 +24,35 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "maps"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Maps]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,32 +62,30 @@
         "hints": {}
       },
       {
-        "id": "%3",
-        "op": "GENERATE",
-        "inputs": [
-          "%2",
-          "@task"
-        ],
-        "params": {
-          "role": "final_answer"
-        },
-        "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%4"
-        },
-        "output_type": null,
-        "hints": {}
-      },
-      {
         "id": "%4",
-        "op": "VERIFY",
+        "op": "SORT",
         "inputs": [
           "%3"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "key": "price",
+          "order": "asc"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "GENERATE",
+        "inputs": [
+          "%4",
+          "@task"
+        ],
+        "params": {
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
@@ -80,6 +94,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%5"
   }
 }

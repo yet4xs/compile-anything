@@ -4,12 +4,12 @@
     "name": "synthetic_00711",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00711",
-    "description": "Compare routes and products options for my request and recommend the better one.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with their roles departing early morning.",
     "inputs": [
       {
         "name": "@task",
@@ -24,35 +24,19 @@
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
-          "@task"
-        ],
-        "params": {
-          "domain": "product"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": "List[Product]",
-        "hints": {}
-      },
-      {
-        "id": "%3",
-        "op": "MERGE",
-        "inputs": [
-          "%1",
-          "%2"
+          "%1"
         ],
         "params": {},
         "after": [],
@@ -62,26 +46,10 @@
         "hints": {}
       },
       {
-        "id": "%4",
-        "op": "SORT",
-        "inputs": [
-          "%3"
-        ],
-        "params": {
-          "key": "distance_km",
-          "order": "asc"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
+        "id": "%3",
         "op": "GENERATE",
         "inputs": [
-          "%4",
+          "%2",
           "@task"
         ],
         "params": {
@@ -94,6 +62,6 @@
         "hints": {}
       }
     ],
-    "output": "%5"
+    "output": "%3"
   }
 }

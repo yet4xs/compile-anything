@@ -4,12 +4,12 @@
     "name": "synthetic_00497",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00497",
-    "description": "Compare forecasts and products options for my request and recommend the better one.",
+    "description": "Find the cheapest routes matching my constraints and explain the choice for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -24,37 +24,39 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "SORT",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "product"
+          "key": "distance_km",
+          "order": "asc"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Product]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "ARGMAX",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "key": "distance_km"
+        },
         "after": [],
         "guard": null,
         "retry": null,

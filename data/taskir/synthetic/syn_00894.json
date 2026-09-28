@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00894",
-    "description": "Answer my question about routes from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Answer my question about routes from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly with flexible dates.",
     "inputs": [
       {
         "name": "@task",

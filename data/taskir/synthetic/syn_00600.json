@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00600",
-    "description": "Find the best stocks matching my constraints and explain the choice.",
+    "description": "Find the highest-value flights matching my constraints and tell me why within my loyalty program.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {
@@ -50,7 +50,7 @@
       },
       {
         "id": "%3",
-        "op": "ARGMAX",
+        "op": "MIN",
         "inputs": [
           "%2"
         ],

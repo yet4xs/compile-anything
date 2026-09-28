@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00453",
-    "description": "Find the best routes matching my constraints and explain the choice.",
+    "description": "Find the fastest routes matching my constraints and and flag any risks with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -49,7 +49,7 @@
       },
       {
         "id": "%3",
-        "op": "ARGMIN",
+        "op": "ARGMAX",
         "inputs": [
           "%2"
         ],
@@ -71,24 +71,6 @@
         ],
         "params": {
           "role": "final_answer"
-        },
-        "after": [],
-        "guard": null,
-        "retry": {
-          "max_attempts": 3,
-          "on": "%5"
-        },
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%5",
-        "op": "VERIFY",
-        "inputs": [
-          "%4"
-        ],
-        "params": {
-          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

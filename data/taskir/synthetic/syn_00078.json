@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00078",
-    "description": "Compare routes and stocks options for my request and recommend the better one.",
+    "description": "Compare routes and flights options for my request and and summarize the reasoning in two bullets under $500.",
     "inputs": [
       {
         "name": "@task",
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {

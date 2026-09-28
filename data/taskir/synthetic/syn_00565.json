@@ -4,12 +4,12 @@
     "name": "synthetic_00565",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00565",
-    "description": "Find the best forecasts matching my constraints and explain the choice.",
+    "description": "Compare papers and articles options for my request and tell me why with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -24,56 +24,52 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
         ],
         "params": {
-          "key": "temp_c"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "GENERATE",
+        "op": "MERGE",
         "inputs": [
-          "%2",
-          "@task"
+          "%1",
+          "%2"
         ],
-        "params": {
-          "role": "final_answer"
-        },
+        "params": {},
         "after": [],
         "guard": null,
-        "retry": {
-          "max_attempts": 2,
-          "on": "%4"
-        },
+        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%4",
-        "op": "VERIFY",
+        "op": "GENERATE",
         "inputs": [
-          "%3"
+          "%3",
+          "@task"
         ],
         "params": {
-          "check": "grounded_in_retrieved_evidence"
+          "role": "final_answer"
         },
         "after": [],
         "guard": null,
@@ -82,6 +78,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00601",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with dates with the best reviews.",
     "inputs": [
       {
         "name": "@task",

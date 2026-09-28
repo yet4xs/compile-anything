@@ -4,12 +4,12 @@
     "name": "synthetic_00320",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00320",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Find the best stocks matching my constraints and and justify it with the data arriving before 8 PM.",
     "inputs": [
       {
         "name": "@task",
@@ -24,21 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "FILTER",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "predicate": "price in acceptable_range"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -47,13 +49,12 @@
       },
       {
         "id": "%3",
-        "op": "SORT",
+        "op": "ARGMIN",
         "inputs": [
           "%2"
         ],
         "params": {
-          "key": "date",
-          "order": "asc"
+          "key": "price"
         },
         "after": [],
         "guard": null,
@@ -70,6 +71,24 @@
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%5"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": [
+          "%4"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

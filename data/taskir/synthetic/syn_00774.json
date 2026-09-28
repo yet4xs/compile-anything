@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00774",
-    "description": "Compare articles and hotels options for my request and recommend the better one.",
+    "description": "Compare papers and articles options for my request and tell me why for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {

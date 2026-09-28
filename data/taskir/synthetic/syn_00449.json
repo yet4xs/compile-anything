@@ -4,12 +4,12 @@
     "name": "synthetic_00449",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_branch"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00449",
-    "description": "Answer my question about forecasts from retrieved evidence, and only trust the answer if it checks out.",
+    "description": "Compare articles and forecasts options for my request and tell me why for a week-long trip.",
     "inputs": [
       {
         "name": "@task",
@@ -24,6 +24,21 @@
           "@task"
         ],
         "params": {
+          "domain": "news"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[News]",
+        "hints": {}
+      },
+      {
+        "id": "%2",
+        "op": "SEARCH",
+        "inputs": [
+          "@task"
+        ],
+        "params": {
           "domain": "weather"
         },
         "after": [],
@@ -33,30 +48,13 @@
         "hints": {}
       },
       {
-        "id": "%2",
-        "op": "GENERATE",
+        "id": "%3",
+        "op": "MERGE",
         "inputs": [
           "%1",
-          "@task"
-        ],
-        "params": {
-          "role": "draft"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%3",
-        "op": "VERIFY",
-        "inputs": [
           "%2"
         ],
-        "params": {
-          "check": "factual_consistency"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -67,47 +65,30 @@
         "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2"
+          "%3",
+          "@task"
         ],
         "params": {
-          "role": "polished_answer"
+          "role": "final_answer"
         },
         "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": true
+        "guard": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%5"
         },
-        "retry": null,
         "output_type": null,
         "hints": {}
       },
       {
         "id": "%5",
-        "op": "GENERATE",
+        "op": "VERIFY",
         "inputs": [
-          "@task"
+          "%4"
         ],
         "params": {
-          "role": "fallback_answer"
+          "check": "grounded_in_retrieved_evidence"
         },
-        "after": [],
-        "guard": {
-          "cond": "%3",
-          "expect": false
-        },
-        "retry": null,
-        "output_type": null,
-        "hints": {}
-      },
-      {
-        "id": "%6",
-        "op": "SELECT",
-        "inputs": [
-          "%3",
-          "%4",
-          "%5"
-        ],
-        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -115,6 +96,6 @@
         "hints": {}
       }
     ],
-    "output": "%6"
+    "output": "%4"
   }
 }

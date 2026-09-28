@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00508",
-    "description": "Compare products and routes options for my request and recommend the better one.",
+    "description": "Compare routes and flights options for my request and and summarize the reasoning in two bullets for a party of two.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "product"
+          "domain": "maps"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Product]",
+        "output_type": "List[Maps]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {

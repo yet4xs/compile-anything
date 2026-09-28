@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00653",
-    "description": "Find the best flights matching my constraints and explain the choice.",
+    "description": "Find the top-rated products matching my constraints and and justify it with the data with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -24,17 +24,17 @@
           "@task"
         ],
         "params": {
-          "domain": "flight"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Flight]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "MIN",
+        "op": "MAX",
         "inputs": [
           "%1"
         ],

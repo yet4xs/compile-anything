@@ -4,12 +4,12 @@
     "name": "synthetic_00490",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_branch"
     }
   },
   "program": {
     "name": "synthetic_00490",
-    "description": "Find the best forecasts matching my constraints and explain the choice.",
+    "description": "Answer my question about papers from retrieved evidence, only trust the answer if it checks out, otherwise say so plainly for a week-long trip.",
     "inputs": [
       {
         "name": "@task",
@@ -24,22 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "FILTER",
+        "op": "GENERATE",
         "inputs": [
-          "%1"
+          "%1",
+          "@task"
         ],
         "params": {
-          "predicate": "temp_c in acceptable_range"
+          "role": "draft"
         },
         "after": [],
         "guard": null,
@@ -49,12 +50,12 @@
       },
       {
         "id": "%3",
-        "op": "MIN",
+        "op": "VERIFY",
         "inputs": [
           "%2"
         ],
         "params": {
-          "key": "temp_c"
+          "check": "factual_consistency"
         },
         "after": [],
         "guard": null,
@@ -66,12 +67,47 @@
         "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%2"
+        ],
+        "params": {
+          "role": "polished_answer"
+        },
+        "after": [],
+        "guard": {
+          "cond": "%3",
+          "expect": true
+        },
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "GENERATE",
+        "inputs": [
           "@task"
         ],
         "params": {
-          "role": "final_answer"
+          "role": "fallback_answer"
         },
+        "after": [],
+        "guard": {
+          "cond": "%3",
+          "expect": false
+        },
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "SELECT",
+        "inputs": [
+          "%3",
+          "%4",
+          "%5"
+        ],
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -79,6 +115,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%6"
   }
 }

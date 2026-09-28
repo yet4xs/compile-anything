@@ -4,12 +4,12 @@
     "name": "synthetic_00432",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_compute"
     }
   },
   "program": {
     "name": "synthetic_00432",
-    "description": "Compare routes and articles options for my request and recommend the better one.",
+    "description": "Load the dataset, compute both metrics and tell me which one is larger, as a percentage rated 4 stars or higher.",
     "inputs": [
       {
         "name": "@task",
@@ -19,42 +19,46 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "SEARCH",
+        "op": "LOAD",
         "inputs": [
           "@task"
         ],
         "params": {
-          "domain": "maps"
+          "source": "dataset.csv"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Maps]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT",
         "inputs": [
-          "@task"
+          "%1"
         ],
         "params": {
-          "domain": "news"
+          "fields": [
+            "value_a",
+            "value_b"
+          ]
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": null,
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MERGE",
+        "op": "CALCULATE",
         "inputs": [
-          "%1",
           "%2"
         ],
-        "params": {},
+        "params": {
+          "expr": "mean(value_a)"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -63,9 +67,40 @@
       },
       {
         "id": "%4",
-        "op": "GENERATE",
+        "op": "CALCULATE",
+        "inputs": [
+          "%2"
+        ],
+        "params": {
+          "expr": "mean(value_b)"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "COMPARE",
         "inputs": [
           "%3",
+          "%4"
+        ],
+        "params": {
+          "op": ">"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "GENERATE",
+        "inputs": [
+          "%5",
           "@task"
         ],
         "params": {
@@ -74,17 +109,17 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 3,
-          "on": "%5"
+          "max_attempts": 2,
+          "on": "%7"
         },
         "output_type": null,
         "hints": {}
       },
       {
-        "id": "%5",
+        "id": "%7",
         "op": "VERIFY",
         "inputs": [
-          "%4"
+          "%6"
         ],
         "params": {
           "check": "grounded_in_retrieved_evidence"
@@ -96,6 +131,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%6"
   }
 }

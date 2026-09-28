@@ -4,12 +4,12 @@
     "name": "synthetic_00915",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00915",
-    "description": "Find the best products matching my constraints and explain the choice.",
+    "description": "Compare products and articles options for my request and and justify it with the data for this weekend.",
     "inputs": [
       {
         "name": "@task",
@@ -34,13 +34,27 @@
       },
       {
         "id": "%2",
-        "op": "MAX",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
         ],
         "params": {
-          "key": "price"
+          "domain": "news"
         },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[News]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
+        ],
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -48,10 +62,10 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -64,6 +78,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

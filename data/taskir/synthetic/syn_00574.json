@@ -4,12 +4,12 @@
     "name": "synthetic_00574",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_summary"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00574",
-    "description": "Fetch the document at the URL and give me a summary I can act on.",
+    "description": "Compare forecasts and products options for my request and and justify it with the data with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -19,24 +19,40 @@
     "nodes": [
       {
         "id": "%1",
-        "op": "FETCH",
+        "op": "SEARCH",
         "inputs": [
           "@task"
         ],
         "params": {
-          "url": "input_url"
+          "domain": "weather"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Weather]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SUMMARIZE",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "product"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Product]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,10 +62,10 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -62,6 +78,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

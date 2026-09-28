@@ -4,12 +4,12 @@
     "name": "synthetic_00825",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00825",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Compare flights and products options for my request and explain the choice arriving before 8 PM.",
     "inputs": [
       {
         "name": "@task",
@@ -24,19 +24,35 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "flight"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Flight]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "product"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Product]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,10 +62,10 @@
         "hints": {}
       },
       {
-        "id": "%3",
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
@@ -62,6 +78,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

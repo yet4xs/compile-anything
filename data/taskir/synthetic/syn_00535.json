@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00535",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with their roles with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -47,14 +47,11 @@
       },
       {
         "id": "%3",
-        "op": "SORT",
+        "op": "DEDUP",
         "inputs": [
           "%2"
         ],
-        "params": {
-          "key": "date",
-          "order": "asc"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -70,6 +67,24 @@
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%5"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": [
+          "%4"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,

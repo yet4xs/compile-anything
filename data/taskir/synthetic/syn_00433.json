@@ -4,12 +4,12 @@
     "name": "synthetic_00433",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00433",
-    "description": "Find the best articles matching my constraints and explain the choice.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with dates for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -34,13 +34,11 @@
       },
       {
         "id": "%2",
-        "op": "MIN",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
           "%1"
         ],
-        "params": {
-          "key": "date"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,
@@ -49,13 +47,44 @@
       },
       {
         "id": "%3",
+        "op": "DEDUP",
+        "inputs": [
+          "%2"
+        ],
+        "params": {},
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%4",
         "op": "GENERATE",
         "inputs": [
-          "%2",
+          "%3",
           "@task"
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 2,
+          "on": "%5"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%5",
+        "op": "VERIFY",
+        "inputs": [
+          "%4"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -64,6 +93,6 @@
         "hints": {}
       }
     ],
-    "output": "%3"
+    "output": "%4"
   }
 }

@@ -4,12 +4,12 @@
     "name": "synthetic_00358",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00358",
-    "description": "Find the best forecasts matching my constraints and explain the choice.",
+    "description": "Compare products and routes options for my request and and flag any risks for next month.",
     "inputs": [
       {
         "name": "@task",
@@ -24,19 +24,35 @@
           "@task"
         ],
         "params": {
-          "domain": "weather"
+          "domain": "product"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Weather]",
+        "output_type": "List[Product]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "DEDUP",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
+        ],
+        "params": {
+          "domain": "maps"
+        },
+        "after": [],
+        "guard": null,
+        "retry": null,
+        "output_type": "List[Maps]",
+        "hints": {}
+      },
+      {
+        "id": "%3",
+        "op": "MERGE",
+        "inputs": [
+          "%1",
+          "%2"
         ],
         "params": {},
         "after": [],
@@ -46,13 +62,14 @@
         "hints": {}
       },
       {
-        "id": "%3",
-        "op": "ARGMIN",
+        "id": "%4",
+        "op": "SORT",
         "inputs": [
-          "%2"
+          "%3"
         ],
         "params": {
-          "key": "temp_c"
+          "key": "price",
+          "order": "asc"
         },
         "after": [],
         "guard": null,
@@ -61,14 +78,32 @@
         "hints": {}
       },
       {
-        "id": "%4",
+        "id": "%5",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%4",
           "@task"
         ],
         "params": {
           "role": "final_answer"
+        },
+        "after": [],
+        "guard": null,
+        "retry": {
+          "max_attempts": 3,
+          "on": "%6"
+        },
+        "output_type": null,
+        "hints": {}
+      },
+      {
+        "id": "%6",
+        "op": "VERIFY",
+        "inputs": [
+          "%5"
+        ],
+        "params": {
+          "check": "grounded_in_retrieved_evidence"
         },
         "after": [],
         "guard": null,
@@ -77,6 +112,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%5"
   }
 }

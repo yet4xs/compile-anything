@@ -4,12 +4,12 @@
     "name": "synthetic_00142",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00142",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Find the fastest papers matching my constraints and explain the choice with flexible dates.",
     "inputs": [
       {
         "name": "@task",
@@ -24,21 +24,23 @@
           "@task"
         ],
         "params": {
-          "domain": "news"
+          "domain": "paper"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[News]",
+        "output_type": "List[Paper]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "ARGMIN",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "citations"
+        },
         "after": [],
         "guard": null,
         "retry": null,
@@ -58,7 +60,7 @@
         "after": [],
         "guard": null,
         "retry": {
-          "max_attempts": 2,
+          "max_attempts": 3,
           "on": "%4"
         },
         "output_type": null,

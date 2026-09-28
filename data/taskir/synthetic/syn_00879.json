@@ -4,12 +4,12 @@
     "name": "synthetic_00879",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_linear"
+      "archetype": "gen_parallel"
     }
   },
   "program": {
     "name": "synthetic_00879",
-    "description": "Find the best routes matching my constraints and explain the choice.",
+    "description": "Compare routes and hotels options for my request and and justify it with the data bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -34,29 +34,27 @@
       },
       {
         "id": "%2",
-        "op": "SORT",
+        "op": "SEARCH",
         "inputs": [
-          "%1"
+          "@task"
         ],
         "params": {
-          "key": "distance_km",
-          "order": "asc"
+          "domain": "hotel"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": null,
+        "output_type": "List[Hotel]",
         "hints": {}
       },
       {
         "id": "%3",
-        "op": "MIN",
+        "op": "MERGE",
         "inputs": [
+          "%1",
           "%2"
         ],
-        "params": {
-          "key": "distance_km"
-        },
+        "params": {},
         "after": [],
         "guard": null,
         "retry": null,

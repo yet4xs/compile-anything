@@ -4,12 +4,12 @@
     "name": "synthetic_00402",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_entities"
+      "archetype": "gen_linear"
     }
   },
   "program": {
     "name": "synthetic_00402",
-    "description": "Search the news for my topic, list the key entities and brief me on them.",
+    "description": "Find the most reliable articles matching my constraints and explain the choice bookable today.",
     "inputs": [
       {
         "name": "@task",
@@ -34,11 +34,13 @@
       },
       {
         "id": "%2",
-        "op": "EXTRACT_ENTITIES",
+        "op": "MAX",
         "inputs": [
           "%1"
         ],
-        "params": {},
+        "params": {
+          "key": "date"
+        },
         "after": [],
         "guard": null,
         "retry": null,

@@ -4,12 +4,12 @@
     "name": "synthetic_00491",
     "provenance": {
       "source": "synthetic",
-      "archetype": "gen_parallel"
+      "archetype": "gen_entities"
     }
   },
   "program": {
     "name": "synthetic_00491",
-    "description": "Compare products and routes options for my request and recommend the better one.",
+    "description": "Search the news for my topic, list the key entities and brief me on them with their roles for a week-long trip.",
     "inputs": [
       {
         "name": "@task",
@@ -24,35 +24,19 @@
           "@task"
         ],
         "params": {
-          "domain": "product"
+          "domain": "news"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Product]",
+        "output_type": "List[News]",
         "hints": {}
       },
       {
         "id": "%2",
-        "op": "SEARCH",
+        "op": "EXTRACT_ENTITIES",
         "inputs": [
-          "@task"
-        ],
-        "params": {
-          "domain": "maps"
-        },
-        "after": [],
-        "guard": null,
-        "retry": null,
-        "output_type": "List[Maps]",
-        "hints": {}
-      },
-      {
-        "id": "%3",
-        "op": "MERGE",
-        "inputs": [
-          "%1",
-          "%2"
+          "%1"
         ],
         "params": {},
         "after": [],
@@ -62,10 +46,10 @@
         "hints": {}
       },
       {
-        "id": "%4",
+        "id": "%3",
         "op": "GENERATE",
         "inputs": [
-          "%3",
+          "%2",
           "@task"
         ],
         "params": {
@@ -78,6 +62,6 @@
         "hints": {}
       }
     ],
-    "output": "%4"
+    "output": "%3"
   }
 }

@@ -9,7 +9,7 @@
   },
   "program": {
     "name": "synthetic_00621",
-    "description": "Compare stocks and hotels options for my request and recommend the better one.",
+    "description": "Compare hotels and stocks options for my request and explain the choice with the best reviews.",
     "inputs": [
       {
         "name": "@task",
@@ -24,12 +24,12 @@
           "@task"
         ],
         "params": {
-          "domain": "stock"
+          "domain": "hotel"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Stock]",
+        "output_type": "List[Hotel]",
         "hints": {}
       },
       {
@@ -39,12 +39,12 @@
           "@task"
         ],
         "params": {
-          "domain": "hotel"
+          "domain": "stock"
         },
         "after": [],
         "guard": null,
         "retry": null,
-        "output_type": "List[Hotel]",
+        "output_type": "List[Stock]",
         "hints": {}
       },
       {
