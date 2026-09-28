@@ -1,19 +1,13 @@
-"""Scheduler placeholder — v0.2+.
+"""Scheduler interface placeholder.
 
-Will decide, per node: which executor unit runs it and when (instruction
-scheduling over heterogeneous functional units). v0.1 keeps nodes unbound;
-the simulator executes everything on mock executors.
+The first working implementation lives in src/optimizer/scheduler/
+(list_scheduler.py): resource-constrained list scheduling over TaskIR DAGs
+with executor pools per resource class.
 
-Planned interface:
-
-    class ExecutorBinding:
-        skill: str                 # semantic skill name
-        executor: str              # e.g. "lm:qwen2b-instruct", "python:fs"
-        est_latency_ms: float
-        est_cost: Cost
-
-    class Scheduler:
-        def bind(self, mod: Module) -> Dict[str, ExecutorBinding]: ...
-        def order(self, mod: Module) -> List[str]: ...   # ready-list order
+Still planned here (v0.2+):
+  - executor *binding* decisions (choose among a skill's candidate
+    executors by cost/availability), not just class-level pooling
+  - expected-latency analysis with retry probabilities (profiling-driven)
+  - effect-token chains as ordering edges once the effect system lands
+    (docs/effect-system-proposal.md)
 """
-from __future__ import annotations

@@ -1,0 +1,321 @@
+{
+  "aggregate": {
+    "programs": 5,
+    "valid": 5,
+    "completed": 5,
+    "mean_latency_sequential_ms": 832.42,
+    "mean_makespan_scheduled_ms": 946.82,
+    "mean_critical_path_ms": 796.82,
+    "mean_energy_j": 30.432,
+    "mean_memory_peak_mb": 3686.0,
+    "total_lm_calls": 9,
+    "total_api_calls": 5,
+    "mean_energy_vs_70b_pct": 3.381,
+    "mean_latency_vs_70b_pct": 37.873
+  },
+  "programs": [
+    {
+      "name": "financial_analysis",
+      "file": "D:\\ccfa-2026\\compile-anything\\data\\taskir\\examples\\financial_analysis.json",
+      "valid": true,
+      "status": "completed",
+      "latency_sequential_ms": 784,
+      "makespan_scheduled_ms": 784.0,
+      "critical_path_ms": 734.0,
+      "energy_j": 30.04,
+      "memory_peak_mb": 4600.0,
+      "lm_calls": 2,
+      "api_calls": 1,
+      "flops": 6004003000000.0,
+      "retries": 0,
+      "skipped": 0,
+      "schedule": [
+        {
+          "node": "%1",
+          "op": "SEARCH",
+          "resource_class": "api",
+          "executor": "tool:search_api",
+          "start_ms": 0.0,
+          "end_ms": 120.0
+        },
+        {
+          "node": "%2",
+          "op": "EXTRACT",
+          "resource_class": "python",
+          "executor": "python:dict",
+          "start_ms": 120.0,
+          "end_ms": 128.0
+        },
+        {
+          "node": "%3",
+          "op": "FILTER",
+          "resource_class": "python",
+          "executor": "python:listcomp",
+          "start_ms": 128.0,
+          "end_ms": 133.0
+        },
+        {
+          "node": "%4",
+          "op": "ARGMAX",
+          "resource_class": "python",
+          "executor": "python:mock",
+          "start_ms": 133.0,
+          "end_ms": 134.0
+        },
+        {
+          "node": "%5",
+          "op": "GENERATE",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-instruct",
+          "start_ms": 134.0,
+          "end_ms": 734.0
+        },
+        {
+          "node": "%6",
+          "op": "VERIFY",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-verifier",
+          "start_ms": 734.0,
+          "end_ms": 784.0
+        }
+      ],
+      "schedule_ok": true
+    },
+    {
+      "name": "find_cheapest_flight",
+      "file": "D:\\ccfa-2026\\compile-anything\\data\\taskir\\examples\\flight_cheapest.json",
+      "valid": true,
+      "status": "completed",
+      "latency_sequential_ms": 126,
+      "makespan_scheduled_ms": 126.0,
+      "critical_path_ms": 126.0,
+      "energy_j": 0.015,
+      "memory_peak_mb": 30.0,
+      "lm_calls": 0,
+      "api_calls": 1,
+      "flops": 2000000.0,
+      "retries": 0,
+      "skipped": 0,
+      "schedule": [
+        {
+          "node": "%1",
+          "op": "SEARCH",
+          "resource_class": "api",
+          "executor": "tool:search_api",
+          "start_ms": 0.0,
+          "end_ms": 120.0
+        },
+        {
+          "node": "%2",
+          "op": "FILTER",
+          "resource_class": "python",
+          "executor": "python:listcomp",
+          "start_ms": 120.0,
+          "end_ms": 125.0
+        },
+        {
+          "node": "%3",
+          "op": "ARGMIN",
+          "resource_class": "python",
+          "executor": "python:mock",
+          "start_ms": 125.0,
+          "end_ms": 126.0
+        }
+      ],
+      "schedule_ok": true
+    },
+    {
+      "name": "find_cheapest_flight_verified",
+      "file": "D:\\ccfa-2026\\compile-anything\\data\\taskir\\examples\\flight_verified.json",
+      "valid": true,
+      "status": "completed",
+      "latency_sequential_ms": 776,
+      "makespan_scheduled_ms": 776.0,
+      "critical_path_ms": 726.0,
+      "energy_j": 30.035,
+      "memory_peak_mb": 4600.0,
+      "lm_calls": 2,
+      "api_calls": 1,
+      "flops": 6004002000000.0,
+      "retries": 0,
+      "skipped": 0,
+      "schedule": [
+        {
+          "node": "%1",
+          "op": "SEARCH",
+          "resource_class": "api",
+          "executor": "tool:search_api",
+          "start_ms": 0.0,
+          "end_ms": 120.0
+        },
+        {
+          "node": "%2",
+          "op": "FILTER",
+          "resource_class": "python",
+          "executor": "python:listcomp",
+          "start_ms": 120.0,
+          "end_ms": 125.0
+        },
+        {
+          "node": "%3",
+          "op": "ARGMIN",
+          "resource_class": "python",
+          "executor": "python:mock",
+          "start_ms": 125.0,
+          "end_ms": 126.0
+        },
+        {
+          "node": "%4",
+          "op": "GENERATE",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-instruct",
+          "start_ms": 126.0,
+          "end_ms": 726.0
+        },
+        {
+          "node": "%5",
+          "op": "VERIFY",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-verifier",
+          "start_ms": 726.0,
+          "end_ms": 776.0
+        }
+      ],
+      "schedule_ok": true
+    },
+    {
+      "name": "branch_select_demo",
+      "file": "D:\\ccfa-2026\\compile-anything\\data\\taskir\\examples\\guarded_answer.json",
+      "valid": true,
+      "status": "completed",
+      "latency_sequential_ms": 1378.1,
+      "makespan_scheduled_ms": 1978.1,
+      "critical_path_ms": 1378.1,
+      "energy_j": 52.035,
+      "memory_peak_mb": 4600.0,
+      "lm_calls": 3,
+      "api_calls": 1,
+      "flops": 10404001000000.0,
+      "retries": 0,
+      "skipped": 1,
+      "schedule": [
+        {
+          "node": "%1",
+          "op": "SEARCH",
+          "resource_class": "api",
+          "executor": "tool:search_api",
+          "start_ms": 0.0,
+          "end_ms": 120.0
+        },
+        {
+          "node": "%2",
+          "op": "EXTRACT",
+          "resource_class": "python",
+          "executor": "python:dict",
+          "start_ms": 120.0,
+          "end_ms": 128.0
+        },
+        {
+          "node": "%3",
+          "op": "GENERATE",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-instruct",
+          "start_ms": 128.0,
+          "end_ms": 728.0
+        },
+        {
+          "node": "%4",
+          "op": "VERIFY",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-verifier",
+          "start_ms": 728.0,
+          "end_ms": 778.0
+        },
+        {
+          "node": "%5",
+          "op": "GENERATE",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-instruct",
+          "start_ms": 778.0,
+          "end_ms": 1378.0
+        },
+        {
+          "node": "%6",
+          "op": "GENERATE",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-instruct",
+          "start_ms": 1378.0,
+          "end_ms": 1978.0
+        },
+        {
+          "node": "%7",
+          "op": "SELECT",
+          "resource_class": "runtime",
+          "executor": "runtime:mock",
+          "start_ms": 1978.0,
+          "end_ms": 1978.1
+        }
+      ],
+      "schedule_ok": true
+    },
+    {
+      "name": "rtl_debug",
+      "file": "D:\\ccfa-2026\\compile-anything\\data\\taskir\\examples\\rtl_debug.json",
+      "valid": true,
+      "status": "completed",
+      "latency_sequential_ms": 1098,
+      "makespan_scheduled_ms": 1070.0,
+      "critical_path_ms": 1020.0,
+      "energy_j": 40.035,
+      "memory_peak_mb": 4600.0,
+      "lm_calls": 2,
+      "api_calls": 1,
+      "flops": 8004002000000.0,
+      "retries": 0,
+      "skipped": 0,
+      "schedule": [
+        {
+          "node": "%1",
+          "op": "LOAD",
+          "resource_class": "python",
+          "executor": "python:fs",
+          "start_ms": 0.0,
+          "end_ms": 20.0
+        },
+        {
+          "node": "%3",
+          "op": "SEARCH",
+          "resource_class": "api",
+          "executor": "tool:search_api",
+          "start_ms": 0.0,
+          "end_ms": 120.0
+        },
+        {
+          "node": "%2",
+          "op": "EXTRACT",
+          "resource_class": "python",
+          "executor": "python:dict",
+          "start_ms": 20.0,
+          "end_ms": 28.0
+        },
+        {
+          "node": "%4",
+          "op": "CODEGEN",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-coder",
+          "start_ms": 120.0,
+          "end_ms": 1020.0
+        },
+        {
+          "node": "%5",
+          "op": "VERIFY",
+          "resource_class": "lm",
+          "executor": "lm:qwen2b-verifier",
+          "start_ms": 1020.0,
+          "end_ms": 1070.0
+        }
+      ],
+      "schedule_ok": true
+    }
+  ]
+}

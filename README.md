@@ -120,7 +120,32 @@ fuzz 结果：**10000/10000 valid，0 failures**（1719 例落入已定义失败
 consume-skipped / chosen-branch-skipped / retry 耗尽——随机 guard + 故障
 注入下的预期行为）。
 
-## 下一步（Phase 2+ 候选）
+## Phase 3：Effect System（设计）+ Scheduling Foundation（实现）
+
+把 TaskIR 从"描述任务的数据流"推向"可调度执行的程序表示"：
+
+- `docs/effect-system-proposal.md` — **设计先行，未动 IR 代码**。Effect
+  token（类 MemorySSA）：action 节点 `effect_in/out` 成链、纯 skill 零开销；
+  回答 Q1（token 是受约束的 SSA value）/Q2（effect 边进 DAG 与 critical
+  path）/Q3（pure skill 无 token）；含运行时语义（guarded-skip 直通、
+  world 类禁 verify-retry、rollback 不得跨越已推进的 effect 链）
+- `docs/validator-v7-proposal.md` — V7 检查集（EFFECT_CLASS/UNDEF/DUP/
+  FORK/GAP/CYCLE/RETRY/TYPE）+ 0.1 警告→0.2 错误的迁移计划
+- `src/optimizer/scheduler/list_scheduler.py` — **第一版真 scheduler**：
+  资源约束 list scheduling（critical-path 优先），依赖/after/guard 边 +
+  按资源类的 executor pool；`_edges()` 预留 effect 边接入点
+- `tests/test_scheduler_cost.py` — 方案 A（70B 单发）vs 方案 B
+  （SEARCH→FILTER→VERIFY→GENERATE 流水线）的 latency/energy/memory 全轴
+  对照 + 并行/串行/效应排序调度正确性（10 用例）
+- `benchmark/taskir_runtime_benchmark.py` — 基准协议：TaskIR json →
+  {latency, makespan, critical path, energy, memory, lm/api calls,
+  schedule}，输出 `data/reports/benchmark_results.{json,md}`
+
+当前基准（examples，池=1/类）：mean energy = 70B baseline 的 **3.4%**，
+mean makespan = 37.9%；rtl_debug 的 makespan(1070ms) < 顺序和(1098ms)
+来自跨资源类真并行（EXTRACT∥SEARCH）。
+
+## 下一步（Phase 4 前置）
 
 - 真实 xLAM / ToolBench 数据接入（`run_xlam_pipeline.py --input`）
 - optimizer passes（fusion / DCE / 并行化）与 scheduler 绑定
