@@ -83,9 +83,9 @@ Simulator: deterministic mock executors, nominal costs (see `spec/skill-isa.md` 
 | 0 | %1 | SEARCH | `tool:search_api [api]` | 1 | ok | 108.322 | 0/0 | 0 | 0.005 | 0 | `[{'carrier': 'flight_carrier_0A', 'price': 277.15, 'depart_time': 'flight_depart_time_0...` |
 | 1 | %2 | FILTER | `python:listcomp [python]` | 1 | ok | 5.201 | 0/0 | 1e+06 | 0.005 | 30 | `[{'carrier': 'flight_carrier_0A', 'price': 277.15, 'depart_time': 'flight_depart_time_0...` |
 | 2 | %3 | ARGMIN | `python:mock [python]` | 1 | ok | 0.933 | 0/0 | 1e+06 | 0.005 | 30 | `{'carrier': 'flight_carrier_0A', 'price': 277.15, 'depart_time': 'flight_depart_time_0C...` |
-| 3 | %4 | GENERATE | `lm:qwen2b-instruct [lm]` | 1 | ok | 634.596 | 800/300 | 4.4e+12 | 22 | 4600 | `"[final_answer] Based on {'carrier': 'flight_carrier_0A', 'pri...; 'Str': synthesized r...` |
+| 3 | %4 | GENERATE | `lm:qwen2b-instruct [lm]` | 1 | ok | 634.596 | 800/300 | 4.4e+12 | 22 | 4600 | `"[final_answer] Based on {'carrier': 'flight_carrier_0A', 'pri...; '<task input text>':...` |
 | 4 | %5 | VERIFY | `lm:qwen2b-verifier [lm]` | 1 | ok | 54.199 | 400/1 | 1.6e+12 | 8.02 | 4600 | `False` |
-| 5 | %4 | GENERATE | `lm:qwen2b-instruct [lm]` | 2 | ok | 611.129 | 800/300 | 4.4e+12 | 22 | 4600 | `"[final_answer] Based on {'carrier': 'flight_carrier_0A', 'pri...; 'Str': synthesized r...` |
+| 5 | %4 | GENERATE | `lm:qwen2b-instruct [lm]` | 2 | ok | 611.129 | 800/300 | 4.4e+12 | 22 | 4600 | `"[final_answer] Based on {'carrier': 'flight_carrier_0A', 'pri...; '<task input text>':...` |
 | 6 | %5 | VERIFY | `lm:qwen2b-verifier [lm]` | 2 | ok | 47.466 | 400/1 | 1.6e+12 | 8.02 | 4600 | `True` |
 
 ## Totals
@@ -118,7 +118,7 @@ Simulator: deterministic mock executors, nominal costs (see `spec/skill-isa.md` 
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 0 | %1 | SEARCH | `tool:search_api [api]` | 1 | ok | 124.735 | 0/0 | 0 | 0.005 | 0 | `[{'title': 'news_title_0A', 'source': 'news_source_0B', 'date': 'news_date_0C', 'catego...` |
 | 1 | %2 | EXTRACT | `python:dict [python]` | 1 | ok | 8.098 | 0/0 | 1e+06 | 0.005 | 30 | `[{'title': 'news_title_0A', 'source': 'news_source_0B', 'date': 'news_date_0C'}, {'titl...` |
-| 2 | %3 | GENERATE | `lm:qwen2b-instruct [lm]` | 1 | ok | 598.39 | 800/300 | 4.4e+12 | 22 | 4600 | `"[draft] Based on [{'title': 'news_title_0A', 'source':...; 'Str': synthesized result #...` |
+| 2 | %3 | GENERATE | `lm:qwen2b-instruct [lm]` | 1 | ok | 598.39 | 800/300 | 4.4e+12 | 22 | 4600 | `"[draft] Based on [{'title': 'news_title_0A', 'source':...; '<task input text>': synthe...` |
 | 3 | %4 | VERIFY | `lm:qwen2b-verifier [lm]` | 1 | ok | 53.803 | 400/1 | 1.6e+12 | 8.02 | 4600 | `True` |
 | 4 | %5 | GENERATE | `lm:qwen2b-instruct [lm]` | 1 | ok | 648.841 | 800/300 | 4.4e+12 | 22 | 4600 | `'[polished_answer] Based on "[draft] Based on [{\'title\': \'news_ti...: synthesized re...` |
 | 5 | %6 | GENERATE | `lm:qwen2b-instruct [lm]` | 0 | skipped | 0 | 0/0 | 0 | 0 | 0 | `<skipped>` |

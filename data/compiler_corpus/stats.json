@@ -1,0 +1,106 @@
+{
+  "toolbench": {
+    "generated": 4000,
+    "lifted_and_valid": 4000,
+    "coverage_pct": 100.0,
+    "unsupported_reasons": {}
+  },
+  "code": {
+    "generated": 3000,
+    "lifted_and_valid": 2502,
+    "coverage_pct": 83.4,
+    "unsupported_reasons": {
+      "loop (no LOOP op in TaskIR v0.1)": 498
+    }
+  },
+  "sql": {
+    "generated": 2000,
+    "lifted_and_valid": 2000,
+    "coverage_pct": 100.0,
+    "unsupported_reasons": {}
+  },
+  "rtl": {
+    "generated": 1000,
+    "lifted_and_valid": 1000,
+    "coverage_pct": 100.0,
+    "unsupported_reasons": {}
+  },
+  "ALL": {
+    "generated": 10000,
+    "lifted_and_valid": 9502,
+    "coverage_pct": 95.02,
+    "train": 9027,
+    "val": 475
+  },
+  "ir_graph_stats": {
+    "subset": "corpus",
+    "programs": 9502,
+    "nodes": {
+      "count": 9502,
+      "mean": 3.848,
+      "median": 4.0,
+      "p90": 6,
+      "min": 1,
+      "max": 7
+    },
+    "depth": {
+      "count": 9502,
+      "mean": 3.743,
+      "median": 4.0,
+      "p90": 6,
+      "min": 1,
+      "max": 7
+    },
+    "width": {
+      "count": 9502,
+      "mean": 1.105,
+      "median": 1.0,
+      "p90": 2,
+      "min": 1,
+      "max": 2
+    },
+    "skill_frequency": {
+      "VERIFY": 7000,
+      "GENERATE": 6000,
+      "EXTRACT": 5983,
+      "SEARCH": 5000,
+      "QUERY_DB": 2533,
+      "SEND": 2134,
+      "LOAD": 1000,
+      "CODEGEN": 1000,
+      "TRANSLATE": 800,
+      "EXEC_ACTION": 799,
+      "CALCULATE": 778,
+      "FILTER": 667,
+      "SORT": 666,
+      "CONVERT": 533,
+      "ARGMAX": 334,
+      "TRANSFORM": 334,
+      "ARGMIN": 167,
+      "MIN": 167,
+      "MAX": 167,
+      "SUM": 167,
+      "COUNT": 167,
+      "JOIN": 166
+    },
+    "branch_ratio": {
+      "count": 9502,
+      "mean": 0.0,
+      "median": 0.0,
+      "p90": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "parallel_ratio": {
+      "count": 9502,
+      "mean": 0.184,
+      "median": 0.2,
+      "p90": 0.3333,
+      "min": 0.0,
+      "max": 0.4
+    },
+    "programs_with_parallelism": 0.1052,
+    "programs_with_retry": 0.7367,
+    "total_nodes": 36562
+  }
+}

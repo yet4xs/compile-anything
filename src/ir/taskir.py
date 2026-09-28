@@ -171,12 +171,17 @@ def to_text(m: Module) -> str:
         parts = list(n.inputs)
         parts += [f"{k}={_fmt_value(v)}" for k, v in n.params.items()]
         ann = ""
+        if n.output_type is not None:
+            ann += f"  -> {n.output_type}"
         if n.after:
             ann += f"  after({', '.join(n.after)})"
         if n.guard:
             ann += f"  guard({n.guard.cond} == {str(n.guard.expect).lower()})"
         if n.retry:
             ann += f"  retry(on={n.retry.on}, max={n.retry.max_attempts})"
+        if n.hints:
+            ann += "  hints(" + ", ".join(
+                f"{k}={_fmt_value(v)}" for k, v in n.hints.items()) + ")"
         lines.append(f"{n.id} = {n.op}({', '.join(parts)}){ann}")
     lines.append("")
     lines.append(f"return {p.output}")

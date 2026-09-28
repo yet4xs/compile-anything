@@ -1,0 +1,178 @@
+{
+  "source": {
+    "dataset": "toolbench",
+    "id": "tb-00001",
+    "lifter": "toolbench"
+  },
+  "input": {
+    "text": "Check the weather in JFK on 2026-11-01 and schedule my team offsite that morning if it looks fine."
+  },
+  "raw_trace": {
+    "instruction": "Check the weather in JFK on 2026-11-01 and schedule my team offsite that morning if it looks fine.",
+    "trajectory": [
+      {
+        "tool": "WeatherAPI.forecast",
+        "args": {
+          "city": "JFK",
+          "date": "2026-11-01"
+        }
+      },
+      {
+        "tool": "CalendarService.create_event",
+        "args": {
+          "title": "team offsite",
+          "date": "2026-11-01",
+          "time": "10:00"
+        }
+      }
+    ]
+  },
+  "taskir": {
+    "taskir_version": "0.1",
+    "meta": {
+      "name": "check_the_weather_in_jfk_on_2026_11_01_a",
+      "provenance": {
+        "source": "toolbench",
+        "task_id": "tb-00001",
+        "tools": [
+          "WeatherAPI.forecast",
+          "CalendarService.create_event"
+        ]
+      }
+    },
+    "program": {
+      "name": "check_the_weather_in_jfk_on_2026_11_01_a",
+      "description": "Check the weather in JFK on 2026-11-01 and schedule my team offsite that morning if it looks fine.",
+      "inputs": [
+        {
+          "name": "@task",
+          "type": "Str"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "%c0",
+          "op": "SEARCH",
+          "inputs": [
+            "@task"
+          ],
+          "params": {
+            "domain": "weather",
+            "query": "JFK 2026-11-01"
+          },
+          "after": [],
+          "guard": null,
+          "retry": null,
+          "output_type": "List[Weather]",
+          "hints": {}
+        },
+        {
+          "id": "%c1",
+          "op": "EXEC_ACTION",
+          "inputs": [
+            "%c0"
+          ],
+          "params": {
+            "action": "create_event",
+            "query": "team offsite 2026-11-01 10:00"
+          },
+          "after": [],
+          "guard": null,
+          "retry": null,
+          "output_type": null,
+          "hints": {}
+        },
+        {
+          "id": "%ans",
+          "op": "GENERATE",
+          "inputs": [
+            "%c1",
+            "@task"
+          ],
+          "params": {
+            "role": "final_answer",
+            "instruction": "Check the weather in JFK on 2026-11-01 and schedule my team offsite that morning if it looks fine."
+          },
+          "after": [],
+          "guard": null,
+          "retry": {
+            "max_attempts": 2,
+            "on": "%verify"
+          },
+          "output_type": null,
+          "hints": {}
+        },
+        {
+          "id": "%verify",
+          "op": "VERIFY",
+          "inputs": [
+            "%ans"
+          ],
+          "params": {
+            "check": "answer_grounded_in_tool_results"
+          },
+          "after": [],
+          "guard": null,
+          "retry": null,
+          "output_type": null,
+          "hints": {}
+        }
+      ],
+      "output": "%ans"
+    }
+  },
+  "taskir_text": "; TaskIR v0.1  module=check_the_weather_in_jfk_on_2026_11_01_a\n; task: Check the weather in JFK on 2026-11-01 and schedule my team offsite that morning if it looks fine.\n; provenance.source: toolbench\n; provenance.task_id: tb-00001\n; provenance.tools: ['WeatherAPI.forecast', 'CalendarService.create_event']\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"weather\", query=\"JFK 2026-11-01\")  -> List[Weather]\n%c1 = EXEC_ACTION(%c0, action=\"create_event\", query=\"team offsite 2026-11-01 10:00\")\n%ans = GENERATE(%c1, @task, role=\"final_answer\", instruction=\"Check the weather in JFK on 2026-11-01 and schedule my team offsite that morning if it looks fine.\")  retry(on=%verify, max=2)\n%verify = VERIFY(%ans, check=\"answer_grounded_in_tool_results\")\n\nreturn %ans\n",
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "warnings": []
+  },
+  "execution": {
+    "trace": {
+      "status": "completed",
+      "events": [
+        {
+          "node": "%c0",
+          "op": "SEARCH",
+          "status": "ok",
+          "attempt": 1,
+          "latency_ms": 120
+        },
+        {
+          "node": "%c1",
+          "op": "EXEC_ACTION",
+          "status": "ok",
+          "attempt": 1,
+          "latency_ms": 150
+        },
+        {
+          "node": "%ans",
+          "op": "GENERATE",
+          "status": "ok",
+          "attempt": 1,
+          "latency_ms": 600
+        },
+        {
+          "node": "%verify",
+          "op": "VERIFY",
+          "status": "ok",
+          "attempt": 1,
+          "latency_ms": 50
+        }
+      ]
+    },
+    "cost": {
+      "latency_sequential_ms": 920,
+      "critical_path_ms": 870.0,
+      "tokens_in": 1200,
+      "tokens_out": 301,
+      "flops": 6004000000000.0,
+      "energy_j": 30.03,
+      "memory_peak_mb": 4600.0,
+      "lm_calls": 2,
+      "api_calls": 2,
+      "retries": 0,
+      "skipped": 0
+    }
+  }
+}

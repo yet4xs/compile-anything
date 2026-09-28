@@ -183,10 +183,9 @@ class Simulator:
         if nid in self._in_progress:
             raise RuntimeFailure(f"dependency cycle detected at runtime: {nid}")
         if not nid.startswith("%"):
-            # program input (@global): synthesized from its declared type
-            prog = self.mod.program
-            decl = next((g for g in prog.inputs if g.get("name") == nid), None)
-            return decl.get("type", "Str") if isinstance(decl, dict) else "Str"
+            # program input (@global): synthesize a concrete mock value from
+            # its declared type so consumers (FILTER/MIN/...) have data
+            return self._global_value(nid)
 
         node = self.nodes[nid]
         self._in_progress.add(nid)
@@ -271,6 +270,32 @@ class Simulator:
             self._in_progress.discard(nid)
 
     # -------------------------------------------------------------- helpers
+    def _global_value(self, nid: str) -> Any:
+        from . import executors as em
+        prog = self.mod.program
+        decl = next((g for g in prog.inputs if g.get("name") == nid), None)
+        ty_s = ty.normalize(decl.get("type", "Str")) if isinstance(decl, dict) \
+            else "Str"
+        rng = em._rng(self.seed, "global", nid)
+        head, args = ty.parse(ty_s)
+        if head in ("List", "Set"):
+            return em._make_items(rng, "product", rng.randint(3, 6))
+        if head == "Map":
+            return {"key_a": round(rng.uniform(1, 99), 2),
+                    "key_b": round(rng.uniform(1, 99), 2)}
+        if ty_s in ("Str", "Any", "Json", "Unknown"):
+            return f"<{nid.lstrip('@')} input text>"
+        if ty_s == "Float":
+            return round(rng.uniform(1, 100), 2)
+        if ty_s == "Int":
+            return rng.randint(1, 100)
+        if ty_s == "Bool":
+            return True
+        if ty_s == "Table":
+            rows = em._make_items(rng, "product", 3)
+            return {"columns": list(rows[0].keys()), "rows": rows}
+        return f"<{nid.lstrip('@')} input>"
+
     def _latency(self, node: Node) -> float:
         spec = exec_mod.spec_of(node.op)
         base = spec.cost.latency_ms if spec else 5.0

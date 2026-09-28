@@ -145,9 +145,41 @@ consume-skipped / chosen-branch-skipped / retry 耗尽——随机 guard + 故�
 mean makespan = 37.9%；rtl_debug 的 makespan(1070ms) < 顺序和(1098ms)
 来自跨资源类真并行（EXTRACT∥SEARCH）。
 
-## 下一步（Phase 4 前置）
+## Phase 4：Benchmark Lifting + Compiler Corpus
 
-- 真实 xLAM / ToolBench 数据接入（`run_xlam_pipeline.py --input`）
-- optimizer passes（fusion / DCE / 并行化）与 scheduler 绑定
-- TaskIR 文本格式 parser（compiler 前端推理输出 → 验证）
-- Qwen2B Compiler SFT：用 `data/train/*.jsonl`（task → taskir_text）
+回答"TaskIR 是不是合格的 AI machine language"——开源 benchmark 形态数据
+→ TaskIR → validator → runtime 的**真实前端**闭环：
+
+- `src/ir/parser.py` — **TaskIR 文本形式解析器**（printer↔parser roundtrip
+  保障；Phase 5 模型输出文本 IR 的入口闸门）
+- `src/lifter/benchmark/` — 统一 lifter 框架（`can_handle`/`lift`）+
+  四个实现：toolbench（tool→semantic skill，工具名禁入语义层）、
+  humaneval（ast 模式抽取：sorted→SORT、min/max→ARGMIN/MIN、sum→SUM、
+  filter→FILTER、map→TRANSFORM、a+b→JOIN）、spider（SQL 保守 lowering，
+  GROUP/HAVING/JOIN 不硬映射）、rtl（EDA 调试任务）
+- `scripts/build_compiler_corpus.py` — 10000 样本 corpus
+  （toolbench 4000 / code 3000 / sql 2000 / rtl 1000，schema-faithful
+  synthetic，`--raw-dir` 可换真实数据）：**总覆盖率 95.02%**，
+  code 83.4%（损失全部来自 IR 无 LOOP，见 missing-skills.md #1）
+- `data/schema/compiler_sample.json` — 统一 corpus record schema
+  （source/input/raw_trace/taskir/taskir_text/validation/execution）
+- `benchmark/compiler_eval.py` — 三级评测闸门（**不用 exact match**）：
+  syntax accuracy → validator pass → semantic execution；全 corpus
+  **100% / 100% / 100%**；`--predictions` 即 Phase 5 模型接口
+- `docs/dataset-design.md` + `docs/missing-skills.md` — 数据设计与 ISA
+  缺口清单（LOOP 最高优先、SQL 关系算子、EDA 工具链、字符串、粒度）
+
+评测中抓到并修复：simulator 的 @global 程序输入此前无运行时值（返回
+类型名），导致 code 类程序 1/3 无法执行——现按声明类型合成 mock 值。
+
+## 下一步（Phase 5：Neural Compiler Training）
+
+- Qwen-7B / Qwen2.5-Coder LoRA：NL → TaskIR text（SFT 数据 =
+  `data/compiler_corpus/`（9027 train / 475 val，含 taskir_text 监督）
+  + `data/train/sft/`）
+- 推理输出走 `src/ir/parser.py` → validator → `benchmark/compiler_eval.py
+  --predictions`（训练/评测协议已对齐）
+- 真实数据替换：`build_compiler_corpus.py --raw-dir`（schema 见
+  docs/dataset-design.md）；真实 HumanEval/Spider 的覆盖率是 ISA 缺口
+  （docs/missing-skills.md）的量化证据
+- effect system v0.2 实施（docs/effect-system-proposal.md 落地顺序）
