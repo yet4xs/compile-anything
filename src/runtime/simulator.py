@@ -51,6 +51,7 @@ class TraceEvent:
     memory_mb: float = 0.0
     value_digest: str = ""
     note: str = ""
+    superseded: bool = False   # historical event invalidated by a rollback
 
     def to_dict(self) -> Dict[str, Any]:
         return dict(self.__dict__)
@@ -111,7 +112,42 @@ class Simulator:
         res.output_id = prog.output
         try:
             out = self._eval(prog.output)
-            res.output_digest = _digest(out)
+            # VERIFY-driven rollback phase (checkpoint/restore style):
+            # demand every VERIFY referenced by a retry policy, then for each
+            # verdict==False with remaining budget, invalidate the retried
+            # node's value and all transitive dependents and re-execute.
+            # This runs OUTSIDE the demand chain on purpose: probing the
+            # verify inline inside _eval would demand nodes that are still
+            # on the evaluation stack (A -> B -> C(VERIFY), retry on A) and
+            # be misreported as a cycle.
+            for n in prog.nodes:
+                if n.retry and n.retry.on != "error" and n.retry.on in self.nodes:
+                    self._eval(n.retry.on)
+            while True:
+                cand = [n for n in prog.nodes
+                        if n.retry and n.retry.on != "error"
+                        and n.retry.on in self.nodes
+                        and self.memo.get(n.retry.on) is False
+                        and self.attempts.get(n.id, 0) < n.retry.max_attempts]
+                if not cand:
+                    break
+                target = cand[0]                      # program order: deterministic
+                cleared = self._invalidate_dependents(target.id)
+                self._eval(prog.output)
+                # re-evaluate ALL cleared nodes in program order so that the
+                # post-rollback memory state is consistent everywhere (a
+                # dependent that is not output-reachable must not keep a
+                # stale trace event / no value at all)
+                for n in prog.nodes:
+                    if n.id in cleared:
+                        self._eval(n.id)
+                self._eval(target.retry.on)
+            for n in prog.nodes:
+                if n.retry and n.retry.on != "error" and n.retry.on in self.nodes \
+                        and self.memo.get(n.retry.on) is False \
+                        and self.attempts.get(n.id, 0) >= n.retry.max_attempts:
+                    self._mark_retry_exhausted(n.id)
+            res.output_digest = _digest(self.memo.get(prog.output, out))
         except RuntimeFailure as e:
             res.status = "failed"
             res.output_digest = f"<failed: {e}>"
@@ -158,6 +194,15 @@ class Simulator:
         try:
             if node.guard is not None:
                 cond = self._eval(node.guard.cond)
+                if isinstance(cond, _Skipped):
+                    # predication propagation: the condition value itself was
+                    # skipped, so this node's predicate is unknown -> skip
+                    self._event(node, attempt=0, status="skipped", latency=0.0,
+                                value=SKIPPED,
+                                note=f"guard cond {node.guard.cond} skipped "
+                                     f"(predication propagation)")
+                    self.memo[nid] = SKIPPED
+                    return SKIPPED
                 if bool(cond) != node.guard.expect:
                     ev = self._event(node, attempt=0, status="skipped",
                                      latency=0.0, value=SKIPPED,
@@ -166,9 +211,6 @@ class Simulator:
                     return SKIPPED
 
             max_att = node.retry.max_attempts if node.retry else 1
-            verify_ref = None
-            if node.retry and node.retry.on != "error":
-                verify_ref = node.retry.on
 
             while True:
                 attempt = self.attempts.get(nid, 0) + 1
@@ -178,6 +220,14 @@ class Simulator:
                     # SELECT is the branch reconvergence point: the non-taken
                     # branch is legitimately skipped by its guard; only a
                     # skipped CHOSEN branch is a runtime inconsistency.
+                    if isinstance(inputs[0], _Skipped):
+                        # unknown condition -> predication propagation
+                        self._event(node, attempt=0, status="skipped",
+                                    latency=0.0, value=SKIPPED,
+                                    note="SELECT cond skipped "
+                                         "(predication propagation)")
+                        self.memo[nid] = SKIPPED
+                        return SKIPPED
                     pass
                 else:
                     for ref, v in zip(node.inputs, inputs):
@@ -211,19 +261,9 @@ class Simulator:
                         continue                       # retry on error
                     raise RuntimeFailure(f"{nid} failed after {attempt} attempt(s): {err}")
 
-                self.memo[nid] = value                  # visible to the verify probe
+                self.memo[nid] = value
                 self._event(node, attempt=attempt, status="ok", latency=lat,
                             value=value)
-
-                if verify_ref is not None and verify_ref in self.nodes:
-                    verdict = self._eval(verify_ref)   # depends on nid (validated)
-                    if verdict is False:
-                        if attempt < max_att:
-                            self._invalidate_dependents(nid)
-                            continue                   # rollback-lite + retry
-                        self.memo[nid] = value
-                        self._mark_retry_exhausted(nid)
-                        break
                 break
 
             return self.memo[nid]
@@ -265,9 +305,9 @@ class Simulator:
                     e.note = "verify still false after max_attempts"
                 break
 
-    def _invalidate_dependents(self, nid: str) -> None:
+    def _invalidate_dependents(self, nid: str) -> set:
         """Clear memoized values for `nid` and every transitive dependent
-        (retry budgets in self.attempts are kept)."""
+        (retry budgets in self.attempts are kept). Returns the cleared ids."""
         users: Dict[str, List[str]] = {k: [] for k in self.nodes}
         for n in self.nodes.values():
             for ref in list(n.inputs) + list(n.after):
@@ -285,6 +325,12 @@ class Simulator:
                     stack.append(u)
         for d in dead:
             self.memo.pop(d, None)
+            # prior events of cleared nodes are HISTORY now (kept for the
+            # trace); invariants and reports must reason on final state only
+            for e in self.events:
+                if e.node == d:
+                    e.superseded = True
+        return dead
 
     def _critical_path_ms(self) -> float:
         """Longest-latency path over executed (non-skipped) nodes, using

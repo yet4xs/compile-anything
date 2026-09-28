@@ -99,7 +99,28 @@ chat 格式数据集（`data/train/sft/{train,val}.jsonl`，当前 593/31 条—
 5. **成本模型从第一天就有**：名义 FLOPs/tokens/latency + 70B 单次直答
    baseline，为 "small executors + compilation vs 大模型" 的对照实验铺路。
 
-## 下一步（Phase 2 候选）
+## Phase 2：语义压力验证（stress validation）
+
+不堆 feature，验证 IR 语义本身：
+
+- `tests/test_control_semantics.py` — guard/VERIFY/SELECT 谓词执行、嵌套
+  guard、非法 guard（V4 拒绝）、SELECT 选中分支被跳过/谓词传播
+- `tests/test_retry_semantics.py` — error retry 事件序、VERIFY 回滚的
+  memo 失效（A→B→C 链全量重执行）、非法 retry 构造拒绝
+- `scripts/fuzz_taskir.py` — semantic fuzzer：10000 随机程序，
+  builder 合法构造 ⇒ validator 必须接受；runtime 只允许**已定义**失败；
+  IV1–IV6 不变量（DAG 顺序/attempts 单调/确定性/输出非空/成本非负/
+  Bool 产 Bool）。失败自动落盘 `data/fuzz_failures/`
+- `docs/validator-audit.md` — V1–V6 审计 + M1 effect ordering（最重要
+  真实缺口）/M2 resource legality/M3 cost consistency
+- `docs/runtime-review.md` — memo≡SSA cache？回滚覆盖完整性、critical
+  path 与 retry 边、本轮发现并修复的 3 个语义缺陷
+
+fuzz 结果：**10000/10000 valid，0 failures**（1719 例落入已定义失败路径：
+consume-skipped / chosen-branch-skipped / retry 耗尽——随机 guard + 故障
+注入下的预期行为）。
+
+## 下一步（Phase 2+ 候选）
 
 - 真实 xLAM / ToolBench 数据接入（`run_xlam_pipeline.py --input`）
 - optimizer passes（fusion / DCE / 并行化）与 scheduler 绑定

@@ -234,6 +234,12 @@ def validate(mod: Module) -> Report:
     if prog.output:
         if prog.output not in defined:
             rep.err("OUTPUT", f"program.output {prog.output!r} is not a defined node")
+        else:
+            out_node = defined[prog.output]
+            if out_node.guard is not None:
+                rep.warn("GUARDED_OUTPUT",
+                         "program output is guarded; the program may complete "
+                         "with no value (consider SELECT with a fallback branch)")
     else:
         rep.err("OUTPUT", "program.output is empty")
 
