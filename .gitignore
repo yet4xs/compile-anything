@@ -21,6 +21,7 @@ data/compiler_corpus_v3/val.jsonl
 data/compiler_corpus_v3/test.jsonl
 data/compiler_corpus_v3/tier_c.jsonl
 data/sft_v3/
-weights/
+weights/*
+!weights/MANIFEST.json
 runs/
 preds/
