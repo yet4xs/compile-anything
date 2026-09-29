@@ -29,6 +29,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from src.dataset.external_guard import assert_not_external  # noqa: E402
+
 from src.ir.taskir import module_to_dict, to_text            # noqa: E402
 from src.validator.validator import validate                  # noqa: E402
 from src.runtime.simulator import Simulator                   # noqa: E402
@@ -331,6 +333,7 @@ def main() -> int:
                     help="dir with real toolbench/code/sql/rtl .jsonl files "
                          "(same schemas); skips synthetic generation")
     args = ap.parse_args()
+    assert_not_external([args.raw_dir, args.out])   # firewall
 
     rng = random.Random(args.seed)
     out = pathlib.Path(args.out)

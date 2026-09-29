@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from typing import Iterator, List, Optional
 
 from ..prompt_format import SYSTEM_PROMPT
+from ...dataset.external_guard import assert_not_external  # noqa: F401
 
 
 def build_user_text(instruction: str,
@@ -44,6 +45,8 @@ def iter_corpus_records(paths, target_field: str = "plan_target",
                         tiers: Optional[List[str]] = None,
                         capability_context: bool = False
                         ) -> Iterator[SFTRecord]:
+    from ...dataset.external_guard import assert_not_external
+    assert_not_external(list(paths))       # contamination firewall
     for p in paths:
         p = pathlib.Path(p)
         if not p.exists():

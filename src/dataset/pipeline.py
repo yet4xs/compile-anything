@@ -16,6 +16,7 @@ from ..stats import program_metrics
 from ..lifter.benchmark import lift_sample
 from .schema import to_lifter_input
 from .adapters import adapters_for
+from .external_guard import assert_not_external  # noqa: F401
 
 
 def run_pipeline(raw_root: pathlib.Path,
@@ -27,6 +28,7 @@ def run_pipeline(raw_root: pathlib.Path,
 
     view: "plan" (pure lowering, no compiler policy tail — SFT target) or
     "execution" (with GENERATE/VERIFY policy tail)."""
+    assert_not_external(str(raw_root))     # contamination firewall
     all_samples: List[Dict] = []
     lifted: List[Dict] = []
     for adapter in adapters_for(sources):

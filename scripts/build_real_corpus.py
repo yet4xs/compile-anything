@@ -28,7 +28,8 @@ from collections import Counter
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.dataset.pipeline import run_pipeline                # noqa: E402
+from src.dataset.pipeline import run_pipeline
+from src.dataset.external_guard import assert_not_external  # noqa: E402
 from src.dataset.dedup import (near_duplicate_families,      # noqa: E402
                                group_split, cross_split_leakage)
 from src.ir.taskir import module_to_dict, to_text            # noqa: E402
@@ -229,6 +230,7 @@ def main() -> int:
     ap.add_argument("--random-split", action="store_true",
                     help="legacy v2 mode (random split, no tiers)")
     args = ap.parse_args()
+    assert_not_external([args.raw_root, args.out])   # firewall
     return build_v2(args) if args.random_split else build_v3(args)
 
 

@@ -25,3 +25,10 @@ weights/*
 !weights/MANIFEST.json
 runs/
 preds/
+
+# external evaluation benchmarks: metadata only, never the raw data
+data/external_benchmarks/*
+!data/external_benchmarks/README.md
+!data/external_benchmarks/MANIFEST.json
+!data/external_benchmarks/status.json
+third_party/

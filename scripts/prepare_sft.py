@@ -15,6 +15,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from src.dataset.external_guard import assert_not_external  # noqa: E402
+
 from src.compiler.train.dataset import (records_to_chat,      # noqa: E402
                                         iter_corpus_records)
 
@@ -28,6 +30,7 @@ def main() -> int:
     ap.add_argument("--tiers", default="A,B")
     ap.add_argument("--capability-context", action="store_true")
     args = ap.parse_args()
+    assert_not_external([args.corpus, args.out])   # firewall
 
     tiers = [t.strip() for t in args.tiers.split(",") if t.strip()]
     corpus = pathlib.Path(args.corpus)
