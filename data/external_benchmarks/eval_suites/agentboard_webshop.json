@@ -1,0 +1,1262 @@
+{
+ "benchmark": "agentboard_webshop",
+ "layer": "B_stateful_agent",
+ "case_count": 251,
+ "cases": [
+  {
+   "case_id": "webshop-0",
+   "category": "agentboard_webshop",
+   "sha": "8ec297670b626af6"
+  },
+  {
+   "case_id": "webshop-1",
+   "category": "agentboard_webshop",
+   "sha": "f1f60e64598d293d"
+  },
+  {
+   "case_id": "webshop-2",
+   "category": "agentboard_webshop",
+   "sha": "0302df7651faae77"
+  },
+  {
+   "case_id": "webshop-3",
+   "category": "agentboard_webshop",
+   "sha": "f6fd4180ceca2b50"
+  },
+  {
+   "case_id": "webshop-4",
+   "category": "agentboard_webshop",
+   "sha": "90bdb7f0584c4113"
+  },
+  {
+   "case_id": "webshop-5",
+   "category": "agentboard_webshop",
+   "sha": "6f8f5e5d57fd568f"
+  },
+  {
+   "case_id": "webshop-6",
+   "category": "agentboard_webshop",
+   "sha": "cb57154f52d93b26"
+  },
+  {
+   "case_id": "webshop-7",
+   "category": "agentboard_webshop",
+   "sha": "185e5b455b634db4"
+  },
+  {
+   "case_id": "webshop-8",
+   "category": "agentboard_webshop",
+   "sha": "cbbd73b37d1a3afd"
+  },
+  {
+   "case_id": "webshop-9",
+   "category": "agentboard_webshop",
+   "sha": "bc235d65e908e43f"
+  },
+  {
+   "case_id": "webshop-10",
+   "category": "agentboard_webshop",
+   "sha": "6464d183601d187c"
+  },
+  {
+   "case_id": "webshop-11",
+   "category": "agentboard_webshop",
+   "sha": "fa776cae20cf22ea"
+  },
+  {
+   "case_id": "webshop-12",
+   "category": "agentboard_webshop",
+   "sha": "83f39bae763a5af1"
+  },
+  {
+   "case_id": "webshop-13",
+   "category": "agentboard_webshop",
+   "sha": "48f996f789bb19fd"
+  },
+  {
+   "case_id": "webshop-14",
+   "category": "agentboard_webshop",
+   "sha": "ca3c84b3b3f6a5ec"
+  },
+  {
+   "case_id": "webshop-15",
+   "category": "agentboard_webshop",
+   "sha": "d875dd16c61ec749"
+  },
+  {
+   "case_id": "webshop-16",
+   "category": "agentboard_webshop",
+   "sha": "c417ec2d37f54dd8"
+  },
+  {
+   "case_id": "webshop-17",
+   "category": "agentboard_webshop",
+   "sha": "89ea9b3b59a250b6"
+  },
+  {
+   "case_id": "webshop-18",
+   "category": "agentboard_webshop",
+   "sha": "301a68833370b591"
+  },
+  {
+   "case_id": "webshop-19",
+   "category": "agentboard_webshop",
+   "sha": "99d0d70feaedb5c1"
+  },
+  {
+   "case_id": "webshop-20",
+   "category": "agentboard_webshop",
+   "sha": "614b842d29b51386"
+  },
+  {
+   "case_id": "webshop-21",
+   "category": "agentboard_webshop",
+   "sha": "9b13c6f70e78d01e"
+  },
+  {
+   "case_id": "webshop-22",
+   "category": "agentboard_webshop",
+   "sha": "31cae93a714cf482"
+  },
+  {
+   "case_id": "webshop-23",
+   "category": "agentboard_webshop",
+   "sha": "1888783f108d3d9d"
+  },
+  {
+   "case_id": "webshop-24",
+   "category": "agentboard_webshop",
+   "sha": "028007f7c93d7589"
+  },
+  {
+   "case_id": "webshop-25",
+   "category": "agentboard_webshop",
+   "sha": "36bebfc607dd7dad"
+  },
+  {
+   "case_id": "webshop-26",
+   "category": "agentboard_webshop",
+   "sha": "c2051bfdf398ba2a"
+  },
+  {
+   "case_id": "webshop-27",
+   "category": "agentboard_webshop",
+   "sha": "16f7a4538c120c74"
+  },
+  {
+   "case_id": "webshop-28",
+   "category": "agentboard_webshop",
+   "sha": "f98496ac654f3ca5"
+  },
+  {
+   "case_id": "webshop-29",
+   "category": "agentboard_webshop",
+   "sha": "9171177c6b0976f8"
+  },
+  {
+   "case_id": "webshop-30",
+   "category": "agentboard_webshop",
+   "sha": "1cb259022757eeb3"
+  },
+  {
+   "case_id": "webshop-31",
+   "category": "agentboard_webshop",
+   "sha": "85ba97c81a763467"
+  },
+  {
+   "case_id": "webshop-32",
+   "category": "agentboard_webshop",
+   "sha": "fd621b8acf3edfee"
+  },
+  {
+   "case_id": "webshop-33",
+   "category": "agentboard_webshop",
+   "sha": "f1264a709e5c7cd7"
+  },
+  {
+   "case_id": "webshop-34",
+   "category": "agentboard_webshop",
+   "sha": "52708502273efaea"
+  },
+  {
+   "case_id": "webshop-35",
+   "category": "agentboard_webshop",
+   "sha": "15893d3a09c03e72"
+  },
+  {
+   "case_id": "webshop-36",
+   "category": "agentboard_webshop",
+   "sha": "d15e79aa961e60e5"
+  },
+  {
+   "case_id": "webshop-37",
+   "category": "agentboard_webshop",
+   "sha": "e2e21e90d5a4b135"
+  },
+  {
+   "case_id": "webshop-38",
+   "category": "agentboard_webshop",
+   "sha": "cf1bfa1025bd2497"
+  },
+  {
+   "case_id": "webshop-39",
+   "category": "agentboard_webshop",
+   "sha": "f436c9bae993def6"
+  },
+  {
+   "case_id": "webshop-40",
+   "category": "agentboard_webshop",
+   "sha": "961d427c6129ed32"
+  },
+  {
+   "case_id": "webshop-41",
+   "category": "agentboard_webshop",
+   "sha": "b93bee367b4c1329"
+  },
+  {
+   "case_id": "webshop-42",
+   "category": "agentboard_webshop",
+   "sha": "b7bee6b258c374ef"
+  },
+  {
+   "case_id": "webshop-43",
+   "category": "agentboard_webshop",
+   "sha": "c2ebd62e840fd706"
+  },
+  {
+   "case_id": "webshop-44",
+   "category": "agentboard_webshop",
+   "sha": "82a3d54a5abef3f1"
+  },
+  {
+   "case_id": "webshop-45",
+   "category": "agentboard_webshop",
+   "sha": "4c6f1ab6886d47a6"
+  },
+  {
+   "case_id": "webshop-46",
+   "category": "agentboard_webshop",
+   "sha": "2e24e116471d5190"
+  },
+  {
+   "case_id": "webshop-47",
+   "category": "agentboard_webshop",
+   "sha": "13635d0cc9c3bcd1"
+  },
+  {
+   "case_id": "webshop-48",
+   "category": "agentboard_webshop",
+   "sha": "f77effecbf4212fd"
+  },
+  {
+   "case_id": "webshop-49",
+   "category": "agentboard_webshop",
+   "sha": "cb65f728d5f3e630"
+  },
+  {
+   "case_id": "webshop-50",
+   "category": "agentboard_webshop",
+   "sha": "56d7eb50debc4ce0"
+  },
+  {
+   "case_id": "webshop-51",
+   "category": "agentboard_webshop",
+   "sha": "4c07d886f1538a96"
+  },
+  {
+   "case_id": "webshop-52",
+   "category": "agentboard_webshop",
+   "sha": "5958ac538ee0cce6"
+  },
+  {
+   "case_id": "webshop-53",
+   "category": "agentboard_webshop",
+   "sha": "0e8d37f0713df4dd"
+  },
+  {
+   "case_id": "webshop-54",
+   "category": "agentboard_webshop",
+   "sha": "564f3adebf841828"
+  },
+  {
+   "case_id": "webshop-55",
+   "category": "agentboard_webshop",
+   "sha": "720a2b3bbef632f0"
+  },
+  {
+   "case_id": "webshop-56",
+   "category": "agentboard_webshop",
+   "sha": "283c6b0542c3b62e"
+  },
+  {
+   "case_id": "webshop-57",
+   "category": "agentboard_webshop",
+   "sha": "5205f678db449c4c"
+  },
+  {
+   "case_id": "webshop-58",
+   "category": "agentboard_webshop",
+   "sha": "35df369ebab25371"
+  },
+  {
+   "case_id": "webshop-59",
+   "category": "agentboard_webshop",
+   "sha": "3f90ca95e056247c"
+  },
+  {
+   "case_id": "webshop-60",
+   "category": "agentboard_webshop",
+   "sha": "4648ddb96856ed65"
+  },
+  {
+   "case_id": "webshop-61",
+   "category": "agentboard_webshop",
+   "sha": "6c496ecac085eaae"
+  },
+  {
+   "case_id": "webshop-62",
+   "category": "agentboard_webshop",
+   "sha": "5729ffdf561cff7e"
+  },
+  {
+   "case_id": "webshop-63",
+   "category": "agentboard_webshop",
+   "sha": "22eafc275616ac68"
+  },
+  {
+   "case_id": "webshop-64",
+   "category": "agentboard_webshop",
+   "sha": "deff7d93847d5aca"
+  },
+  {
+   "case_id": "webshop-65",
+   "category": "agentboard_webshop",
+   "sha": "dbb85a422ae942d0"
+  },
+  {
+   "case_id": "webshop-66",
+   "category": "agentboard_webshop",
+   "sha": "4563dbbbb835429b"
+  },
+  {
+   "case_id": "webshop-67",
+   "category": "agentboard_webshop",
+   "sha": "7b78d1755e5c4611"
+  },
+  {
+   "case_id": "webshop-68",
+   "category": "agentboard_webshop",
+   "sha": "d9acf78b0936e0c3"
+  },
+  {
+   "case_id": "webshop-69",
+   "category": "agentboard_webshop",
+   "sha": "2c676c425da5dd8f"
+  },
+  {
+   "case_id": "webshop-70",
+   "category": "agentboard_webshop",
+   "sha": "777566915f9940d9"
+  },
+  {
+   "case_id": "webshop-71",
+   "category": "agentboard_webshop",
+   "sha": "5d2ce17fabab500f"
+  },
+  {
+   "case_id": "webshop-72",
+   "category": "agentboard_webshop",
+   "sha": "915e5be521838ebb"
+  },
+  {
+   "case_id": "webshop-73",
+   "category": "agentboard_webshop",
+   "sha": "03aead7c58e2380a"
+  },
+  {
+   "case_id": "webshop-74",
+   "category": "agentboard_webshop",
+   "sha": "19ce37f4e61acc4e"
+  },
+  {
+   "case_id": "webshop-75",
+   "category": "agentboard_webshop",
+   "sha": "a475d673829a3ad0"
+  },
+  {
+   "case_id": "webshop-76",
+   "category": "agentboard_webshop",
+   "sha": "97e8f6930f440355"
+  },
+  {
+   "case_id": "webshop-77",
+   "category": "agentboard_webshop",
+   "sha": "076b4a4e56cd5890"
+  },
+  {
+   "case_id": "webshop-78",
+   "category": "agentboard_webshop",
+   "sha": "898fb92455a0aeac"
+  },
+  {
+   "case_id": "webshop-79",
+   "category": "agentboard_webshop",
+   "sha": "3b8938e5bdd83e01"
+  },
+  {
+   "case_id": "webshop-80",
+   "category": "agentboard_webshop",
+   "sha": "a0f10ceb47c83993"
+  },
+  {
+   "case_id": "webshop-81",
+   "category": "agentboard_webshop",
+   "sha": "e49afad56c45372a"
+  },
+  {
+   "case_id": "webshop-82",
+   "category": "agentboard_webshop",
+   "sha": "6d2be953dbce71ac"
+  },
+  {
+   "case_id": "webshop-83",
+   "category": "agentboard_webshop",
+   "sha": "2a326df704c96678"
+  },
+  {
+   "case_id": "webshop-84",
+   "category": "agentboard_webshop",
+   "sha": "b6aa05304d5cf47c"
+  },
+  {
+   "case_id": "webshop-85",
+   "category": "agentboard_webshop",
+   "sha": "93f27cb30398ee72"
+  },
+  {
+   "case_id": "webshop-86",
+   "category": "agentboard_webshop",
+   "sha": "7193cc653563b01c"
+  },
+  {
+   "case_id": "webshop-87",
+   "category": "agentboard_webshop",
+   "sha": "894a428c9807c6b7"
+  },
+  {
+   "case_id": "webshop-88",
+   "category": "agentboard_webshop",
+   "sha": "1123baed54f2de29"
+  },
+  {
+   "case_id": "webshop-89",
+   "category": "agentboard_webshop",
+   "sha": "f4d5f30ca69615c8"
+  },
+  {
+   "case_id": "webshop-90",
+   "category": "agentboard_webshop",
+   "sha": "5080ab478a5bf55f"
+  },
+  {
+   "case_id": "webshop-91",
+   "category": "agentboard_webshop",
+   "sha": "3fc9e73fd539bc92"
+  },
+  {
+   "case_id": "webshop-92",
+   "category": "agentboard_webshop",
+   "sha": "ab17d9855c486d6b"
+  },
+  {
+   "case_id": "webshop-93",
+   "category": "agentboard_webshop",
+   "sha": "7ab533a9a6ac0a90"
+  },
+  {
+   "case_id": "webshop-94",
+   "category": "agentboard_webshop",
+   "sha": "81143e00d10c221a"
+  },
+  {
+   "case_id": "webshop-95",
+   "category": "agentboard_webshop",
+   "sha": "3608bf356b07aeb7"
+  },
+  {
+   "case_id": "webshop-96",
+   "category": "agentboard_webshop",
+   "sha": "28c4379bb8b353c6"
+  },
+  {
+   "case_id": "webshop-97",
+   "category": "agentboard_webshop",
+   "sha": "71e5e6e9ebdc32d3"
+  },
+  {
+   "case_id": "webshop-98",
+   "category": "agentboard_webshop",
+   "sha": "2961ab24c1cf7ae6"
+  },
+  {
+   "case_id": "webshop-99",
+   "category": "agentboard_webshop",
+   "sha": "22fcaa95bfabb672"
+  },
+  {
+   "case_id": "webshop-100",
+   "category": "agentboard_webshop",
+   "sha": "3806c97a49e17a92"
+  },
+  {
+   "case_id": "webshop-101",
+   "category": "agentboard_webshop",
+   "sha": "3e910cd9bce09223"
+  },
+  {
+   "case_id": "webshop-102",
+   "category": "agentboard_webshop",
+   "sha": "0989a244859d0fdb"
+  },
+  {
+   "case_id": "webshop-103",
+   "category": "agentboard_webshop",
+   "sha": "46704b2ead97f91d"
+  },
+  {
+   "case_id": "webshop-104",
+   "category": "agentboard_webshop",
+   "sha": "0b390dbdd29ca071"
+  },
+  {
+   "case_id": "webshop-105",
+   "category": "agentboard_webshop",
+   "sha": "0ad693169c00aac7"
+  },
+  {
+   "case_id": "webshop-106",
+   "category": "agentboard_webshop",
+   "sha": "7ce32785e011cf5d"
+  },
+  {
+   "case_id": "webshop-107",
+   "category": "agentboard_webshop",
+   "sha": "555d951debce5218"
+  },
+  {
+   "case_id": "webshop-108",
+   "category": "agentboard_webshop",
+   "sha": "9161c0732c496c84"
+  },
+  {
+   "case_id": "webshop-109",
+   "category": "agentboard_webshop",
+   "sha": "342ebd06607b5afe"
+  },
+  {
+   "case_id": "webshop-110",
+   "category": "agentboard_webshop",
+   "sha": "c28451da07648c0f"
+  },
+  {
+   "case_id": "webshop-111",
+   "category": "agentboard_webshop",
+   "sha": "2253bdf91f53c0a1"
+  },
+  {
+   "case_id": "webshop-112",
+   "category": "agentboard_webshop",
+   "sha": "1a611a833fcdecd8"
+  },
+  {
+   "case_id": "webshop-113",
+   "category": "agentboard_webshop",
+   "sha": "1e1ef8d2d040d78b"
+  },
+  {
+   "case_id": "webshop-114",
+   "category": "agentboard_webshop",
+   "sha": "3e77eadfe7987c15"
+  },
+  {
+   "case_id": "webshop-115",
+   "category": "agentboard_webshop",
+   "sha": "4661e7c7439ccc92"
+  },
+  {
+   "case_id": "webshop-116",
+   "category": "agentboard_webshop",
+   "sha": "c3dbdf61ec6fb338"
+  },
+  {
+   "case_id": "webshop-117",
+   "category": "agentboard_webshop",
+   "sha": "ccc6ba67b2c9d06a"
+  },
+  {
+   "case_id": "webshop-118",
+   "category": "agentboard_webshop",
+   "sha": "e3a142508e117bcf"
+  },
+  {
+   "case_id": "webshop-119",
+   "category": "agentboard_webshop",
+   "sha": "a2e7687d66dee659"
+  },
+  {
+   "case_id": "webshop-120",
+   "category": "agentboard_webshop",
+   "sha": "b4534f46e3761230"
+  },
+  {
+   "case_id": "webshop-121",
+   "category": "agentboard_webshop",
+   "sha": "564709ca909715be"
+  },
+  {
+   "case_id": "webshop-122",
+   "category": "agentboard_webshop",
+   "sha": "b70f40fbf9d712c3"
+  },
+  {
+   "case_id": "webshop-123",
+   "category": "agentboard_webshop",
+   "sha": "99477d28dde317c9"
+  },
+  {
+   "case_id": "webshop-124",
+   "category": "agentboard_webshop",
+   "sha": "06fac20ba5500870"
+  },
+  {
+   "case_id": "webshop-125",
+   "category": "agentboard_webshop",
+   "sha": "6eaecc4901a2747d"
+  },
+  {
+   "case_id": "webshop-126",
+   "category": "agentboard_webshop",
+   "sha": "a6cb9c3d941c97bf"
+  },
+  {
+   "case_id": "webshop-127",
+   "category": "agentboard_webshop",
+   "sha": "f60bfa1cd69878a2"
+  },
+  {
+   "case_id": "webshop-128",
+   "category": "agentboard_webshop",
+   "sha": "1d236f380de21735"
+  },
+  {
+   "case_id": "webshop-129",
+   "category": "agentboard_webshop",
+   "sha": "9b712a511f5c0e45"
+  },
+  {
+   "case_id": "webshop-130",
+   "category": "agentboard_webshop",
+   "sha": "756d3f33303b2e41"
+  },
+  {
+   "case_id": "webshop-131",
+   "category": "agentboard_webshop",
+   "sha": "9a4892eee6425aff"
+  },
+  {
+   "case_id": "webshop-132",
+   "category": "agentboard_webshop",
+   "sha": "25601fe50aab419d"
+  },
+  {
+   "case_id": "webshop-133",
+   "category": "agentboard_webshop",
+   "sha": "0177083ed43b5ac3"
+  },
+  {
+   "case_id": "webshop-134",
+   "category": "agentboard_webshop",
+   "sha": "102eee59b70e5512"
+  },
+  {
+   "case_id": "webshop-135",
+   "category": "agentboard_webshop",
+   "sha": "a4e9ceb8821f38b6"
+  },
+  {
+   "case_id": "webshop-136",
+   "category": "agentboard_webshop",
+   "sha": "166e15e9d34139f9"
+  },
+  {
+   "case_id": "webshop-137",
+   "category": "agentboard_webshop",
+   "sha": "9e95a1a8aa7efedb"
+  },
+  {
+   "case_id": "webshop-138",
+   "category": "agentboard_webshop",
+   "sha": "e792df49d4e73be8"
+  },
+  {
+   "case_id": "webshop-139",
+   "category": "agentboard_webshop",
+   "sha": "eae1c02f2a0c5513"
+  },
+  {
+   "case_id": "webshop-140",
+   "category": "agentboard_webshop",
+   "sha": "17caf5ab3519abd4"
+  },
+  {
+   "case_id": "webshop-141",
+   "category": "agentboard_webshop",
+   "sha": "3e9655f40ed4938b"
+  },
+  {
+   "case_id": "webshop-142",
+   "category": "agentboard_webshop",
+   "sha": "ef87cd96d1bb3e83"
+  },
+  {
+   "case_id": "webshop-143",
+   "category": "agentboard_webshop",
+   "sha": "515358f0162b9c0d"
+  },
+  {
+   "case_id": "webshop-144",
+   "category": "agentboard_webshop",
+   "sha": "c64dfc36b38aa8b5"
+  },
+  {
+   "case_id": "webshop-145",
+   "category": "agentboard_webshop",
+   "sha": "733dc79a510146c7"
+  },
+  {
+   "case_id": "webshop-146",
+   "category": "agentboard_webshop",
+   "sha": "1162c36940a1b7a8"
+  },
+  {
+   "case_id": "webshop-147",
+   "category": "agentboard_webshop",
+   "sha": "78661fa589a9fdae"
+  },
+  {
+   "case_id": "webshop-148",
+   "category": "agentboard_webshop",
+   "sha": "35a3d318a403902e"
+  },
+  {
+   "case_id": "webshop-149",
+   "category": "agentboard_webshop",
+   "sha": "8e593a1f0b35106e"
+  },
+  {
+   "case_id": "webshop-150",
+   "category": "agentboard_webshop",
+   "sha": "1d7404a1898addbf"
+  },
+  {
+   "case_id": "webshop-151",
+   "category": "agentboard_webshop",
+   "sha": "fec031035c8c6ac4"
+  },
+  {
+   "case_id": "webshop-152",
+   "category": "agentboard_webshop",
+   "sha": "608dc1f7a856d16e"
+  },
+  {
+   "case_id": "webshop-153",
+   "category": "agentboard_webshop",
+   "sha": "0d69f816447abafe"
+  },
+  {
+   "case_id": "webshop-154",
+   "category": "agentboard_webshop",
+   "sha": "39e1ba283f85958c"
+  },
+  {
+   "case_id": "webshop-155",
+   "category": "agentboard_webshop",
+   "sha": "989956b2ccdd6711"
+  },
+  {
+   "case_id": "webshop-156",
+   "category": "agentboard_webshop",
+   "sha": "42a1237bcadcf79b"
+  },
+  {
+   "case_id": "webshop-157",
+   "category": "agentboard_webshop",
+   "sha": "e28cacbf147f997a"
+  },
+  {
+   "case_id": "webshop-158",
+   "category": "agentboard_webshop",
+   "sha": "c7bd269d6730b3f9"
+  },
+  {
+   "case_id": "webshop-159",
+   "category": "agentboard_webshop",
+   "sha": "46b8f3b86941af9f"
+  },
+  {
+   "case_id": "webshop-160",
+   "category": "agentboard_webshop",
+   "sha": "16afdec4ba4e3c0e"
+  },
+  {
+   "case_id": "webshop-161",
+   "category": "agentboard_webshop",
+   "sha": "3206bfbc4c224cbf"
+  },
+  {
+   "case_id": "webshop-162",
+   "category": "agentboard_webshop",
+   "sha": "adcc3d949bc488d0"
+  },
+  {
+   "case_id": "webshop-163",
+   "category": "agentboard_webshop",
+   "sha": "051cf1f92cb5ace4"
+  },
+  {
+   "case_id": "webshop-164",
+   "category": "agentboard_webshop",
+   "sha": "09d6837622197802"
+  },
+  {
+   "case_id": "webshop-165",
+   "category": "agentboard_webshop",
+   "sha": "061830616e3b4bb2"
+  },
+  {
+   "case_id": "webshop-166",
+   "category": "agentboard_webshop",
+   "sha": "506b5621e464abdd"
+  },
+  {
+   "case_id": "webshop-167",
+   "category": "agentboard_webshop",
+   "sha": "c08041f0ff60c065"
+  },
+  {
+   "case_id": "webshop-168",
+   "category": "agentboard_webshop",
+   "sha": "952dff02c9f1c01e"
+  },
+  {
+   "case_id": "webshop-169",
+   "category": "agentboard_webshop",
+   "sha": "35b27e260a2116f0"
+  },
+  {
+   "case_id": "webshop-170",
+   "category": "agentboard_webshop",
+   "sha": "c78a7a65ca5ea183"
+  },
+  {
+   "case_id": "webshop-171",
+   "category": "agentboard_webshop",
+   "sha": "5eda35ec965cec30"
+  },
+  {
+   "case_id": "webshop-172",
+   "category": "agentboard_webshop",
+   "sha": "2fa2e42c74bf4a2f"
+  },
+  {
+   "case_id": "webshop-173",
+   "category": "agentboard_webshop",
+   "sha": "c0b410eba5a0ead1"
+  },
+  {
+   "case_id": "webshop-174",
+   "category": "agentboard_webshop",
+   "sha": "f29d2caba8a287a1"
+  },
+  {
+   "case_id": "webshop-175",
+   "category": "agentboard_webshop",
+   "sha": "5c12b0d2b9878c6d"
+  },
+  {
+   "case_id": "webshop-176",
+   "category": "agentboard_webshop",
+   "sha": "63f648f15fd18078"
+  },
+  {
+   "case_id": "webshop-177",
+   "category": "agentboard_webshop",
+   "sha": "1649b896d1116a3e"
+  },
+  {
+   "case_id": "webshop-178",
+   "category": "agentboard_webshop",
+   "sha": "e215e992475f62ee"
+  },
+  {
+   "case_id": "webshop-179",
+   "category": "agentboard_webshop",
+   "sha": "5ec24067c26b1a5b"
+  },
+  {
+   "case_id": "webshop-180",
+   "category": "agentboard_webshop",
+   "sha": "d51010f2d5880327"
+  },
+  {
+   "case_id": "webshop-181",
+   "category": "agentboard_webshop",
+   "sha": "f41c22925240026f"
+  },
+  {
+   "case_id": "webshop-182",
+   "category": "agentboard_webshop",
+   "sha": "23ad3212059c5c1a"
+  },
+  {
+   "case_id": "webshop-183",
+   "category": "agentboard_webshop",
+   "sha": "691e2d7457ab86a7"
+  },
+  {
+   "case_id": "webshop-184",
+   "category": "agentboard_webshop",
+   "sha": "fbb66c6f6ab8796a"
+  },
+  {
+   "case_id": "webshop-185",
+   "category": "agentboard_webshop",
+   "sha": "0d01077a31b888f9"
+  },
+  {
+   "case_id": "webshop-186",
+   "category": "agentboard_webshop",
+   "sha": "7ca2c4122cacda44"
+  },
+  {
+   "case_id": "webshop-187",
+   "category": "agentboard_webshop",
+   "sha": "5d2653bfeabf2355"
+  },
+  {
+   "case_id": "webshop-188",
+   "category": "agentboard_webshop",
+   "sha": "c7ce11fa7b56b25e"
+  },
+  {
+   "case_id": "webshop-189",
+   "category": "agentboard_webshop",
+   "sha": "c3d772ce1cf18207"
+  },
+  {
+   "case_id": "webshop-190",
+   "category": "agentboard_webshop",
+   "sha": "4890e12bfa8d03a7"
+  },
+  {
+   "case_id": "webshop-191",
+   "category": "agentboard_webshop",
+   "sha": "7b00ad0c7b987702"
+  },
+  {
+   "case_id": "webshop-192",
+   "category": "agentboard_webshop",
+   "sha": "3bf90191c53f78bc"
+  },
+  {
+   "case_id": "webshop-193",
+   "category": "agentboard_webshop",
+   "sha": "568924cb018a7ae2"
+  },
+  {
+   "case_id": "webshop-194",
+   "category": "agentboard_webshop",
+   "sha": "374ae88dde7c145a"
+  },
+  {
+   "case_id": "webshop-195",
+   "category": "agentboard_webshop",
+   "sha": "7615663db8ae7779"
+  },
+  {
+   "case_id": "webshop-196",
+   "category": "agentboard_webshop",
+   "sha": "3e06350b800f780c"
+  },
+  {
+   "case_id": "webshop-197",
+   "category": "agentboard_webshop",
+   "sha": "a5cb754484348258"
+  },
+  {
+   "case_id": "webshop-198",
+   "category": "agentboard_webshop",
+   "sha": "c48ee6de7e5f4504"
+  },
+  {
+   "case_id": "webshop-199",
+   "category": "agentboard_webshop",
+   "sha": "f7de0f0e964b095c"
+  },
+  {
+   "case_id": "webshop-200",
+   "category": "agentboard_webshop",
+   "sha": "458a683dcb87451f"
+  },
+  {
+   "case_id": "webshop-201",
+   "category": "agentboard_webshop",
+   "sha": "6919e1da9d8ae570"
+  },
+  {
+   "case_id": "webshop-202",
+   "category": "agentboard_webshop",
+   "sha": "ab60d54cfe289a5d"
+  },
+  {
+   "case_id": "webshop-203",
+   "category": "agentboard_webshop",
+   "sha": "6a5ebc87ebcc350f"
+  },
+  {
+   "case_id": "webshop-204",
+   "category": "agentboard_webshop",
+   "sha": "a9589652395a2f4c"
+  },
+  {
+   "case_id": "webshop-205",
+   "category": "agentboard_webshop",
+   "sha": "1ac1d0c3bbe87be3"
+  },
+  {
+   "case_id": "webshop-206",
+   "category": "agentboard_webshop",
+   "sha": "23a32b1985c07d03"
+  },
+  {
+   "case_id": "webshop-207",
+   "category": "agentboard_webshop",
+   "sha": "ef52949b6d12a5f5"
+  },
+  {
+   "case_id": "webshop-208",
+   "category": "agentboard_webshop",
+   "sha": "4524499aeeffde26"
+  },
+  {
+   "case_id": "webshop-209",
+   "category": "agentboard_webshop",
+   "sha": "0e8c7d1c71aae917"
+  },
+  {
+   "case_id": "webshop-210",
+   "category": "agentboard_webshop",
+   "sha": "de744fe0ff099cf3"
+  },
+  {
+   "case_id": "webshop-211",
+   "category": "agentboard_webshop",
+   "sha": "f466a3ff6b4154ea"
+  },
+  {
+   "case_id": "webshop-212",
+   "category": "agentboard_webshop",
+   "sha": "c4c284d8bfcb3322"
+  },
+  {
+   "case_id": "webshop-213",
+   "category": "agentboard_webshop",
+   "sha": "40f14b4cbe762810"
+  },
+  {
+   "case_id": "webshop-214",
+   "category": "agentboard_webshop",
+   "sha": "10bb4b23d1e88309"
+  },
+  {
+   "case_id": "webshop-215",
+   "category": "agentboard_webshop",
+   "sha": "974cb6806629cce8"
+  },
+  {
+   "case_id": "webshop-216",
+   "category": "agentboard_webshop",
+   "sha": "a0705d6fad0f948c"
+  },
+  {
+   "case_id": "webshop-217",
+   "category": "agentboard_webshop",
+   "sha": "76b9b1b869f8ffd1"
+  },
+  {
+   "case_id": "webshop-218",
+   "category": "agentboard_webshop",
+   "sha": "8badfda2c5f02ca3"
+  },
+  {
+   "case_id": "webshop-219",
+   "category": "agentboard_webshop",
+   "sha": "9c4770bb34209964"
+  },
+  {
+   "case_id": "webshop-220",
+   "category": "agentboard_webshop",
+   "sha": "a2eaddbed8326934"
+  },
+  {
+   "case_id": "webshop-221",
+   "category": "agentboard_webshop",
+   "sha": "e1ba812993f1c217"
+  },
+  {
+   "case_id": "webshop-222",
+   "category": "agentboard_webshop",
+   "sha": "56653f4c81a4e899"
+  },
+  {
+   "case_id": "webshop-223",
+   "category": "agentboard_webshop",
+   "sha": "0182edd3232b7773"
+  },
+  {
+   "case_id": "webshop-224",
+   "category": "agentboard_webshop",
+   "sha": "be8e422287ca18bd"
+  },
+  {
+   "case_id": "webshop-225",
+   "category": "agentboard_webshop",
+   "sha": "d15b38dbeca42037"
+  },
+  {
+   "case_id": "webshop-226",
+   "category": "agentboard_webshop",
+   "sha": "a0f66c88bdc63071"
+  },
+  {
+   "case_id": "webshop-227",
+   "category": "agentboard_webshop",
+   "sha": "77f90c6a3721b9b9"
+  },
+  {
+   "case_id": "webshop-228",
+   "category": "agentboard_webshop",
+   "sha": "740bf6c26b680a2a"
+  },
+  {
+   "case_id": "webshop-229",
+   "category": "agentboard_webshop",
+   "sha": "3d38bb4fd2b09d85"
+  },
+  {
+   "case_id": "webshop-230",
+   "category": "agentboard_webshop",
+   "sha": "42624e09f61917c2"
+  },
+  {
+   "case_id": "webshop-231",
+   "category": "agentboard_webshop",
+   "sha": "60e7657cd43a8214"
+  },
+  {
+   "case_id": "webshop-232",
+   "category": "agentboard_webshop",
+   "sha": "8dc1df8f944de333"
+  },
+  {
+   "case_id": "webshop-233",
+   "category": "agentboard_webshop",
+   "sha": "6a6aa681b4d48e55"
+  },
+  {
+   "case_id": "webshop-234",
+   "category": "agentboard_webshop",
+   "sha": "801d6b9125c6d1fa"
+  },
+  {
+   "case_id": "webshop-235",
+   "category": "agentboard_webshop",
+   "sha": "893d7e9612227df6"
+  },
+  {
+   "case_id": "webshop-236",
+   "category": "agentboard_webshop",
+   "sha": "c723a4ec0d0ee18e"
+  },
+  {
+   "case_id": "webshop-237",
+   "category": "agentboard_webshop",
+   "sha": "2605227c2c587406"
+  },
+  {
+   "case_id": "webshop-238",
+   "category": "agentboard_webshop",
+   "sha": "0e80f740e1121289"
+  },
+  {
+   "case_id": "webshop-239",
+   "category": "agentboard_webshop",
+   "sha": "aea55597cf5d3c01"
+  },
+  {
+   "case_id": "webshop-240",
+   "category": "agentboard_webshop",
+   "sha": "bf4e1376140f3fc8"
+  },
+  {
+   "case_id": "webshop-241",
+   "category": "agentboard_webshop",
+   "sha": "73b2f65988f9928b"
+  },
+  {
+   "case_id": "webshop-242",
+   "category": "agentboard_webshop",
+   "sha": "827015351dd7001b"
+  },
+  {
+   "case_id": "webshop-243",
+   "category": "agentboard_webshop",
+   "sha": "9fd22ac259b5a533"
+  },
+  {
+   "case_id": "webshop-244",
+   "category": "agentboard_webshop",
+   "sha": "d8007ad28f41622f"
+  },
+  {
+   "case_id": "webshop-245",
+   "category": "agentboard_webshop",
+   "sha": "196adb804184adbb"
+  },
+  {
+   "case_id": "webshop-246",
+   "category": "agentboard_webshop",
+   "sha": "6535a1d27bdca7c4"
+  },
+  {
+   "case_id": "webshop-247",
+   "category": "agentboard_webshop",
+   "sha": "69639cab0f7e87b7"
+  },
+  {
+   "case_id": "webshop-248",
+   "category": "agentboard_webshop",
+   "sha": "b54d29ebe811dac3"
+  },
+  {
+   "case_id": "webshop-249",
+   "category": "agentboard_webshop",
+   "sha": "78fc1ba6a548bdcf"
+  },
+  {
+   "case_id": "webshop-250",
+   "category": "agentboard_webshop",
+   "sha": "d73d5e59cc49765a"
+  }
+ ]
+}

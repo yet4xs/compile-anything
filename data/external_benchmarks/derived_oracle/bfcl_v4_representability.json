@@ -1,0 +1,111 @@
+{
+  "total": 4696,
+  "counts": {
+    "full": 1931,
+    "partial": 2610,
+    "none": 155
+  },
+  "reasons": {
+    "unknown_tool_semantics": 2330,
+    "unsupported_skill": 155,
+    "multi_turn_state": 800,
+    "environment_required": 100
+  },
+  "by_category": {
+    "irrelevance": {
+      "full": 240,
+      "partial": 0,
+      "none": 0
+    },
+    "live_irrelevance": {
+      "full": 884,
+      "partial": 0,
+      "none": 0
+    },
+    "live_multiple": {
+      "full": 263,
+      "partial": 790,
+      "none": 0
+    },
+    "live_parallel": {
+      "full": 12,
+      "partial": 4,
+      "none": 0
+    },
+    "live_parallel_multiple": {
+      "full": 9,
+      "partial": 15,
+      "none": 0
+    },
+    "live_relevance": {
+      "full": 16,
+      "partial": 0,
+      "none": 0
+    },
+    "live_simple": {
+      "full": 80,
+      "partial": 178,
+      "none": 0
+    },
+    "memory": {
+      "full": 0,
+      "partial": 0,
+      "none": 155
+    },
+    "multi_turn_base": {
+      "full": 0,
+      "partial": 200,
+      "none": 0
+    },
+    "multi_turn_long_context": {
+      "full": 0,
+      "partial": 200,
+      "none": 0
+    },
+    "multi_turn_miss_func": {
+      "full": 0,
+      "partial": 200,
+      "none": 0
+    },
+    "multi_turn_miss_param": {
+      "full": 0,
+      "partial": 200,
+      "none": 0
+    },
+    "multiple": {
+      "full": 70,
+      "partial": 130,
+      "none": 0
+    },
+    "parallel": {
+      "full": 92,
+      "partial": 108,
+      "none": 0
+    },
+    "parallel_multiple": {
+      "full": 34,
+      "partial": 166,
+      "none": 0
+    },
+    "simple_java": {
+      "full": 30,
+      "partial": 70,
+      "none": 0
+    },
+    "simple_javascript": {
+      "full": 20,
+      "partial": 30,
+      "none": 0
+    },
+    "simple_python": {
+      "full": 181,
+      "partial": 219,
+      "none": 0
+    },
+    "web_search": {
+      "full": 0,
+      "partial": 100,
+      "none": 0
+    }
+  }
+}

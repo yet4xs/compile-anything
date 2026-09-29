@@ -31,4 +31,6 @@ data/external_benchmarks/*
 !data/external_benchmarks/README.md
 !data/external_benchmarks/MANIFEST.json
 !data/external_benchmarks/status.json
+!data/external_benchmarks/eval_suites/
+!data/external_benchmarks/derived_oracle/
 third_party/

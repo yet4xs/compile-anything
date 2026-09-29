@@ -1,0 +1,59 @@
+{
+  "v3_train_size": 28093,
+  "benchmarks": {
+    "bfcl_v4": {
+      "external_samples": 4696,
+      "exact_overlap": 1,
+      "exact_overlap_pct": 0.021,
+      "near_overlap_pairs(vs_20k_cap)": 4,
+      "tool_family_overlap_pct": 100.0,
+      "composition_overlap_pct": 57.08,
+      "classification": "cross-dataset (same tool families)"
+    },
+    "tau3_bench": {
+      "external_samples": 2546,
+      "exact_overlap": 0,
+      "exact_overlap_pct": 0.0,
+      "near_overlap_pairs(vs_20k_cap)": 0,
+      "tool_family_overlap_pct": null,
+      "composition_overlap_pct": null,
+      "classification": "strong OOD"
+    },
+    "agentboard_tools": {
+      "external_samples": 100,
+      "exact_overlap": 0,
+      "exact_overlap_pct": 0.0,
+      "near_overlap_pairs(vs_20k_cap)": 0,
+      "tool_family_overlap_pct": null,
+      "composition_overlap_pct": null,
+      "classification": "strong OOD"
+    },
+    "agentboard_webshop": {
+      "external_samples": 251,
+      "exact_overlap": 0,
+      "exact_overlap_pct": 0.0,
+      "near_overlap_pairs(vs_20k_cap)": 0,
+      "tool_family_overlap_pct": null,
+      "composition_overlap_pct": null,
+      "classification": "strong OOD"
+    },
+    "rtl_repo": {
+      "external_samples": 1174,
+      "exact_overlap": 0,
+      "exact_overlap_pct": 0.0,
+      "near_overlap_pairs(vs_20k_cap)": 0,
+      "tool_family_overlap_pct": null,
+      "composition_overlap_pct": null,
+      "classification": "strong OOD"
+    },
+    "bird_mini_dev": {
+      "external_samples": 500,
+      "exact_overlap": 0,
+      "exact_overlap_pct": 0.0,
+      "near_overlap_pairs(vs_20k_cap)": 0,
+      "tool_family_overlap_pct": null,
+      "composition_overlap_pct": null,
+      "classification": "strong OOD"
+    }
+  }
+}

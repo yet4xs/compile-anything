@@ -1,0 +1,207 @@
+{
+ "benchmark": "agentboard_tools_tool_operation",
+ "layer": "B_stateful_agent",
+ "case_count": 40,
+ "cases": [
+  {
+   "case_id": "tool-operation-0",
+   "category": "agentboard_tool_operation",
+   "sha": "35054f9d100e5d33"
+  },
+  {
+   "case_id": "tool-operation-1",
+   "category": "agentboard_tool_operation",
+   "sha": "3a304bbd8dcbe693"
+  },
+  {
+   "case_id": "tool-operation-2",
+   "category": "agentboard_tool_operation",
+   "sha": "2e5b63a8e3766017"
+  },
+  {
+   "case_id": "tool-operation-3",
+   "category": "agentboard_tool_operation",
+   "sha": "aae308845bd509b9"
+  },
+  {
+   "case_id": "tool-operation-4",
+   "category": "agentboard_tool_operation",
+   "sha": "b4d16286e5fe8473"
+  },
+  {
+   "case_id": "tool-operation-5",
+   "category": "agentboard_tool_operation",
+   "sha": "ba3da4483c3b24cc"
+  },
+  {
+   "case_id": "tool-operation-6",
+   "category": "agentboard_tool_operation",
+   "sha": "99a51e94fac6d30d"
+  },
+  {
+   "case_id": "tool-operation-7",
+   "category": "agentboard_tool_operation",
+   "sha": "22ea9ce13dabea6b"
+  },
+  {
+   "case_id": "tool-operation-8",
+   "category": "agentboard_tool_operation",
+   "sha": "c6688a96411fab36"
+  },
+  {
+   "case_id": "tool-operation-9",
+   "category": "agentboard_tool_operation",
+   "sha": "d2b2b20d8ad5aac1"
+  },
+  {
+   "case_id": "tool-operation-10",
+   "category": "agentboard_tool_operation",
+   "sha": "07d470f00f413738"
+  },
+  {
+   "case_id": "tool-operation-11",
+   "category": "agentboard_tool_operation",
+   "sha": "ab221efd88d6c99f"
+  },
+  {
+   "case_id": "tool-operation-12",
+   "category": "agentboard_tool_operation",
+   "sha": "6da959e7396dad57"
+  },
+  {
+   "case_id": "tool-operation-13",
+   "category": "agentboard_tool_operation",
+   "sha": "7e83b4cc99b150ac"
+  },
+  {
+   "case_id": "tool-operation-14",
+   "category": "agentboard_tool_operation",
+   "sha": "286d0442013ac951"
+  },
+  {
+   "case_id": "tool-operation-15",
+   "category": "agentboard_tool_operation",
+   "sha": "c5ab35d908d9ec59"
+  },
+  {
+   "case_id": "tool-operation-16",
+   "category": "agentboard_tool_operation",
+   "sha": "62ce6b9ce1f0234a"
+  },
+  {
+   "case_id": "tool-operation-17",
+   "category": "agentboard_tool_operation",
+   "sha": "7b846259b5106799"
+  },
+  {
+   "case_id": "tool-operation-18",
+   "category": "agentboard_tool_operation",
+   "sha": "36202b66ab42e19d"
+  },
+  {
+   "case_id": "tool-operation-19",
+   "category": "agentboard_tool_operation",
+   "sha": "dfb6dbd9c3e4d34e"
+  },
+  {
+   "case_id": "tool-operation-20",
+   "category": "agentboard_tool_operation",
+   "sha": "cf84a7142ca6ce0a"
+  },
+  {
+   "case_id": "tool-operation-21",
+   "category": "agentboard_tool_operation",
+   "sha": "cbdf1342b8f84a28"
+  },
+  {
+   "case_id": "tool-operation-22",
+   "category": "agentboard_tool_operation",
+   "sha": "4f272a7a59bc9ab5"
+  },
+  {
+   "case_id": "tool-operation-23",
+   "category": "agentboard_tool_operation",
+   "sha": "aafb7aadabd56d75"
+  },
+  {
+   "case_id": "tool-operation-24",
+   "category": "agentboard_tool_operation",
+   "sha": "86aafd79f00884d3"
+  },
+  {
+   "case_id": "tool-operation-25",
+   "category": "agentboard_tool_operation",
+   "sha": "fe8f1e60275bba40"
+  },
+  {
+   "case_id": "tool-operation-26",
+   "category": "agentboard_tool_operation",
+   "sha": "2b7cfe1d3f80b37e"
+  },
+  {
+   "case_id": "tool-operation-27",
+   "category": "agentboard_tool_operation",
+   "sha": "2c5a035fe0587846"
+  },
+  {
+   "case_id": "tool-operation-28",
+   "category": "agentboard_tool_operation",
+   "sha": "31151f5e2b9f3b1a"
+  },
+  {
+   "case_id": "tool-operation-29",
+   "category": "agentboard_tool_operation",
+   "sha": "77ad2e90965506f5"
+  },
+  {
+   "case_id": "tool-operation-30",
+   "category": "agentboard_tool_operation",
+   "sha": "cc06c2baac472917"
+  },
+  {
+   "case_id": "tool-operation-31",
+   "category": "agentboard_tool_operation",
+   "sha": "c8b97a7e4cb4380b"
+  },
+  {
+   "case_id": "tool-operation-32",
+   "category": "agentboard_tool_operation",
+   "sha": "df8b82ddc9377649"
+  },
+  {
+   "case_id": "tool-operation-33",
+   "category": "agentboard_tool_operation",
+   "sha": "78e43d30dc4d880f"
+  },
+  {
+   "case_id": "tool-operation-34",
+   "category": "agentboard_tool_operation",
+   "sha": "54ccb2a289d4c7f4"
+  },
+  {
+   "case_id": "tool-operation-35",
+   "category": "agentboard_tool_operation",
+   "sha": "97a12be0129b708b"
+  },
+  {
+   "case_id": "tool-operation-36",
+   "category": "agentboard_tool_operation",
+   "sha": "a7055d7823af00a6"
+  },
+  {
+   "case_id": "tool-operation-37",
+   "category": "agentboard_tool_operation",
+   "sha": "922c30d113103c1f"
+  },
+  {
+   "case_id": "tool-operation-38",
+   "category": "agentboard_tool_operation",
+   "sha": "9fff6521664e4fd3"
+  },
+  {
+   "case_id": "tool-operation-39",
+   "category": "agentboard_tool_operation",
+   "sha": "f42efea6b6782c44"
+  }
+ ]
+}

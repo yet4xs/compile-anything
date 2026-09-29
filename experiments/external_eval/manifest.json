@@ -1,0 +1,115 @@
+{
+  "generated": "dcafba72cb2346238e50c9bf3da3cb254ab85f26",
+  "suites": {
+    "bfcl_v4": {
+      "layer": "A_function_calling",
+      "case_count": 4696,
+      "raw_revision": "gorilla@6ea57973",
+      "eval_suite_sha256": "de6a810736ccc8d350d499ca05dc435a6a83f84982cae326a6075e541f15107d",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "tau3_bench": {
+      "layer": "B_stateful_agent",
+      "case_count": 2546,
+      "raw_revision": "codesque16/tau3-bench@f0a0173e",
+      "eval_suite_sha256": "342e2c5e5be469bf0e97580204bafd6c4c343190c4976a96f3e7237d4aacfd65",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "agentboard_tools_tool_query": {
+      "layer": "A_function_calling",
+      "case_count": 60,
+      "raw_revision": "AgentBoard@bb7255e2",
+      "eval_suite_sha256": "99c4ef808dcd482f8fbd3910db2157b90179e73a54327141204d189ea3e85854",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "agentboard_tools_tool_operation": {
+      "layer": "B_stateful_agent",
+      "case_count": 40,
+      "raw_revision": "AgentBoard@bb7255e2",
+      "eval_suite_sha256": "7cbdd85ab353f7d5967aeab03cdbcd804970aee1c12c39e67e4a3b345f7a2bb5",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "agentboard_webshop": {
+      "layer": "B_stateful_agent",
+      "case_count": 251,
+      "raw_revision": "AgentBoard@bb7255e2",
+      "eval_suite_sha256": "4908e84203bcc70e00852b4f08cdd60ba8dc37f74f714d24e4271c5013974d34",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "rtl_repo": {
+      "layer": "C_domain_transfer",
+      "case_count": 1174,
+      "raw_revision": "ahmedallam/RTL-Repo (test split)",
+      "eval_suite_sha256": "e91538f12d9cf7dd5c9454b190c8609ce216cdf7c46e1cafeae5a4d7160dc2c7",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "bird_mini_dev": {
+      "layer": "C_domain_transfer",
+      "case_count": 500,
+      "raw_revision": "birdsql/bird_mini_dev",
+      "eval_suite_sha256": "609052cb6256f0c8dd6b6e91f53d96a9369b862499607b41ad0b463e479504a7",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    },
+    "toolbench_full": {
+      "layer": "A_function_calling",
+      "case_count": 124345,
+      "raw_revision": "modelscope swift/ToolBench",
+      "eval_suite_sha256": "928de958532a4d84c654f27e80829154d9c5895fdb3b9af1df148d162a89572b",
+      "adapter_version": "dcafba72cb2346238e50c9bf3da3cb254ab85f26"
+    }
+  },
+  "oracle_bfcl": {
+    "total": 4696,
+    "full": 1931,
+    "partial": 2610,
+    "none": 155
+  },
+  "raw_benchmark_manifest": {
+    "bfcl_v4": {
+      "revision": "6ea57973c7a6097fd7c5915698c54c17c5b1b6c8",
+      "status": "READY",
+      "file_count": 36
+    },
+    "tau3_bench": {
+      "revision": "f0a0173e31d12d051145321ea42dabc59a16f57a",
+      "status": "READY",
+      "file_count": 886
+    },
+    "agentboard": {
+      "revision": "bb7255e2daf1989069a186dad9e53f70680961db",
+      "status": "READY",
+      "file_count": 1193
+    },
+    "webshop": {
+      "revision": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+      "status": "PARTIAL",
+      "file_count": 0
+    },
+    "agentbench": {
+      "revision": "",
+      "status": "READY",
+      "file_count": 0
+    },
+    "rtl_repo": {
+      "revision": "",
+      "status": "READY",
+      "file_count": 3
+    },
+    "bird": {
+      "revision": "",
+      "status": "READY",
+      "file_count": 4
+    },
+    "toolbench_full": {
+      "revision": "",
+      "status": "READY",
+      "file_count": 1
+    },
+    "toolquery": {
+      "revision": "",
+      "status": "READY (via AgentBoard)",
+      "file_count": null
+    }
+  },
+  "principle": "official test sets + official metrics + frozen case ids; adapter outputs can never enter SFT (external_guard)"
+}

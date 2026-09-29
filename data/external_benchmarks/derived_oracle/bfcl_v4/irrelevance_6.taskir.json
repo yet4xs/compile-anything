@@ -1,0 +1,13 @@
+{
+ "case_id": "irrelevance_6",
+ "status": "full",
+ "taskir": {
+  "nodes": [
+   {
+    "id": "%ans",
+    "op": "GENERATE"
+   }
+  ]
+ },
+ "reasons": []
+}

@@ -1,0 +1,307 @@
+{
+ "benchmark": "agentboard_tools_tool_query",
+ "layer": "A_function_calling",
+ "case_count": 60,
+ "cases": [
+  {
+   "case_id": "tool-query-0",
+   "category": "agentboard_tool_query",
+   "sha": "8724db60ed8cbb9e"
+  },
+  {
+   "case_id": "tool-query-1",
+   "category": "agentboard_tool_query",
+   "sha": "408728c5cd2d7bce"
+  },
+  {
+   "case_id": "tool-query-2",
+   "category": "agentboard_tool_query",
+   "sha": "585cd33bdf35773a"
+  },
+  {
+   "case_id": "tool-query-3",
+   "category": "agentboard_tool_query",
+   "sha": "c9135c231c955f4d"
+  },
+  {
+   "case_id": "tool-query-4",
+   "category": "agentboard_tool_query",
+   "sha": "be974c30a60e3d7e"
+  },
+  {
+   "case_id": "tool-query-5",
+   "category": "agentboard_tool_query",
+   "sha": "a7029ffd0b7c89f6"
+  },
+  {
+   "case_id": "tool-query-6",
+   "category": "agentboard_tool_query",
+   "sha": "263814bb6d5a01c5"
+  },
+  {
+   "case_id": "tool-query-7",
+   "category": "agentboard_tool_query",
+   "sha": "3ea5e97e1372f263"
+  },
+  {
+   "case_id": "tool-query-8",
+   "category": "agentboard_tool_query",
+   "sha": "8aeb331a16bfc471"
+  },
+  {
+   "case_id": "tool-query-9",
+   "category": "agentboard_tool_query",
+   "sha": "4a5fedb691249a6a"
+  },
+  {
+   "case_id": "tool-query-10",
+   "category": "agentboard_tool_query",
+   "sha": "8eeab5be50655497"
+  },
+  {
+   "case_id": "tool-query-11",
+   "category": "agentboard_tool_query",
+   "sha": "4572d30d2f845717"
+  },
+  {
+   "case_id": "tool-query-12",
+   "category": "agentboard_tool_query",
+   "sha": "5a3dc5abd793e958"
+  },
+  {
+   "case_id": "tool-query-13",
+   "category": "agentboard_tool_query",
+   "sha": "00a81e06a2eda32b"
+  },
+  {
+   "case_id": "tool-query-14",
+   "category": "agentboard_tool_query",
+   "sha": "2436abc1132f0520"
+  },
+  {
+   "case_id": "tool-query-15",
+   "category": "agentboard_tool_query",
+   "sha": "d0f5928962652988"
+  },
+  {
+   "case_id": "tool-query-16",
+   "category": "agentboard_tool_query",
+   "sha": "5d08c31ecfdbda99"
+  },
+  {
+   "case_id": "tool-query-17",
+   "category": "agentboard_tool_query",
+   "sha": "ae272f1e0947dd85"
+  },
+  {
+   "case_id": "tool-query-18",
+   "category": "agentboard_tool_query",
+   "sha": "fb5d1fde8f98344c"
+  },
+  {
+   "case_id": "tool-query-19",
+   "category": "agentboard_tool_query",
+   "sha": "eba2bf1393058d51"
+  },
+  {
+   "case_id": "tool-query-20",
+   "category": "agentboard_tool_query",
+   "sha": "a7d50c2fadaaa4db"
+  },
+  {
+   "case_id": "tool-query-21",
+   "category": "agentboard_tool_query",
+   "sha": "3c0c29ae64a1da85"
+  },
+  {
+   "case_id": "tool-query-22",
+   "category": "agentboard_tool_query",
+   "sha": "c1dba03a84d02e31"
+  },
+  {
+   "case_id": "tool-query-23",
+   "category": "agentboard_tool_query",
+   "sha": "1521e7cd62c242ee"
+  },
+  {
+   "case_id": "tool-query-24",
+   "category": "agentboard_tool_query",
+   "sha": "89761a7bac9b8cc8"
+  },
+  {
+   "case_id": "tool-query-25",
+   "category": "agentboard_tool_query",
+   "sha": "a564cb404bb9926f"
+  },
+  {
+   "case_id": "tool-query-26",
+   "category": "agentboard_tool_query",
+   "sha": "0d3fc1bc2786654b"
+  },
+  {
+   "case_id": "tool-query-27",
+   "category": "agentboard_tool_query",
+   "sha": "cbc47be645d09061"
+  },
+  {
+   "case_id": "tool-query-28",
+   "category": "agentboard_tool_query",
+   "sha": "594f25b57ed1c375"
+  },
+  {
+   "case_id": "tool-query-29",
+   "category": "agentboard_tool_query",
+   "sha": "9a5919a5cd00a568"
+  },
+  {
+   "case_id": "tool-query-30",
+   "category": "agentboard_tool_query",
+   "sha": "77c66e0e38e78e70"
+  },
+  {
+   "case_id": "tool-query-31",
+   "category": "agentboard_tool_query",
+   "sha": "19b73c7433ebf7a2"
+  },
+  {
+   "case_id": "tool-query-32",
+   "category": "agentboard_tool_query",
+   "sha": "4bbe217278cc16c4"
+  },
+  {
+   "case_id": "tool-query-33",
+   "category": "agentboard_tool_query",
+   "sha": "8c974d30a2155c12"
+  },
+  {
+   "case_id": "tool-query-34",
+   "category": "agentboard_tool_query",
+   "sha": "01ed7aa4a9f10380"
+  },
+  {
+   "case_id": "tool-query-35",
+   "category": "agentboard_tool_query",
+   "sha": "6fc05f4a920d74d8"
+  },
+  {
+   "case_id": "tool-query-36",
+   "category": "agentboard_tool_query",
+   "sha": "4d873c968df9c702"
+  },
+  {
+   "case_id": "tool-query-37",
+   "category": "agentboard_tool_query",
+   "sha": "1927cc568ab52772"
+  },
+  {
+   "case_id": "tool-query-38",
+   "category": "agentboard_tool_query",
+   "sha": "538037f1cc40a169"
+  },
+  {
+   "case_id": "tool-query-39",
+   "category": "agentboard_tool_query",
+   "sha": "021f867d0b366fdb"
+  },
+  {
+   "case_id": "tool-query-40",
+   "category": "agentboard_tool_query",
+   "sha": "8e44d970a44ddf1d"
+  },
+  {
+   "case_id": "tool-query-41",
+   "category": "agentboard_tool_query",
+   "sha": "1453a906b51b77a2"
+  },
+  {
+   "case_id": "tool-query-42",
+   "category": "agentboard_tool_query",
+   "sha": "8d7c5cad6af8f9b2"
+  },
+  {
+   "case_id": "tool-query-43",
+   "category": "agentboard_tool_query",
+   "sha": "2b5c4f5d97df8e6b"
+  },
+  {
+   "case_id": "tool-query-44",
+   "category": "agentboard_tool_query",
+   "sha": "72fcaeb03a138833"
+  },
+  {
+   "case_id": "tool-query-45",
+   "category": "agentboard_tool_query",
+   "sha": "1b64300937410adb"
+  },
+  {
+   "case_id": "tool-query-46",
+   "category": "agentboard_tool_query",
+   "sha": "2f8f76048e60f011"
+  },
+  {
+   "case_id": "tool-query-47",
+   "category": "agentboard_tool_query",
+   "sha": "1b8dff4a78759899"
+  },
+  {
+   "case_id": "tool-query-48",
+   "category": "agentboard_tool_query",
+   "sha": "2c9f55c1123f9971"
+  },
+  {
+   "case_id": "tool-query-49",
+   "category": "agentboard_tool_query",
+   "sha": "9d21957555298db7"
+  },
+  {
+   "case_id": "tool-query-50",
+   "category": "agentboard_tool_query",
+   "sha": "935425ff3c740137"
+  },
+  {
+   "case_id": "tool-query-51",
+   "category": "agentboard_tool_query",
+   "sha": "de6f936a2ac7c00b"
+  },
+  {
+   "case_id": "tool-query-52",
+   "category": "agentboard_tool_query",
+   "sha": "735d8e0ae1f947cf"
+  },
+  {
+   "case_id": "tool-query-53",
+   "category": "agentboard_tool_query",
+   "sha": "46b57783d1f07de6"
+  },
+  {
+   "case_id": "tool-query-54",
+   "category": "agentboard_tool_query",
+   "sha": "8d385a9ba82ce64a"
+  },
+  {
+   "case_id": "tool-query-55",
+   "category": "agentboard_tool_query",
+   "sha": "14123bae3129317d"
+  },
+  {
+   "case_id": "tool-query-56",
+   "category": "agentboard_tool_query",
+   "sha": "9b5b60c99776677b"
+  },
+  {
+   "case_id": "tool-query-57",
+   "category": "agentboard_tool_query",
+   "sha": "18c885d25752772a"
+  },
+  {
+   "case_id": "tool-query-58",
+   "category": "agentboard_tool_query",
+   "sha": "ffa6fa78400d9955"
+  },
+  {
+   "case_id": "tool-query-59",
+   "category": "agentboard_tool_query",
+   "sha": "6de52e6c21cc464d"
+  }
+ ]
+}
