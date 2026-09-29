@@ -15,7 +15,7 @@ cd "$(dirname "$0")/.."
 
 PY=${PY:-python}
 RUNS=runs/phase5b1
-CORPUS=data/compiler_corpus_v3
+CORPUS=${CORPUS:-data/compiler_corpus_v3_1}
 M3=${M3:-weights/Qwen2.5-3B-Instruct}
 M7=${M7:-weights/Qwen2.5-7B-Instruct}
 

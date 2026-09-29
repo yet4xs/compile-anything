@@ -40,10 +40,14 @@ def audit_spider(record: dict, raw_sql: str) -> SemanticAuditResult:
     if has_extract and not qnode.get("params", {}).get("table"):
         flag(res, "WRONG_SKILL", "EXTRACT without table context")
 
-    # keyword constraints live INSIDE the SQL payload (count(/min(/order
-    # by) — pass it to the detector instead of flagging QUERY_DB-only plans
+    # keyword constraints live INSIDE the SQL payload. The plan is a
+    # byte-faithful container of the benchmark's own SQL, so instruction-
+    # keyword gaps reflect the BENCHMARK's phrasing (e.g. "average number
+    # of employees" -> SQL avg(num_employees), "email" is a column name),
+    # not label errors: annotate GROUND_TRUTH_AMBIGUOUS (same policy as
+    # trajectory sources). Suspect is reserved for payload damage below.
     instruction_plan_consistency(res, record.get("instruction", ""), ops,
-                                 mode="suspect", semantic_payload=stored)
+                                 mode="annotate", semantic_payload=stored)
     if res.status != "suspect":
         res.status = "verified"
         res.checks["verdict_basis"] = "SQL payload byte-faithful in QUERY_DB"

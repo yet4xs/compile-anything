@@ -1,6 +1,6 @@
 {
   "experiment": "phase5b1",
-  "git_commit": "4889184c601ee406a9c06b7b9eb01f2d1a85864d",
+  "git_commit": "626ee73229ca59e24faa02f41cec0cb9f1cc62f5",
   "taskir_version": "0.1",
   "prompt": {
     "version": "v1",
@@ -9,8 +9,8 @@
   },
   "frozen_inputs": {
     "src/lifter/toolmap.py": {
-      "sha256": "bd98e7a83894ad31ccb574f77480a795c6fbebc02c6f0d42d7af8ed3c11f0f02",
-      "bytes": 5711
+      "sha256": "9424400765c8262269c6cf192f18eb75c8f5bf41bceea5a0a4c700b86b7c1f62",
+      "bytes": 6792
     },
     "spec/taskir-spec.md": {
       "sha256": "dda5478d4053d9bfdf5692690bdf49e31b8b476929d62ebbfe026b55fbcbf675",
@@ -24,17 +24,17 @@
       "sha256": "7e40de09e98a2db3db88f46ee80f01f7de1069809b39867f1e05e71f4a296d2c",
       "bytes": 2338
     },
-    "data/compiler_corpus_v3/train.jsonl": {
-      "sha256": "6abf0066706fb2da646dd896098c4ab51f59598cab426d9b7c5d1240853a164d",
-      "bytes": 91310981
+    "data/compiler_corpus_v3_1/train.jsonl": {
+      "sha256": "bbfcd03a1c03161fcbc74d0c0da5b86d0ee855575a3db74fdaef31eb13166d26",
+      "bytes": 94423222
     },
-    "data/compiler_corpus_v3/val.jsonl": {
-      "sha256": "9c020b825147c1aa00b0965ae1ab8f8d63890c3466cc34b79e9d224d05993a43",
-      "bytes": 4972324
+    "data/compiler_corpus_v3_1/val.jsonl": {
+      "sha256": "2f934e2505d2fdde87a7c5bd8c384e3ff9ceee1d62bc30f5834fad1f3e582f00",
+      "bytes": 5139789
     },
-    "data/compiler_corpus_v3/test.jsonl": {
-      "sha256": "c16cfd9d10bc090c44b81480705948bc0023f01a471cac925a7b889fa9a6b898",
-      "bytes": 4999644
+    "data/compiler_corpus_v3_1/test.jsonl": {
+      "sha256": "529c984802584354f60d28b6352b29033f5356f0c23792e51bb2eb12199275c9",
+      "bytes": 5163127
     }
   },
   "corpus": {
@@ -83,7 +83,7 @@
   },
   "prohibited_changes": [
     "src/lifter/toolmap.py",
-    "data/compiler_corpus_v3/*",
+    "data/compiler_corpus_v3_1/* (supersedes v3 per semantic audit)",
     "spec/taskir-spec.md",
     "train/test split",
     "(record issues -> Phase 5B-2)"

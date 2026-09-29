@@ -7,6 +7,7 @@ meta.provenance for auditing instead.
 """
 from __future__ import annotations
 
+import json
 import re
 from typing import Any, Dict, List, Tuple
 
@@ -41,8 +42,10 @@ RULES: List[Rule] = [
         "query": _q(a.get("symbol"), a.get("ticker"), a.get("market"))},
      "exact"),
     (r"currency|convert.*money|exchange.*rate", "CONVERT",
-     lambda a: {"from": a.get("from_currency", a.get("base", "USD")),
-                "to": a.get("to_currency", a.get("target", "EUR")),
+     lambda a: {"from": a.get("from_currency", a.get("from",
+                                                     a.get("base", "USD"))),
+                "to": a.get("to_currency", a.get("to",
+                                                 a.get("target", "EUR"))),
                 "amount": a.get("amount", 1)}, "exact"),
     (r"calendar|event|meeting|appointment|schedule", "EXEC_ACTION",
      lambda a: {"action": "create_event",
@@ -85,13 +88,19 @@ def map_tool(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     mapping_kind: exact (domain-identifying rule) | heuristic (verb-level
     rule) | fallback (unknown tool -> generic EXEC_ACTION). The provenance
     fields must NEVER enter the TaskIR semantic body — they ride in
-    meta.provenance only."""
+    meta.provenance only.
+
+    Parameter preservation (Phase 5B-0.46 finding: xLAM argument
+    preservation was 16.7% mean / 0.0 median): the rule's curated key
+    fields stay, and ALL original argument values are merged into params
+    under their original names so no value is lost in compilation."""
     name_l = (tool_name or "").lower()
     args = args or {}
     for pattern, skill, mk, kind in RULES:
         if re.search(pattern, name_l):
             params = {k: v for k, v in (mk(args) or {}).items()
                       if v not in (None, "", [])}
+            _merge_raw_args(params, args)
             return {"skill": skill, "params": params,
                     "mapping_kind": kind, "matched_rule": pattern,
                     "confidence": CONFIDENCE[kind]}
@@ -99,10 +108,27 @@ def map_tool(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     # (skip a leading vendor/service prefix: "SomeVendor.do_thing" -> "do thing")
     segs = [s for s in re.split(r"[.:_\-\s]+", name_l.strip()) if s]
     verb = " ".join(segs[1:]) or (segs[0] if segs else "call")
-    return {"skill": "EXEC_ACTION", "params": {"action": verb,
-                                               "query": _q(*args.values())},
+    params = {"action": verb, "query": _q(*args.values())}
+    _merge_raw_args(params, args)
+    return {"skill": "EXEC_ACTION", "params": params,
             "mapping_kind": "fallback", "matched_rule": None,
             "confidence": CONFIDENCE["fallback"]}
+
+
+def _merge_raw_args(params: Dict[str, Any], args: Dict[str, Any]) -> None:
+    """Merge every raw argument into params under its original key
+    (scalars as-is; nested values as compact JSON strings). Curated
+    semantic fields win on key collision."""
+    for k, v in (args or {}).items():
+        if k in params or v is None:
+            continue
+        if isinstance(v, (str, int, float, bool)):
+            params[k] = v
+        else:
+            try:
+                params[k] = json.dumps(v, ensure_ascii=False)[:200]
+            except (TypeError, ValueError):
+                params[k] = str(v)[:200]
 
 
 def search_output_type(skill: str, params: Dict[str, Any]) -> str | None:

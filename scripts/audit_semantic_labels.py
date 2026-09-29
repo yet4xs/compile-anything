@@ -225,18 +225,33 @@ def main() -> int:
     print(f"judge sample: {len(sample)} "
           f"(ids sampled from verified only)")
 
-    # ---- Task 14: sanity overfit set ------------------------------------
+    # ---- Task 14: sanity overfit set (exactly 256, balanced) -----------
     verified = [r for r in records
                 if res_by_id[r["id"]].status == "verified"]
     by_source = defaultdict(list)
     for r in verified:
         by_source[r["source"]].append(r)
-    sanity = []
-    per = max(1, 256 // max(1, len(by_source)))
-    for src, pool in sorted(by_source.items()):
+    for pool in by_source.values():
         rng.shuffle(pool)
-        sanity.extend(pool[:per])
-    rng.shuffle(sanity)
+    sanity = []
+    taken = {s: 0 for s in by_source}
+    per = max(1, 256 // max(1, len(by_source)))
+    for src in sorted(by_source):
+        take = min(per, len(by_source[src]))
+        sanity.extend(by_source[src][:take])
+        taken[src] = take
+    # round-robin top-up to exactly 256
+    while len(sanity) < 256:
+        progressed = False
+        for src in sorted(by_source):
+            if taken[src] < len(by_source[src]):
+                sanity.append(by_source[src][taken[src]])
+                taken[src] += 1
+                progressed = True
+                if len(sanity) >= 256:
+                    break
+        if not progressed:
+            break
     sanity = sanity[:256]
     sdir = ROOT / "data" / "sanity_overfit"
     sdir.mkdir(parents=True, exist_ok=True)

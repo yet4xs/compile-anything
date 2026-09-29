@@ -28,9 +28,9 @@ FROZEN_FILES = [
     "spec/taskir-spec.md",
     "spec/skill-isa.md",
     "src/compiler/prompt_format.py",
-    "data/compiler_corpus_v3/train.jsonl",
-    "data/compiler_corpus_v3/val.jsonl",
-    "data/compiler_corpus_v3/test.jsonl",
+    "data/compiler_corpus_v3_1/train.jsonl",
+    "data/compiler_corpus_v3_1/val.jsonl",
+    "data/compiler_corpus_v3_1/test.jsonl",
 ]
 
 
@@ -87,17 +87,17 @@ def main() -> int:
             "e2_e3": "weights/Qwen2.5-7B-Instruct",
         },
         "prohibited_changes": [
-            "src/lifter/toolmap.py", "data/compiler_corpus_v3/*",
+            "src/lifter/toolmap.py", "data/compiler_corpus_v3_1/* (supersedes v3 per semantic audit)",
             "spec/taskir-spec.md", "train/test split",
             "(record issues -> Phase 5B-2)"],
     }
 
     for split in ("train", "val", "test"):
-        p = ROOT / "data" / "compiler_corpus_v3" / f"{split}.jsonl"
+        p = ROOT / "data" / "compiler_corpus_v3_1" / f"{split}.jsonl"
         if p.exists():
             manifest["corpus"][split] = {"lines": count_lines(p)}
 
-    stats_p = ROOT / "data" / "compiler_corpus_v3" / "stats.json"
+    stats_p = ROOT / "data" / "compiler_corpus_v3_1" / "stats.json"
     if stats_p.exists():
         s = json.loads(stats_p.read_text(encoding="utf-8"))
         manifest["corpus"]["tiers"] = s.get("tiers")

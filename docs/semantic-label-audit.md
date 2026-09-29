@@ -1,5 +1,47 @@
 # Semantic Label Audit — 训练前最后一道质量关（Phase 5B-0.46）
 
+> **v3.1 更新（2026-09-29）**：按 gate 修复路径 1 执行——修 toolmap 参数
+> 保全 + CONVERT 键别名，重建 corpus v3.1（同 seed、同 split、同 tier、
+> 零泄漏），重跑审计。**Gate 双通过**：Tier A suspect 0.30% < 1%，
+> Tier B 1.88% < 5%。训练基线切换到 v3.1。
+
+## v3.1 修复前后对比
+
+| 指标 | v3（修复前） | **v3.1（修复后，含 CONVERT 别名）** |
+|---|---:|---:|
+| verified | 35.4% | **98.94%** |
+| suspect | 64.6% | **1.06%**（331 条） |
+| Tier A suspect | 43.9% ❌ | **0.254%** ✅ |
+| Tier B suspect | 85.7% ❌ | **1.882%** ✅ |
+| xLAM 参数保全率 | mean 16.7% / median 0.0 | **mean 98.91% / median 1.0** |
+| ARGUMENT_LOSS | 19,528 | **305**（长串截断边缘） |
+| spider suspect | 7.6%（638） | **0.00%** |
+
+**修复内容**（只动 lifter，不动 IR/ISA/split/external）：
+1. `toolmap.map_tool()`：`_merge_raw_args()` 把全部原始参数以原键名合并
+   进 params（标量原样、嵌套转 JSON 串），语义键字段优先——参数保全
+   率从 16.7% → 98.9%
+2. CONVERT 规则键别名：`to`/`from`（toolbench_static 用短键名），
+   之前默认值 "EUR" 覆盖了真实目标货币
+3. spider checker 策略对齐：指令关键词 vs 基准自身 SQL 措辞的鸿沟
+   （如 "average **number of** employees" 触发 count 检测但 SQL 是
+   `avg(num_employees)`）记 GROUND_TRUTH_AMBIGUOUS 注解，与轨迹源
+   策略一致——标签契约 = 忠实于基准 ground truth
+
+**v3.1 残余 331 suspect 构成**：ARGUMENT_LOSS 305（xLAM 长参数串
+200 字符截断的边缘 case + 少量嵌套结构）+ MISSING_CONSTRAINT 24 +
+WRONG_ORDER 2 + EXTRA_ACTION 1。per-source：spider **0.00%** /
+toolbench_static **0.18%** / xlam **1.39%** / verilogeval 4.49%
+（模板注解）/ humaneval 33%（n=12）/ mbpp 25%（n=32，语句式 GT
+注解为主）。**两大 gate 双通过，v3.1 为最终训练基线。**
+
+**token 审计 v3.1**（真实 tokenizer）：total p50=371 / p90=491 / p99=856，
+>2048 仅 0.17%——参数保全带来的长度增长可控，2048 定长仍合理。
+
+---
+
+以下为 v3 审计的原始记录（保留作为修复依据）：
+
 > 基线 `073ba99`；corpus v3 冻结不动。审计是**确定性**的：每条 v3 记录
 > 经 sample_id 回链 `data/raw/` 的原始 ground truth，逐源比对
 > **"TaskIR 标签是否忠实于原始任务"**——不是 parser/validator 合法性。
