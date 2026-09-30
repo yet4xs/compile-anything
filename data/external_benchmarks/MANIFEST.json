@@ -2214,23 +2214,20 @@
     }
   },
   "webshop": {
+    "status": "READY (task definitions + instructions)",
     "downloaded": true,
-    "download_time": "2026-09-29",
-    "repository": "princeton-nlp/WebShop",
-    "commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
-    "license": "see repo (MIT)",
-    "url": "https://github.com/princeton-nlp/WebShop",
-    "status": "PARTIAL",
-    "file_count": 0,
-    "total_bytes": 0,
+    "download_time": "2026-09-30T13:16:16",
+    "repository": "princeton-nlp/WebShop@64fa2a5c",
+    "source": "repo baseline_models/data/ (not Google Drive)",
+    "license": "MIT",
+    "file_count": 2,
+    "total_bytes": 6149055,
     "verification": {
-      "full_environment": false,
-      "task_definitions_via": "AgentBoard webshop/test.jsonl",
-      "setup_script_analyzed": true,
-      "data_source": "Google Drive (gdown ids recorded in setup.sh)"
+      "product_count": 10136,
+      "instruction_count": 12251,
+      "note": "full environment (1.18M items) still Google-Drive-gated; instructions + goals from repo sufficient for task definition eval"
     },
-    "sha256_dir": {},
-    "reason": "google drive unreachable from this network; items_shuffle/items_ins_v2/items_human_ins not downloadable"
+    "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
   },
   "agentbench": {
     "downloaded": true,
@@ -2336,5 +2333,64 @@
     "note": "no separate download; AgentBoard is the canonical source",
     "sha256": "22141b2fade42cafbcafb36771d0673f56326ae2f949c329f72bedf4971dbabc",
     "records": 60
+  },
+  "llmcompiler_hotpotqa": {
+    "status": "READY",
+    "downloaded": true,
+    "download_time": "2026-09-30T13:14:44",
+    "repository": "park-crf/LLMCompiler (from provided zip)",
+    "source": "LLMCompiler-main.zip datasets/",
+    "license": "Apache-2.0 (upstream repo)",
+    "file_count": 1,
+    "total_bytes": 272563,
+    "verification": {
+      "samples": 1487,
+      "schema_keys": [
+        "answer",
+        "id",
+        "level",
+        "question"
+      ]
+    },
+    "sha256": "c306a2b8a0ed309ae6beb13e629bdf60c0398d50816c6ba43dde54ccda0322b2"
+  },
+  "llmcompiler_parallelqa": {
+    "status": "READY",
+    "downloaded": true,
+    "download_time": "2026-09-30T13:14:44",
+    "repository": "park-crf/LLMCompiler (from provided zip)",
+    "source": "LLMCompiler-main.zip datasets/",
+    "license": "Apache-2.0 (upstream repo)",
+    "file_count": 1,
+    "total_bytes": 32557,
+    "verification": {
+      "samples": 113,
+      "schema_keys": [
+        "answer",
+        "branch",
+        "id",
+        "question"
+      ]
+    },
+    "sha256": "44a3648868edcb438018fb48d3e1165543427b79880a4bbf5674f9accfb5d0c6"
+  },
+  "llmcompiler_movie_rec": {
+    "status": "READY",
+    "downloaded": true,
+    "download_time": "2026-09-30T13:14:44",
+    "repository": "park-crf/LLMCompiler (from provided zip)",
+    "source": "LLMCompiler-main.zip datasets/",
+    "license": "Apache-2.0 (upstream repo)",
+    "file_count": 1,
+    "total_bytes": 130147,
+    "verification": {
+      "samples": 500,
+      "schema_keys": [
+        "answer",
+        "id",
+        "question"
+      ]
+    },
+    "sha256": "b812ed39c653e5e9528425391e5e6c19ab2c6739dee44ed820320adee92149c9"
   }
 }
