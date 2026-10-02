@@ -1,0 +1,66 @@
+{
+  "phase": "5C",
+  "base_commit": "31869b3",
+  "research_question": "Can a 3B Neural Compiler achieve cross-domain semantic grounding and multi-step planning through schema conditioning and depth curriculum, while maintaining TaskIR structural correctness?",
+  "experiment_matrix": {
+    "E1-A": {"schema": false, "depth_balanced": false, "description": "Existing baseline (Phase 5B-1)"},
+    "E5C-S": {"schema": true, "depth_balanced": false, "description": "Schema-conditioned only"},
+    "E5C-D": {"schema": false, "depth_balanced": true, "description": "Depth curriculum only"},
+    "E5C-SD": {"schema": true, "depth_balanced": true, "description": "Both factors"}
+  },
+  "fixed_hyperparameters": {
+    "base_model": "Qwen2.5-3B-Instruct",
+    "quantization": "4bit NF4",
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "learning_rate": 1.5e-4,
+    "epochs": 2,
+    "batch_size": 4,
+    "grad_accum": 2,
+    "max_seq_length": 2048,
+    "seed": 42,
+    "target": "plan_target"
+  },
+  "training_data": {
+    "corpus": "data/compiler_corpus_v3_1/train.jsonl",
+    "train_samples": 28093,
+    "depth_distribution_raw": {
+      "1": 19638,
+      "2-3": 8130,
+      "4-6": 308,
+      "7+": 17
+    },
+    "schema_coverage": {
+      "FULL_SCHEMA": 20774,
+      "SEMANTIC_ONLY": 6966,
+      "NONE": 353
+    }
+  },
+  "capability_schema_coverage": {
+    "xlam": "FULL_SCHEMA (function name + description + parameters)",
+    "toolbench_static": "FULL_SCHEMA (API description + params)",
+    "spider": "SEMANTIC_ONLY (table names, no full schema in corpus)",
+    "humaneval": "NONE",
+    "mbpp": "NONE",
+    "verilogeval": "NONE"
+  },
+  "depth_curriculum": {
+    "method": "weighted oversampling",
+    "max_oversample_factor": 5.0,
+    "raw_distribution": {"1": "69.9%", "2-3": "28.9%", "4-6": "1.1%", "7+": "0.1%"},
+    "note": "7+ bucket has only 17 samples — oversampling at 5x gives max 85 effective"
+  },
+  "evaluation_protocol": {
+    "internal": "corpus v3.1 test split (1561 samples)",
+    "bfcl_external_dev": "BFCL V4 full 4696 (2048 protocol)",
+    "tau3_external_dev": "τ³ 2546 tasks (2048 protocol after Task 0 fix)",
+    "agentboard": "UNTouched holdout — not to be run until Phase 5C model frozen"
+  },
+  "prohibited": [
+    "BFCL/τ³/AgentBoard data in training",
+    "Label modification based on external benchmarks",
+    "TaskIR/Validator/Skill ISA modification",
+    "7B model",
+    "Hyperparameter tuning based on external benchmark scores"
+  ]
+}
