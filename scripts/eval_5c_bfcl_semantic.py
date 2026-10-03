@@ -22,7 +22,7 @@ os.chdir("/ccfa2026/compile-anything")
 
 # Wait for the tau3 semantic eval to finish
 while True:
-    if not os.popen("pgrep -f eval_5c_tau3.py").read().strip():
+    if not os.popen("pgrep -f eval_5c_tau3[.]py").read().strip():
         break
     print("waiting for eval_5c_tau3.py ...", flush=True)
     time.sleep(60)

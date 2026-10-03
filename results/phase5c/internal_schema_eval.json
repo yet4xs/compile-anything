@@ -1,0 +1,62 @@
+{
+  "E1-A": {
+    "all": {
+      "n": 0,
+      "parse_pct": 155300.0,
+      "valid_pct": 154900.0,
+      "opseq_pct": 140100.0
+    },
+    "schema": {
+      "n": 1003,
+      "parse_pct": 99.2,
+      "valid_pct": 98.8,
+      "opseq_pct": 84.95
+    },
+    "noschema": {
+      "n": 558,
+      "parse_pct": 100.0,
+      "valid_pct": 100.0,
+      "opseq_pct": 98.39
+    }
+  },
+  "E5C-S": {
+    "all": {
+      "n": 0,
+      "parse_pct": 155300.0,
+      "valid_pct": 154700.0,
+      "opseq_pct": 146900.0
+    },
+    "schema": {
+      "n": 1003,
+      "parse_pct": 99.2,
+      "valid_pct": 98.7,
+      "opseq_pct": 91.33
+    },
+    "noschema": {
+      "n": 558,
+      "parse_pct": 100.0,
+      "valid_pct": 99.82,
+      "opseq_pct": 99.1
+    }
+  },
+  "E5C-SD": {
+    "all": {
+      "n": 0,
+      "parse_pct": 155200.0,
+      "valid_pct": 154900.0,
+      "opseq_pct": 140200.0
+    },
+    "schema": {
+      "n": 1003,
+      "parse_pct": 99.1,
+      "valid_pct": 99.0,
+      "opseq_pct": 84.65
+    },
+    "noschema": {
+      "n": 558,
+      "parse_pct": 100.0,
+      "valid_pct": 99.64,
+      "opseq_pct": 99.1
+    }
+  }
+}

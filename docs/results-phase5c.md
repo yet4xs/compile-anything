@@ -67,7 +67,36 @@
 - E5C-D 的 τ³ Parse 掉到 86.8%（-12pp）：对 1.1% 的桶 5× 过采样放大了噪声，跨域格式稳定性受损。
 - 但 SD（schema + depth）恢复到 96.6% —— schema 上下文为深样本提供了更稳定的条件信号。
 
-### 3.4 归因警告
+### 3.5 正式 2×2 因子分析（对四个因变量分别计算）
+
+效应定义（+schema = (S+SD)/2 − (E1-A+D)/2，+depth 同理，交互 = SD − E1-A − S + D）：
+
+**Internal OpSeq%（matched 协议，§4）**
+
+| | depth ✗ | depth ✓ | depth 主效应 |
+|---|---:|---:|---:|
+| schema ✗ | 92.76 | 87.51 | **−4.78** |
+| schema ✓ | 94.11 | 89.82 | **−4.78** |
+| schema 主效应 | **+1.83** | **+1.83** | 交互 **−9.54** |
+
+- schema 主效应 +1.83pp（有益但小），depth 主效应 −4.78pp（真实代价），交互 −9.54pp（非加性损害）。
+- 注意主效应在这个 2×2 设计里完全共线（各单元只有一个 seed），交互项吸收了所有单元间残差，
+  多 seed 复现前只作描述性结论。
+
+**τ³ Pred/T（主表）**
+
+| | depth ✗ | depth ✓ | depth 主效应 |
+|---|---:|---:|---:|
+| schema ✗ | 1.00 | 1.65 | **+0.65** |
+| schema ✓ | 1.75 | 1.75 | **+0.00** |
+| schema 主效应 | **+0.75** | **+0.55** | 交互 **+0.35** |
+
+- 深度提升的主要来源是 schema（+0.75），depth reweighting 单独 +0.65，且被 schema 完全饱和
+  （SD 不再叠加）。支持"capability 可见性驱动计划展开"的机制解释。
+
+**BFCL Functional%、τ³ Semantic Recall%**：待 §5/§6 补测结果回填。
+
+### 3.6 归因警告
 
 BFCL Valid 的 +2.0~+3.5pp 出现在全部三个新模型上（包括无 schema 的 D）。
 共同点是"重新训练"本身（数据顺序、过采样改变的有效 epoch 组成）。
@@ -76,11 +105,42 @@ manifest 已禁止基于外部分数调参，此警告仅限论文表述。
 
 ## 4. 补测：internal 带 schema prompt（修 §3.2 的失配）
 
-> 进行中（`results/phase5c/internal_schema_eval.json`）。协议：对有 capabilities 的 1003 条测试样本
+> 已完成（`results/phase5c/internal_schema_eval.json`）。协议：对有 capabilities 的 1,003 条测试样本
 > 用与训练完全一致的 `build_capability_prompt` 格式，558 条无 schema 样本保持裸指令。
-> 分桶报告 all / schema / noschema。
+> 注：脚本中 "all" 行的 n 有计数 bug（未累加），下表 all 行由 schema/noschema 两桶精确重算。
 
-（结果待填）
+**Matched-protocol internal 表（主比较，train/eval 协议一致）：**
+
+| Model | Eval Prompt | Valid% | OpSeq% |
+|---|---|---:|---:|
+| E1-A | bare（主表） | 99.23 | 92.76 |
+| E5C-S | schema | 99.10 | **94.11** |
+| E5C-D | bare（主表） | 97.82 | 87.51 |
+| E5C-SD | schema | **99.23** | 89.82 |
+
+分桶（schema 桶 n=1,003 / noschema 桶 n=558）：
+
+| Model | schema桶 Valid/OpSeq | noschema桶 Valid/OpSeq |
+|---|---|---|
+| E1-A（ablation） | 98.80 / 84.95 | 100.0 / 98.39 |
+| E5C-S | 98.70 / **91.33** | 99.82 / 99.10 |
+| E5C-SD | **99.00** / 84.65 | 99.64 / 99.10 |
+
+**结论：**
+
+1. **"能力丢失"假设排除**：matched 协议下 S OpSeq 44.1→**94.11**，SD 39.1→**89.82**，
+   崩塌完全由 train/eval prompt 失配解释。主表 §2 中 S/SD 的 internal 数字应视为
+   schema-ablated 推理的鲁棒性数字，而非能力数字。
+2. **冻结规则 §8 门槛（matched Valid ≥ 97%）四组全部通过**：E1-A 99.23 / S 99.10 / D 97.82 / SD 99.23。
+   选型进入规则 #2（BFCL Functional）裁决 → §6。
+3. **E5C-S 的 internal OpSeq 94.11 是四格最高**（超过 E1-A 92.76）：schema 条件化训练本身
+   不损 internal 计划选择——反而略有益。
+4. 深度课程在 internal OpSeq 上有真实代价：D 87.51、SD 89.82 均低于各自对照。
+5. E1-A 用 schema prompt（不匹配方向）只损 OpSeq ~3pp（92.76→89.75），不损 Valid ——
+   与 5B capability ablation 的方向一致（schema 上下文主要影响计划选择，不影响结构合法性）。
+6. 主表失配数字反推（noschema 桶两轮 eval 同为裸指令、行为一致，≈553 正确）：
+   主表中 S/SD 在 schema 类样本上的 OpSeq 仅约 14%（S）和 6%（SD），而 noschema 类 ~99%
+   —— 失配损害集中在训练时有 schema 的域（xLAM/ToolBench），对从未有 schema 的域（code 类）无影响。
 
 ## 5. 补测：τ³ 语义召回（深度提升是否转化为正确性）
 
@@ -132,13 +192,7 @@ manifest 已禁止基于外部分数调参，此警告仅限论文表述。
    问题在 objective/组合泛化而非数据量。
 4. AgentBoard 确认性基准保持未动，待 Phase 5C 冻结、final model 选定后一次性首测。
 
-### 一个值得注意的因子现象（待正式分析）
-
-pred/T 上 schema-only (+0.75) ≥ depth-only (+0.65)，联合 (+0.75) 无叠加 ——
-提示深度提升可能主要来自 capability schema 让模型看到多个可用操作后倾向展开
-多步计划，而非 depth reweighting；且存在饱和/非加性交互。
-最终报告须对 Internal OpSeq / BFCL Functional / τ³ Semantic Recall / τ³ Pred/T
-分别计算 Schema 主效应、Depth 主效应、Schema×Depth 交互。
+（schema/depth 非加性现象已升级为正式分析，见 §3.5。）
 
 ## 10. 工件清单
 

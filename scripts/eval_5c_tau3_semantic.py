@@ -12,7 +12,7 @@ os.chdir("/ccfa2026/compile-anything")
 
 # Wait for the schema eval to finish
 while True:
-    rc = os.popen("pgrep -f eval_5c_schema.py").read().strip()
+    rc = os.popen("pgrep -f eval_5c_schema[.]py").read().strip()
     if not rc:
         break
     print("waiting for eval_5c_schema.py ...", flush=True)

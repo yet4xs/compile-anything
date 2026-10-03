@@ -22,9 +22,9 @@ deadline = time.time() + 3 * 3600
 while time.time() < deadline:
     try:
         ssh = connect()
-        out, _ = run(ssh, 'pgrep -f eval_5c_schema.py >/dev/null && echo S1=RUNNING || echo S1=DONE; '
-                          'pgrep -f eval_5c_tau3.py >/dev/null && echo S2=RUNNING || echo S2=DONE; '
-                          'pgrep -f eval_5c_bfcl_sem.py >/dev/null && echo S3=RUNNING || echo S3=DONE; '
+        out, _ = run(ssh, 'pgrep -f eval_5c_schema[.]py >/dev/null && echo S1=RUNNING || echo S1=DONE; '
+                          'pgrep -f eval_5c_tau3[.]py >/dev/null && echo S2=RUNNING || echo S2=DONE; '
+                          'pgrep -f eval_5c_bfcl_sem[.]py >/dev/null && echo S3=RUNNING || echo S3=DONE; '
                           'tail -2 /tmp/eval_5c_schema.log /tmp/eval_5c_tau3.log /tmp/eval_5c_bfcl_sem.log 2>/dev/null | grep -v Warning | grep -v ==$')
         status = dict(l.strip().split('=') for l in out.splitlines() if '=' in l and l.startswith('S'))
         print(out.strip(), flush=True)
