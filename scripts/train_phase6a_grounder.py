@@ -99,8 +99,8 @@ ds = Dataset.from_list(records).map(to_text)
 
 cfg = SFTConfig(
     output_dir=args.out,
-    per_device_train_batch_size=16,
-    gradient_accumulation_steps=1,
+    per_device_train_batch_size=8,
+    gradient_accumulation_steps=2,
     num_train_epochs=args.epochs,
     learning_rate=1.5e-4,
     lr_scheduler_type="cosine",
