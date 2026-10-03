@@ -94,7 +94,18 @@
 - 深度提升的主要来源是 schema（+0.75），depth reweighting 单独 +0.65，且被 schema 完全饱和
   （SD 不再叠加）。支持"capability 可见性驱动计划展开"的机制解释。
 
-**BFCL Functional%、τ³ Semantic Recall%**：待 §5/§6 补测结果回填。
+**τ³ Semantic Recall%（§5）**
+
+| | depth ✗ | depth ✓ | depth 主效应 |
+|---|---:|---:|---:|
+| schema ✗ | 0.62 | 0.55 | −0.035 |
+| schema ✓ | 0.58 | 0.66 | +0.04 |
+| schema 主效应 | −0.02 | +0.055 | 交互 +0.01 |
+
+- 全部效应 ≤0.06pp，在 n=14,834 上属噪声量级：**schema 和 depth 对 τ³ 语义召回均无实效**。
+  长度可训练，正确性不可 —— 两个因子都只动了"计划多长"，没动"计划对不对"。
+
+**BFCL Functional%**：待 §6 补测结果回填。
 
 ### 3.6 归因警告
 
@@ -144,10 +155,32 @@ manifest 已禁止基于外部分数调参，此警告仅限论文表述。
 
 ## 5. 补测：τ³ 语义召回（深度提升是否转化为正确性）
 
-> 进行中（`results/phase5c/tau3_semantic.json`）。关键指标：semantic_recall（预测的语义技能
-> 覆盖 oracle 降级参考动作的比例）。E1-A 之前为 ~19%（受 1.0 pred/T 限制的理论上限）。
+> 已完成（`results/phase5c/tau3_semantic.json`，重打分脚本 `scripts/rescore_5c_tau3.py`，
+> E5C-SD 初版打分因畸形 set-literal 参数触发 parser 原生 TypeError 崩溃，已改宽 except 重打分，
+> 推理结果不变）。语义召回 = 预测语义技能命中 oracle 降级参考动作的比例（14,834 个参考动作）。
 
-（结果待填）
+| Model | Valid% | Pred/T | **Semantic Recall** | 匹配/参考 | **Semantic Precision** | Seq Exact | Multi-Complete |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| E1-A | 98.94 | 1.77* | 0.62% | 90/14,834 | 1.99% | 0.36% | 0% |
+| E5C-S | 96.74 | 1.75 | 0.58% | 81/14,834 | 1.82% | 0.29% | 0% |
+| E5C-D | 86.53 | 1.65 | 0.55% | 71/14,834 | 1.69% | 0.27% | 0% |
+| E5C-SD | 96.54 | 1.75 | 0.66% | 92/14,834 | 2.06% | 0.04% | 0% |
+
+\* E1-A 此行来自 Phase 5B 的 2048 协议 preds（生成预算更长）；主表 512 预算下 E1-A pred/T=1.00。
+S/D/SD 均为 512 预算，与主表一致。
+
+**判定：情况 C（recall/precision 双平坦，甚至微降）——深度提升没有转化为语义正确性。**
+
+1. **四组召回全部在 0.55~0.66% 持平**（最大差 0.11pp ≈ 21 个动作），而 pred/T +65~75%。
+   多出来的动作不是正确的动作：precision 1.7~2.1%，即模型生成的每个 action 命中参考的概率仅 ~2%。
+2. **multi-action 任务 0% 完全覆盖**（1,000+ 个多动作任务，四组全部为 0）。
+3. 与 internal OpSeq 94% 对照：模型在训练域内技能选择良好，但 τ³ 域上语义技能选择几乎完全失败
+   —— 0.6% 的召回不是"计划不够长"的问题，是**跨域 skill 选择本身未接地**。
+   Under-planning 不是 τ³ 语义召回的约束瓶颈（把 E1-A 的生成预算放开到 1.77 后召回仍是 0.62%）。
+4. **对 Phase 6 的直接含义**：合成更多深计划数据**不会**自动修复 τ³ 语义召回
+   （S/D/SD 已证明长度可训练、正确性不可）。需要的是跨域 skill 接地机制
+   （如 τ³ 域的 capability schema 在推理时的 grounding、或 skill 选择的对齐训练），
+   这正是 §6 BFCL functional 要回答的问题。
 
 ## 6. 补测 3：BFCL semantic（matched protocol）
 

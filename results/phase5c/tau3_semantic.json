@@ -1,0 +1,54 @@
+{
+  "E1-A": {
+    "n": 2546,
+    "valid_pct": 98.94,
+    "ref_actions": 14834,
+    "pred_actions": 4519,
+    "semantic_recall_pct": 0.62,
+    "matched_actions": 90,
+    "pred_per_task": 1.77,
+    "ref_per_task": 5.83,
+    "sem_seq_exact_pct": 0.36,
+    "multi_complete_pct": 0.0,
+    "semantic_precision_pct": 1.99
+  },
+  "E5C-S": {
+    "n": 2546,
+    "valid_pct": 96.74,
+    "ref_actions": 14834,
+    "pred_actions": 4461,
+    "semantic_recall_pct": 0.58,
+    "matched_actions": 81,
+    "pred_per_task": 1.75,
+    "ref_per_task": 5.83,
+    "sem_seq_exact_pct": 0.29,
+    "multi_complete_pct": 0.0,
+    "semantic_precision_pct": 1.82
+  },
+  "E5C-D": {
+    "n": 2546,
+    "valid_pct": 86.53,
+    "ref_actions": 14834,
+    "pred_actions": 4198,
+    "semantic_recall_pct": 0.55,
+    "matched_actions": 71,
+    "pred_per_task": 1.65,
+    "ref_per_task": 5.83,
+    "sem_seq_exact_pct": 0.27,
+    "multi_complete_pct": 0.0,
+    "semantic_precision_pct": 1.69
+  },
+  "E5C-SD": {
+    "n": 2546,
+    "valid_pct": 96.54,
+    "ref_actions": 14834,
+    "pred_actions": 4465,
+    "semantic_recall_pct": 0.66,
+    "matched_actions": 92,
+    "pred_per_task": 1.75,
+    "ref_per_task": 5.83,
+    "sem_seq_exact_pct": 0.04,
+    "multi_complete_pct": 0.0,
+    "semantic_precision_pct": 2.06
+  }
+}
