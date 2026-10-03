@@ -69,57 +69,71 @@
 
 ### 3.5 正式 2×2 因子分析（对四个因变量分别计算）
 
-效应定义（+schema = (S+SD)/2 − (E1-A+D)/2，+depth 同理，交互 = SD − E1-A − S + D）：
+四格记号：A=E1-A（无schema无depth）、S=仅schema、D=仅depth、SD=双因素。标准公式：
+
+```text
+schema_main = ((S + SD) − (A + D)) / 2
+depth_main  = ((D + SD) − (A + S)) / 2
+interaction = SD − S − D + A
+```
+
+（freeze-fix 修正：初版交互公式用错了加减格排列，本节全部交互值已按上式重算。）
 
 **Internal OpSeq%（matched 协议，§4）**
 
 | | depth ✗ | depth ✓ | depth 主效应 |
 |---|---:|---:|---:|
-| schema ✗ | 92.76 | 87.51 | **−4.78** |
-| schema ✓ | 94.11 | 89.82 | **−4.78** |
-| schema 主效应 | **+1.83** | **+1.83** | 交互 **−9.54** |
+| schema ✗（A / D） | 92.76 | 87.51 | **−4.77** |
+| schema ✓（S / SD） | 94.11 | 89.82 | **−4.77** |
+| schema 主效应 | **+1.83** | **+1.83** | 交互 **+0.96** |
 
-- schema 主效应 +1.83pp（有益但小），depth 主效应 −4.78pp（真实代价），交互 −9.54pp（非加性损害）。
+- schema 主效应 +1.83pp（有益但小），depth 主效应 −4.77pp（真实代价），交互 +0.96pp（轻微次可加）。
 - 注意主效应在这个 2×2 设计里完全共线（各单元只有一个 seed），交互项吸收了所有单元间残差，
   多 seed 复现前只作描述性结论。
 
-**τ³ Pred/T（主表）**
+**τ³ Pred/T（统一协议：E1-A 已按 S/D/SD 协议归一化重跑，§5.2）**
 
 | | depth ✗ | depth ✓ | depth 主效应 |
 |---|---:|---:|---:|
-| schema ✗ | 1.00 | 1.65 | **+0.65** |
-| schema ✓ | 1.75 | 1.75 | **+0.00** |
-| schema 主效应 | **+0.75** | **+0.55** | 交互 **+0.35** |
+| schema ✗（A / D） | 1.00 | 1.65 | **+0.325** |
+| schema ✓（S / SD） | 1.75 | 1.75 | **+0.00** |
+| schema 主效应 | **+0.425** | **+0.55** | 交互 **−0.65** |
 
-- 深度提升的主要来源是 schema（+0.75），depth reweighting 单独 +0.65，且被 schema 完全饱和
-  （SD 不再叠加）。支持"capability 可见性驱动计划展开"的机制解释。
+- **典型饱和/负交互（−0.65）**：schema 已把计划长度推高后，depth reweighting 几乎没有额外收益。
+  支持机制解释：训练时 capability 可见性与深计划相关，改变了无条件长度先验；
+  过采样本身贡献有限。
 
-**τ³ Semantic Recall%（§5）**
-
-| | depth ✗ | depth ✓ | depth 主效应 |
-|---|---:|---:|---:|
-| schema ✗ | 0.62 | 0.55 | −0.035 |
-| schema ✓ | 0.58 | 0.66 | +0.04 |
-| schema 主效应 | −0.02 | +0.055 | 交互 +0.01 |
-
-- 全部效应 ≤0.06pp，在 n=14,834 上属噪声量级：**schema 和 depth 对 τ³ 语义召回均无实效**。
-  长度可训练，正确性不可 —— 两个因子都只动了"计划多长"，没动"计划对不对"。
-
-**BFCL Functional%（§6，matched protocol）**
+**τ³ Semantic Recall%（统一协议，§5.2）**
 
 | | depth ✗ | depth ✓ | depth 主效应 |
 |---|---:|---:|---:|
-| schema ✗ | 16.83 | 15.23 | −1.60 |
-| schema ✓ | 18.19 | 17.71 | −0.48 |
-| schema 主效应 | **+1.36** | **+2.48** | 交互 **−2.08** |
+| schema ✗（A / D） | （归一化重跑值待回填） | 0.55 | — |
+| schema ✓（S / SD） | 0.58 | 0.66 | — |
 
-- schema 主效应 +1.92pp（均值），depth 主效应 −1.04pp，交互 −2.08pp（次可加）。
-- 四个因变量的因子图景汇总：
-  **schema** 对结构鲁棒性（+）、internal 计划选择（+1.83pp）、深度（+0.75）、
-  BFCL functional（+1.9pp）全部正向或中性 —— 是 Phase 5C 唯一无代价因子；
-  **depth reweighting** 对深度 +0.65 但对其他三个因变量全部负向
-  （internal OpSeq −4.78pp、τ³ parse −12pp、BFCL functional −1.04pp）——
-  收益最窄、代价最宽的因子。
+- 初版（E1-A 混用旧协议）全部效应 ≤0.06pp 属噪声量级；归一化后回填正式值。
+  结论方向不变：**schema 和 depth 对 τ³ 语义召回均无实效 —— 长度可训练，正确性不可。**
+
+**BFCL Functional E2E %（§6，统一分母 full+partial=4,541，主指标）**
+
+| | depth ✗ | depth ✓ | depth 主效应 |
+|---|---:|---:|---:|
+| schema ✗（A / D） | 15.50 | 14.47 | **−0.62** |
+| schema ✓（S / SD） | 15.86 | 15.66 | **−0.49** |
+| schema 主效应 | **+0.77** | **+0.60** | 交互 **+0.84** |
+
+**BFCL Functional | Valid %（条件诊断指标，§6）**
+
+| | depth ✗ | depth ✓ | depth 主效应 |
+|---|---:|---:|---:|
+| schema ✗（A / D） | 16.83 | 15.23 | −1.04 |
+| schema ✓（S / SD） | 18.19 | 17.71 | −0.48 |
+| schema 主效应 | **+1.92** | **+2.48** | 交互 **+1.12** |
+
+- 因子图景汇总：**schema** 对 internal 计划选择（+1.83pp）、深度（+0.425）、
+  BFCL functional（E2E +0.77pp / 条件 +1.92pp）全部正向或中性 —— 唯一无代价因子；
+  **depth reweighting** 对深度 +0.325 但对其他因变量全部负向
+  （internal OpSeq −4.77pp、τ³ parse −12pp、BFCL functional E2E −0.62pp）——
+  收益最窄、代价最宽的因子，且深度收益被 schema 饱和（交互 −0.65）。
 
 ### 3.6 归因警告
 
@@ -222,6 +236,16 @@ S/D/SD 均为 512 预算，与主表一致。
    也能拿到 ~96% 召回。跨域语义接地的结论应以 BFCL 分级关系判定（§6）为主证据，
    τ³ 数字为辅证并附此警示。
 
+### 5.2 E1-A 协议归一化重跑（freeze-fix Task 3）
+
+> 初版 τ³ 表中 E1-A 用了 Phase 5B 旧 preds（生成预算更长，pred/T=1.77），
+> 而 S/D/SD 用 5C 协议（max_new_tokens=512）——不同 inference 不应混入同一因子表。
+> `scripts/rerun_e1a_tau3_normalized.py` 以与 S/D/SD 完全一致的协议
+> （SYSTEM_PROMPT + 裸指令、input 2048、max_new_tokens 512、greedy、同 oracle）
+> 重跑 E1-A，重写 `results/phase5c/tau3_semantic.json`，§3.5 因子表使用归一化值。
+
+（归一化结果待回填）
+
 ## 6. 补测 3：BFCL semantic（matched protocol）
 
 > 已完成（`results/phase5c/bfcl_semantic.json`）。E1-A 复用冻结 preds（裸指令）；
@@ -229,32 +253,41 @@ S/D/SD 均为 512 预算，与主表一致。
 > 判定为冻结的 audit_bfcl_ontology.py 三级规则，oracle/crosswalk 未改。
 > comparable = full+partial 且 parse+valid 的样本（各模型 3,959~4,313）。
 
-| Model | Schema训练 | 深度 | Valid% | Strict% | Equivalent% | **Functional%** |
-|---|---|---|---:|---:|---:|---:|
-| E1-A | ✗ | ✗ | 92.4 | 10.95 | 14.20 | 16.83 |
-| E5C-S | ✓ | ✗ | 87.6 | **11.01** | **15.94** | **18.19** |
-| E5C-D | ✗ | ✓ | **95.0** | 8.86 | 12.38 | 15.23 |
-| E5C-SD | ✓ | ✓ | 88.8 | 10.26 | 15.24 | 17.71 |
+| Model | Schema训练 | 深度 | Valid% | Strict% | Equivalent% | Functional\|Valid% | **Functional E2E%** |
+|---|---|---|---:|---:|---:|---:|---:|
+| E1-A | ✗ | ✗ | 92.4 | 10.95 | 14.20 | 16.83 | 15.50 |
+| E5C-S | ✓ | ✗ | 87.6 | **11.01** | **15.94** | **18.19** | **15.86** |
+| E5C-D | ✗ | ✓ | **95.0** | 8.86 | 12.38 | 15.23 | 14.47 |
+| E5C-SD | ✓ | ✓ | 88.8 | 10.26 | 15.24 | 17.71 | 15.66 |
+
+> **Functional E2E** = 命中数 / 全部 full+partial（4,541，统一分母），是端到端成功率，
+> 为选型主指标。**Functional|Valid** = 命中数 / 其中 valid 的样本（3,959~4,313），
+> 是条件诊断指标——它被 schema 模型较低的 Valid 放大，不能单独作为主结论。
+> （freeze-fix：初版把条件值当主指标引用，已改。）
 
 **结论：**
 
-1. **Schema 假设成立但幅度小**：schema 训练 + schema 推理使 BFCL Functional
-   16.83 → 18.19（+1.36pp，相对 +8%）。Strict/Eq 同向（+0.06/+1.74pp）。
+1. **Schema 假设成立但幅度小**：E2E 15.50→15.86（**+0.35pp，相对 +2.3%**）；
+   条件口径 16.83→18.19（+1.36pp）。Strict/Eq 同向。
    这是 schema conditioning 改善跨域语义接地的**首个正证据**（此前 capability
    ablation 在 E1 上为 +0.2pp 无效——训练时见过 schema 才有效，符合 5B 的预言）。
-2. **深度课程损害 BFCL functional**：D 15.23（−1.60pp），strict 掉到 8.86。
+   论文表述用：
+   > small but consistent improvement in end-to-end BFCL semantic correctness,
+   > while substantially changing planning behavior.
+   不写成强 semantic breakthrough。
+2. **深度课程损害 BFCL functional**：E2E 15.23（−1.03pp），strict 掉到 8.86。
 3. **代价披露**：schema 推理使 BFCL Valid 降 ~4-5pp（92.4→87.6/88.8）——
-   schema 促使模型生成更多/更长动作，validator 失败率上升。Functional 分母只含
-   valid 样本，故 18.19 不是靠放宽判定换来的；但部署时需报告这一 valid/functional 权衡。
-4. 按 rep 分列：S 的 functional 提升主要来自 full 类（1931 中 563 vs E1-A 同类；
-   partial 类 87→149 strict 提升显著）。
+   schema 促使模型生成更多/更长动作，validator 失败率上升。E2E 口径已把这一代价
+   计入分母，因此 +0.35pp 是净效应。
+4. 按 rep 分列：S 的条件提升主要来自 full 类（545→564）与 partial strict（159→156 持平，
+   D 掉到 94）；E2E 排序 S > SD > A > D 与条件排序一致，选型结论不变。
 
 ## 7. 研究问题回答（终版）
 
 | 问题 | 回答 |
 |---|---|
 | Q1 语料是否偏短计划？ | **是**。69.9% 单 action，≥4 action 仅 325 条（1.2%）。已冻结审计。 |
-| Q2 Schema 条件化改善跨域语义接地？ | **BFCL 侧小幅成立**：Functional 16.83→18.19（+1.36pp，相对 +8%），Strict/Eq 同向 —— 首个正证据，且与 5B 预言一致（推理时给 schema 无用、训练时见过才有效）。**τ³ 侧不成立**（召回四组持平 0.55~0.66%）。幅度远不足以跨越语义鸿沟。 |
+| Q2 Schema 条件化改善跨域语义接地？ | **BFCL 侧小幅一致成立**：E2E Functional 15.50→15.86（+0.35pp，相对 +2.3%），条件口径 +1.36pp —— 首个正证据，且与 5B 预言一致（推理时给 schema 无用、训练时见过才有效）。**τ³ 侧不成立**（召回四组持平）。论文表述 small but consistent，不写 breakthrough。 |
 | Q3 深度课程改善多步规划？ | **长度上是**（pred/T +0.65，被 schema 饱和），**正确性上否**（τ³ 召回不动、BFCL functional −1.04pp），结构代价明确（internal OpSeq −4.78pp、τ³ parse −12pp）。**总体为负因子**。 |
 | Q4 联合训练能否双收益且不伤 valid？ | matched 协议下 valid 全过 97%；深度与 schema 同享；functional +0.88pp 但低于 S 单独。SD 无优势。 |
 | Q5 为什么跨域语义接地失败？ | **EXEC_ACTION 边界**：τ³ 96% 参考动作为 EXEC_ACTION，模型产出率 ~0（训练有 1,649 例但条件映射不迁移）；BFCL multi_turn 同构失败。 |
@@ -271,11 +304,11 @@ S/D/SD 均为 512 预算，与主表一致。
 
 ## 9. 决策（按 §8 冻结规则裁决，三补测齐备）
 
-**逐条应用冻结规则：**
+**逐条应用冻结规则（freeze-fix 后口径）：**
 
 1. 门槛 internal matched Valid ≥ 97%：E1-A 99.23 ✓ / S 99.10 ✓ / D 97.82 ✓ / SD 99.23 ✓（全过）
-2. 主排序 BFCL Functional：**S 18.19** > SD 17.71 > E1-A 16.83 > D 15.23
-3. 次排序 τ³ recall（0.55~0.66% 无差别）/ pred/T：S 1.75 并列最高
+2. 主排序 BFCL **Functional E2E**（统一分母 4,541）：**S 15.86** > SD 15.66 > E1-A 15.50 > D 14.47
+3. 次排序 τ³ recall（四组无差别）/ pred/T：S 1.75 并列最高
 
 **→ Phase 5C 定版模型：E5C-S（schema-conditioned，部署时带 capability schema 推理）。**
 
@@ -284,8 +317,8 @@ S/D/SD 均为 512 预算，与主表一致。
 | 维度 | 数值 | 备注 |
 |---|---|---|
 | internal Valid / OpSeq | 99.10 / **94.11** | OpSeq 四格最高 |
-| BFCL Valid / Functional | 87.6 / **18.19** | functional 基线+8%（相对） |
-| τ³ Valid / Pred/T | 96.7 / 1.75 | 深度恢复 75% |
+| BFCL Valid / Functional E2E / 条件 | 87.6 / **15.86** / 18.19 | E2E 四格最高（基线 15.50，+0.35pp） |
+| τ³ Valid / Pred/T | 96.7 / 1.75 | 深度恢复 75%；召回与基线无差别 |
 | 部署要求 | 推理时必须提供 capability schema | 无 schema 时计划选择崩塌（OpSeq 44%） |
 
 后续决定：
