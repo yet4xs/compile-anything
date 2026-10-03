@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 612" width="800" height="612"
+     font-family="Helvetica, Arial, sans-serif">
+  <title>Three-Layer Evaluation Suite</title>
+  <desc>Suite A function calling, Suite B stateful agents, Suite C domain transfer; each benchmark scored with its official metric plus the deterministic Compile Anything gate.</desc>
+
+  <defs>
+    <marker id="aDark"  viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/></marker>
+    <marker id="aGreen" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#059669"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="612" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="24" y="24" font-size="15" font-weight="bold" fill="#111827">Three-Layer Evaluation Suite</text>
+  <text x="24" y="40" font-size="9.5" fill="#6B7280">Every benchmark scored twice: its official metric + the deterministic Compile Anything compile gate</text>
+  <text x="776" y="24" text-anchor="end" font-size="9" font-weight="bold" fill="#374151">137,537 tasks · 8 benchmarks</text>
+
+  <!-- ============ SUITE A ============ -->
+  <rect x="24" y="64" width="752" height="100" rx="10" fill="#F8FAFC" stroke="#9CA3AF" stroke-width="1.2"/>
+  <circle cx="62" cy="114" r="21" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="62" y="120" text-anchor="middle" font-size="15" font-weight="bold" fill="#1D4ED8">A</text>
+  <text x="96" y="92" font-size="12" font-weight="bold" fill="#111827">Suite A — Function Calling</text>
+  <rect x="282" y="81" width="96" height="16" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="1"/>
+  <text x="330" y="92" text-anchor="middle" font-size="7.5" fill="#2563EB">in-distribution</text>
+
+  <g>
+    <rect x="96" y="104" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="104" y="118" font-size="8.5" font-weight="bold" fill="#374151">BFCL V4</text>
+    <text x="104" y="136" font-size="13" font-weight="bold" fill="#111827">4,697</text>
+    <text x="104" y="146" font-size="6.8" fill="#9CA3AF">executable / multi-turn calls</text>
+
+    <rect x="254" y="104" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="262" y="118" font-size="8.5" font-weight="bold" fill="#374151">ToolBench</text>
+    <text x="262" y="136" font-size="13" font-weight="bold" fill="#111827">124,345</text>
+    <text x="262" y="146" font-size="6.8" fill="#9CA3AF">API call sequences</text>
+
+    <rect x="412" y="104" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="420" y="118" font-size="8.5" font-weight="bold" fill="#374151">ToolQuery</text>
+    <text x="420" y="136" font-size="13" font-weight="bold" fill="#111827">60</text>
+    <text x="420" y="146" font-size="6.8" fill="#9CA3AF">held-out tool queries</text>
+  </g>
+
+  <text x="580" y="90" font-size="14" font-weight="bold" fill="#111827">Σ 129,102</text>
+  <text x="656" y="90" font-size="7.5" fill="#6B7280">tasks</text>
+  <g font-size="7.8" font-style="italic" fill="#6B7280">
+    <text x="580" y="108">stresses: tool selection,</text>
+    <text x="580" y="120">argument grounding, emission</text>
+  </g>
+  <text x="580" y="148" font-size="7.5" fill="#374151">compiled with <tspan font-weight="bold" fill="#2563EB">seen</tspan> skills — compilation quality</text>
+
+  <!-- ============ SUITE B ============ -->
+  <rect x="24" y="176" width="752" height="100" rx="10" fill="#F8FAFC" stroke="#9CA3AF" stroke-width="1.2"/>
+  <circle cx="62" cy="226" r="21" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="62" y="232" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">B</text>
+  <text x="96" y="204" font-size="12" font-weight="bold" fill="#111827">Suite B — Stateful Agents</text>
+  <rect x="284" y="193" width="104" height="16" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+  <text x="336" y="204" text-anchor="middle" font-size="7.5" fill="#059669">effects · retry</text>
+
+  <g>
+    <rect x="96" y="216" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="104" y="230" font-size="8.5" font-weight="bold" fill="#374151">τ³-bench</text>
+    <text x="104" y="248" font-size="13" font-weight="bold" fill="#111827">2,546</text>
+    <text x="104" y="258" font-size="6.8" fill="#9CA3AF">transactional dialogs</text>
+
+    <rect x="254" y="216" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="262" y="230" font-size="8.5" font-weight="bold" fill="#374151">ToolOp</text>
+    <text x="262" y="248" font-size="13" font-weight="bold" fill="#111827">40</text>
+    <text x="262" y="258" font-size="6.8" fill="#9CA3AF">operator traces</text>
+
+    <rect x="412" y="216" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="420" y="230" font-size="8.5" font-weight="bold" fill="#374151">WebShop</text>
+    <text x="420" y="248" font-size="13" font-weight="bold" fill="#111827">251</text>
+    <text x="420" y="258" font-size="6.8" fill="#9CA3AF">shopping sessions</text>
+  </g>
+
+  <text x="580" y="202" font-size="14" font-weight="bold" fill="#111827">Σ 2,837</text>
+  <text x="648" y="202" font-size="7.5" fill="#6B7280">tasks</text>
+  <g font-size="7.8" font-style="italic" fill="#6B7280">
+    <text x="580" y="220">stresses: effect ordering,</text>
+    <text x="580" y="232">VERIFY / retry, world vs state</text>
+  </g>
+  <!-- tau3 effect mix stacked bar -->
+  <rect x="580" y="240" width="87.6"  height="9" fill="#34D399"/>
+  <rect x="667.6" y="240" width="71.1" height="9" fill="#DC2626"/>
+  <rect x="738.7" y="240" width="6"    height="9" fill="#93C5FD"/>
+  <rect x="744.7" y="240" width="23.3" height="9" fill="#D1D5DB"/>
+  <text x="580" y="260" font-size="6.4" fill="#6B7280">τ³: 46.6 rev-state · 37.8 world · 3.2 read · 12.4 other (%)</text>
+
+  <!-- ============ SUITE C ============ -->
+  <rect x="24" y="288" width="752" height="100" rx="10" fill="#F8FAFC" stroke="#9CA3AF" stroke-width="1.2"/>
+  <circle cx="62" cy="338" r="21" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="62" y="344" text-anchor="middle" font-size="15" font-weight="bold" fill="#5B21B6">C</text>
+  <text x="96" y="316" font-size="12" font-weight="bold" fill="#111827">Suite C — Domain Transfer</text>
+  <rect x="300" y="305" width="108" height="16" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="354" y="316" text-anchor="middle" font-size="7.5" fill="#7C3AED">zero-shot transfer</text>
+
+  <g>
+    <rect x="96" y="328" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="104" y="342" font-size="8.5" font-weight="bold" fill="#374151">BIRD</text>
+    <text x="104" y="360" font-size="13" font-weight="bold" fill="#111827">1,500</text>
+    <text x="104" y="370" font-size="6.8" fill="#9CA3AF">text-to-SQL execution</text>
+
+    <rect x="254" y="328" width="150" height="46" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="262" y="342" font-size="8.5" font-weight="bold" fill="#374151">RTL-Repo</text>
+    <text x="262" y="360" font-size="13" font-weight="bold" fill="#111827">4,098</text>
+    <text x="262" y="370" font-size="6.8" fill="#9CA3AF">RTL debug / fix</text>
+
+    <rect x="412" y="328" width="150" height="46" rx="6" fill="none" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="487" y="346" text-anchor="middle" font-size="7.5" font-style="italic" fill="#6B7280">held-out domains</text>
+    <text x="487" y="358" text-anchor="middle" font-size="7.5" font-style="italic" fill="#6B7280">(not in SFT corpus)</text>
+  </g>
+
+  <text x="580" y="314" font-size="14" font-weight="bold" fill="#111827">Σ 5,598</text>
+  <text x="646" y="314" font-size="7.5" fill="#6B7280">tasks</text>
+  <g font-size="7.8" font-style="italic" fill="#6B7280">
+    <text x="580" y="332">stresses: generalization —</text>
+    <text x="580" y="344">compile, don’t memorize</text>
+  </g>
+  <text x="580" y="372" font-size="7.5" fill="#374151">compiled with <tspan font-weight="bold" fill="#7C3AED">unseen</tspan> skills — domain transfer</text>
+
+  <!-- ============ DUAL METRICS ============ -->
+  <line x1="400" y1="388" x2="400" y2="412" stroke="#374151" stroke-width="2" marker-end="url(#aDark)"/>
+  <text x="408" y="404" font-size="8" fill="#6B7280">137,537 tasks</text>
+
+  <rect x="24" y="416" width="752" height="156" rx="10" fill="#FFFFFF" stroke="#374151" stroke-width="1.2"/>
+  <text x="400" y="438" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#111827">Dual Scoring — every task reported on both axes</text>
+
+  <!-- official metrics -->
+  <text x="48" y="460" font-size="8.5" font-weight="bold" fill="#374151" letter-spacing="0.5">OFFICIAL METRIC (PER BENCHMARK)</text>
+  <g font-size="8.2" fill="#374151">
+    <text x="48" y="478">•</text><text x="60" y="478">BFCL V4 — executable-call accuracy</text>
+    <text x="48" y="493">•</text><text x="60" y="493">τ³-bench — pass^k + cost</text>
+    <text x="48" y="508">•</text><text x="60" y="508">WebShop — session success</text>
+    <text x="48" y="523">•</text><text x="60" y="523">BIRD — SQL execution accuracy</text>
+    <text x="48" y="538">•</text><text x="60" y="538">RTL-Repo — bug-fix rate</text>
+  </g>
+
+  <line x1="400" y1="452" x2="400" y2="560" stroke="#E5E7EB" stroke-width="1.5"/>
+
+  <!-- compile anything gate -->
+  <text x="424" y="460" font-size="8.5" font-weight="bold" fill="#065F46" letter-spacing="0.5">COMPILE ANYTHING GATE — DETERMINISTIC, MODEL-FREE</text>
+  <g>
+    <rect x="424" y="470" width="88" height="18" rx="9" fill="#ECFDF5" stroke="#059669" stroke-width="1"/>
+    <text x="468" y="482" text-anchor="middle" font-size="8" font-weight="bold" fill="#065F46">1 · parse</text>
+    <line x1="512" y1="479" x2="522" y2="479" stroke="#059669" stroke-width="1.4" marker-end="url(#aGreen)"/>
+    <rect x="524" y="470" width="92" height="18" rx="9" fill="#ECFDF5" stroke="#059669" stroke-width="1"/>
+    <text x="570" y="482" text-anchor="middle" font-size="8" font-weight="bold" fill="#065F46">2 · validate</text>
+    <line x1="616" y1="479" x2="634" y2="479" stroke="#059669" stroke-width="1.4" marker-end="url(#aGreen)"/>
+    <rect x="636" y="470" width="92" height="18" rx="9" fill="#ECFDF5" stroke="#059669" stroke-width="1"/>
+    <text x="682" y="482" text-anchor="middle" font-size="8" font-weight="bold" fill="#065F46">3 · execute</text>
+  </g>
+  <g font-size="8.2" fill="#374151">
+    <text x="424" y="506">•</text><text x="436" y="506">skill F1 — micro + per-skill</text>
+    <text x="424" y="521">•</text><text x="436" y="521">graph edit similarity vs oracle TaskIR</text>
+    <text x="424" y="536">•</text><text x="436" y="536">generic-action rate (EXEC_ACTION fallback)</text>
+    <text x="424" y="551">•</text><text x="436" y="551" font-weight="bold" fill="#2563EB">seen vs unseen composition — compile vs memorize</text>
+  </g>
+
+  <!-- footer -->
+  <text x="400" y="594" text-anchor="middle" font-size="8" fill="#9CA3AF">Official metrics preserve comparability with prior work; the CA gate involves no LLM judge and no self-scoring.</text>
+</svg>

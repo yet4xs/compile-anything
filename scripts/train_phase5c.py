@@ -144,7 +144,7 @@ print(f"  Depth-balanced: {DEPTH_ON}", flush=True)
 # ── Train ──
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer, SFTConfig
 from datasets import Dataset
 
@@ -166,7 +166,7 @@ lora = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05,
                    target_modules=["q_proj","k_proj","v_proj","o_proj",
                                    "gate_proj","up_proj","down_proj"],
                    task_type="CAUSAL_LM")
-model = get_peft_model(base, lora)
+model = get_peft_model(prepare_model_for_kbit_training(base), lora)
 model.print_trainable_parameters()
 
 def to_text(example):

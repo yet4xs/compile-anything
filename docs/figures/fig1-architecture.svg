@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400"
+     font-family="Helvetica, Arial, sans-serif">
+  <title>Compile Anything — System Architecture</title>
+  <desc>Only the neural front-end is learned; TaskIR validation, scheduling, execution, and cost accounting are deterministic.</desc>
+
+  <defs>
+    <marker id="aDark"  viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/></marker>
+    <marker id="aBlue"  viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7"   markerHeight="7"   orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/></marker>
+    <marker id="aGray"  viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6B7280"/></marker>
+    <marker id="aRed"   viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#DC2626"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="400" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="400" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">Compile Anything — System Architecture</text>
+  <text x="400" y="42" text-anchor="middle" font-size="9.5" fill="#6B7280">Only the neural front-end is learned; validation, scheduling, execution, and cost accounting are deterministic</text>
+
+  <!-- Learned zone -->
+  <rect x="111" y="60" width="92" height="194" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="157" y="76"  text-anchor="middle" font-size="9" font-weight="bold" fill="#2563EB" letter-spacing="1.5">LEARNED</text>
+  <text x="157" y="87"  text-anchor="middle" font-size="7" fill="#2563EB">neural front-end</text>
+
+  <!-- Deterministic zone -->
+  <rect x="208" y="60" width="577" height="194" rx="10" fill="#F8FAFC" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="496" y="76"  text-anchor="middle" font-size="9" font-weight="bold" fill="#6B7280" letter-spacing="1.5">DETERMINISTIC</text>
+  <text x="496" y="87"  text-anchor="middle" font-size="7" fill="#6B7280">statically verifiable · statically accountable</text>
+  <text x="206" y="54" text-anchor="middle" font-size="6.5" fill="#9CA3AF">handoff</text>
+  <text x="496" y="247" text-anchor="middle" font-size="7.5" fill="#6B7280">no model in the loop — types, invariants, schedules, and costs are checked statically</text>
+
+  <!-- Pipeline boxes (y=112, h=68, w=80) -->
+  <!-- 1. NL Task -->
+  <rect x="20" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#374151" stroke-width="1.5"/>
+  <text x="60"  y="130" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">NL Task</text>
+  <text x="60"  y="148" text-anchor="middle" font-size="8" fill="#6B7280">natural-language</text>
+  <text x="60"  y="160" text-anchor="middle" font-size="8" fill="#6B7280">user task</text>
+
+  <!-- 2. Neural Compiler (learned) -->
+  <rect x="117" y="112" width="80" height="68" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.8"/>
+  <text x="157" y="128" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1E40AF">Neural</text>
+  <text x="157" y="141" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#1E40AF">Compiler</text>
+  <text x="157" y="156" text-anchor="middle" font-size="8" fill="#1E40AF">Qwen2.5 3B/7B</text>
+  <text x="157" y="168" text-anchor="middle" font-size="8" fill="#1E40AF">LoRA SFT</text>
+
+  <!-- 3. TaskIR -->
+  <rect x="214" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.5"/>
+  <text x="254" y="130" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">TaskIR</text>
+  <text x="254" y="148" text-anchor="middle" font-size="8" fill="#6B7280">SSA · typed</text>
+  <text x="254" y="160" text-anchor="middle" font-size="8" fill="#6B7280">flat, no jumps</text>
+  <text x="254" y="171" text-anchor="middle" font-size="7" fill="#9CA3AF">spec v0.1</text>
+
+  <!-- 4. Validator -->
+  <rect x="311" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.5"/>
+  <text x="351" y="130" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">Validator</text>
+  <text x="351" y="148" text-anchor="middle" font-size="8" fill="#374151"><tspan fill="#059669" font-weight="bold">✓</tspan> V1–V6</text>
+  <text x="351" y="160" text-anchor="middle" font-size="8" fill="#6B7280">static gate</text>
+  <text x="351" y="171" text-anchor="middle" font-size="7" fill="#9CA3AF">fail before run</text>
+
+  <!-- 5. Optimizer (optional, v0.2) -->
+  <rect x="408" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="448" y="130" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">Optimizer</text>
+  <text x="448" y="148" text-anchor="middle" font-size="8" fill="#6B7280">pass manager</text>
+  <text x="448" y="162" text-anchor="middle" font-size="7.5" font-style="italic" fill="#9CA3AF">v0.2 · optional</text>
+
+  <!-- 6. Scheduler -->
+  <rect x="505" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.5"/>
+  <text x="545" y="130" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">Scheduler</text>
+  <text x="545" y="148" text-anchor="middle" font-size="8" fill="#6B7280">list scheduling</text>
+  <text x="545" y="160" text-anchor="middle" font-size="8" fill="#6B7280">critical-path</text>
+  <text x="545" y="171" text-anchor="middle" font-size="7" fill="#9CA3AF">pools: lm·py·api·db</text>
+
+  <!-- 7. Runtime -->
+  <rect x="602" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.5"/>
+  <text x="642" y="130" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">Runtime</text>
+  <text x="642" y="148" text-anchor="middle" font-size="8" fill="#6B7280">guard · VERIFY</text>
+  <text x="642" y="160" text-anchor="middle" font-size="8" fill="#6B7280">bounded retry</text>
+  <text x="642" y="171" text-anchor="middle" font-size="7" fill="#9CA3AF">dependency-driven</text>
+
+  <!-- 8. Result + Cost -->
+  <rect x="699" y="112" width="80" height="68" rx="8" fill="#FFFFFF" stroke="#374151" stroke-width="1.5"/>
+  <text x="739" y="128" text-anchor="middle" font-size="10" font-weight="bold" fill="#111827">Result + Cost</text>
+  <text x="739" y="146" text-anchor="middle" font-size="7.5" fill="#6B7280">exec trace</text>
+  <text x="739" y="158" text-anchor="middle" font-size="7.5" fill="#6B7280">5-dim cost report</text>
+  <text x="739" y="170" text-anchor="middle" font-size="7" fill="#9CA3AF">vs 70B baseline</text>
+
+  <!-- Pipeline arrows -->
+  <line x1="100" y1="146" x2="115" y2="146" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+  <line x1="197" y1="146" x2="212" y2="146" stroke="#2563EB" stroke-width="2.4" marker-end="url(#aBlue)"/>
+  <line x1="294" y1="146" x2="309" y2="146" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+  <line x1="391" y1="146" x2="406" y2="146" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+  <line x1="488" y1="146" x2="503" y2="146" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+  <line x1="585" y1="146" x2="600" y2="146" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+  <line x1="682" y1="146" x2="697" y2="146" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+
+  <!-- Arrow labels -->
+  <text x="108.5" y="193" text-anchor="middle" font-size="7.5" fill="#6B7280">prompt</text>
+  <text x="205.5" y="193" text-anchor="middle" font-size="7.5" fill="#2563EB">text IR</text>
+  <text x="302.5" y="193" text-anchor="middle" font-size="7.5" fill="#6B7280">JSON</text>
+  <text x="399.5" y="193" text-anchor="middle" font-size="7.5" fill="#6B7280">valid</text>
+  <text x="496.5" y="193" text-anchor="middle" font-size="7.5" fill="#6B7280">IR</text>
+  <text x="593.5" y="193" text-anchor="middle" font-size="7.5" fill="#6B7280">schedule</text>
+  <text x="690.5" y="193" text-anchor="middle" font-size="7.5" fill="#6B7280">trace</text>
+
+  <!-- Retry loop on Runtime -->
+  <path d="M 612 182 C 626 206 660 206 674 182" fill="none" stroke="#DC2626" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#aRed)"/>
+  <text x="643" y="219" text-anchor="middle" font-size="7" fill="#DC2626">VERIFY fail → bounded retry</text>
+
+  <!-- Training corpus (offline, feeds the learned compiler) -->
+  <rect x="24" y="300" width="240" height="64" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.5"/>
+  <text x="34"  y="320" font-size="10" font-weight="bold" fill="#065F46">Audited Training Corpus v3.1</text>
+  <text x="34"  y="336" font-size="8.5" fill="#047857">31,215 samples · 98.94% verified (6-layer audit)</text>
+  <text x="34"  y="350" font-size="7.5" fill="#059669">built from 71,855 raw benchmark samples</text>
+  <line x1="150" y1="300" x2="159" y2="184" stroke="#2563EB" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#aBlue)"/>
+  <text x="166" y="270" font-size="8" fill="#2563EB">offline LoRA SFT (plan_target)</text>
+
+  <!-- Legend -->
+  <rect x="296" y="300" width="232" height="64" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="308" y="314" font-size="7.5" font-weight="bold" fill="#374151" letter-spacing="1">LEGEND</text>
+  <rect x="308" y="324" width="10" height="10" fill="#2563EB"/><text x="322" y="332.5" font-size="7.5" fill="#374151">learned</text>
+  <rect x="410" y="324" width="10" height="10" fill="#6B7280"/><text x="424" y="332.5" font-size="7.5" fill="#374151">deterministic</text>
+  <rect x="308" y="344" width="10" height="10" fill="#059669"/><text x="322" y="352.5" font-size="7.5" fill="#374151">verified / audit-passed</text>
+  <rect x="410" y="344" width="10" height="10" fill="#DC2626"/><text x="424" y="352.5" font-size="7.5" fill="#374151">retry / failure</text>
+
+  <!-- 70B baseline reference -->
+  <rect x="560" y="300" width="216" height="64" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.3" stroke-dasharray="5 3"/>
+  <text x="570" y="318" font-size="9" font-weight="bold" fill="#374151">70B Single-Shot Baseline (nominal)</text>
+  <text x="570" y="333" font-size="8" fill="#6B7280">≈2,500 ms · 1,800 tokens · ≈900 J per task</text>
+  <text x="570" y="347" font-size="7.5" fill="#6B7280">8×H100-class serving · reference only</text>
+  <line x1="678" y1="300" x2="714" y2="184" stroke="#6B7280" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#aGray)"/>
+  <text x="672" y="270" text-anchor="end" font-size="8" fill="#6B7280">suite means: 3.4% energy · 37.9% makespan</text>
+
+  <!-- Footer -->
+  <text x="400" y="388" text-anchor="middle" font-size="7.5" fill="#9CA3AF">All costs nominal (Skill ISA registry constants); profiling interfaces allow replacement with measured values.</text>
+</svg>

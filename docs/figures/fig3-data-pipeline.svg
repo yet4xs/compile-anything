@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 544" width="800" height="544"
+     font-family="Helvetica, Arial, sans-serif">
+  <title>Training-Data Pipeline — from raw benchmarks to audited SFT corpus</title>
+  <desc>7 raw benchmarks (71,855 samples) pass through adapters, lifters, quality tiers A/B/C, a 6-layer deterministic semantic audit, and a group-aware split to form corpus v3.1 (31,215 samples, 98.94% verified).</desc>
+
+  <defs>
+    <marker id="aDark" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/></marker>
+    <marker id="aBlue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/></marker>
+    <marker id="aRed"  viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#DC2626"/></marker>
+    <marker id="aGray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6B7280"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="544" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="24" y="24" font-size="15" font-weight="bold" fill="#111827">Training-Data Pipeline — Raw Benchmarks → Audited SFT Corpus</text>
+  <text x="24" y="40" font-size="9.5" fill="#6B7280">Fully deterministic and reproducible end-to-end; 71,855 real samples (sha256-traced), zero synthetic substitution</text>
+
+  <!-- ============ ROW 1 ============ -->
+  <!-- 7 raw benchmarks -->
+  <rect x="24" y="64" width="200" height="126" rx="8" fill="#FFFFFF" stroke="#374151" stroke-width="1.5"/>
+  <text x="32" y="80" font-size="9" font-weight="bold" fill="#374151" letter-spacing="0.5">7 RAW BENCHMARKS</text>
+  <text x="216" y="80" text-anchor="end" font-size="11" font-weight="bold" fill="#111827">71,855</text>
+  <g font-size="8.5" fill="#374151">
+    <text x="32" y="97">xLAM</text>              <text x="216" y="97"  text-anchor="end">60,000</text>
+    <text x="32" y="110">Spider</text>           <text x="216" y="110" text-anchor="end">8,034</text>
+    <text x="32" y="123">ToolBench-Static</text> <text x="216" y="123" text-anchor="end">2,356</text>
+    <text x="32" y="136">MBPP</text>             <text x="216" y="136" text-anchor="end">974</text>
+    <text x="32" y="149">VerilogEval</text>      <text x="216" y="149" text-anchor="end">312</text>
+    <text x="32" y="162">HumanEval</text>        <text x="216" y="162" text-anchor="end">164</text>
+    <text x="32" y="175">ToolBench-sample</text> <text x="216" y="175" text-anchor="end">15</text>
+  </g>
+  <text x="32" y="187" font-size="7" font-style="italic" fill="#9CA3AF">real samples · sha256-traced sources</text>
+
+  <line x1="224" y1="127" x2="246" y2="127" stroke="#374151" stroke-width="1.5" marker-end="url(#aDark)"/>
+  <text x="235" y="144" text-anchor="middle" font-size="7" fill="#6B7280">adapt</text>
+
+  <!-- Adapters -->
+  <rect x="252" y="84" width="104" height="86" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+  <text x="304" y="102" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">Adapters</text>
+  <g text-anchor="middle" font-size="8" fill="#6B7280">
+    <text x="304" y="118">load + normalize</text>
+    <text x="304" y="130">field mapping only</text>
+    <text x="304" y="145">4 families:</text>
+    <text x="304" y="157">tooluse · code</text>
+    <text x="304" y="169">sql · rtl</text>
+  </g>
+
+  <line x1="356" y1="127" x2="378" y2="127" stroke="#374151" stroke-width="1.5" marker-end="url(#aDark)"/>
+  <text x="367" y="144" text-anchor="middle" font-size="7" fill="#6B7280">lift</text>
+
+  <!-- Lifters -->
+  <rect x="384" y="74" width="128" height="106" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+  <text x="448" y="92" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#111827">Lifters</text>
+  <g text-anchor="middle" font-size="8" fill="#6B7280">
+    <text x="448" y="108">tool → semantic skill</text>
+    <text x="448" y="120">two-layer lowering</text>
+    <text x="448" y="135">map_tool() reports:</text>
+    <text x="448" y="147">exact / heuristic /</text>
+    <text x="448" y="159">fallback + confidence</text>
+  </g>
+
+  <!-- rejected at lift -->
+  <line x1="448" y1="180" x2="448" y2="192" stroke="#DC2626" stroke-width="1.3" marker-end="url(#aRed)"/>
+  <text x="384" y="202" font-size="8" font-weight="bold" fill="#DC2626">−1,094 rejected</text>
+  <text x="384" y="212" font-size="7.5" fill="#DC2626">(LOOP / recursion ISA gaps)</text>
+
+  <line x1="512" y1="127" x2="534" y2="127" stroke="#374151" stroke-width="1.5" marker-end="url(#aDark)"/>
+  <text x="523" y="144" text-anchor="middle" font-size="7" fill="#6B7280">tier</text>
+
+  <!-- Quality tiers -->
+  <rect x="540" y="64" width="236" height="126" rx="8" fill="#FFFFFF" stroke="#374151" stroke-width="1.5"/>
+  <text x="552" y="78" font-size="9" font-weight="bold" fill="#374151" letter-spacing="0.5">QUALITY TIERS</text>
+  <text x="768" y="78" text-anchor="end" font-size="8" fill="#6B7280">70,761 lifted</text>
+  <rect x="552" y="86"  width="85"  height="16" fill="#059669"/>
+  <text x="558" y="97"  font-size="8" font-weight="bold" fill="#FFFFFF">A · 15,755</text>
+  <text x="645" y="97"  font-size="7" fill="#6B7280">highest audit confidence</text>
+  <rect x="552" y="106" width="83"  height="16" fill="#34D399"/>
+  <text x="558" y="117" font-size="8" font-weight="bold" fill="#065F46">B · 15,460</text>
+  <text x="643" y="117" font-size="7" fill="#6B7280">minor gaps</text>
+  <rect x="552" y="126" width="212" height="16" fill="#D1D5DB"/>
+  <text x="558" y="137" font-size="8" font-weight="bold" fill="#374151">C · 39,546 · fallback-heavy mapping</text>
+  <text x="552" y="170" font-size="8"><tspan font-weight="bold" fill="#065F46">A + B = 31,215 → SFT corpus</tspan><tspan fill="#6B7280"> · C → ablation only</tspan></text>
+
+  <!-- A+B connector down to audit -->
+  <path d="M 560 190 V 213 H 155 V 230" fill="none" stroke="#374151" stroke-width="1.6" marker-end="url(#aDark)"/>
+  <text x="250" y="208" text-anchor="middle" font-size="9" font-weight="bold" fill="#059669">A + B — 31,215 records</text>
+
+  <!-- Tier C exit -->
+  <line x1="740" y1="190" x2="740" y2="198" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#aGray)"/>
+  <rect x="648" y="202" width="128" height="26" rx="6" fill="#F9FAFB" stroke="#6B7280" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="712" y="213" text-anchor="middle" font-size="8" font-weight="bold" fill="#6B7280">Tier C — 39,546</text>
+  <text x="712" y="223" text-anchor="middle" font-size="7" fill="#6B7280">ablation only</text>
+
+  <!-- ============ ROW 2 ============ -->
+  <!-- Semantic audit -->
+  <rect x="60" y="234" width="190" height="130" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.5"/>
+  <text x="72" y="252" font-size="10.5" font-weight="bold" fill="#111827">Semantic Audit</text>
+  <text x="72" y="264" font-size="7.5" fill="#059669">6-layer · deterministic · no model</text>
+  <g font-size="7.8" fill="#374151">
+    <text x="72" y="278">L1 action count = raw tool calls</text>
+    <text x="72" y="291">L2 lowering order ≡ IR order</text>
+    <text x="72" y="304">L3 mapping kind + confidence</text>
+    <text x="72" y="317">L4 scalar params survive</text>
+    <text x="72" y="330">L5 instruction parity</text>
+    <text x="72" y="343">L6 provenance chain intact</text>
+  </g>
+  <text x="72" y="357" font-size="7" font-style="italic" fill="#9CA3AF">links each record to raw ground truth</text>
+
+  <line x1="250" y1="299" x2="272" y2="299" stroke="#374151" stroke-width="1.5" marker-end="url(#aDark)"/>
+  <text x="261" y="316" text-anchor="middle" font-size="7" fill="#6B7280">gate</text>
+
+  <!-- Corpus v3.1 -->
+  <rect x="278" y="234" width="170" height="130" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.5"/>
+  <text x="288" y="248" font-size="8.5" font-weight="bold" fill="#374151" letter-spacing="0.5">COMPILER CORPUS v3.1</text>
+  <text x="363" y="276" text-anchor="middle" font-size="20" font-weight="bold" fill="#065F46">31,215</text>
+  <text x="363" y="296" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">✓ 98.94% verified</text>
+  <text x="363" y="310" text-anchor="middle" font-size="8" fill="#6B7280">1.06% suspect (331)</text>
+  <g text-anchor="middle" font-size="7" fill="#9CA3AF">
+    <text x="363" y="328">first audit: 19,528 ARGUMENT_LOSS</text>
+    <text x="363" y="339">→ lifter param fix only</text>
+    <text x="363" y="350">(retention 16.7% → 98.9%)</text>
+  </g>
+
+  <line x1="448" y1="299" x2="470" y2="299" stroke="#374151" stroke-width="1.5" marker-end="url(#aDark)"/>
+  <text x="459" y="316" text-anchor="middle" font-size="7" fill="#6B7280">split</text>
+
+  <!-- Group-aware split -->
+  <rect x="476" y="234" width="140" height="130" rx="8" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.4"/>
+  <text x="486" y="252" font-size="10" font-weight="bold" fill="#111827">Group-Aware Split</text>
+  <g font-size="7.8" fill="#6B7280">
+    <text x="486" y="268">MinHash-LSH near-dup</text>
+    <text x="486" y="281">same-op-seq union-find</text>
+    <text x="486" y="294">group-aware assignment</text>
+    <text x="486" y="307">frozen manifest + seed</text>
+  </g>
+  <text x="486" y="326" font-size="8" font-weight="bold" fill="#374151">cross-split leakage:</text>
+  <text x="486" y="340" font-size="9" font-weight="bold" fill="#059669">exact = 0 · near = 0</text>
+
+  <line x1="616" y1="299" x2="638" y2="299" stroke="#374151" stroke-width="1.5" marker-end="url(#aDark)"/>
+  <text x="627" y="316" text-anchor="middle" font-size="7" fill="#6B7280">views</text>
+
+  <!-- SFT training data (learned consumer) -->
+  <rect x="644" y="234" width="132" height="130" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.6"/>
+  <text x="710" y="250" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1E40AF">SFT Training Data</text>
+  <text x="710" y="262" text-anchor="middle" font-size="7.5" fill="#1E40AF">plan_target view</text>
+  <g>
+    <rect x="652" y="270" width="116" height="22" rx="4" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1"/>
+    <text x="660" y="284.5" font-size="8" font-weight="bold" fill="#1E40AF">train</text>
+    <text x="760" y="284.5" text-anchor="end" font-size="9" font-weight="bold" fill="#111827" font-family="Consolas, Menlo, monospace">28,093</text>
+    <rect x="652" y="296" width="116" height="22" rx="4" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1"/>
+    <text x="660" y="310.5" font-size="8" font-weight="bold" fill="#1E40AF">val</text>
+    <text x="760" y="310.5" text-anchor="end" font-size="9" font-weight="bold" fill="#111827" font-family="Consolas, Menlo, monospace">1,561</text>
+    <rect x="652" y="322" width="116" height="22" rx="4" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1"/>
+    <text x="660" y="336.5" font-size="8" font-weight="bold" fill="#1E40AF">test</text>
+    <text x="760" y="336.5" text-anchor="end" font-size="9" font-weight="bold" fill="#111827" font-family="Consolas, Menlo, monospace">1,561</text>
+  </g>
+  <text x="710" y="357" text-anchor="middle" font-size="6.8" fill="#1E40AF">execution_target saved separately</text>
+
+  <!-- ============ BOTTOM ============ -->
+  <path d="M 710 364 V 396 H 180 V 420" fill="none" stroke="#2563EB" stroke-width="1.6" marker-end="url(#aBlue)"/>
+  <text x="445" y="390" text-anchor="middle" font-size="8" fill="#2563EB">offline SFT — trains the neural compiler (fig. 1)</text>
+
+  <rect x="60" y="424" width="240" height="58" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.6"/>
+  <text x="72" y="444" font-size="10.5" font-weight="bold" fill="#1E40AF">Neural Compiler — SFT</text>
+  <text x="72" y="458" font-size="8" fill="#1E40AF">Qwen2.5-3B/7B · LoRA / QLoRA</text>
+  <text x="72" y="470" font-size="7.5" fill="#1E40AF">frozen manifest · preflight gates · pinned deps</text>
+
+  <g font-size="8" fill="#6B7280">
+    <text x="340" y="442">• Tier C (39,546) reserved for ablation of fallback contamination</text>
+    <text x="340" y="456">• execution_target view stored separately for runtime experiments</text>
+    <text x="340" y="470">• zero synthetic records masquerading as real (source tags enforced)</text>
+  </g>
+
+  <!-- legend -->
+  <rect x="24"  y="492" width="10" height="10" fill="#059669"/><text x="40"  y="500.5" font-size="7.5" fill="#374151">A/B — kept (verified)</text>
+  <rect x="170" y="492" width="10" height="10" fill="#D1D5DB"/><text x="186" y="500.5" font-size="7.5" fill="#374151">Tier C — ablation</text>
+  <rect x="320" y="492" width="10" height="10" fill="#2563EB"/><text x="336" y="500.5" font-size="7.5" fill="#374151">learned artifact</text>
+  <rect x="470" y="492" width="10" height="10" fill="#DC2626"/><text x="486" y="500.5" font-size="7.5" fill="#374151">rejected at lift</text>
+
+  <text x="400" y="530" text-anchor="middle" font-size="7.5" fill="#9CA3AF">Counts from frozen pipeline artifacts (compiler_corpus_v3_1 stats + semantic audit report); every stage is deterministic and reproducible.</text>
+</svg>

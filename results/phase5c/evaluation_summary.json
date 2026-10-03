@@ -1,0 +1,110 @@
+{
+  "E1-A": {
+    "internal": {
+      "n": 1561,
+      "parse": 1553,
+      "parse_pct": 99.49,
+      "valid": 1549,
+      "valid_pct": 99.23,
+      "opseq": 1448,
+      "opseq_pct": 92.76
+    },
+    "bfcl": {
+      "n": 4696,
+      "parse": 4642,
+      "parse_pct": 98.85,
+      "valid": 4436,
+      "valid_pct": 94.46
+    },
+    "tau3": {
+      "n": 2546,
+      "parse": 2519,
+      "parse_pct": 98.94,
+      "valid": 2517,
+      "valid_pct": 98.86,
+      "pred_actions_per_task": 1.0,
+      "count_ratio": 0.17
+    }
+  },
+  "E5C-S": {
+    "internal": {
+      "n": 1561,
+      "parse": 1543,
+      "parse_pct": 98.85,
+      "valid": 1522,
+      "valid_pct": 97.5,
+      "opseq": 689,
+      "opseq_pct": 44.14
+    },
+    "bfcl": {
+      "n": 4696,
+      "parse": 4622,
+      "parse_pct": 98.42,
+      "valid": 4531,
+      "valid_pct": 96.49
+    },
+    "tau3": {
+      "n": 2546,
+      "parse": 2476,
+      "parse_pct": 97.25,
+      "valid": 2463,
+      "valid_pct": 96.74,
+      "pred_actions_per_task": 1.75,
+      "count_ratio": 0.3
+    }
+  },
+  "E5C-D": {
+    "internal": {
+      "n": 1561,
+      "parse": 1543,
+      "parse_pct": 98.85,
+      "valid": 1527,
+      "valid_pct": 97.82,
+      "opseq": 1366,
+      "opseq_pct": 87.51
+    },
+    "bfcl": {
+      "n": 4696,
+      "parse": 4618,
+      "parse_pct": 98.34,
+      "valid": 4513,
+      "valid_pct": 96.1
+    },
+    "tau3": {
+      "n": 2546,
+      "parse": 2210,
+      "parse_pct": 86.8,
+      "valid": 2203,
+      "valid_pct": 86.53,
+      "pred_actions_per_task": 1.65,
+      "count_ratio": 0.28
+    }
+  },
+  "E5C-SD": {
+    "internal": {
+      "n": 1561,
+      "parse": 1548,
+      "parse_pct": 99.17,
+      "valid": 1480,
+      "valid_pct": 94.81,
+      "opseq": 611,
+      "opseq_pct": 39.14
+    },
+    "bfcl": {
+      "n": 4696,
+      "parse": 4650,
+      "parse_pct": 99.02,
+      "valid": 4604,
+      "valid_pct": 98.04
+    },
+    "tau3": {
+      "n": 2546,
+      "parse": 2459,
+      "parse_pct": 96.58,
+      "valid": 2458,
+      "valid_pct": 96.54,
+      "pred_actions_per_task": 1.75,
+      "count_ratio": 0.3
+    }
+  }
+}

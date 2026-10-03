@@ -1,0 +1,42 @@
+{
+  "experiment": "phase5b1_e1",
+  "description": "Qwen2.5-3B-Instruct + QLoRA Neural Compiler",
+  "base_model": "Qwen/Qwen2.5-3B-Instruct",
+  "base_model_sha": "weights/Qwen2.5-3B-Instruct (modelscope download, verified in weights/MANIFEST.json)",
+  "adapter_path": "runs/phase5b1/e1_3b_qlora/final",
+  "adapter_config": {
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+    "quantization": "4bit NF4"
+  },
+  "training_corpus": {
+    "path": "data/compiler_corpus_v3_1/train.jsonl",
+    "sha256": "see experiments/phase5b1/manifest.json",
+    "train_samples": 28093,
+    "val_samples": 1561,
+    "test_samples": 1561,
+    "semantic_audit": "98.94% verified, Tier A 0.254% / B 1.882% suspect"
+  },
+  "training_config": {
+    "epochs": 2,
+    "batch_size": 4,
+    "grad_accum": 2,
+    "effective_batch": 8,
+    "learning_rate": 0.00015,
+    "max_seq_length": 1024,
+    "seed": 42,
+    "total_steps": 7024
+  },
+  "test_results": {
+    "parse_rate_pct": 99.55,
+    "validator_pass_pct": 99.10,
+    "execution_pct": 99.10,
+    "opseq_exact_pct": 88.54,
+    "skill_f1_micro": 0.92,
+    "unseen_composition": {"n": 41, "opseq_exact_pct": 61.0}
+  },
+  "created": "2026-10-01T05:41:00+08:00",
+  "server": "BitHub RTX 4090 24GB"
+}
