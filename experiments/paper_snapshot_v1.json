@@ -1,0 +1,79 @@
+{
+  "snapshot": "paper_snapshot_v1",
+  "created": "2026-10-03",
+  "phase": "5D — Paper Evidence Freeze",
+  "base_commit": "da5c4fe",
+  "base_commit_note": "Phase 5C final statistical freeze (E5C-S selected). This snapshot freezes paper evidence as of Phase 5D; result files listed below must not be modified from this point. New experiments go to phase6/* or a new paper_snapshot_v2.",
+  "model": {
+    "selected": "E5C-S",
+    "adapter_dir": "runs/phase5c/e5c_s/final",
+    "adapter_dir_aggregate_sha256": "549965ba708521d72a5ff53fbc666edd54cae8b30e8be764c6e4dafa85ed694c",
+    "base_model": "Qwen2.5-3B-Instruct",
+    "training": "QLoRA r=16 alpha=32 lr=1.5e-4 2 epochs seed=42, schema-conditioned prompts (build_capability_prompt)",
+    "deployment_protocol": "inference MUST include capability schemas (matched training protocol)"
+  },
+  "training_corpus": {
+    "path": "data/compiler_corpus_v3_1/train.jsonl",
+    "sha256": "bbfcd03a1c03161fcbc74d0c0da5b86d0ee855575a3db74fdaef31eb13166d26",
+    "samples": 28093
+  },
+  "result_artifacts": {
+    "phase5c_main_2x2": {
+      "path": "results/phase5c/evaluation_summary.json",
+      "sha256": "910aab10f15729cfc67e12d8b93912d3598e9be580c39df61fa6e3971d3a25a3"
+    },
+    "phase5c_internal_matched": {
+      "path": "results/phase5c/internal_schema_eval.json",
+      "sha256": "1da6bce9ecd74d6a10bc4ec3f0b9f080518836b207900a00be68983665d440ef"
+    },
+    "phase5c_tau3_semantic_normalized": {
+      "path": "results/phase5c/tau3_semantic.json",
+      "sha256": "09c52e6396f0ac3f99906a3d37f27849fc152622597b055dd81e8811a5678429"
+    },
+    "phase5c_bfcl_semantic": {
+      "path": "results/phase5c/bfcl_semantic.json",
+      "sha256": "fab8e9bc9737e71379bde24ee34abf15552c13555497f4a3795f4bfb031ffde0"
+    },
+    "agentboard_first_test": {
+      "path": "results/agentboard/first_test.json",
+      "sha256": "359bf37e12d43e807f5c9670140d107bc2642465fb9769e67b25cf79ac270be6"
+    },
+    "phase5c_manifest": {
+      "path": "experiments/phase5c/manifest.json",
+      "sha256": "b18f305eb1937f8e6c6aa50ae5c03522386d5640ad3f1852ae9468aa2f65a1be"
+    },
+    "phase5c_results_doc": {
+      "path": "docs/results-phase5c.md",
+      "sha256": "26e43ab183323d296c841da1ace5b7e86ae98b79d20b1c271656a9ea6511e9f4"
+    },
+    "agentboard_preregistration": {
+      "path": "docs/agentboard-preregistration.md",
+      "sha256": "d2b01315f50037aa525f23ae17cb011f849c2d53bd612a839f1af02a75a51ff4",
+      "note": "committed d59d00b BEFORE any AgentBoard inference ran"
+    }
+  },
+  "headline_numbers": {
+    "internal_e1": {"parse": 99.55, "valid": 99.10, "exec": 99.10, "opseq": 88.54, "skill_f1": 0.92},
+    "internal_e5c_s_matched": {"valid": 99.10, "opseq": 94.11},
+    "zero_shot_controls": {"e0_3b_valid": 0.0, "e2_7b_valid": 0.0},
+    "cross_domain_structure": {"bfcl_valid": 92.4, "tau3_valid": 98.86, "agentboard_offline_valid": 91.7},
+    "cross_domain_semantics": {
+      "bfcl_functional_e2e": {"E1-A": 15.50, "E5C-S": 15.86, "E5C-D": 14.47, "E5C-SD": 15.66},
+      "bfcl_functional_conditional": {"E1-A": 16.83, "E5C-S": 18.19, "E5C-D": 15.23, "E5C-SD": 17.71},
+      "tau3_recall_pct": {"E1-A": 0.62, "E5C-S": 0.58, "E5C-D": 0.55, "E5C-SD": 0.66},
+      "tau3_pred_per_task": {"E1-A": 1.00, "E5C-S": 1.75, "E5C-D": 1.65, "E5C-SD": 1.75}
+    },
+    "binder_oracle_upper_bound_pct": 99.95,
+    "agentboard_exec_action_pct": {"tool-query": 2.5, "tool-operation": 23.9, "webshop": 0.0}
+  },
+  "not_run_disclosed": [
+    "E3 7B LoRA",
+    "official interactive AgentBoard (progress/success rate) — UNSCORED-OFFLINE",
+    "real hardware cost profiling (nominal model only)",
+    "effect system v0.2 implementation (incl. V7)",
+    "LOOP region / multi-program linking",
+    "ToolBench full / BIRD / RTL-Repo official external runs",
+    "v3-vs-v3.1 retrain ablation (audit delta only)"
+  ],
+  "immutability_rule": "Files listed under result_artifacts are frozen. Phase 6 work must not touch them; new results land in phase6/* or paper_snapshot_v2."
+}

@@ -1,19 +1,27 @@
-# 摘要（Abstract）
+# 摘要（Abstract）— Phase 5D 终版
 
 > 论文：*Compile Anything: A Neural Compiler and Runtime Architecture for General AI Task Execution*（目标会议：ASPLOS / DAC）
 
-大语言模型智能体以串行循环逐步解释执行任务，每步推理均途经 70B 级大模型：计划是无类型的临时文本，缺乏可供静态分析与优化的程序表示，推理成本高昂且无系统级优化落点。本文提出 Compile Anything，引入 compiler–runtime 分离架构：定义类型化扁平 SSA 中间表示 TaskIR 与携带五维成本模型的 Skill ISA；训练基于 Qwen 3B/7B 的 LoRA 神经编译器，将自然语言任务编译为合法 TaskIR 程序；程序经 V1–V6 六类静态不变量验证后，交由关键路径优先调度器与依赖驱动运行时执行。我们构建 31,215 条经确定性语义审计的训练语料（98.94% verified），并冻结 13 个外部基准（逾 13 万任务）建立官方指标与编译侧三级闸门的双指标评测。名义设置下，编译后流水线的能耗与 makespan 仅为 70B 单发基线的 3.4% 与 37.9%。结果表明：智能可以存在于编译器与运行时的结构中，而非必须存在于巨大的模型参数中。
+大语言模型智能体以串行循环逐步解释执行任务：计划是无类型的临时文本，依赖与副作用顺序无法在执行前静态检查，成本事后结算。本文提出 Compile Anything，引入 compiler–runtime 分离架构：类型化扁平 SSA 中间表示 TaskIR（guard/SELECT 谓词分支、VERIFY 与有界重试回滚为一等 IR 结构）、携带五维名义成本模型的 Skill ISA、V1–V6 六类静态不变量验证器，以及训练于 31,215 条经确定性语义审计语料（98.94% verified）的 3B 神经编译器前端。实验表明：3B 模型可学会 TaskIR 的结构编译规则——域内 validator 通过率 99%，且在 BFCL、τ³-bench、AgentBoard 三个从未参与训练的基准家族上保持高结构有效性（92–99%）；但语义接地在域外急剧退化（BFCL 端到端功能语义 15.5%，τ³ 语义召回 0.6%），揭示**结构编译、语义技能选择与规划深度是三个可分离的能力维度**。Schema 条件化训练小幅改善 BFCL 端到端语义正确性并显著改变规划长度先验；朴素的深度再平衡只增加计划长度而不改善语义正确性。显式 IR 分层使这些失败模式可分别度量：前端语义接地是瓶颈，而后端技能→工具绑定 oracle 上界为 99.95%。
 
 ---
 
-# §12 结论（Conclusion）
+# §12 结论（Conclusion）— Phase 5D 终版
 
-本文提出并实现了面向通用 AI 任务执行的神经编译器与运行时架构 Compile Anything。架构层面，TaskIR v0.1 与 Skill ISA 为 AI 任务给出带书面规范的类型化 SSA 中间表示，验证与有界重试回滚成为一等 IR 结构。数据层面，71,855 条真实基准样本经 adapter–lifter–validator–simulator 管线转换为 31,215 条训练语料，逐条回链真值的确定性语义审计达 98.94% verified。工具链与评测层面，V1–V6 验证器（10,000 程序语义 fuzz 零非法接受）、依赖驱动模拟器、资源约束调度器与五维成本模型构成完整编译工具链，13 个外部基准经污染防火墙冻结为双指标评测体系；设计层面，基于 τ³-bench 14,834 个真实动作的效应分类提出类 MemorySSA 的效果系统。
+本文提出并实现了面向通用 AI 任务执行的神经编译器与运行时架构 Compile Anything。TaskIR v0.1 与 Skill ISA 为 AI 任务给出带书面规范的类型化 SSA 中间表示，验证与有界重试回滚成为一等 IR 结构；71,855 条真实基准样本经 adapter–lifter–validator–simulator 管线转换为 31,215 条训练语料，逐条回链真值的确定性语义审计达 98.94% verified；13 个外部基准经污染防火墙冻结为双指标评测体系。
 
-本文的核心发现有三。其一，名义设置下"小模型加编译"的能耗与 makespan 仅为 70B 单发基线的 3.4% 与 37.9%：与 [LLMCompiler]、[ReWOO]、[CoRE] 等无类型计划路线不同，类型化 IR 使指令调度、成本核算与副作用安全重排首次获得静态落点。其二，副作用分类是真实工作负载的固有结构（46.6% 可逆状态、37.8% 不可逆世界动作），而 2,443 个跨类多动作任务所需的跨类事务语义是现有系统普遍缺失的能力。其三，IR 可表示性构成硬约束：工具调用、SQL 与 RTL 域覆盖率达 100%，代码域因 ISA 缺少 LOOP 仅 7.3%，迭代是当前表达能力的首要缺口。
+本文的实验发现有三。
 
-本工作的局限亦须如实披露：成本模型全部为名义常量，实测 profiling 尚未接入；Skill ISA 缺少 LOOP 与 STRING_OP 指令，代码域任务无法完整编译；模块边界止于单程序，多程序链接未定义。未来工作将沿四个方向推进：Phase 6 真实运行时以异步执行器池替换确定性模拟、并以实测 profiling 替换名义常量；效果系统 v0.2 落地事务性 effect region 与 V7 验证检查集；引入 LOOP region 补齐代码域覆盖；定义多程序链接机制，使编译单元可组合复用。这一路线为"智能可以存在于结构而非参数"提供了可复现的实证起点。
+**发现一：小模型的结构编译可学习且可迁移。** 28k 条审计监督使 3B 模型从零 validator 通过率（zero-shot 0%）达到域内 99.10%；在 BFCL（92.4%）、τ³（98.9%）、AgentBoard（91.7%，untouched 首测）三个零污染基准家族上，结构有效性不需任何域内数据即成立。TaskIR 的扁平 SSA 与谓词分支设计因此得到跨域验证。
+
+**发现二：结构合法性不蕴含语义正确性。** 同一批模型在结构指标 92–99% 的同时，BFCL 端到端功能语义仅 15.5%、τ³ 语义召回仅 0.6%——两个数量级的落差。主导的跨域失败经 op 分布分析定位在 retrieval–action 边界的语义接地（τ³ 96% 参考动作为 EXEC_ACTION 而模型产出率近零；BFCL multi_turn 同构失败），而非语法或工具绑定；后端 binder 的 oracle 上界为 99.95%，瓶颈在前端技能选择。
+
+**发现三：语义接地与规划深度是可分离的维度。** Phase 5C 2×2 消融显示：schema 条件化小幅改善跨域语义（BFCL E2E +0.35pp）并强烈改变规划长度先验（pred/T 1.00→1.75）；朴素深度再平衡使长度增加（+0.65）而语义不改善（召回持平甚至微降），且以域内 OpSeq（−4.77pp）与跨域结构鲁棒性（τ³ valid −12pp）为代价。**长度可训练，正确性并非由深度再平衡获得。**
+
+架构含义：这些失败模式之所以能被分别度量，正是因为前端 IR、validator 与后端绑定是显式分层——失败定位（而非仅失败报告）是 compiler 分层架构区别于 prompt 栈的直接评测收益。
+
+局限与未来工作如实披露：成本模型全部为名义常量（nominal analytical model，非实测硬件能耗/延迟，实测 profiling 未接入）；Skill ISA 缺少 LOOP 与 STRING_OP（代码域覆盖 7.3%）；effect system v0.2（含跨类事务 region 与 V7）为设计提案未实现，τ³ 的 2,443 个多动作任务仅作 workload characterization；官方交互环境 AgentBoard 指标 UNSCORED-OFFLINE；E3 7B LoRA 未运行。下一步（Phase 6A）为 EXEC_ACTION 边界的受控 skill grounding probe，进而构成 capability grounding → skill selection → program composition 的两阶段神经前端。
 
 ---
 
-*引用对应（同 §1）：[LLMCompiler] Kim et al., ICML'24；[ReWOO] Xu et al.；[CoRE] Mei et al., arXiv:2405.06907。名义成本一律标注 nominal，与正文写作纪律一致。*
+*写作纪律：名义成本一律标注 nominal；未执行的实验一律标注 NOT RUN / UNSCORED-OFFLINE；E2E 与条件口径不得混用（见 paper-evaluation.md §4.1）。*

@@ -29,11 +29,11 @@ Recommendation: use the primary title for ASPLOS; keep the DAC variant in reserv
 
 ---
 
-## 2. Abstract draft (~200 words)
+## 2. Abstract draft (~200 words) — Phase 5D frozen
 
-Agent frameworks execute natural-language tasks by prompting a large model step by step: the plan is an ephemeral text artifact, side-effect ordering is implicit, cost is counted in tokens after the fact, and nothing about a plan can be checked before it runs. We argue that AI task execution needs a compiler toolchain, not a prompting stack. We present Compile Anything: (i) TaskIR, a versioned SSA-style intermediate representation with a written specification and a static validator enforcing six invariant classes; (ii) a Skill ISA of 31 typed instructions, each carrying latency, token, FLOP, energy, and memory costs, separating task semantics from executor binding; (iii) a dependency-driven runtime in which verification and retry are IR-level constructs implemented as speculative execution with squash-and-replay; and (iv) a learned front end — a 3–7B model fine-tuned on 31k audited examples lifted from 71,855 real benchmark samples. A 10,000-program fuzz campaign shows zero invalid programs accepted and zero undefined runtime failures. Real-benchmark lifting achieves 100% expressibility for tool-use, SQL, and RTL tasks and quantifies iteration as the dominant ISA gap. Cost-aware list scheduling runs compiled pipelines at a nominal 3.4% of the energy and 37.9% of the latency of a single-shot 70B baseline, and a MemorySSA-style effect system turns side-effect ordering into schedulable barrier structure, grounded in a 14,834-action audit of tau3-bench.
+Agent frameworks execute natural-language tasks by prompting a large model step by step: the plan is an ephemeral text artifact, side-effect ordering is implicit, cost is counted in tokens after the fact, and nothing about a plan can be checked before it runs. We argue that AI task execution needs a compiler toolchain, not a prompting stack. We present Compile Anything: (i) TaskIR, a versioned SSA-style intermediate representation with a written specification and a static validator enforcing six invariant classes; (ii) a Skill ISA of 31 typed instructions with a five-dimensional nominal cost model, separating task semantics from executor binding; (iii) a dependency-driven runtime in which verification and retry are IR-level constructs; and (iv) a learned front end — a 3B model fine-tuned on 31k audited examples lifted from 71,855 real benchmark samples. A 10,000-program fuzz campaign shows zero invalid programs accepted and zero undefined runtime failures. Experiments show that the 3B model learns TaskIR's structural compilation rules — 99% in-domain validator pass, with high structural validity retained across three external benchmark families never seen in training (92–99%) — while semantic grounding degrades sharply out of domain (BFCL end-to-end functional semantics 15.5%, tau3-bench grounded recall 0.6%), revealing a separation between structural compilation, semantic skill selection, and planning depth. Schema-conditioned training yields a small improvement in BFCL end-to-end functional semantics; naive depth reweighting increases plan length without improving semantic correctness. Explicit IR layering makes these failure modes separately measurable: the front end's skill selection is the bottleneck, while the back-end tool binder's oracle upper bound is 99.95%.
 
-(~205 words after trimming; tighten "tau3-bench" → "a transactional agent benchmark" if space is tight.)
+(~250 words; trim the fuzz sentence or the binder sentence if space is tight. Nominal cost numbers (3.4% energy / 37.9% makespan) are deliberately NOT headline — they stay in the scheduling section as nominal analytical results.)
 
 ---
 
@@ -123,9 +123,9 @@ Total length: ASPLOS ~12 pages + references. Mapping of sections to repo artifac
 4. **An effect system for AI tasks (MemorySSA analogy).** Effect tokens as constrained SSA values; per-class linear chains as hard scheduling barriers; runtime rules (guarded-skip pass-through, no verify-retry across irreversible world actions, rollback checkpoints include effect position). Grounded in a 14,834-action audit of tau3-bench; cross-class transactional semantics identified and disclosed as a gap.
 5. **Cost-aware scheduling and a runtime with speculative-execution semantics.** Critical-path-priority list scheduling over resource-class executor pools; memoization as versioned SSA storage with squash/replay rollback. Example benchmark: scheduled pipelines at nominal mean energy 3.4% and mean makespan 37.9% of a 70B single-shot baseline; cross-resource-class parallelism beats the sequential sum (rtl_debug: 1070 ms vs 1098 ms).
 6. **An evidence-driven expressibility audit of the IR against real benchmarks.** 71,855 real samples from 7 datasets lifted end-to-end: 100% expressibility for tool-use (xLAM 60,000/60,000), SQL (Spider), and RTL (VerilogEval); 7.3% HumanEval / 3.3% MBPP, with machine-generated rejection histograms isolating LOOP/recursion (524 rejections) as the dominant, quantified ISA gap — driving v0.2 ISA priorities.
-7. **A quality-audited corpus and a trained small-model front end.** 31k tiered training examples with zero cross-split leakage, deterministic semantic-label auditing (suspect 64.6% → 1.06% via a lifter-only fix), and a frozen, preflight-gated training/eval package (Qwen 3B/7B); evaluation by three gates (parse → validate → execute) plus seen/unseen composition to distinguish compilation from memorization. *(E0–E3 numbers pending — see §7; do not state unmeasured results.)*
+7. **A quality-audited corpus and a trained small-model front end.** 31k tiered training examples with zero cross-split leakage, deterministic semantic-label auditing (suspect 64.6% → 1.06% via a lifter-only fix), and a frozen, preflight-gated training package. Trained 3B QLoRA: 65.9→99.6% parse, 0→99.1% valid, OpSeq 88.5%, skill F1 0.92 in-domain; 7B zero-shot fails identically (0% valid), showing scale alone does not produce compiler semantics (trained-7B control NOT RUN). Structure/semantics separation across three unseen benchmark families + Phase 5C schema/depth 2×2 ablation are the headline evaluation results (paper-evaluation.md §3–§4).
 
-Claims 1–6 have repo evidence today; claim 7's audit/evidence is done but the training runs are pending — the paper is not submittable until E1/E3 and the external suites land (§7).
+Claims 1–7 all have frozen repo evidence (Phase 5D, `experiments/paper_snapshot_v1.json`). E3 (7B LoRA), official interactive AgentBoard metrics, real hardware cost profiling, and effect v0.2 implementation remain NOT RUN and are disclosed as such — never claimed.
 
 ---
 
@@ -139,8 +139,8 @@ Claims 1–6 have repo evidence today; claim 7's audit/evidence is done but the 
 - **Fig. 5:** Corpus pipeline: download (sha256) → adapter → lifter → validator → simulator → quality tiers → splits, with the audit gates on top.
 - **Fig. 6:** Coverage/rejection histogram across the 7 real datasets; LOOP highlighted as the dominant bar. (Data: data/reports/dataset_coverage.*)
 - **Fig. 7:** Scheduling Gantt for rtl_debug showing EXTRACT∥SEARCH cross-class parallelism and makespan < sequential sum. (Data: benchmark_results.md)
-- **Fig. 8:** Compile-quality vs program density for the trained front end (parse/valid/exec rates vs node count) — the TaskIR counterpart of the Workflow-DAG paper's emission-density curve; flat-SSA + guard predication is our design answer to it. (Needs E6 outputs.)
-- **Fig. 9 (optional, §6.5):** Parallelism-limitation curve: normalized critical path vs effect-chain length over tau3-lifted programs. (Needs E5.)
+- **Fig. 8:** Compile-quality vs program density for the trained front end (parse/valid/exec rates vs node count) — the TaskIR counterpart of the Workflow-DAG paper's emission-density curve; flat-SSA + guard predication is our design answer to it. (NOT RUN in this snapshot — E10 pending; do not include unless produced.)
+- **Fig. 9 (optional, §6.5):** Parallelism-limitation curve: normalized critical path vs effect-chain length over tau3-lifted programs. (NOT RUN — depends on effect v0.2 implementation.)
 
 ### Tables
 - **T1:** Representation comparison — TaskIR vs LLMCompiler DAG vs CoRE program vs Workflow-DAG IR (axes: written spec/versioning; static validator w/ invariants; types; predication; verify/retry in IR; effect ordering; per-instruction cost model; scheduler; trained front end; fuzzed semantics). This is the positioning table; every cell must be defensible from the cited papers.
@@ -149,8 +149,8 @@ Claims 1–6 have repo evidence today; claim 7's audit/evidence is done but the 
 - **T4:** Real-dataset expressibility audit (7 datasets × lift/valid/execute + rejection reason). (Data: docs/dataset-audit.md.)
 - **T5:** Cost/scheduling results: sequential vs makespan vs critical path; energy, peak memory, LM/API calls, retries; % vs 70B baseline. Scale from the current 5-program table to the full corpus sweep.
 - **T6:** tau3-bench effect classification (counts/shares per class and per domain) + expressibility verdict per class.
-- **T7:** Neural compiler results: E0–E3 × {parse, valid, execute, op-seq exact, skill F1, GED, generic-action rate, seen, unseen}. (PENDING today — placeholder must never survive to submission.)
-- **T8:** External evaluation suites A/B/C (BFCL V4, ToolBench, AgentBoard tool-query / tau3, AgentBoard tool-operation+webshop / BIRD, RTL-Repo) with official metric + Compile-Anything dual metrics.
+- **T7:** Neural compiler results: E0–E3 × {parse, valid, execute, op-seq exact, skill F1, GED, generic-action rate, seen, unseen}. (DONE for E0/E1/E2 — frozen numbers in paper-evaluation.md §2; E3 7B LoRA NOT RUN, disclosed.)
+- **T8:** External evaluation suites A/B/C dual metrics. (DONE for BFCL / τ³ / AgentBoard-offline / Phase 5C 2×2 — frozen in paper-evaluation.md §3–§7; ToolBench full, BIRD, RTL-Repo official runs NOT RUN in this snapshot.)
 - **T9 (appendix):** Corpus audit trail: tier counts, dedup stats, semantic-audit before/after, token-length distribution, freeze manifest hashes.
 
 ---
@@ -169,26 +169,25 @@ Claims 1–6 have repo evidence today; claim 7's audit/evidence is done but the 
 
 ---
 
-## 7. Experiment matrix: claim → required experiments
+## 7. Experiment matrix: claim → required experiments — Phase 5D status
 
-Status legend: DONE (artifact exists), PARTIAL (needs scaling), TODO (needs implementation or GPU run). **The paper is not submittable until every claim's rows are non-PENDING.**
+Status legend: DONE (frozen artifact exists), NOT RUN (disclosed, never claimed). **No PENDING cells remain; completed experiments' numbers are frozen in `experiments/paper_snapshot_v1.json`.**
 
 | # | Experiment | Protocol / metrics | Supports claim | Status |
 |---|---|---|---|---|
-| E1 | Validator + runtime fuzz | 10k random legal programs; validator accept-rate; runtime defined-failure-only; IV1–IV6 | C2 | DONE (extend to 100k for the paper; add effect-chain fuzz once v0.2 lands) |
-| E2 | Expressibility audit (real data) | 7 datasets, 71,855 samples; lift/valid/execute coverage; rejection histogram | C6 | DONE; re-run after LOOP/assignment-lift/STRING_OP to show ISA-coverage delta (3.3%/7.3% → projected ~17%/~15% → ~70% → ~80%) |
-| E3 | Workload characterization of lifted corpus | graph stats (nodes/depth/width), % parallel, % retry, effect-chain lengths, skill frequency over ~70k programs | C3, C4, C5 (motivation) | PARTIAL (1105-program stats exist; scale to full corpus; add effect-chain stats) |
-| E4 | Cost & scheduling study | full-corpus sweep: sequential vs list-scheduled vs critical-path bound; energy/latency/memory vs 70B baseline; executor pool-size sensitivity (1/2/4 per class) | C5 | PARTIAL (5-program nominal result: energy 3.4%, makespan 37.9%, rtl_debug 1070<1098 ms); scale up; if possible swap nominal latencies for measured 2B/7B inference latencies on one GPU — single strongest credibility upgrade for ASPLOS |
-| E5 | Effect-system implementation + safety/parallelism study | implement v0.2 tokens + V7 checks; motivating reordering bug (double-SEND) fixed by barrier; parallelism-loss curve (chain length vs critical path) on tau3-lifted programs | C4 | TODO (proposal + validator design exist; τ³ classification DONE) |
-| E6 | Neural compiler training (E0–E3) | Qwen 3B sanity → 7B main (LoRA/QLoRA) on corpus v3.1; three-gate eval, op-seq exact, skill F1, GED, generic-action rate, seen/unseen composition; capability-context A/B ablation | C7 | TODO (package frozen, preflight green, runbook in docs/training.md; numbers PENDING) |
-| E7 | Prompted-planner baselines | (a) GPT-class zero/few-shot emitting TaskIR text; (b) LLMCompiler-style JSON plan format; same three gates | C1, C7 (front-end necessity) | TODO; needed to defend "small trained compiler ≈ or > prompted giant" without overclaiming |
-| E8 | Data-quality ablation | train on v3 (64.6% suspect) vs v3.1 (1.06%) | C7 ("gates are load-bearing") | TODO; cheap, high-value |
-| E9 | External benchmark suites | Suite A function calling (BFCL V4, ToolBench, AgentBoard tool-query); B stateful (tau3, AgentBoard op/webshop); C domain transfer (BIRD, RTL-Repo); dual metrics (official + compile-side) | C1, C5 (external validity) | TODO (data ready: 132,600 tasks, contamination firewall tested) |
-| E10 | Emission-density analysis of TaskIR | compile-quality vs program size/density from E6 outputs; compare flat-SSA+predication vs branchy alternatives | C1 (design justification) | TODO (derives from E6/E7 outputs) |
+| E1 | Validator + runtime fuzz | 10k random legal programs; validator accept-rate; runtime defined-failure-only; IV1–IV6 | C2 | DONE |
+| E2 | Expressibility audit (real data) | 7 datasets, 71,855 samples; lift/valid/execute coverage; rejection histogram | C6 | DONE |
+| E3 | Workload characterization of lifted corpus | graph stats over corpus programs | C3–C5 (motivation) | PARTIAL (1105-program stats; full-corpus sweep NOT RUN) |
+| E4 | Cost & scheduling study | sequential vs list-scheduled vs critical-path; energy/latency vs 70B baseline | C5 | PARTIAL (5-program NOMINAL result: energy 3.4%, makespan 37.9%; full sweep + measured latencies NOT RUN) |
+| E5 | Effect-system v0.2 implementation + study | tokens + V7; reordering bug; parallelism-loss curve | C4 | NOT RUN (proposal + τ³ classification DONE — classification supports workload motivation only) |
+| E6 | Neural compiler training (E0–E3) | E0 3B zero-shot / E1 3B QLoRA / E2 7B zero-shot; three-gate eval, op-seq, skill F1, GES, seen/unseen | C7 | DONE for E0/E1/E2 (E0: 65.9/0/0; E1: 99.55/99.10/99.10, OpSeq 88.54, F1 0.92; E2: 68.2/0/0). **E3 7B LoRA NOT RUN** |
+| E7 | Prompted-planner baselines | ReAct / LLMCompiler-style JSON plans through same gates | C7 | NOT RUN-in-this-snapshot (react_baseline.py implemented) |
+| E8 | Data-quality ablation (v3 vs v3.1) | retrain on pre-fix corpus | C7 | NOT RUN as retrain; audit delta (suspect 64.6%→1.06%) frozen as evidence |
+| E9 | External benchmark suites | A/B/C dual metrics | C1, C5 | **DONE for BFCL (valid 92.4 / E2E functional 15.50), τ³ (valid 98.86 / recall 0.62), Phase 5C 2×2 (schema +0.35pp E2E; depth negative), AgentBoard untouched offline confirm (351, valid 91.7)**. Official interactive metrics UNSCORED-OFFLINE |
+| E10 | Emission-density analysis | compile-quality vs program size | C1 | NOT RUN |
+| E11 | AgentBoard untouched confirmation | pre-registered, one-shot, offline compile protocol, 351 cases | C1 | DONE (docs/agentboard-preregistration.md; results final regardless of outcome) |
 
-**Sequencing note:** E6 gates E7/E9/E10. E4 scale-up and E5 implementation are GPU-free and can proceed in parallel with the training queue. E2 re-run depends on LOOP (the only semantic-level IR change in v0.2 — budget it accordingly).
-
-**Honesty rules carried into the paper:** nominal costs are labeled nominal; PENDING cells are never replaced with estimates; all dataset numbers cite the sha256'd manifests; synthetic data is tagged and never counted as real.
+**Honesty rules carried into the paper:** nominal costs are labeled nominal analytical model (not measured hardware energy/latency); NOT RUN / UNSCORED-OFFLINE items are disclosed, never estimated; all dataset numbers cite the sha256'd manifests; synthetic data is tagged and never counted as real; AgentBoard evidence is scoped to offline structural confirmation, never task success.
 
 ---
 

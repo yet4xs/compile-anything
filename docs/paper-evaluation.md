@@ -1,202 +1,197 @@
-# Evaluation 章节规划（§9）
+# Evaluation 章节（§9）— Phase 5D 终版（真实结果）
 
-> 对应 `docs/paper-outline.md` §9（E6–E10 行）。数据与代码依据：
-> `experiments/external_eval/manifest.json`、`docs/benchmark-schema-audit.md`、
-> `docs/external-benchmark-status.md`、`docs/training.md`、
-> `benchmark/neural_compiler_eval.py`、`docs/semantic-label-audit.md`。
-> 纪律：训练未跑，本文件所有结果表为空模板；**PENDING 单元格禁止以估计值填充**。
+> **状态：evidence frozen（Phase 5D）。** 所有数字来自仓库冻结产物（见 §10 工件表与
+> `experiments/paper_snapshot_v1.json`），不再修改。此前版本中"训练未跑/PENDING/空模板"
+> 已全部删除。纪律不变：PENDING 禁止预填，名义成本一律标注 nominal，离线不可得指标
+> 标注 UNSCORED-OFFLINE。
 
-## 1. 评测体系设计
+## 1. 实验链总览
 
-评测章需要回答三个递进的问题：其一，学习到的编译器前端能否把自然语言任务
-**编译**为合法且可执行的 TaskIR 程序（编译质量）；其二，编译得到的程序在真实
-基准上是否还原了任务语义，而非仅在内部测试集上拟合（外部效度）；其三，监督
-数据的质量闸门与各种训练选择各自贡献了多少（归因与消融）。为此，评测体系由
-**三层外部套件、双指标、全量冻结**三个要素构成。
+评测回答四个递进问题：(i) 小模型能否学会把 NL 任务**编译**为合法 TaskIR（编译质量）；
+(ii) 该能力是否泛化到从未见过的外部基准家族（结构泛化）；(iii) 合法程序是否还原了
+任务**语义**（跨域语义接地）；(iv) 各训练选择贡献几何（2×2 因子消融）。
 
-**三层套件**按任务形态而非数据来源划分，分别对应论文的三条核心主张：A 层
-考察函数调用形态下的语义技能选择能力，这是编译器前端最基本的"指令选择"问题；
-B 层考察多步有状态、带副作用的交互任务，检验 TaskIR 与运行时（guard/VERIFY/
-retry 回滚）在副作用排序与状态维护上是否成立，这是与纯规划系统拉开差距的
-地方；C 层考察同一套编译器抽象（同一 Skill ISA、同一 validator、同一评测
-协议）跨 SQL 与 RTL 两个专业域的迁移能力，回应"Compile Anything"的通用性
-主张。三层共同构成从"会调用工具"到"能编译任意域任务"的递进论证。
-
-| Suite | 成员（冻结 case 数） | 论文问题 | 官方 metric |
-|---|---|---|---|
-| A function calling | BFCL V4（4,696）、ToolBench full（124,345）、AgentBoard tool-query（60） | 能否正确选择 semantic skill / function | AST 函数调用正确率；pass^1 |
-| B stateful agent | τ³-bench（2,546，airline/retail/telecom/banking 四域）、AgentBoard tool-operation（40）、AgentBoard webshop（251） | TaskIR+runtime 在多步有状态副作用任务上是否成立 | task success（组合 reward）；progress rate |
-| C domain transfer | BIRD mini-dev（500）、RTL-Repo test（1,174） | 同一 compiler abstraction 跨 SQL/RTL 域 | execution accuracy（EX）；pass@1（exact/syntax match） |
-
-**13 个基准分组冻结**：按"基准×任务域"粒度共 13 组——BFCL V4、ToolBench
-full、BIRD mini-dev、RTL-Repo、AgentBench、WebShop 六个基准仓，加 τ³ 四域
-（airline/retail/telecom/banking）、AgentBoard 三任务（tool-query/
-tool-operation/webshop）。其中 11 组已完成 case-ID 级冻结：`data/
-external_benchmarks/eval_suites/*.json` 共 8 个套件文件，**合计 133,612 条
-case**，套件与适配器的 sha256 均写入 `experiments/external_eval/manifest.json`
-（另含 BFCL 的 oracle 可表达性审计：full 1,931 / partial 2,610 / none 155，
-用于解释编译侧指标的上界）。AgentBench 与 WebShop 全量数据受网络门槛限制，
-版本引用与快照哈希已冻结，数据获取留待可达环境，不阻塞主线。冻结即承诺：
-**训练开始后不得挑选、删减或重抽测试样本**。训练数据（corpus v3.1）与外部
-评测数据由 `src/dataset/external_guard.py` 在所有 corpus builder 入口强制
-隔离，`tests/test_external_benchmark_guard.py` 持续守护，杜绝评测集泄漏进
-监督数据。
-
-**双指标原则**：每个基准同时上报两类指标。（i）**官方 metric**（见上表），
-使用基准自带的 evaluator 与 ground truth，保证与已有工作可比、可复核；对
-τ³ 这类需用户模拟器的基准，优先采用可离线 replay 的动作断言子集并如实标注
-覆盖比例。（ii）**Compile Anything 指标**：parse rate（文本能否解析为
-Module）→ validator pass（V1–V6 静态合法性）→ execution success（模拟器
-能否完整执行）三级闸门，再加 op-seq exact、skill F1、图编辑相似度
-（approx. GED，下称 GES）、generic-action rate（EXEC_ACTION 直调占预测
-算子的比例，即"语义化失败率"）。前者回答"任务做得对不对"，后者回答"前端
-是否产出了合法、可执行、语义化的程序"；二者分离上报，是因为官方 metric
-无法区分"前端编译得好但执行环境弱"与"前端根本没编出合法程序"，而这一区分
-恰是编译器论文的本体问题。对必须真实环境 replay 的基准（ToolBench 真实
-API、webshop 环境），离线阶段至少上报编译侧指标并明确标注环境缺口。
-
-## 2. 实验矩阵（E0–E3）
-
-训练语料为 corpus v3.1：Tier A 15,755 条 + Tier B 15,460 条，共 **31,215**
-条（train 28,093 / val 1,561 / test 1,561，MinHash-LSH 去重 + group-aware
-切分，跨 split 完全与近重复均为零）。E1/E3 实际消费 train split 28,093 条；
-监督目标为 `plan_target`（纯 lowering 视图，不含 policy 尾巴），capability
-context 默认 OFF，序列长度 2048（token 审计 p99=856，超长仅 0.17%），
-seed 42。冻结包、依赖 pin 与 preflight 闸门见 `experiments/phase5b1/
-manifest.json` 与 `docs/training.md`；正式训练前先以 200 条 verified-only
-样本做 sanity overfit，验证训练管线本身。
-
-| 编号 | 模型 | 训练方式 | 样本 |
-|---|---|---|---|
-| E0 | Qwen2.5-3B-Instruct | zero-shot 基线 | 0 |
-| E1 | Qwen2.5-3B | QLoRA（4bit NF4） | 31,215（train 28,093） |
-| E2 | Qwen2.5-7B-Instruct | zero-shot 规模对照 | 0 |
-| E3 | Qwen2.5-7B | LoRA（bf16）/QLoRA | 31,215（train 28,093） |
-
-四个实验共用同一评测协议与指标链（`benchmark/neural_compiler_eval.py`
-已实现）：**parse rate → validator pass → execution success → op-seq
-exact → skill F1（micro + per-skill）→ GES → generic-action rate →
-seen/unseen composition**，并按 source 分解（xlam/spider/toolbench_static/
-verilogeval/humaneval/mbpp）。指标链的每一级隔离一类失败模式：解析失败是
-语法问题，validator 失败是语义构造问题，执行失败是运行时契约问题；op-seq
-与 skill F1 度量指令选择的准确率，GES 度量图结构的近似质量，generic-action
-rate 度量语义化降级的程度。**seen/unseen composition**（reference
-op-sequence 未在 train 中出现；test 集含 44 条）则是判别"真编译 vs 背模板"
-的核心指标：若模型只在见过的算子组合上准确，则说明学到的是模板检索而非
-编译能力。E1 之后设 Go/No-Go 闸门（`scripts/collect_phase5b1_results.py`
-自动判定）：parse/valid/F1/seen 相对 E0 提升、execute 不降、unseen 不
-塌方；若 seen 高企而 unseen 近零，判定 template memorization suspected，
-逐例 dump 至 `unseen_cases.json` 供人工检查。
-
-## 3. 消融实验设计（Phase 5B-2）
-
-消融的目的不是堆实验数量，而是把"数据质量闸门是必要成本"这一主张从断言
-变成证据。四项消融各自只改动一个变量，其余配置（模型、步数、split、seed）
-与 E1 或 E3 完全一致：
-
-- **A1 Tier C 加入 vs 不加**：Tier C 为 39,546 条含 fallback 映射的样本
-  （修复前 fallback 占全部调用的 55.2%，语义映射覆盖率仅 36.2%）。假设：
-  加入 C 可提升长尾 recall，但 fallback 监督会推高 generic-action rate、
-  稀释显式语义技能的学习——以 generic-action rate 与 skill F1 的此消彼长
-  为判据。
-- **A2 capability context ON vs OFF**：指令歧义审计显示 exact 组歧义率仅
-  0.85%、且歧义组的 capability 上下文完全相同，提示上下文对消歧帮助有限；
-  本消融实测其对技能选择（skill F1）与解析率的边际贡献，决定该输入特征
-  去留。
-- **A3 execution_target vs plan_target**：execution_target 允许
-  GENERATE/VERIFY 的 policy 尾巴进入监督目标。假设：policy 尾巴引入的
-  长尾序列会损害 lowering 的纯净性，表现为 op-seq exact 下降与序列长度
-  上浮；若不显著，则可在后续轮次安全启用更完整的执行视图。
-- **A4 参数保全修复前 vs 后**：用 v3（参数保全率 mean 16.7%，suspect
-  64.6%）与 v3.1（98.9%，1.06%）两版语料同配置重训。这是对"lifter 级
-  修复、不动 IR/ISA/split"的对照实验，直接证明数据质量闸门是
-  load-bearing 的（对应 outline E8），也是对 reviewer"你们的数据修复只是
-  工程细节"质疑的最强回应。
-
-## 4. 对比基线
-
-| 基线 | 设置 | 回答的问题 |
+| 实验 | 内容 | 状态 |
 |---|---|---|
-| LLMCompiler 式规划器 | 冻结 LLM + few-shot，输出 JSON DAG（`$`-变量） | 无 IR 契约的 prompt 规划能否通过三级闸门（对应 outline E7b） |
-| ReAct | 冻结 LLM 顺序执行（toolbench_static 有 ReAct 真值可对齐） | 顺序调用 vs 编译并行的延迟/调用次数差（outline E7a 之序列形态） |
-| Qwen base zero-shot | 即 E0/E2 | 训练本身的贡献 |
-| 70B single-shot | 直答，不编译 | 成本参照系（名义 ~2500 ms / ~900 J / ~140 GB；已有编排侧 energy 3.4%、makespan 37.9% 的 5 程序名义结果，待全量 sweep） |
+| E0 | Qwen2.5-3B zero-shot | DONE |
+| E1 / E1-A | 3B QLoRA（28,093 条，corpus v3.1） | DONE |
+| E2 | 7B zero-shot 规模对照 | DONE |
+| **E3** | **7B LoRA** | **NOT RUN**（如实标注，不以估计值填充） |
+| Phase 5C 2×2 | schema 条件化 × 深度课程前端消融（A/S/D/SD） | DONE |
+| BFCL 外部开发集 | 4,696 条，冻结 oracle 三级语义判定 | DONE |
+| τ³ 外部开发集 | 2,546 条，skill-oracle 降级对齐 | DONE |
+| AgentBoard untouched | 351 条一次性离线确认（预注册） | DONE |
+| 官方交互环境 AgentBoard | progress/success rate | NOT DONE（UNSCORED-OFFLINE） |
 
-基线设计遵循两条原则。**协议公平**：所有方法收到相同的任务输入与工具/
-能力描述，产出统一送入同一套三级闸门与编译侧指标，LLMCompiler 与 ReAct
-的原始输出格式（JSON DAG、ReAct 文本轨迹）不因格式不同而受罚——官方
-metric 一列保证它们在各自原生形态下被公平评分。**对比有界**：与
-LLMCompiler 的对比聚焦编译质量与调用次数（其论文的 3.7× 加速引用为标杆
-而非靶子）；70B 直答仅作成本参照，不声称质量可比，名义成本一律标注
-nominal。ReAct 的真值对齐点选在 toolbench_static（2,356 条含 ReAct 轨迹
-静态集），可同时报官方指标与逐轮命中率。
+## 2. Internal：神经编译器主结果（T7）
 
-## 5. 结果表格模板（训练后回填，禁止预填）
+test split n=1,561，三级闸门 + 指令选择指标（`benchmark/neural_compiler_eval.py`）：
 
-**T7 主结果：E0–E3 × 编译质量指标链**（test split，n=1,561）
+| Model | Train | Parse% | Valid% | Exec% | OpSeq% | Skill F1 |
+|---|---|---:|---:|---:|---:|---:|
+| 3B zero-shot（E0） | 0 | 65.92 | 0.00 | 0.00 | 0.00 | 0.000 |
+| 3B QLoRA（E1） | 28,093 | **99.55** | **99.10** | **99.10** | **88.54** | **0.92** |
+| 7B zero-shot（E2） | 0 | 68.23 | 0.00 | 0.00 | 0.00 | 0.000 |
 
-| 实验 | parse% | valid% | exec% | op-seq% | GES | skill-P | skill-R | skill-F1 | generic-act% | seen n | seen op-seq% | unseen n | unseen op-seq% |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| E0 3B zero-shot | | | | | | | | | | | | | |
-| E1 3B QLoRA | | | | | | | | | | | | | |
-| E2 7B zero-shot | | | | | | | | | | | | | |
-| E3 7B LoRA | | | | | | | | | | | | | |
+解读：
 
-**T7-b per-source 分解**（E3）
+> **参数规模本身没有产生 TaskIR compiler semantics**：7B zero-shot 与 3B zero-shot
+> 同样在 validator 闸门前全军覆没（valid 0%），其 68% 的 parse 率只说明模型能模仿
+> 表面语法。28k 条经语义审计的高质量监督使 3B 从 surface-format imitation 转变为
+> 几乎完全 structural-valid 的编译（valid 99.10%）。不声称"3B 优于 7B"——没有
+> 训练后的 7B 对照（E3 NOT RUN）。
 
-| source | n | parse% | valid% | exec% | op-seq% | skill-F1 | generic-act% | unseen op-seq% |
-|---|---|---|---|---|---|---|---|---|
-| xlam | | | | | | | | |
-| spider | | | | | | | | |
-| toolbench_static | | | | | | | | |
-| verilogeval | | | | | | | | |
-| humaneval | | | | | | | | |
-| mbpp | | | | | | | | |
+分 source（E1）：xLAM 994（valid 98.99%）、Spider 555（99.82%）为绝对主体；
+toolbench_static 9 / humaneval 1 / mbpp 2 样本过少，仅作记录。Per-skill F1 主体
+技能 0.82–1.00（QUERY_DB 0.978、CALCULATE 0.988、TRANSLATE 1.000）。
 
-**T7-c per-skill P/R/F1**（31 skills + VERIFY/SELECT，E3，support 列回填）
+## 3. Structure / Semantics 分离（核心表 T8-a）
 
-| skill | precision | recall | F1 | support |
-|---|---|---|---|---|
-| （逐 skill 行，回填时生成） | | | | |
+同一编译器在四个基准家族上的结构与语义指标对照（E1-A 基线口径）：
 
-**T8 外部三层套件双指标**（每 suite 一行；官方列空缺处需环境，如实标注）
+| Benchmark | Structural metric | Semantic metric | 主观察 |
+|---|---:|---:|---|
+| Internal（n=1,561） | Valid 99.10% | Skill F1 0.92 | 域内编译已学会 |
+| BFCL V4（n=4,696） | Valid 92.4% | Functional E2E 15.50% | 结构迁移，语义弱 |
+| τ³（n=2,546） | Valid 98.86% | Grounded recall 0.62% | 严重跨域接地失败 |
+| AgentBoard（n=351，untouched） | Valid 91.7% | UNSCORED-OFFLINE | 结构结果第三次复制 |
 
-| suite | layer | n | 官方 metric | parse% | valid% | exec% | skill-F1 | generic-act% |
-|---|---|---:|---|---|---|---|---|---|
-| BFCL V4 | A | 4,696 | | | | | | |
-| ToolBench full | A | 124,345 | | | | | | |
-| AgentBoard tool-query | A | 60 | | | | | | |
-| τ³-bench | B | 2,546 | | | | | | |
-| AgentBoard tool-operation | B | 40 | | | | | | |
-| AgentBoard webshop | B | 251 | | | | | | |
-| BIRD mini-dev | C | 500 | | | | | | |
-| RTL-Repo | C | 1,174 | | | | | | |
+**这是本文的中心实证发现**：结构合法性（SSA/类型/DAG/validator 不变量）零样本迁移到
+三个从未见过的基准家族；语义技能选择严格绑定于训练分布。两者以数量级计的落差
+（92~99% vs 0.6~16%）说明它们是**可分离的能力维度**，也证明"validator 通过 ≠ 编译正确"。
 
-**TA 消融结果**
+定版模型 **E5C-S**（Phase 5C 选出，schema 部署协议）单列：
 
-| 消融 | 对照配置 | parse% | valid% | exec% | op-seq% | skill-F1 | generic-act% | unseen op-seq% |
-|---|---|---|---|---|---|---|---|---|
-| A1 | A+B vs A+B+Tier C | | | | | | | |
-| A2 | ctx OFF vs ON | | | | | | | |
-| A3 | plan_target vs execution_target | | | | | | | |
-| A4 | v3 vs v3.1（参数保全） | | | | | | | |
+```text
+Internal (matched protocol):  Valid 99.10%   OpSeq 94.11%
+BFCL:   Functional | Valid    18.19%（诊断口径）
+        Functional E2E        15.86%（主指标，基线 15.50）
+τ³:     Semantic Recall        0.58%
+        Pred/T                 1.75   （参考 5.83）
+AgentBoard (offline): Parse 97.7%   Valid 91.7%
+```
 
-**TB 基线对比（质量 + 名义成本）**
+## 4. Phase 5C 2×2 前端消融（T8-b）
 
-| 方法 | 官方 metric（主 suite） | skill-F1 | valid% | LM/API 调用数 | 名义 latency | 名义 energy | 名义 memory |
-|---|---|---|---|---|---|---|---|
-| Ours（E3） | | | | | | | |
-| LLMCompiler 式 | | | | | | | |
-| ReAct | | | | | | | |
-| Qwen zero-shot | | | | | | | |
-| 70B single-shot | — | — | — | | | | |
+四组：A（基线）/ S（schema 条件化）/ D（深度课程）/ SD（双因素），统一 matched
+推理协议，交互项按 SD−S−D+A 计算（freeze-fix 修正后口径）：
 
-## 6. 写作纪律
+| 因变量 | Schema 主效应 | Depth 主效应 | 交互 |
+|---|---:|---:|---:|
+| Internal OpSeq（matched） | +1.83pp | −4.77pp | +0.96pp |
+| τ³ Pred/T | +0.425 | +0.325 | **−0.65（饱和）** |
+| τ³ Semantic Recall | −0.02pp | +0.05pp | +0.15pp（噪声） |
+| BFCL Functional E2E | **+0.77pp** | −0.62pp | +0.84pp |
+| BFCL Functional\|Valid（诊断） | +1.92pp | −1.04pp | +1.12pp |
 
-(i) 所有数据规模与版本引用 sha256 manifest，不引用记忆中的数字；(ii) 名义
-成本一律标注 nominal，不与实测混排；(iii) 官方 metric 因环境不可离线 replay
-而空缺处如实标注，不以编译侧指标替代或外推；(iv) 表格数字一律来自
-`scripts/run_neural_compiler.py`、`scripts/collect_phase5b1_results.py` 与
-外部评测适配器的落盘产物，禁止手抄改动；(v) 每张表在正文有一句对应的解读
-句式预设（如 E1 vs E0 的差值即"训练的贡献"、E3 vs E2 的差值即"规模之上
-再训练的增益"），避免罗列数字而不论证。
+### 4.1 Schema conditioning（正结果，幅度小）
+
+```text
+Internal OpSeq:            92.76 → 94.11
+BFCL Functional E2E:       15.50 → 15.86   （+0.35pp，相对 +2.3%）
+BFCL Functional|Valid:     16.83 → 18.19   （仅作诊断）
+τ³ Pred/T:                 1.00  → 1.75
+```
+
+> Schema-conditioned training provides a small positive improvement in cross-domain
+> semantic correctness, preserves internal compiler quality, and strongly changes
+> the model's planning-length prior.
+
+注意两点必须保留：(i) E2E +0.35pp 是主口径，**不得只引条件口径 +1.36pp**；
+(ii) schema 模型推理时必须携带 capability schema（无 schema 推理时 OpSeq 崩至 44%，
+train/eval 协议失配所致，非能力丢失）。此前 capability-at-inference-only 消融
+（E1 上 +0.2pp）说明**训练时见过 schema 才有效**。
+
+### 4.2 Depth curriculum（负结果，如实保留）
+
+> Depth reweighting increases generated plan length but does not improve
+> semantic correctness.
+
+```text
+τ³ Pred/T:                1.00 → 1.65     （长度↑）
+τ³ Semantic Recall:       0.62% → 0.55%   （语义不升反微降）
+Internal OpSeq:           92.76 → 87.51   （域内代价）
+τ³ Valid:                 98.86% → 86.53% （结构鲁棒性代价）
+BFCL Functional E2E:      15.50 → 14.47   （语义代价）
+```
+
+> Length is trainable; correctness is not obtained by naive depth reweighting.
+
+## 5. 主失败分析：EXEC_ACTION 边界（跨三基准合并）
+
+**主导的跨域失败不是语法或工具绑定，而是 retrieval–action 边界上的语义接地。**
+（dominant *observed* failure，不写"唯一语义问题"）
+
+| 基准 | 参考侧 | 模型侧 | 证据 |
+|---|---|---|---|
+| τ³ | 96%（14,229/14,834）参考动作 oracle 降级为 EXEC_ACTION | E5C 全系产出率 ~0（SD 4,465 个预测中 1 个） | op 分布分析 |
+| BFCL | multi_turn/action 类期望 EXEC_ACTION | 模型选 retrieval 类 | 关系判定 INCOMPATIBLE 8,008 主项 |
+| AgentBoard tool-operation | 状态变更类工具调用 | EXEC_ACTION 23.9%（17/71），FETCH 仍压制（49） | 首测 op 分布 |
+
+训练语料含 1,649 例 EXEC_ACTION（~3.5%）——非零样本问题，而是**条件映射不迁移**：
+触发 EXEC_ACTION 的域内指令模式不覆盖外部基准的措辞。AgentBoard 首测中 env-visible
+schema 使 EXEC_ACTION 使用率从 ~0% 升至 23.9%，证明 schema 部分缓解但未解决。
+
+## 6. Binder 上界：失败定位到前端
+
+τ³ oracle 语义计划 → binder → 具体工具的 P/R/F1 = **99.95%**。因此在架构上：
+
+```text
+Frontend semantic grounding（技能选择）    瓶颈
+Backend binder（技能→工具绑定）           非主要瓶颈
+```
+
+> 显式的前端 IR 与后端绑定分层，使失败定位成为可能——这是 compiler 分层架构
+> 的直接评测收益。
+
+## 7. AgentBoard untouched 确认（正确口径）
+
+**pre-registered（commit d59d00b，先于任何运行）、untouched、351 条、one-shot、
+离线编译协议。** 结果：
+
+| Task | n | Parse% | Valid% | Pred/T | EXEC_ACTION% |
+|---|---:|---:|---:|---:|---:|
+| tool-query | 60 | 98.3 | 78.3 | 1.32 | 2.5 |
+| tool-operation | 40 | 95.0 | 87.5 | 1.77 | 23.9 |
+| webshop | 251 | 98.4 | 96.0 | 0.96 | 0.0 |
+| **合计** | **351** | **97.7** | **91.7** | 1.12 | — |
+
+- 本节标题与结论一律称 **offline compiler confirmation**：证明的是第三个基准家族上的
+  TaskIR compile-side structural generalization。
+- **不得写** AgentBoard performance / task success / beats baseline——无交互执行环境，
+  official progress rate / success rate = **UNSCORED-OFFLINE**。
+- 官方 GPT-4/GPT-3.5 SR 仅作 non-comparable literature reference（文字引用，
+  不与我们的数字同图对比）。
+- webshop pred/T 0.96（单 SEARCH 近退化解）复现 τ³ 的浅计划先验。
+
+## 8. 其余消融与基线（已执行部分）
+
+- **A2 capability context**（E1 上，500 条分层 BFCL）：parse 97.8→99.2%，semantic
+  8.6→8.8% —— 推理时给 schema 无效，训练时见过才有效（§4.1 已并入主结论）。
+- **A4 数据质量**（v3→v3.1 参数保全修复）以语义审计报告呈现：suspect 64.6%→1.06%，
+  参数保全 16.7%→98.9%（lifter-only 修复，未动 IR/ISA/split）。
+- **ReAct/LLMCompiler 式基线**：协议已实现（`src/eval/react_baseline.py`），本轮未作为
+  主表对照，如实标注 NOT RUN-in-this-snapshot。
+- 名义成本（3.4% energy / 37.9% makespan，5 程序示例）：nominal analytical model，
+  **非实测硬件能耗/延迟**，不作 headline，仅在调度章节作架构级分析。
+
+## 9. 未执行项（如实清单）
+
+```text
+E3 7B LoRA                          NOT RUN
+官方交互环境 AgentBoard（SR/PR）     NOT RUN（UNSCORED-OFFLINE）
+真实硬件 cost profiling             NOT RUN
+effect v0.2 实现（含 V7）            NOT RUN（设计提案）
+LOOP region / 多程序链接            NOT RUN
+```
+
+## 10. 工件映射
+
+| 结果 | 工件 |
+|---|---|
+| T7 internal 主表 | `docs/results-phase5b1-complete.md`; `experiments/phase5b1/` |
+| 2×2 主表 + 补测 | `results/phase5c/*.json`; `docs/results-phase5c.md` |
+| BFCL 语义判定 | `results/phase5c/bfcl_semantic.json`（冻结 audit 规则） |
+| τ³ 归一化语义 | `results/phase5c/tau3_semantic.json` |
+| AgentBoard 首测 | `results/agentboard/first_test.json`; `docs/agentboard-preregistration.md` |
+| 快照哈希 | `experiments/paper_snapshot_v1.json` |
