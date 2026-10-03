@@ -1,0 +1,313 @@
+{
+  "total_tool_calls": 30886,
+  "schema_join": {
+    "hit": 30875,
+    "miss": 11,
+    "hit_pct": 99.96
+  },
+  "skill_support": {
+    "FETCH": 9684,
+    "SEARCH": 8912,
+    "QUERY_DB": 2488,
+    "CALCULATE": 2195,
+    "CODEGEN": 1922,
+    "EXEC_ACTION": 1649,
+    "SEND": 1429,
+    "EXTRACT_ENTITIES": 1133,
+    "CLASSIFY": 1017,
+    "SUMMARIZE": 176,
+    "CONVERT": 171,
+    "TRANSLATE": 110
+  },
+  "exec_action_split": {
+    "exact_action_rule": 1110,
+    "contradictory_exact": 539
+  },
+  "exec_action_examples": {
+    "exact_action_rule": [
+      {
+        "tool": "ipo_calendar_for_twelve_data",
+        "desc": "This is the subfunction for tool \"twelve_data\", you can use this tool.The description of this function is: \"This endpoin"
+      },
+      {
+        "tool": "facebook_video_downloader_for_facebook_video_downloader_mp4",
+        "desc": "This is the subfunction for tool \"facebook_video_downloader_mp4\", you can use this tool.The description of this function"
+      },
+      {
+        "tool": "_event_summary_info_by_pharmacologic_class_for_konviere_drugsapi",
+        "desc": "This is the subfunction for tool \"konviere_drugsapi\", you can use this tool.The description of this function is: \"This w"
+      }
+    ],
+    "contradictory_exact": [
+      {
+        "tool": "get_user_orders_for_demo_project",
+        "desc": "This is the subfunction for tool \"demo_project\", you can use this tool."
+      },
+      {
+        "tool": "get_user_orders_for_onboarding_project",
+        "desc": "This is the subfunction for tool \"onboarding_project\", you can use this tool."
+      },
+      {
+        "tool": "get_order_for_rushtranslate",
+        "desc": "This is the subfunction for tool \"rushtranslate\", you can use this tool.The description of this function is: \"Get detail"
+      }
+    ],
+    "verified_fallback": [],
+    "unverified_fallback": []
+  },
+  "cells": [
+    {
+      "skill": "CALCULATE",
+      "source": "toolbench_static",
+      "mapping_kind": "heuristic",
+      "count": 11,
+      "schema_available": 11,
+      "unique_tool_names": 10,
+      "unique_tool_families": 10
+    },
+    {
+      "skill": "CALCULATE",
+      "source": "xlam",
+      "mapping_kind": "heuristic",
+      "count": 2184,
+      "schema_available": 2184,
+      "unique_tool_names": 20,
+      "unique_tool_families": 20
+    },
+    {
+      "skill": "CLASSIFY",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 25,
+      "schema_available": 25,
+      "unique_tool_names": 19,
+      "unique_tool_families": 11
+    },
+    {
+      "skill": "CLASSIFY",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 992,
+      "schema_available": 992,
+      "unique_tool_names": 38,
+      "unique_tool_families": 36
+    },
+    {
+      "skill": "CODEGEN",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 76,
+      "schema_available": 72,
+      "unique_tool_names": 43,
+      "unique_tool_families": 40
+    },
+    {
+      "skill": "CODEGEN",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 1846,
+      "schema_available": 1846,
+      "unique_tool_names": 88,
+      "unique_tool_families": 76
+    },
+    {
+      "skill": "CONVERT",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 23,
+      "schema_available": 23,
+      "unique_tool_names": 17,
+      "unique_tool_families": 15
+    },
+    {
+      "skill": "CONVERT",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 148,
+      "schema_available": 148,
+      "unique_tool_names": 9,
+      "unique_tool_families": 9
+    },
+    {
+      "skill": "EXEC_ACTION",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 10,
+      "schema_available": 10,
+      "unique_tool_names": 8,
+      "unique_tool_families": 6
+    },
+    {
+      "skill": "EXEC_ACTION",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 1639,
+      "schema_available": 1639,
+      "unique_tool_names": 73,
+      "unique_tool_families": 68
+    },
+    {
+      "skill": "EXTRACT_ENTITIES",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 75,
+      "schema_available": 75,
+      "unique_tool_names": 41,
+      "unique_tool_families": 37
+    },
+    {
+      "skill": "EXTRACT_ENTITIES",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 1058,
+      "schema_available": 1058,
+      "unique_tool_names": 43,
+      "unique_tool_families": 40
+    },
+    {
+      "skill": "FETCH",
+      "source": "toolbench_static",
+      "mapping_kind": "heuristic",
+      "count": 272,
+      "schema_available": 270,
+      "unique_tool_names": 184,
+      "unique_tool_families": 135
+    },
+    {
+      "skill": "FETCH",
+      "source": "xlam",
+      "mapping_kind": "heuristic",
+      "count": 9412,
+      "schema_available": 9412,
+      "unique_tool_names": 579,
+      "unique_tool_families": 356
+    },
+    {
+      "skill": "QUERY_DB",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 89,
+      "schema_available": 88,
+      "unique_tool_names": 82,
+      "unique_tool_families": 72
+    },
+    {
+      "skill": "QUERY_DB",
+      "source": "toolbench_static",
+      "mapping_kind": "heuristic",
+      "count": 51,
+      "schema_available": 51,
+      "unique_tool_names": 82,
+      "unique_tool_families": 72
+    },
+    {
+      "skill": "QUERY_DB",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 2107,
+      "schema_available": 2107,
+      "unique_tool_names": 128,
+      "unique_tool_families": 83
+    },
+    {
+      "skill": "QUERY_DB",
+      "source": "xlam",
+      "mapping_kind": "heuristic",
+      "count": 241,
+      "schema_available": 241,
+      "unique_tool_names": 128,
+      "unique_tool_families": 83
+    },
+    {
+      "skill": "SEARCH",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 169,
+      "schema_available": 169,
+      "unique_tool_names": 199,
+      "unique_tool_families": 146
+    },
+    {
+      "skill": "SEARCH",
+      "source": "toolbench_static",
+      "mapping_kind": "heuristic",
+      "count": 215,
+      "schema_available": 213,
+      "unique_tool_names": 199,
+      "unique_tool_families": 146
+    },
+    {
+      "skill": "SEARCH",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 2513,
+      "schema_available": 2513,
+      "unique_tool_names": 322,
+      "unique_tool_families": 280
+    },
+    {
+      "skill": "SEARCH",
+      "source": "xlam",
+      "mapping_kind": "heuristic",
+      "count": 6015,
+      "schema_available": 6015,
+      "unique_tool_names": 322,
+      "unique_tool_families": 280
+    },
+    {
+      "skill": "SEND",
+      "source": "toolbench_static",
+      "mapping_kind": "heuristic",
+      "count": 40,
+      "schema_available": 39,
+      "unique_tool_names": 29,
+      "unique_tool_families": 28
+    },
+    {
+      "skill": "SEND",
+      "source": "xlam",
+      "mapping_kind": "heuristic",
+      "count": 1389,
+      "schema_available": 1389,
+      "unique_tool_names": 45,
+      "unique_tool_families": 42
+    },
+    {
+      "skill": "SUMMARIZE",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 5,
+      "schema_available": 5,
+      "unique_tool_names": 3,
+      "unique_tool_families": 2
+    },
+    {
+      "skill": "SUMMARIZE",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 171,
+      "schema_available": 171,
+      "unique_tool_names": 9,
+      "unique_tool_families": 9
+    },
+    {
+      "skill": "TRANSLATE",
+      "source": "toolbench_static",
+      "mapping_kind": "exact",
+      "count": 13,
+      "schema_available": 12,
+      "unique_tool_names": 9,
+      "unique_tool_families": 7
+    },
+    {
+      "skill": "TRANSLATE",
+      "source": "xlam",
+      "mapping_kind": "exact",
+      "count": 97,
+      "schema_available": 97,
+      "unique_tool_names": 6,
+      "unique_tool_families": 6
+    }
+  ],
+  "note": "corpus 'capabilities' field is semantic skill STRINGS; real tool schemas recovered by joining lowering.tool -> raw dataset definitions (xlam_function_calling_60k.json / toolbench_static)"
+}

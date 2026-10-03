@@ -1,0 +1,89 @@
+{
+  "phase": "6A — Skill Grounding Probe",
+  "frozen_date": "2026-10-03",
+  "base_commit": "d6b42ef",
+  "paper_snapshot": "experiments/paper_snapshot_v1.json (immutable; Phase 6 may not modify any file listed there)",
+  "research_question": "Can a 3B model map previously unseen capability schemas to the canonical Skill ISA — in particular the RETRIEVAL (SEARCH/FETCH/QUERY_DB) vs ACTION (EXEC_ACTION/SEND/SAVE) boundary — independently of TaskIR program generation?",
+  "inputs_allowed": {
+    "training_data": [
+      "data/compiler_corpus_v3_1/train.jsonl (labels + instructions only)",
+      "data/raw/xlam/xlam_function_calling_60k.json (tool schemas, join by tool name)",
+      "data/raw/toolbench_static/ (tool schemas, join by tool name)"
+    ],
+    "note": "corpus records carry capabilities as SEMANTIC SKILL STRINGS, not tool schemas (discovered in Phase 6A Task 1); real schemas are recovered by joining lowering.tool -> raw dataset tool definitions"
+  },
+  "inputs_prohibited_in_training": [
+    "BFCL V4 (external-development; diagnostic only after model freeze)",
+    "tau3-bench (external-development; diagnostic only after model freeze)",
+    "AgentBoard (seen after Phase 5C confirmation; auxiliary diagnostic only)",
+    "any TaskIR plan targets, oracle future nodes, downstream plans in probe samples"
+  ],
+  "sample_construction": {
+    "unit": "one original tool call -> one probe sample",
+    "fields": ["sample_id", "instruction", "capability(name/description/parameters)", "target_skill", "skill_family", "mapping_kind", "label_source", "source", "tool_family", "group_id"],
+    "excluded": ["TaskIR target", "oracle future nodes", "downstream plan"]
+  },
+  "label_tiers": {
+    "G1": "mapping_kind == exact (confidence 0.95, domain-identifying rule) — PRIMARY train/eval",
+    "G2": "mapping_kind == heuristic (confidence 0.70, verb-level rule) — secondary ablation only",
+    "G3": "mapping_kind == fallback (confidence 0.30) — AUDIT ONLY, never trained in round 1",
+    "exec_action_audit_split": {
+      "exact_action_rule": "mapping_kind == exact and skill == EXEC_ACTION (matched an explicit action rule, e.g. calendar/event/book/reserve regex)",
+      "verified_fallback": "fallback label EXEC_ACTION corroborated by raw tool description matching ACTION_VERB_RE (frozen below)",
+      "unverified_fallback": "fallback EXEC_ACTION without description corroboration — banned from all probe gold"
+    },
+    "action_verb_re_frozen": "\\b(create|update|delete|remove|toggle|enable|disable|cancel|book|reserve|order|purchase|buy|checkout|place|submit|send|post|add|edit|modify|set|assign|grant|revoke|reset|activate|deactivate|close|open|transfer|withdraw|deposit|apply|register|sign[- ]?up|subscribe|unsubscribe|publish|upload|install|run|execute|start|stop|restart|connect|disconnect)\\w*\\b",
+    "toolmap_modification": "FORBIDDEN — src/lifter/toolmap.py must not be changed to increase EXEC_ACTION counts"
+  },
+  "tool_family_definition": {
+    "family_key": "first two underscore-separated tokens of the tool name (e.g. book_flight_schedule -> book_flight)",
+    "group_id": "the family_key",
+    "rationale": "deterministic, no hand curation; approximates service/verb-family grouping"
+  },
+  "split_rules": {
+    "unit": "GROUP (tool family), never individual calls",
+    "ratios": {"train": 0.8, "dev": 0.1, "test": 0.1},
+    "constraints": [
+      "exact capability-name overlap across splits = 0",
+      "normalized tool signature overlap = 0",
+      "instruction near-overlap (MinHash jaccard >= 0.8) across splits = 0"
+    ],
+    "primary_result_source": "unseen tool-family test split"
+  },
+  "probes": {
+    "A": "capability schema (name/description/parameters) -> one canonical skill label; no instruction",
+    "B": "task instruction + capability schema -> one canonical skill label",
+    "C": "task + [1 positive + 4 hard negatives from TRAIN groups] -> capability_id + skill",
+    "NO_CALL": "probe-only label for irrelevance; NOT a Skill ISA instruction; negatives constructed by removing the correct capability, marked synthetic_negative=true, reported separately"
+  },
+  "skill_definitions_source": "src/isa/registry.py (auto-built; no second hand-written definition)",
+  "boundary_collapse": {
+    "RETRIEVAL": ["SEARCH", "FETCH", "QUERY_DB"],
+    "ACTION": ["EXEC_ACTION", "SEND", "SAVE"]
+  },
+  "metrics": {
+    "primary": "boundary (RETRIEVAL vs ACTION) on boundary-skill samples: binary accuracy, macro F1, per-class P/R, retrieval->action and action->retrieval confusion",
+    "secondary": "exact-skill multiclass (only skills with sufficient support): micro/macro F1, per-skill P/R/F1, confusion",
+    "probe_C": "capability selection accuracy, skill accuracy, joint exact",
+    "counterfactual": "name-masked (tool_17), description-masked, name-perturbed (api_x7) — headline credibility check",
+    "slice": "action_boundary_test.jsonl: known/unseen verbs x known/unseen tool family"
+  },
+  "baselines": {
+    "B0_toolmap": "deterministic map_tool() (current compiler rule baseline)",
+    "B1_zeroshot": "Qwen2.5-3B-Instruct zero-shot, same classification prompt",
+    "B2_e5cs": "frozen E5C-S as classifier (no TaskIR generation)",
+    "G1_grounder": "Qwen2.5-3B-Instruct + QLoRA r=16 alpha=32 (same tokenizer/base as 5C), skill-grounding-only training, seeds 42/43/44, mean +/- std"
+  },
+  "output_format": "single bare skill token (e.g. 'EXEC_ACTION'); no explanation, no TaskIR",
+  "external_diagnostics": {
+    "order": "only AFTER internal dev + OOD test complete and grounder frozen",
+    "bfcl": "function schema -> skill (frozen oracle rules)",
+    "tau3": "hardened tool->skill oracle; headline: EXEC_ACTION recall vs whole-compiler ~0",
+    "agentboard": "pre-registered env-visible schemas only; auxiliary failure analysis"
+  },
+  "decision_outcomes": {
+    "G1_grounding_works": "internal OOD boundary F1 high, EXEC_ACTION recall high, name-masked robust, external >> whole compiler -> Phase 6B two-stage frontend (Grounder -> Composer)",
+    "G2_internal_only": "internal high, external low -> cross-domain capability grounding data, NOT full TaskIR synthesis",
+    "G3_grounding_fails": "internal unseen-family ACTION recall low -> inspect ISA ontology/label quality/EXEC_ACTION definition before any composition work"
+  }
+}

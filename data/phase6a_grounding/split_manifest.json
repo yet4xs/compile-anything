@@ -1,0 +1,58 @@
+{
+  "seed": 42,
+  "total_calls": 23687,
+  "tiers": {
+    "G2": 19825,
+    "G3_contradictory_exact": 539
+  },
+  "groups": {
+    "train": 966,
+    "dev": 155,
+    "test_ood": 142
+  },
+  "sizes": {
+    "train": 16818,
+    "dev": 2411,
+    "test_ood": 2218,
+    "test_id": 1868,
+    "action_boundary_test": 1856
+  },
+  "overlap_checks": {
+    "family_group_overlap": 0,
+    "tool_name_overlap": 0,
+    "instruction_shingle_overlap": 0,
+    "all_must_be_zero": true
+  },
+  "skill_dist_train": {
+    "FETCH/G2": 5018,
+    "SEARCH/G2": 3570,
+    "SEARCH/G1": 1451,
+    "CALCULATE/G2": 1364,
+    "QUERY_DB/G1": 1200,
+    "CODEGEN/G1": 1042,
+    "EXEC_ACTION/G1": 797,
+    "SEND/G2": 729,
+    "CLASSIFY/G1": 580,
+    "EXTRACT_ENTITIES/G1": 580,
+    "QUERY_DB/G2": 222,
+    "CONVERT/G1": 102
+  },
+  "skill_dist_test_ood": {
+    "FETCH/G2": 847,
+    "SEARCH/G2": 356,
+    "SEARCH/G1": 310,
+    "QUERY_DB/G1": 211,
+    "CODEGEN/G1": 180,
+    "SEND/G2": 84,
+    "EXTRACT_ENTITIES/G1": 81,
+    "CLASSIFY/G1": 55,
+    "EXEC_ACTION/G1": 47,
+    "SUMMARIZE/G1": 31,
+    "CONVERT/G1": 11,
+    "CALCULATE/G2": 4
+  },
+  "boundary_dist_test_ood": {
+    "RETRIEVAL": 1725,
+    "ACTION": 131
+  }
+}
