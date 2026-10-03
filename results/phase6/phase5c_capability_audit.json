@@ -1,0 +1,180 @@
+{
+  "question": "Is Phase 5C 'capabilities' an available-tool view (Case A) or the target op set (Case B)?",
+  "provenance": "record['capabilities'] was built by semantic_capabilities(record tools) in the corpus builder: for xLAM/ToolBench the raw record's tool list is the candidate tool set presented to the model, mapped through the same toolmap that produced the plan ops — so C is the semantic view of AVAILABLE tools, deduplicated; T is the ops the trajectory actually used.",
+  "by_split": {
+    "train": {
+      "toolbench_static": {
+        "n": 1074,
+        "with_capabilities": 1074,
+        "avg_C_size": 2.71,
+        "avg_T_size": 1.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 64.25,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.2527,
+        "recall_T_C": 0.6425,
+        "jaccard": 0.2527
+      },
+      "xlam": {
+        "n": 19700,
+        "with_capabilities": 19700,
+        "avg_C_size": 1.0,
+        "avg_T_size": 1.12,
+        "C_eq_T_pct": 4.82,
+        "T_subset_C_pct": 4.82,
+        "C_subset_T_pct": 6.65,
+        "precision_C_T": 0.0665,
+        "recall_T_C": 0.0572,
+        "jaccard": 0.0572
+      },
+      "humaneval": {
+        "n": 11,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      },
+      "mbpp": {
+        "n": 30,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      },
+      "spider": {
+        "n": 6966,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      },
+      "verilogeval": {
+        "n": 312,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      }
+    },
+    "val": {
+      "toolbench_static": {
+        "n": 6,
+        "with_capabilities": 6,
+        "avg_C_size": 1.83,
+        "avg_T_size": 1.0,
+        "C_eq_T_pct": 33.33,
+        "T_subset_C_pct": 100.0,
+        "C_subset_T_pct": 33.33,
+        "precision_C_T": 0.6389,
+        "recall_T_C": 1.0,
+        "jaccard": 0.6389
+      },
+      "xlam": {
+        "n": 1042,
+        "with_capabilities": 1042,
+        "avg_C_size": 1.0,
+        "avg_T_size": 1.11,
+        "C_eq_T_pct": 3.84,
+        "T_subset_C_pct": 3.84,
+        "C_subset_T_pct": 5.57,
+        "precision_C_T": 0.0557,
+        "recall_T_C": 0.0469,
+        "jaccard": 0.0469
+      },
+      "spider": {
+        "n": 513,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      }
+    },
+    "test": {
+      "toolbench_static": {
+        "n": 9,
+        "with_capabilities": 9,
+        "avg_C_size": 2.0,
+        "avg_T_size": 1.0,
+        "C_eq_T_pct": 11.11,
+        "T_subset_C_pct": 100.0,
+        "C_subset_T_pct": 11.11,
+        "precision_C_T": 0.537,
+        "recall_T_C": 1.0,
+        "jaccard": 0.537
+      },
+      "xlam": {
+        "n": 994,
+        "with_capabilities": 994,
+        "avg_C_size": 1.0,
+        "avg_T_size": 1.13,
+        "C_eq_T_pct": 4.93,
+        "T_subset_C_pct": 4.93,
+        "C_subset_T_pct": 6.24,
+        "precision_C_T": 0.0624,
+        "recall_T_C": 0.0557,
+        "jaccard": 0.0557
+      },
+      "humaneval": {
+        "n": 1,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      },
+      "mbpp": {
+        "n": 2,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      },
+      "spider": {
+        "n": 555,
+        "with_capabilities": 0,
+        "avg_C_size": 0.0,
+        "avg_T_size": 0.0,
+        "C_eq_T_pct": 0.0,
+        "T_subset_C_pct": 0.0,
+        "C_subset_T_pct": 0.0,
+        "precision_C_T": 0.0,
+        "recall_T_C": 0.0,
+        "jaccard": 0.0
+      }
+    }
+  }
+}
