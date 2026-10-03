@@ -105,12 +105,6 @@
         "opseq": 89.82
       }
     },
-    "bfcl_functional": {
-      "E1-A": 16.83,
-      "E5C-S": 18.19,
-      "E5C-D": 15.23,
-      "E5C-SD": 17.71
-    },
     "tau3_semantic_recall": {
       "E1-A": 0.62,
       "E5C-S": 0.58,
@@ -122,7 +116,20 @@
       "E5C-S": 1.75,
       "E5C-D": 1.65,
       "E5C-SD": 1.75
-    }
+    },
+    "bfcl_functional_e2e": {
+      "E1-A": 15.5,
+      "E5C-S": 15.86,
+      "E5C-D": 14.47,
+      "E5C-SD": 15.66
+    },
+    "bfcl_functional_conditional": {
+      "E1-A": 16.83,
+      "E5C-S": 18.19,
+      "E5C-D": 15.23,
+      "E5C-SD": 17.71
+    },
+    "tau3_normalized_note": "E1-A rerun under uniform protocol: valid 98.86, recall 0.62, pred/T 1.00"
   },
   "selection": {
     "rules_frozen_before_supplements": "(1) internal matched Valid>=97%; (2) BFCL Functional max; (3) tau3 Grounded Semantic Recall + Count Ratio",
@@ -136,5 +143,41 @@
     "Depth curriculum: length is trainable (+0.65) but correctness is not (tau3 recall flat 0.55-0.66%)",
     "EXEC_ACTION boundary: tau3 96% refs lower to EXEC_ACTION, models emit ~0 despite 1649 training examples - conditional mapping fails to transfer; isomorphic to BFCL multi_turn failure",
     "Internal OpSeq collapse in bare-prompt eval was train/eval mismatch, not capability loss (94.11/89.82 recovered under matched prompts)"
-  ]
+  ],
+  "freeze_fix": {
+    "base": "659061e",
+    "changes": [
+      "BFCL Functional E2E (unified denominator 4541) is the primary selection metric; conditional (|Valid) kept as diagnostic",
+      "2x2 interaction formula corrected to SD - S - D + A; all four factor tables regenerated",
+      "E1-A tau3 rerun under uniform protocol (pred/T 1.00, recall 0.62%) - conclusions unchanged",
+      "paper wording: small but consistent cross-domain semantic improvement (+0.35pp E2E), not breakthrough"
+    ],
+    "selection_unchanged": "E5C-S remains final (E2E 15.86 highest)"
+  },
+  "agentboard_first_test": {
+    "preregistration": "docs/agentboard-preregistration.md (d59d00b, before any run)",
+    "protocol": "offline compilation, env-visible schemas only, one-shot",
+    "results": {
+      "tool-query": {
+        "parse": 98.33,
+        "valid": 78.33,
+        "pred_per_task": 1.32,
+        "exec_action_pct": 2.5
+      },
+      "tool-operation": {
+        "parse": 95.0,
+        "valid": 87.5,
+        "pred_per_task": 1.77,
+        "exec_action_pct": 23.9
+      },
+      "webshop": {
+        "parse": 98.41,
+        "valid": 96.02,
+        "pred_per_task": 0.96,
+        "exec_action_pct": 0.0
+      }
+    },
+    "status": "AgentBoard now SEEN; results final regardless of outcome"
+  },
+  "phase6_direction": "Cross-domain Skill Grounding at the EXEC_ACTION Boundary (deep-plan synthesis demoted to auxiliary)"
 }

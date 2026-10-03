@@ -1,0 +1,121 @@
+{
+  "tool-query": {
+    "n": 60,
+    "parse_pct": 98.33,
+    "valid_pct": 78.33,
+    "pred_per_task": 1.32,
+    "exec_action_use_pct": 2.53,
+    "top_ops": [
+      [
+        "FETCH",
+        60
+      ],
+      [
+        "SEARCH",
+        13
+      ],
+      [
+        "EXEC_ACTION",
+        2
+      ],
+      [
+        "EXTRACT_ENTITIES",
+        2
+      ],
+      [
+        "QUERY_DB",
+        2
+      ]
+    ]
+  },
+  "tool-operation": {
+    "n": 40,
+    "parse_pct": 95.0,
+    "valid_pct": 87.5,
+    "pred_per_task": 1.77,
+    "exec_action_use_pct": 23.94,
+    "top_ops": [
+      [
+        "FETCH",
+        49
+      ],
+      [
+        "EXEC_ACTION",
+        17
+      ],
+      [
+        "CALCULATE",
+        3
+      ],
+      [
+        "SEARCH",
+        1
+      ],
+      [
+        "EXTRACT_ENTITIES",
+        1
+      ]
+    ]
+  },
+  "webshop": {
+    "n": 251,
+    "parse_pct": 98.41,
+    "valid_pct": 96.02,
+    "pred_per_task": 0.96,
+    "exec_action_use_pct": 0.0,
+    "top_ops": [
+      [
+        "SEARCH",
+        242
+      ]
+    ]
+  },
+  "_official_baselines_reference": {
+    "gpt-4/tool-query": {
+      "n": 60,
+      "success_rate": 0.6833,
+      "progress_rate": 0.8514
+    },
+    "gpt-4/tool-operation": {
+      "n": 40,
+      "success_rate": 0.6,
+      "progress_rate": 0.8083
+    },
+    "gpt-4/webshop": {
+      "n": 251,
+      "success_rate": 0.3904,
+      "progress_rate": 0.7651
+    },
+    "gpt-35-turbo/tool-query": {
+      "n": 60,
+      "success_rate": 0.45,
+      "progress_rate": 0.6944
+    },
+    "gpt-35-turbo/tool-operation": {
+      "n": 40,
+      "success_rate": 0.075,
+      "progress_rate": 0.3716
+    },
+    "gpt-35-turbo/webshop": {
+      "n": 251,
+      "success_rate": 0.3506,
+      "progress_rate": 0.7644
+    },
+    "claude2/tool-query": {
+      "n": 60,
+      "success_rate": 0.4833,
+      "progress_rate": 0.735
+    },
+    "claude2/tool-operation": {
+      "n": 40,
+      "success_rate": 0.275,
+      "progress_rate": 0.5964
+    },
+    "claude2/webshop": {
+      "n": 251,
+      "success_rate": 0.3785,
+      "progress_rate": 0.7455
+    }
+  },
+  "_protocol": "pre-registered docs/agentboard-preregistration.md; env-visible schemas only; one-shot; E5C-S"
+}
