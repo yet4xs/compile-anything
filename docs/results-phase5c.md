@@ -42,7 +42,11 @@
 - **注意**：E5C-S 并没有深度课程，也涨到了 1.75 —— 计划深度的提升不能单独归因于过采样；
   schema 训练本身也移动了长度先验（机制：训练时"丰富的 capabilities ↔ 多步计划"相关性改变了无条件长度先验）。
 - 距离参考 5.83 仍差 3.3×。结合 Task 1 审计（深计划样本只有 325 条），
-  **结论：剩余差距是数据生成问题而非训练策略问题** —— 需要 Phase 6 的组合式深计划合成。
+  **训练数据的长计划稀缺是一个被实验证实的强限制因素**。
+  但还不能排除其他因素：whole-plan autoregressive objective 本身可能不适合长规划、
+  oversampling 不能产生新的组合模式、3B 容量/解码偏置、dependency supervision 不足、
+  schema prompt 可能只让模型"多输出节点"而非"输出正确节点"。
+  区分这些假设依赖 τ³ semantic recall（§5）与 BFCL functional（§6）补测。
 
 ### 3.2 Schema 条件化的双面效应
 
@@ -85,28 +89,62 @@ manifest 已禁止基于外部分数调参，此警告仅限论文表述。
 
 （结果待填）
 
-## 6. 研究问题回答
+## 6. 补测 3：BFCL semantic（matched protocol）
+
+> 已排队（`results/phase5c/bfcl_semantic.json`）。schema 假设最终检验：
+> schema-conditioned training 是否提高 BFCL Functional Semantic（基线 16.0%），
+> 而不仅是 Valid。协议：E1-A/D 裸指令（复用冻结 preds / 重推理），
+> S/SD 用 BFCL 逐题 function schemas 按 `build_capability_prompt` 训练格式拼入。
+> 判定用冻结的 audit_bfcl_ontology.py 规则（Strict / Ontology-Equivalent / Functional），不改 oracle/crosswalk。
+
+（结果待填）
+
+## 7. 研究问题回答（初版，待补测更新）
 
 | 问题 | 回答 |
 |---|---|
 | Q1 语料是否偏短计划？ | **是**。69.9% 单 action，≥4 action 仅 325 条（1.2%）。已冻结审计。 |
-| Q2 Schema 条件化改善跨域语义接地？ | **部分**。结构有效性（BFCL Valid 94.5→98.0）改善，但语义接地需看 §5 召回；且推理时必须带 schema，否则计划选择崩塌（OpSeq 92.8→39~44）。 |
+| Q2 Schema 条件化改善跨域语义接地？ | **部分**。结构有效性（BFCL Valid 94.5→98.0）改善，但语义接地需看 §5/§6；且推理时必须带 schema，否则计划选择崩塌（OpSeq 92.8→39~44）。 |
 | Q3 深度课程改善多步规划？ | **方向上是**（pred/T 1.0→1.75），但 (a) schema 训练也能带来同样提升，(b) 单独使用会损跨域格式稳定性（τ³ parse -12pp），(c) 距参考仍 3.3×。 |
-| Q4 联合训练能否双收益且不伤 valid？ | **结构上可以**（SD：BFCL 98.0 + τ³ 96.5 + 深度 1.75），代价是 internal OpSeq 需带 schema 推理（见 §4）。 |
+| Q4 联合训练能否双收益且不伤 valid？ | **结构上可以**（SD：BFCL 98.0 + τ³ 96.5 + 深度 1.75），代价是 internal OpSeq 需带 schema 推理（见 §4）。最终裁决见 §8。 |
 
-## 7. 决策建议
+## 8. 冻结的选型规则（补测结果出来之前冻结，防止事后挑选）
 
-1. **Phase 5C 定版模型：E5C-SD**（带 schema 推理部署）。BFCL 98.0 / τ³ 96.5 / 深度 1.75 全面最优或并列最优。
-2. **schema-at-inference 是部署协议的一部分**，不是可选增强 —— 训练/推理必须一致。
-3. **深度问题的下一阶段（Phase 6）转向数据合成**：训练侧因子（课程、schema）已到收益上限，
-   语料里没有的深度不可能凭空学出。候选：组合任务自举（单 action 样本程序化组合成 2-6 步链）、
-   τ³ 风格 policy 约束合成（注意污染防火墙：合成器不得读外部基准）。
-4. AgentBoard 确认性基准保持未动，待 Phase 6 模型冻结后一次性首测。
+1. **门槛条件**：internal matched-protocol Valid ≥ 97%
+2. **主排序**：BFCL Functional Semantic 最大化
+3. **次排序**：τ³ Grounded Semantic Recall + Count Ratio
+4. 不能只因 Valid 高选模型
 
-## 8. 工件清单
+> 按此规则，当前 SD 的 internal matched Valid 若仍 ~95% 而 S 达到 ~98% 且
+> BFCL/τ³ semantic 接近，则应选 E5C-S 而非 E5C-SD。
+
+## 9. 决策（provisional，待三个补测）
+
+1. **Phase 5C 定版模型：未定**。E5C-SD 是 external structural robustness +
+   planning depth 的 best candidate（BFCL 98.0 / τ³ 96.5 / pred/T 1.75），
+   但不是 overall winner —— internal matched Valid、BFCL functional、
+   τ³ semantic recall 均未知，按 §8 规则裁决。
+2. **schema-at-inference 是部署协议的一部分**（对 schema 训练模型），
+   主比较必须 train/eval protocol matched；E1-A 用 schema prompt 只作 robustness ablation。
+3. **Phase 6 方向暂记**（冻结前不定版）：若 τ³ semantic recall 证明更长计划
+   同时更正确（情况 A），则进入 compositional deep-plan data construction /
+   hierarchical compiler objective；若只是更长不更正确（情况 B/C），
+   问题在 objective/组合泛化而非数据量。
+4. AgentBoard 确认性基准保持未动，待 Phase 5C 冻结、final model 选定后一次性首测。
+
+### 一个值得注意的因子现象（待正式分析）
+
+pred/T 上 schema-only (+0.75) ≥ depth-only (+0.65)，联合 (+0.75) 无叠加 ——
+提示深度提升可能主要来自 capability schema 让模型看到多个可用操作后倾向展开
+多步计划，而非 depth reweighting；且存在饱和/非加性交互。
+最终报告须对 Internal OpSeq / BFCL Functional / τ³ Semantic Recall / τ³ Pred/T
+分别计算 Schema 主效应、Depth 主效应、Schema×Depth 交互。
+
+## 10. 工件清单
 
 - `results/phase5c/evaluation_summary.json` — 2×2 主表（4 模型 × 3 基准）
 - `results/phase5c/internal_schema_eval.json` — §4 补测
 - `results/phase5c/tau3_semantic.json` — §5 补测
+- `results/phase5c/bfcl_semantic.json` — §6 补测
 - `runs/phase5c/{e5c_s,e5c_d,e5c_sd}/final` — 三个 LoRA adapter
-- `scripts/eval_5c_schema.py`、`scripts/eval_5c_tau3_semantic.py` — 补测脚本
+- `scripts/eval_5c_schema.py`、`scripts/eval_5c_tau3_semantic.py`、`scripts/eval_5c_bfcl_semantic.py` — 补测脚本

@@ -24,11 +24,12 @@ while time.time() < deadline:
         ssh = connect()
         out, _ = run(ssh, 'pgrep -f eval_5c_schema.py >/dev/null && echo S1=RUNNING || echo S1=DONE; '
                           'pgrep -f eval_5c_tau3.py >/dev/null && echo S2=RUNNING || echo S2=DONE; '
-                          'tail -2 /tmp/eval_5c_schema.log 2>/dev/null | grep -v Warning')
-        status = dict(l.strip().split('=') for l in out.splitlines() if '=' in l)
+                          'pgrep -f eval_5c_bfcl_sem.py >/dev/null && echo S3=RUNNING || echo S3=DONE; '
+                          'tail -2 /tmp/eval_5c_schema.log /tmp/eval_5c_tau3.log /tmp/eval_5c_bfcl_sem.log 2>/dev/null | grep -v Warning | grep -v ==$')
+        status = dict(l.strip().split('=') for l in out.splitlines() if '=' in l and l.startswith('S'))
         print(out.strip(), flush=True)
-        if status.get('S1') == 'DONE' and status.get('S2') == 'DONE':
-            for name in ('internal_schema_eval.json', 'tau3_semantic.json'):
+        if all(status.get(f'S{i}') == 'DONE' for i in (1, 2, 3)):
+            for name in ('internal_schema_eval.json', 'tau3_semantic.json', 'bfcl_semantic.json'):
                 try:
                     d = fetch(ssh, name)
                     print(f'\n=== {name} ===')
