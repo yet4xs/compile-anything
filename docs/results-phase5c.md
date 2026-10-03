@@ -105,7 +105,21 @@
 - 全部效应 ≤0.06pp，在 n=14,834 上属噪声量级：**schema 和 depth 对 τ³ 语义召回均无实效**。
   长度可训练，正确性不可 —— 两个因子都只动了"计划多长"，没动"计划对不对"。
 
-**BFCL Functional%**：待 §6 补测结果回填。
+**BFCL Functional%（§6，matched protocol）**
+
+| | depth ✗ | depth ✓ | depth 主效应 |
+|---|---:|---:|---:|
+| schema ✗ | 16.83 | 15.23 | −1.60 |
+| schema ✓ | 18.19 | 17.71 | −0.48 |
+| schema 主效应 | **+1.36** | **+2.48** | 交互 **−2.08** |
+
+- schema 主效应 +1.92pp（均值），depth 主效应 −1.04pp，交互 −2.08pp（次可加）。
+- 四个因变量的因子图景汇总：
+  **schema** 对结构鲁棒性（+）、internal 计划选择（+1.83pp）、深度（+0.75）、
+  BFCL functional（+1.9pp）全部正向或中性 —— 是 Phase 5C 唯一无代价因子；
+  **depth reweighting** 对深度 +0.65 但对其他三个因变量全部负向
+  （internal OpSeq −4.78pp、τ³ parse −12pp、BFCL functional −1.04pp）——
+  收益最窄、代价最宽的因子。
 
 ### 3.6 归因警告
 
@@ -210,23 +224,40 @@ S/D/SD 均为 512 预算，与主表一致。
 
 ## 6. 补测 3：BFCL semantic（matched protocol）
 
-> 已排队（`results/phase5c/bfcl_semantic.json`）。schema 假设最终检验：
-> schema-conditioned training 是否提高 BFCL Functional Semantic（基线 16.0%），
-> 而不仅是 Valid。协议：E1-A/D 裸指令（复用冻结 preds / 重推理），
-> S/SD 用 BFCL 逐题 function schemas 按 `build_capability_prompt` 训练格式拼入。
-> 判定用冻结的 audit_bfcl_ontology.py 规则（Strict / Ontology-Equivalent / Functional），不改 oracle/crosswalk。
+> 已完成（`results/phase5c/bfcl_semantic.json`）。E1-A 复用冻结 preds（裸指令）；
+> E5C-D 裸指令重推理；E5C-S/SD 用 BFCL 逐题 function schemas 拼入（`build_capability_prompt`）。
+> 判定为冻结的 audit_bfcl_ontology.py 三级规则，oracle/crosswalk 未改。
+> comparable = full+partial 且 parse+valid 的样本（各模型 3,959~4,313）。
 
-（结果待填）
+| Model | Schema训练 | 深度 | Valid% | Strict% | Equivalent% | **Functional%** |
+|---|---|---|---:|---:|---:|---:|
+| E1-A | ✗ | ✗ | 92.4 | 10.95 | 14.20 | 16.83 |
+| E5C-S | ✓ | ✗ | 87.6 | **11.01** | **15.94** | **18.19** |
+| E5C-D | ✗ | ✓ | **95.0** | 8.86 | 12.38 | 15.23 |
+| E5C-SD | ✓ | ✓ | 88.8 | 10.26 | 15.24 | 17.71 |
 
-## 7. 研究问题回答（§4/§5 已定，§6 待回填后更新 Q2）
+**结论：**
+
+1. **Schema 假设成立但幅度小**：schema 训练 + schema 推理使 BFCL Functional
+   16.83 → 18.19（+1.36pp，相对 +8%）。Strict/Eq 同向（+0.06/+1.74pp）。
+   这是 schema conditioning 改善跨域语义接地的**首个正证据**（此前 capability
+   ablation 在 E1 上为 +0.2pp 无效——训练时见过 schema 才有效，符合 5B 的预言）。
+2. **深度课程损害 BFCL functional**：D 15.23（−1.60pp），strict 掉到 8.86。
+3. **代价披露**：schema 推理使 BFCL Valid 降 ~4-5pp（92.4→87.6/88.8）——
+   schema 促使模型生成更多/更长动作，validator 失败率上升。Functional 分母只含
+   valid 样本，故 18.19 不是靠放宽判定换来的；但部署时需报告这一 valid/functional 权衡。
+4. 按 rep 分列：S 的 functional 提升主要来自 full 类（1931 中 563 vs E1-A 同类；
+   partial 类 87→149 strict 提升显著）。
+
+## 7. 研究问题回答（终版）
 
 | 问题 | 回答 |
 |---|---|
 | Q1 语料是否偏短计划？ | **是**。69.9% 单 action，≥4 action 仅 325 条（1.2%）。已冻结审计。 |
-| Q2 Schema 条件化改善跨域语义接地？ | τ³ 侧**否**（召回四组持平 0.55~0.66%，§5）；internal 侧无损有益（OpSeq 94.11 四格最高，§4）；BFCL functional 待 §6 —— 这是 Q2 的最终裁决。 |
-| Q3 深度课程改善多步规划？ | **长度上是**（pred/T +0.65，被 schema 饱和），**正确性上否**（τ³ 召回不动），且有结构代价（internal OpSeq −4.78pp、τ³ parse −12pp）。 |
-| Q4 联合训练能否双收益且不伤 valid？ | matched 协议下 valid 全过 97%（§4），深度与 schema 同享；但语义收益目前为零，等 §6。 |
-| Q5（新增，来自 §5.1）为什么跨域语义接地失败？ | **EXEC_ACTION 边界**：τ³ 96% 参考动作为 EXEC_ACTION，模型产出率 ~0（训练有 1,649 例但条件映射不迁移）；BFCL multi_turn 同构失败。 |
+| Q2 Schema 条件化改善跨域语义接地？ | **BFCL 侧小幅成立**：Functional 16.83→18.19（+1.36pp，相对 +8%），Strict/Eq 同向 —— 首个正证据，且与 5B 预言一致（推理时给 schema 无用、训练时见过才有效）。**τ³ 侧不成立**（召回四组持平 0.55~0.66%）。幅度远不足以跨越语义鸿沟。 |
+| Q3 深度课程改善多步规划？ | **长度上是**（pred/T +0.65，被 schema 饱和），**正确性上否**（τ³ 召回不动、BFCL functional −1.04pp），结构代价明确（internal OpSeq −4.78pp、τ³ parse −12pp）。**总体为负因子**。 |
+| Q4 联合训练能否双收益且不伤 valid？ | matched 协议下 valid 全过 97%；深度与 schema 同享；functional +0.88pp 但低于 S 单独。SD 无优势。 |
+| Q5 为什么跨域语义接地失败？ | **EXEC_ACTION 边界**：τ³ 96% 参考动作为 EXEC_ACTION，模型产出率 ~0（训练有 1,649 例但条件映射不迁移）；BFCL multi_turn 同构失败。 |
 
 ## 8. 冻结的选型规则（补测结果出来之前冻结，防止事后挑选）
 
@@ -238,21 +269,33 @@ S/D/SD 均为 512 预算，与主表一致。
 > 按此规则，当前 SD 的 internal matched Valid 若仍 ~95% 而 S 达到 ~98% 且
 > BFCL/τ³ semantic 接近，则应选 E5C-S 而非 E5C-SD。
 
-## 9. 决策（provisional，待三个补测）
+## 9. 决策（按 §8 冻结规则裁决，三补测齐备）
 
-1. **Phase 5C 定版模型：未定**。E5C-SD 是 external structural robustness +
-   planning depth 的 best candidate（BFCL 98.0 / τ³ 96.5 / pred/T 1.75），
-   但不是 overall winner —— internal matched Valid、BFCL functional、
-   τ³ semantic recall 均未知，按 §8 规则裁决。
-2. **schema-at-inference 是部署协议的一部分**（对 schema 训练模型），
-   主比较必须 train/eval protocol matched；E1-A 用 schema prompt 只作 robustness ablation。
-3. **Phase 6 方向暂记**（冻结前不定版）：若 τ³ semantic recall 证明更长计划
-   同时更正确（情况 A），则进入 compositional deep-plan data construction /
-   hierarchical compiler objective；若只是更长不更正确（情况 B/C），
-   问题在 objective/组合泛化而非数据量。
-4. AgentBoard 确认性基准保持未动，待 Phase 5C 冻结、final model 选定后一次性首测。
+**逐条应用冻结规则：**
 
-（schema/depth 非加性现象已升级为正式分析，见 §3.5。）
+1. 门槛 internal matched Valid ≥ 97%：E1-A 99.23 ✓ / S 99.10 ✓ / D 97.82 ✓ / SD 99.23 ✓（全过）
+2. 主排序 BFCL Functional：**S 18.19** > SD 17.71 > E1-A 16.83 > D 15.23
+3. 次排序 τ³ recall（0.55~0.66% 无差别）/ pred/T：S 1.75 并列最高
+
+**→ Phase 5C 定版模型：E5C-S（schema-conditioned，部署时带 capability schema 推理）。**
+
+完整定版画像（matched protocol）：
+
+| 维度 | 数值 | 备注 |
+|---|---|---|
+| internal Valid / OpSeq | 99.10 / **94.11** | OpSeq 四格最高 |
+| BFCL Valid / Functional | 87.6 / **18.19** | functional 基线+8%（相对） |
+| τ³ Valid / Pred/T | 96.7 / 1.75 | 深度恢复 75% |
+| 部署要求 | 推理时必须提供 capability schema | 无 schema 时计划选择崩塌（OpSeq 44%） |
+
+后续决定：
+
+1. **Phase 5C 就此冻结**（manifest 附最终结果指针）；depth reweighting 从主线移除
+   （负因子），其"长度可训练"的机制发现保留。
+2. **Phase 6 靶心（由 Q5 直接决定）**：跨域 skill 接地——EXEC_ACTION 边界的
+   条件映射迁移（多样化 action 类指令合成、负例/irrelevance、skill 选择对齐），
+   辅以受限的深计划合成（满足组合监督，而非单纯过采样）。
+3. **AgentBoard untouched 首测**：用 E5C-S（schema 部署协议），一次性，结果无论好坏照登。
 
 ## 10. 工件清单
 

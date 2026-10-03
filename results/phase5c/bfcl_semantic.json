@@ -1,0 +1,118 @@
+{
+  "E1-A": {
+    "n": 4696,
+    "parse_pct": 97.38,
+    "valid_pct": 92.36,
+    "comparable_n": 4183,
+    "strict_pct": 10.95,
+    "ontology_equivalent_pct": 14.2,
+    "functional_pct": 16.83,
+    "by_representability": {
+      "full": {
+        "strict": 309,
+        "eq": 445,
+        "func": 545,
+        "n": 1931
+      },
+      "partial": {
+        "strict": 149,
+        "eq": 149,
+        "func": 159,
+        "n": 2610
+      },
+      "none": {
+        "strict": 0,
+        "eq": 0,
+        "func": 0,
+        "n": 155
+      }
+    }
+  },
+  "E5C-S": {
+    "n": 4696,
+    "parse_pct": 96.78,
+    "valid_pct": 87.59,
+    "comparable_n": 3959,
+    "strict_pct": 11.01,
+    "ontology_equivalent_pct": 15.94,
+    "functional_pct": 18.19,
+    "by_representability": {
+      "full": {
+        "strict": 290,
+        "eq": 484,
+        "func": 564,
+        "n": 1931
+      },
+      "partial": {
+        "strict": 146,
+        "eq": 147,
+        "func": 156,
+        "n": 2610
+      },
+      "none": {
+        "strict": 0,
+        "eq": 0,
+        "func": 0,
+        "n": 155
+      }
+    }
+  },
+  "E5C-D": {
+    "n": 4696,
+    "parse_pct": 97.4,
+    "valid_pct": 95.04,
+    "comparable_n": 4313,
+    "strict_pct": 8.86,
+    "ontology_equivalent_pct": 12.38,
+    "functional_pct": 15.23,
+    "by_representability": {
+      "full": {
+        "strict": 295,
+        "eq": 447,
+        "func": 563,
+        "n": 1931
+      },
+      "partial": {
+        "strict": 87,
+        "eq": 87,
+        "func": 94,
+        "n": 2610
+      },
+      "none": {
+        "strict": 0,
+        "eq": 0,
+        "func": 0,
+        "n": 155
+      }
+    }
+  },
+  "E5C-SD": {
+    "n": 4696,
+    "parse_pct": 97.49,
+    "valid_pct": 88.8,
+    "comparable_n": 4015,
+    "strict_pct": 10.26,
+    "ontology_equivalent_pct": 15.24,
+    "functional_pct": 17.71,
+    "by_representability": {
+      "full": {
+        "strict": 263,
+        "eq": 462,
+        "func": 549,
+        "n": 1931
+      },
+      "partial": {
+        "strict": 149,
+        "eq": 150,
+        "func": 162,
+        "n": 2610
+      },
+      "none": {
+        "strict": 0,
+        "eq": 0,
+        "func": 0,
+        "n": 155
+      }
+    }
+  }
+}

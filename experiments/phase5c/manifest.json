@@ -3,17 +3,33 @@
   "base_commit": "31869b3",
   "research_question": "Can a 3B Neural Compiler achieve cross-domain semantic grounding and multi-step planning through schema conditioning and depth curriculum, while maintaining TaskIR structural correctness?",
   "experiment_matrix": {
-    "E1-A": {"schema": false, "depth_balanced": false, "description": "Existing baseline (Phase 5B-1)"},
-    "E5C-S": {"schema": true, "depth_balanced": false, "description": "Schema-conditioned only"},
-    "E5C-D": {"schema": false, "depth_balanced": true, "description": "Depth curriculum only"},
-    "E5C-SD": {"schema": true, "depth_balanced": true, "description": "Both factors"}
+    "E1-A": {
+      "schema": false,
+      "depth_balanced": false,
+      "description": "Existing baseline (Phase 5B-1)"
+    },
+    "E5C-S": {
+      "schema": true,
+      "depth_balanced": false,
+      "description": "Schema-conditioned only"
+    },
+    "E5C-D": {
+      "schema": false,
+      "depth_balanced": true,
+      "description": "Depth curriculum only"
+    },
+    "E5C-SD": {
+      "schema": true,
+      "depth_balanced": true,
+      "description": "Both factors"
+    }
   },
   "fixed_hyperparameters": {
     "base_model": "Qwen2.5-3B-Instruct",
     "quantization": "4bit NF4",
     "lora_r": 16,
     "lora_alpha": 32,
-    "learning_rate": 1.5e-4,
+    "learning_rate": 0.00015,
     "epochs": 2,
     "batch_size": 4,
     "grad_accum": 2,
@@ -47,7 +63,12 @@
   "depth_curriculum": {
     "method": "weighted oversampling",
     "max_oversample_factor": 5.0,
-    "raw_distribution": {"1": "69.9%", "2-3": "28.9%", "4-6": "1.1%", "7+": "0.1%"},
+    "raw_distribution": {
+      "1": "69.9%",
+      "2-3": "28.9%",
+      "4-6": "1.1%",
+      "7+": "0.1%"
+    },
     "note": "7+ bucket has only 17 samples — oversampling at 5x gives max 85 effective"
   },
   "evaluation_protocol": {
@@ -62,5 +83,58 @@
     "TaskIR/Validator/Skill ISA modification",
     "7B model",
     "Hyperparameter tuning based on external benchmark scores"
+  ],
+  "frozen": true,
+  "frozen_date": "2026-10-03",
+  "final_results": {
+    "internal_matched": {
+      "E1-A": {
+        "valid": 99.23,
+        "opseq": 92.76
+      },
+      "E5C-S": {
+        "valid": 99.1,
+        "opseq": 94.11
+      },
+      "E5C-D": {
+        "valid": 97.82,
+        "opseq": 87.51
+      },
+      "E5C-SD": {
+        "valid": 99.23,
+        "opseq": 89.82
+      }
+    },
+    "bfcl_functional": {
+      "E1-A": 16.83,
+      "E5C-S": 18.19,
+      "E5C-D": 15.23,
+      "E5C-SD": 17.71
+    },
+    "tau3_semantic_recall": {
+      "E1-A": 0.62,
+      "E5C-S": 0.58,
+      "E5C-D": 0.55,
+      "E5C-SD": 0.66
+    },
+    "tau3_pred_per_task": {
+      "E1-A": 1.0,
+      "E5C-S": 1.75,
+      "E5C-D": 1.65,
+      "E5C-SD": 1.75
+    }
+  },
+  "selection": {
+    "rules_frozen_before_supplements": "(1) internal matched Valid>=97%; (2) BFCL Functional max; (3) tau3 Grounded Semantic Recall + Count Ratio",
+    "selected_model": "E5C-S",
+    "deployment_protocol": "inference MUST include capability schemas via build_capability_prompt (matched training protocol)",
+    "rationale": "gate: all four pass; BFCL functional S 18.19 highest; tau3 recall indistinguishable; internal opseq 94.11 also highest",
+    "depth_reweighting_verdict": "removed from mainline (negative factor: hurts internal opseq -4.78pp, tau3 parse -12pp, BFCL functional -1.04pp)"
+  },
+  "key_findings": [
+    "Schema conditioning: first positive evidence for cross-domain semantic grounding (BFCL functional +1.36pp), requires schema at training AND inference",
+    "Depth curriculum: length is trainable (+0.65) but correctness is not (tau3 recall flat 0.55-0.66%)",
+    "EXEC_ACTION boundary: tau3 96% refs lower to EXEC_ACTION, models emit ~0 despite 1649 training examples - conditional mapping fails to transfer; isomorphic to BFCL multi_turn failure",
+    "Internal OpSeq collapse in bare-prompt eval was train/eval mismatch, not capability loss (94.11/89.82 recovered under matched prompts)"
   ]
 }
