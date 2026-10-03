@@ -182,6 +182,32 @@ S/D/SD 均为 512 预算，与主表一致。
    （如 τ³ 域的 capability schema 在推理时的 grounding、或 skill 选择的对齐训练），
    这正是 §6 BFCL functional 要回答的问题。
 
+### 5.1 失败模式解剖：EXEC_ACTION 边界（op 分布分析）
+
+`scripts/analyze_5c_tau3_ops.py`（CPU 分析，已存 docs）：
+
+| | 参考降级分布 | E5C-SD 预测分布 | E1-A 预测分布 |
+|---|---|---|---|
+| EXEC_ACTION | **14,229（96%）** | **1** | 10 |
+| FETCH | 373 | 4,278（96%） | 2,227 |
+| QUERY_DB | — | 168 | 10 |
+| SEND | 9 | 7 | **2,235** |
+| SAVE / SEARCH / 其他 | 232 | 12 | ~50 |
+
+1. **召回失败的机制极其单一**：τ³ oracle 把几乎所有工具调用降级为 EXEC_ACTION，
+   而模型把所有工具调用映射为 FETCH/QUERY_DB（SD）或 FETCH/SEND（E1）。
+   EXEC_ACTION 产出率 ~0 是召回 0.6% 的直接原因——该指标在 EXEC_ACTION 上近乎二元。
+2. **不是零样本问题**：EXEC_ACTION 在训练语料有 1,649 例（~3.5%），但训练中触发它的
+   指令模式（域内措辞）不覆盖 τ³ 的表述。schema 训练还消灭了 E1 的 SEND 习惯
+   （2,235→7），让预测进一步集中到 FETCH。
+3. **与 BFCL 同构**：BFCL multi_turn 类（shell 操作）oracle 同样期望 EXEC_ACTION、
+   模型同样选 retrieval 类（见 results-bfcl-ontology-analysis.md 失败模式 2）。
+   **两个外部基准在同一个 skill 边界（action-execution）上失败。**
+4. **指标设计警示（论文须如实报告）**：τ³ skill 级召回在 96% 参考为单一 skill 时
+   近乎退化为"是否使用 EXEC_ACTION"的二元指标；一个只会输出 EXEC_ACTION 的退化解
+   也能拿到 ~96% 召回。跨域语义接地的结论应以 BFCL 分级关系判定（§6）为主证据，
+   τ³ 数字为辅证并附此警示。
+
 ## 6. 补测 3：BFCL semantic（matched protocol）
 
 > 已排队（`results/phase5c/bfcl_semantic.json`）。schema 假设最终检验：
@@ -192,14 +218,15 @@ S/D/SD 均为 512 预算，与主表一致。
 
 （结果待填）
 
-## 7. 研究问题回答（初版，待补测更新）
+## 7. 研究问题回答（§4/§5 已定，§6 待回填后更新 Q2）
 
 | 问题 | 回答 |
 |---|---|
 | Q1 语料是否偏短计划？ | **是**。69.9% 单 action，≥4 action 仅 325 条（1.2%）。已冻结审计。 |
-| Q2 Schema 条件化改善跨域语义接地？ | **部分**。结构有效性（BFCL Valid 94.5→98.0）改善，但语义接地需看 §5/§6；且推理时必须带 schema，否则计划选择崩塌（OpSeq 92.8→39~44）。 |
-| Q3 深度课程改善多步规划？ | **方向上是**（pred/T 1.0→1.75），但 (a) schema 训练也能带来同样提升，(b) 单独使用会损跨域格式稳定性（τ³ parse -12pp），(c) 距参考仍 3.3×。 |
-| Q4 联合训练能否双收益且不伤 valid？ | **结构上可以**（SD：BFCL 98.0 + τ³ 96.5 + 深度 1.75），代价是 internal OpSeq 需带 schema 推理（见 §4）。最终裁决见 §8。 |
+| Q2 Schema 条件化改善跨域语义接地？ | τ³ 侧**否**（召回四组持平 0.55~0.66%，§5）；internal 侧无损有益（OpSeq 94.11 四格最高，§4）；BFCL functional 待 §6 —— 这是 Q2 的最终裁决。 |
+| Q3 深度课程改善多步规划？ | **长度上是**（pred/T +0.65，被 schema 饱和），**正确性上否**（τ³ 召回不动），且有结构代价（internal OpSeq −4.78pp、τ³ parse −12pp）。 |
+| Q4 联合训练能否双收益且不伤 valid？ | matched 协议下 valid 全过 97%（§4），深度与 schema 同享；但语义收益目前为零，等 §6。 |
+| Q5（新增，来自 §5.1）为什么跨域语义接地失败？ | **EXEC_ACTION 边界**：τ³ 96% 参考动作为 EXEC_ACTION，模型产出率 ~0（训练有 1,649 例但条件映射不迁移）；BFCL multi_turn 同构失败。 |
 
 ## 8. 冻结的选型规则（补测结果出来之前冻结，防止事后挑选）
 

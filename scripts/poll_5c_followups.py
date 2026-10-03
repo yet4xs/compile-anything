@@ -18,7 +18,7 @@ def fetch(ssh, name):
     return json.loads(data)
 
 
-deadline = time.time() + 3 * 3600
+deadline = time.time() + 6 * 3600
 while time.time() < deadline:
     try:
         ssh = connect()
