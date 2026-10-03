@@ -43,7 +43,7 @@ from src.lifter.toolmap import map_tool
 AB_RAW = "/ccfa2026/AgentBoard/agentboard/prompts/Raw"
 
 
-def classify(tok, model, caps_texts, tasks=None, batch=64):
+def classify(tok, model, caps_texts, tasks=None, batch=16):
     prompts = []
     for cap_txt, task in zip(caps_texts, tasks or [None] * len(caps_texts)):
         sample = {"instruction": task or "", "capability": _cap_from_text(cap_txt)}
@@ -55,7 +55,7 @@ def classify(tok, model, caps_texts, tasks=None, batch=64):
     outs = []
     for bs in range(0, len(prompts), batch):
         inputs = tok(prompts[bs:bs + batch], return_tensors="pt", padding=True,
-                     truncation=True, max_length=1536).to(model.device)
+                     truncation=True, max_length=1024).to(model.device)
         with torch.no_grad():
             out = model.generate(**inputs, max_new_tokens=8, do_sample=False,
                                  temperature=None, pad_token_id=tok.pad_token_id)

@@ -28,7 +28,7 @@ def load(name):
 
 
 def run_model(tok, model, samples, probe, transform="full", train_pool=None,
-              batch=64, max_new=8):
+              batch=16, max_new=8):
     prompts, meta = [], []
     for i, s in enumerate(samples):
         cands = None
@@ -46,7 +46,7 @@ def run_model(tok, model, samples, probe, transform="full", train_pool=None,
     for bs in range(0, len(prompts), batch):
         batch_p = prompts[bs:bs + batch]
         inputs = tok(batch_p, return_tensors="pt", padding=True,
-                     truncation=True, max_length=1536).to(model.device)
+                     truncation=True, max_length=1024).to(model.device)
         with torch.no_grad():
             out = model.generate(**inputs, max_new_tokens=max_new,
                                  do_sample=False, temperature=None,
