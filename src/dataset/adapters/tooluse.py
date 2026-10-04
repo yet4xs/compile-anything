@@ -85,12 +85,30 @@ class ToolBenchAdapter:
                            raw_payload={"instruction": instruction})
 
 
+def _parse_tool_defs(x) -> list:
+    """Normalize a raw tool list; JSON-encoded strings must be parsed first.
+
+    Regression: xLAM raw records carry tools as a JSON STRING. Before the
+    Phase 6A fix, semantic_capabilities iterated the string CHARACTER by
+    character, every char fell to map_tool's fallback, and the capability
+    context collapsed to the constant ['EXEC_ACTION'] on all 19,700 xLAM
+    records (see docs/phase6/phase5c-capability-audit.md).
+    """
+    if isinstance(x, str):
+        try:
+            v = json.loads(x)
+            return v if isinstance(v, list) else []
+        except json.JSONDecodeError:
+            return []
+    return x if isinstance(x, list) else []
+
+
 def semantic_capabilities(tool_defs) -> List[str]:
     """Normalize a raw tool list into semantic capability phrases (Task 5B:
     the compiler's capability context). Concrete API names stay out."""
     from ...lifter import toolmap
     seen, out = set(), []
-    for t in tool_defs or []:
+    for t in _parse_tool_defs(tool_defs):
         name = ""
         if isinstance(t, str):
             name = t

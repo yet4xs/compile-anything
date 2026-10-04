@@ -1,0 +1,48 @@
+{
+  "snapshot": "paper_snapshot_v2",
+  "created": "2026-10-04",
+  "phase": "6A.5 — Grounding evidence freeze + capability semantics correction",
+  "parent_snapshot": "experiments/paper_snapshot_v1.json (sha256 65462b91a122f046674aa5a95c32a5a84af5edcb4ed4fc14ba55ff3475f79154, IMMUTABLE — all v1 numbers stand)",
+  "phase6a_base_commit": "e1a1cd8",
+  "corrections_over_v1": {
+    "phase5c_rename": "schema-conditioned training -> capability-marker conditioning",
+    "evidence": "docs/phase6/phase5c-capability-audit.md: xLAM 19,700 records carried constant ['EXEC_ACTION'] (JSON-string iteration bug); toolbench_static 1,074 = legitimate semantic view; others no conditioning",
+    "rule": "Phase 5C numbers (BFCL E2E 15.50->15.86, pred/T 1.00->1.75, OpSeq 92.76->94.11) all retained; causal attribution to capability semantics is FORBIDDEN; the intervention altered planning behavior via a format/length-prior channel",
+    "adapter_fix": "src/dataset/adapters/tooluse.py _parse_tool_defs (regression: tests/test_xlam_capability_regression.py); corpus v3.1 remains immutable; any rebuild goes to a new corpus version"
+  },
+  "grounding_dataset": {
+    "train": {"path": "data/phase6a_grounding/train.jsonl", "sha256": "bab223d20e49751ace1552d3c03dfeef9c9868333cc8d0901d989e29f3a6d7c6"},
+    "test_ood": {"path": "data/phase6a_grounding/test_ood.jsonl", "sha256": "e9bcfb93f259d536bdd7574a6ee7af80eabdcabdb03af19d90fc6e0f8261c672"}
+  },
+  "grounder_adapters_aggregate_sha256_16": {
+    "g1g2_s42": "64a0dfdfc122a867",
+    "g1g2_s43": "f9d70e423ca5ec1d",
+    "g1g2_s44": "e38dd24231903444"
+  },
+  "result_artifacts": {
+    "phase6a_internal": "09afb90e49d1cfd400e0b785a4b64247f8bb266a40850139db3a40a5ca907f88",
+    "phase6a_external": "17d211252bc46e43b034b742352f99446b2cb29e9605710c0d4696da6ff55d45",
+    "phase6a_followups": "950206e685eb65ced046362a766fdcba18668cb2d2af2fe3bce76f8e26d245cb",
+    "phase6a_probe_c_g1g2": "876afa80cd8ee7beee7aac12b470f114a20bcaf3b84ea74594b5ab394fce701b",
+    "phase5c_capability_audit": "51ebf0ed42e35fcab90d203db87759bb01d16470447ee1a5c2638d73bdd20c08",
+    "phase6a_final_report": "47a85acea9be4c3e107ad6ed132bfaec80d6d0b0bc4ad2304b520c3371b596a2"
+  },
+  "headline_numbers": {
+    "grounder_g1g2": {"ood_family_macro_f1_mean_std": "0.917 +/- 0.05 (0.847/0.952/0.951)", "exec_action_recall": 0.681,
+                       "interpretation": "capability-to-skill grounding is independently learnable; multi-channel (name+description) representation, NOT name-regex and NOT description-only"},
+    "attribution_chain": {"zero_shot": 0.477, "e1a_classifier": 0.676, "e5cs_classifier": 0.782, "grounder": 0.917,
+                           "note": "TaskIR program supervision itself creates transferable latent skill-family knowledge (+0.20); E5C-S-E1-A delta (+0.11) is constant-marker conditioning, NOT schema semantics"},
+    "probe_c_selection_acc": {"values": [0.224, 0.188, 0.212], "verdict": "independent failure — ~chance (0.20) despite 20% Probe-C training mix"},
+    "no_call": {"rate": 0.0, "wording": "No explicit NO_CALL supervision was present; zero refusal demonstrates non-emergence, not failure of a trained refusal objective."},
+    "tau3_external_diagnostic": {"e5cs_classifier_f1": 0.788, "e5cs_classifier_exec_action_recall": 0.650,
+                                   "grounder_f1": 0.402, "grounder_exr": 0.255,
+                                   "note": "name-only input; E5C-S wins via name channel, grounder needs descriptions — complementary channels; whole-compiler EXEC_ACTION~0 attribution DOWNGRADED to 'knowledge exists but is not expressed in the current compiler path' pending Phase 6B-0 matched-information diagnostic"},
+    "bfcl_external_diagnostic": {"all_models_f1_max": 0.565, "note": "grounding itself hard on BFCL for every model incl. deterministic toolmap"}
+  },
+  "three_isolated_problems": {
+    "capability_canonicalization": "LEARNABLE (grounder 0.917/0.681)",
+    "capability_selection": "FAILING (~0.20 chance)",
+    "whole_program_integration": "NOT YET ISOLATED — Phase 6B-0 (protocols A/B/C/D) controls the information variable before any composition-layer attribution"
+  },
+  "immutability_rule": "v1 rule unchanged; Phase 6B-0 diagnostic and 6B training results land in phase6/*; this snapshot freezes Phase 6A.5 evidence."
+}

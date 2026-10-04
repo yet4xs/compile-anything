@@ -84,7 +84,7 @@ AgentBoard (offline): Parse 97.7%   Valid 91.7%
 | BFCL Functional E2E | **+0.77pp** | −0.62pp | +0.84pp |
 | BFCL Functional\|Valid（诊断） | +1.92pp | −1.04pp | +1.12pp |
 
-### 4.1 Schema conditioning（正结果，幅度小）
+### 4.1 Capability-marker conditioning（Phase 6A.5 修正口径）
 
 ```text
 Internal OpSeq:            92.76 → 94.11
@@ -93,14 +93,17 @@ BFCL Functional|Valid:     16.83 → 18.19   （仅作诊断）
 τ³ Pred/T:                 1.00  → 1.75
 ```
 
-> Schema-conditioned training provides a small positive improvement in cross-domain
-> semantic correctness, preserves internal compiler quality, and strongly changes
-> the model's planning-length prior.
+> The conditioning intervention altered planning behavior, but a later audit
+> showed that the dominant xLAM conditioning signal was a constant marker, so
+> the effect cannot be causally attributed to capability semantics.
 
-注意两点必须保留：(i) E2E +0.35pp 是主口径，**不得只引条件口径 +1.36pp**；
-(ii) schema 模型推理时必须携带 capability schema（无 schema 推理时 OpSeq 崩至 44%，
-train/eval 协议失配所致，非能力丢失）。此前 capability-at-inference-only 消融
-（E1 上 +0.2pp）说明**训练时见过 schema 才有效**。
+**Phase 6A 审计修正（paper_snapshot_v2 起）**：原表述 "schema-conditioned training"
+更名为 **capability-marker conditioning**。审计事实：xLAM 19,700 条记录的 capability
+块为常量 `["EXEC_ACTION"]`（JSON 字符串迭代 bug，见 docs/phase6/phase5c-capability-audit.md）；
+toolbench_static 1,074 条为合法语义视图；其余无条件。数字全部保留，因果解释修正。
+注意两点仍须保留：(i) E2E +0.35pp 是主口径，**不得只引条件口径 +1.36pp**；
+(ii) 条件模型推理时必须携带 capability 块（无块推理时 OpSeq 崩至 44%，
+train/eval 协议失配所致，非能力丢失）。
 
 ### 4.2 Depth curriculum（负结果，如实保留）
 

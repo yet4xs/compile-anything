@@ -28,7 +28,7 @@
 | G1+G2 s43 | 0.952 / — | **0.880 / 0.988** | — | 0.864 / — |
 | G1+G2 s44 | 0.951 / — | **0.868 / 0.983** | — | 0.855 / — |
 
-- **Grounder 遮名不降反升**（dc 切片 0.858→0.952/0.988/0.983）——聚合 name+description 双通道，非神经版名字正则。
+- **Grounder 遮名不降反升、遮描述也不降、换名部分下降**（dc 切片 0.858→0.952/0.988/0.983；name_perturbed 0.62-0.86）——学到的是**多通道能力表征**（multi-channel：词法名字 + schema/描述语义），既非神经版名字正则，也非纯 description grounding。
 - **E5C-S 重度依赖名字**（遮名 0.78→0.58、换名 →0.49），且**遮描述反而涨**（0.89，dc 0.9997）——读名字、样板描述是噪声。
 - 限定：description-corroborated 切片无 EXEC_ACTION gold（xLAM 样板描述不含动作动词），该切片只检验 retrieval 侧；独立证据仍看外部 oracle。
 
@@ -51,6 +51,14 @@
 | skill acc（选中项分类） | 0.642 | 0.656 | 0.662 | |
 | joint exact | 0.144 | 0.126 | 0.148 | |
 | NO_CALL rate（合成负例） | 0.0 | 0.0 | 0.0 | **从不拒绝调用** |
+
+## 口径冻结（Phase 6A.5，审稿人裁定版）
+
+- Grounding 结论允许表述：**"capability-to-skill grounding is independently learnable"**；禁止 "description-only grounding solved"（模型同时利用 name/description/schema）。
+- 反事实结论允许表述：**"the dedicated grounder is substantially more robust to name masking than E5C-S, indicating semantic signals beyond tool-name patterns"**；禁止 "name masking proves pure semantic understanding"。机制定名 **multi-channel grounding**。
+- E5C-S−E1-A 的差值（+0.11）**不得再归因于 schema semantics**（capability audit：xLAM 条件是常量标记 bug）。
+- τ³ whole-compiler EXEC_ACTION≈0 的结论**降级为**："E5C-S 内部存在可访问的 EXEC_ACTION grounding 知识，但未在现有 whole-compiler 执行路径中表现出来"——bare-instruction（compiler）与 name-visible（classifier）的信息输入不同，composition 归因需 Phase 6B-0 matched-information 诊断控制变量后方可强化。
+- Probe C selection ≈ 0.20 是**独立失败**（训练含 20% Probe C 样本仍为随机水平）；NO_CALL=0 的正确表述：**"无显式 NO_CALL 监督时拒绝行为不涌现（non-emergence），而非已训练目标的失败"**。
 
 ## 六问裁决
 

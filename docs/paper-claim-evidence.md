@@ -32,3 +32,6 @@ planning length: 1.00 → 1.75 but correctness unchanged
 binder oracle upper bound: 99.95%
 EXEC_ACTION grounding is the dominant observed cross-domain failure
 ```
+
+
+> **Phase 6A.5 修订**：第 5 行 Schema 条件化效应更名为 capability-marker conditioning —— xLAM 19,700 条的 capability 块为常量 `["EXEC_ACTION"]`（字符串迭代 bug）。数字不变；禁止把 E5C-S−E1-A 差值归因于 capability semantics。详见 docs/phase6/phase5c-capability-audit.md 与 paper_snapshot_v2。
