@@ -1,0 +1,668 @@
+{
+  "_note": "E1-A rows are post-hoc attribution diagnostics, not preregistered primary results; the subset is description-CORROBORATED (target skill still originates from toolmap labels; description evidence only corroborates it) — independent evidence comes from the BFCL/tau3/AgentBoard oracles",
+  "E1A_classifier": {
+    "probeA_test_ood": {
+      "boundary_acc": 0.9407,
+      "boundary_macro_f1": 0.6762,
+      "exact_micro": 0.5528,
+      "exact_macro": 0.3709,
+      "ACTION_family_recall": 0.229,
+      "EXEC_ACTION_recall": 0.0,
+      "SEND_recall": 0.3571,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "probeB_test_ood": {
+      "boundary_acc": 0.8922,
+      "boundary_macro_f1": 0.6673,
+      "exact_micro": 0.5365,
+      "exact_macro": 0.3658,
+      "ACTION_family_recall": 0.2366,
+      "EXEC_ACTION_recall": 0.0,
+      "SEND_recall": 0.369,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "action_boundary": {
+      "boundary_acc": 0.9407,
+      "boundary_macro_f1": 0.6762,
+      "exact_micro": 0.5932,
+      "exact_macro": 0.3812,
+      "ACTION_family_recall": 0.229,
+      "EXEC_ACTION_recall": 0.0,
+      "SEND_recall": 0.3571,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "counterfactuals": {
+      "full": {
+        "full_test_ood": {
+          "boundary_acc": 0.9407,
+          "boundary_macro_f1": 0.6762,
+          "exact_micro": 0.5528,
+          "exact_macro": 0.3709,
+          "ACTION_family_recall": 0.229,
+          "EXEC_ACTION_recall": 0.0,
+          "SEND_recall": 0.3571,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9798,
+          "boundary_macro_f1": 0.6986,
+          "exact_micro": 0.6093,
+          "exact_macro": 0.4451,
+          "ACTION_family_recall": 0.25,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 0.25,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9337,
+          "boundary_macro_f1": 0.7145,
+          "exact_micro": 0.5252,
+          "exact_macro": 0.3592,
+          "ACTION_family_recall": 0.374,
+          "EXEC_ACTION_recall": 0.0,
+          "SEND_recall": 0.5833,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9798,
+          "boundary_macro_f1": 0.8281,
+          "exact_micro": 0.5934,
+          "exact_macro": 0.5773,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "desc_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9149,
+          "boundary_macro_f1": 0.814,
+          "exact_micro": 0.6785,
+          "exact_macro": 0.4918,
+          "ACTION_family_recall": 0.5038,
+          "EXEC_ACTION_recall": 0.2553,
+          "SEND_recall": 0.6429,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9437,
+          "boundary_macro_f1": 0.9852,
+          "exact_micro": 0.7397,
+          "exact_macro": 0.7499,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_perturbed": {
+        "full_test_ood": {
+          "boundary_acc": 0.9235,
+          "boundary_macro_f1": 0.6164,
+          "exact_micro": 0.5045,
+          "exact_macro": 0.3136,
+          "ACTION_family_recall": 0.1908,
+          "EXEC_ACTION_recall": 0.0,
+          "SEND_recall": 0.2976,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9669,
+          "boundary_macro_f1": 0.6075,
+          "exact_micro": 0.5671,
+          "exact_macro": 0.3989,
+          "ACTION_family_recall": 0.25,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 0.25,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      }
+    }
+  },
+  "B2_e5cs": {
+    "probeA_test_ood": {
+      "boundary_acc": 0.9531,
+      "boundary_macro_f1": 0.7816,
+      "exact_micro": 0.6371,
+      "exact_macro": 0.4857,
+      "ACTION_family_recall": 0.4122,
+      "EXEC_ACTION_recall": 0.0,
+      "SEND_recall": 0.6429,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "probeB_test_ood": {
+      "boundary_acc": 0.9192,
+      "boundary_macro_f1": 0.7707,
+      "exact_micro": 0.6474,
+      "exact_macro": 0.4813,
+      "ACTION_family_recall": 0.4122,
+      "EXEC_ACTION_recall": 0.0,
+      "SEND_recall": 0.6429,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "action_boundary": {
+      "boundary_acc": 0.9531,
+      "boundary_macro_f1": 0.7816,
+      "exact_micro": 0.6767,
+      "exact_macro": 0.5447,
+      "ACTION_family_recall": 0.4122,
+      "EXEC_ACTION_recall": 0.0,
+      "SEND_recall": 0.6429,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "counterfactuals": {
+      "full": {
+        "full_test_ood": {
+          "boundary_acc": 0.9531,
+          "boundary_macro_f1": 0.7816,
+          "exact_micro": 0.6371,
+          "exact_macro": 0.4857,
+          "ACTION_family_recall": 0.4122,
+          "EXEC_ACTION_recall": 0.0,
+          "SEND_recall": 0.6429,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9988,
+          "boundary_macro_f1": 0.9997,
+          "exact_micro": 0.7159,
+          "exact_macro": 0.7561,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9251,
+          "boundary_macro_f1": 0.5766,
+          "exact_micro": 0.5437,
+          "exact_macro": 0.3883,
+          "ACTION_family_recall": 0.0992,
+          "EXEC_ACTION_recall": 0.0,
+          "SEND_recall": 0.1548,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9816,
+          "boundary_macro_f1": 0.699,
+          "exact_micro": 0.6191,
+          "exact_macro": 0.4952,
+          "ACTION_family_recall": 0.25,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 0.25,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "desc_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.917,
+          "boundary_macro_f1": 0.8892,
+          "exact_micro": 0.7498,
+          "exact_macro": 0.565,
+          "ACTION_family_recall": 0.6947,
+          "EXEC_ACTION_recall": 0.1702,
+          "SEND_recall": 0.9881,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9357,
+          "boundary_macro_f1": 0.983,
+          "exact_micro": 0.8077,
+          "exact_macro": 0.8644,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_perturbed": {
+        "full_test_ood": {
+          "boundary_acc": 0.9235,
+          "boundary_macro_f1": 0.4878,
+          "exact_micro": 0.5198,
+          "exact_macro": 0.3608,
+          "ACTION_family_recall": 0.0,
+          "EXEC_ACTION_recall": 0.0,
+          "SEND_recall": 0.0,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9798,
+          "boundary_macro_f1": 0.4986,
+          "exact_micro": 0.5836,
+          "exact_macro": 0.3526,
+          "ACTION_family_recall": 0.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 0.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      }
+    }
+  },
+  "grounder_g1g2_s42": {
+    "probeA_test_ood": {
+      "boundary_acc": 0.9547,
+      "boundary_macro_f1": 0.8468,
+      "exact_micro": 0.9143,
+      "exact_macro": 0.8448,
+      "ACTION_family_recall": 0.6565,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 0.6429,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "probeB_test_ood": {
+      "boundary_acc": 0.9542,
+      "boundary_macro_f1": 0.8493,
+      "exact_micro": 0.908,
+      "exact_macro": 0.7909,
+      "ACTION_family_recall": 0.6641,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 0.6548,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "action_boundary": {
+      "boundary_acc": 0.9547,
+      "boundary_macro_f1": 0.8468,
+      "exact_micro": 0.9192,
+      "exact_macro": 0.8262,
+      "ACTION_family_recall": 0.6565,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 0.6429,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "counterfactuals": {
+      "full": {
+        "full_test_ood": {
+          "boundary_acc": 0.9547,
+          "boundary_macro_f1": 0.8468,
+          "exact_micro": 0.9143,
+          "exact_macro": 0.8448,
+          "ACTION_family_recall": 0.6565,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 0.6429,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9773,
+          "boundary_macro_f1": 0.8578,
+          "exact_micro": 0.9382,
+          "exact_macro": 0.9349,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.8346,
+          "boundary_macro_f1": 0.8492,
+          "exact_micro": 0.6348,
+          "exact_macro": 0.5677,
+          "ACTION_family_recall": 0.6565,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 0.6429,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.8279,
+          "boundary_macro_f1": 0.9519,
+          "exact_micro": 0.6301,
+          "exact_macro": 0.742,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "desc_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9537,
+          "boundary_macro_f1": 0.8466,
+          "exact_micro": 0.9148,
+          "exact_macro": 0.7896,
+          "ACTION_family_recall": 0.6565,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 0.6429,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9767,
+          "boundary_macro_f1": 0.8577,
+          "exact_micro": 0.9351,
+          "exact_macro": 0.9325,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_perturbed": {
+        "full_test_ood": {
+          "boundary_acc": 0.799,
+          "boundary_macro_f1": 0.6216,
+          "exact_micro": 0.5261,
+          "exact_macro": 0.4296,
+          "ACTION_family_recall": 0.2137,
+          "EXEC_ACTION_recall": 0.3191,
+          "SEND_recall": 0.1548,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.82,
+          "boundary_macro_f1": 0.6502,
+          "exact_micro": 0.5181,
+          "exact_macro": 0.5307,
+          "ACTION_family_recall": 0.25,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 0.25,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      }
+    }
+  },
+  "grounder_g1g2_s43": {
+    "probeA_test_ood": {
+      "boundary_acc": 0.9779,
+      "boundary_macro_f1": 0.9521,
+      "exact_micro": 0.9234,
+      "exact_macro": 0.7666,
+      "ACTION_family_recall": 1.0,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 1.0,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "probeB_test_ood": {
+      "boundary_acc": 0.9607,
+      "boundary_macro_f1": 0.905,
+      "exact_micro": 0.9152,
+      "exact_macro": 0.7751,
+      "ACTION_family_recall": 0.7481,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 0.7857,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "action_boundary": {
+      "boundary_acc": 0.9779,
+      "boundary_macro_f1": 0.9521,
+      "exact_micro": 0.9445,
+      "exact_macro": 0.8615,
+      "ACTION_family_recall": 1.0,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 1.0,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "counterfactuals": {
+      "full": {
+        "full_test_ood": {
+          "boundary_acc": 0.9779,
+          "boundary_macro_f1": 0.9521,
+          "exact_micro": 0.9234,
+          "exact_macro": 0.7666,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9773,
+          "boundary_macro_f1": 0.8578,
+          "exact_micro": 0.951,
+          "exact_macro": 0.9426,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9364,
+          "boundary_macro_f1": 0.88,
+          "exact_micro": 0.679,
+          "exact_macro": 0.5913,
+          "ACTION_family_recall": 0.6641,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 0.6548,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9553,
+          "boundary_macro_f1": 0.9884,
+          "exact_micro": 0.6987,
+          "exact_macro": 0.7624,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "desc_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9774,
+          "boundary_macro_f1": 0.922,
+          "exact_micro": 0.9261,
+          "exact_macro": 0.7773,
+          "ACTION_family_recall": 0.8779,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 0.9881,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9841,
+          "boundary_macro_f1": 0.8596,
+          "exact_micro": 0.9449,
+          "exact_macro": 0.9366,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_perturbed": {
+        "full_test_ood": {
+          "boundary_acc": 0.9133,
+          "boundary_macro_f1": 0.864,
+          "exact_micro": 0.674,
+          "exact_macro": 0.5615,
+          "ACTION_family_recall": 0.6336,
+          "EXEC_ACTION_recall": 0.5957,
+          "SEND_recall": 0.6548,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9308,
+          "boundary_macro_f1": 0.9817,
+          "exact_micro": 0.7073,
+          "exact_macro": 0.7825,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      }
+    }
+  },
+  "grounder_g1g2_s44": {
+    "probeA_test_ood": {
+      "boundary_acc": 0.9784,
+      "boundary_macro_f1": 0.9506,
+      "exact_micro": 0.9432,
+      "exact_macro": 0.8833,
+      "ACTION_family_recall": 1.0,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 1.0,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "probeB_test_ood": {
+      "boundary_acc": 0.9677,
+      "boundary_macro_f1": 0.9083,
+      "exact_micro": 0.9229,
+      "exact_macro": 0.8601,
+      "ACTION_family_recall": 0.7634,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 0.7976,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "action_boundary": {
+      "boundary_acc": 0.9784,
+      "boundary_macro_f1": 0.9506,
+      "exact_micro": 0.9537,
+      "exact_macro": 0.8842,
+      "ACTION_family_recall": 1.0,
+      "EXEC_ACTION_recall": 0.6809,
+      "SEND_recall": 1.0,
+      "SAVE_recall": null,
+      "n": 1856
+    },
+    "counterfactuals": {
+      "full": {
+        "full_test_ood": {
+          "boundary_acc": 0.9784,
+          "boundary_macro_f1": 0.9506,
+          "exact_micro": 0.9432,
+          "exact_macro": 0.8833,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9767,
+          "boundary_macro_f1": 0.8536,
+          "exact_micro": 0.9541,
+          "exact_macro": 0.9646,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.9192,
+          "boundary_macro_f1": 0.8679,
+          "exact_micro": 0.7534,
+          "exact_macro": 0.6223,
+          "ACTION_family_recall": 0.6336,
+          "EXEC_ACTION_recall": 0.5957,
+          "SEND_recall": 0.6548,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9339,
+          "boundary_macro_f1": 0.9826,
+          "exact_micro": 0.8077,
+          "exact_macro": 0.8618,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "desc_masked": {
+        "full_test_ood": {
+          "boundary_acc": 0.979,
+          "boundary_macro_f1": 0.9556,
+          "exact_micro": 0.9301,
+          "exact_macro": 0.8803,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": 0.6809,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9755,
+          "boundary_macro_f1": 0.8532,
+          "exact_micro": 0.9382,
+          "exact_macro": 0.9523,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      },
+      "name_perturbed": {
+        "full_test_ood": {
+          "boundary_acc": 0.9046,
+          "boundary_macro_f1": 0.8545,
+          "exact_micro": 0.6041,
+          "exact_macro": 0.5558,
+          "ACTION_family_recall": 0.6336,
+          "EXEC_ACTION_recall": 0.5957,
+          "SEND_recall": 0.6548,
+          "SAVE_recall": null,
+          "n": 1856
+        },
+        "description_corroborated": {
+          "boundary_acc": 0.9222,
+          "boundary_macro_f1": 0.9793,
+          "exact_micro": 0.6148,
+          "exact_macro": 0.718,
+          "ACTION_family_recall": 1.0,
+          "EXEC_ACTION_recall": null,
+          "SEND_recall": 1.0,
+          "SAVE_recall": null,
+          "n": 1633
+        }
+      }
+    }
+  }
+}

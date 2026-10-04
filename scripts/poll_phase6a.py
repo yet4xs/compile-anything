@@ -8,17 +8,17 @@ deadline = time.time() + 16 * 3600
 while time.time() < deadline:
     try:
         ssh = connect()
-        out, _ = run(ssh, 'pgrep -f "run_phase6a_recovery[.]sh|eval_phase6a[.]py|train_phase6a[.]py" >/dev/null && echo CHAIN=RUNNING || echo CHAIN=DONE; '
-                          'grep -c "RECOVERY-CHAIN-DONE" /tmp/phase6a_recovery.log 2>/dev/null; '
-                          'grep -E "=== train|=== eval|Segmen|Error" /tmp/phase6a_recovery.log 2>/dev/null | tail -3; '
-                          'tail -c 200 /tmp/phase6a_recovery.log | tr "\\r" "\\n" | tail -1')
+        out, _ = run(ssh, 'pgrep -f "run_phase6a_followups2[.]sh|eval_phase6a_external[.]py|eval_phase6a_followups[.]py" >/dev/null && echo CHAIN=RUNNING || echo CHAIN=DONE; '
+                          'grep -c "FOLLOWUPS2-DONE" /tmp/phase6a_followups.log 2>/dev/null; '
+                          'grep -E "=== train|=== eval|Segmen|Error" /tmp/phase6a_followups.log 2>/dev/null | tail -3; '
+                          'tail -c 200 /tmp/phase6a_followups.log | tr "\\r" "\\n" | tail -1')
         status = dict(l.strip().split('=', 1) for l in out.splitlines() if '=' in l and l.startswith('CHAIN'))
         print(out.strip()[:400], flush=True)
-        if status.get('CHAIN') == 'DONE' or 'RECOVERY-CHAIN-DONE' in out:
+        if status.get('CHAIN') == 'DONE' or 'FOLLOWUPS2-DONE' in out:
             # fetch metrics
             sftp = ssh.open_sftp()
             sftp.chdir('/ccfa2026/compile-anything/results/phase6')
-            for name in ('phase6a_metrics.json', 'phase6a_external.json', 'e3_quick_eval.json'):
+            for name in ('phase6a_external.json', 'phase6a_followups.json'):
                 try:
                     with sftp.open(name) as f:
                         data = f.read()

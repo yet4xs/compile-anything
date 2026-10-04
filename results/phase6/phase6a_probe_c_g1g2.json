@@ -1,0 +1,23 @@
+{
+  "s42": {
+    "n": 500,
+    "capability_selection_acc": 0.224,
+    "skill_acc": 0.642,
+    "joint_exact": 0.144,
+    "no_call_rate": 0.0
+  },
+  "s43": {
+    "n": 500,
+    "capability_selection_acc": 0.188,
+    "skill_acc": 0.656,
+    "joint_exact": 0.126,
+    "no_call_rate": 0.0
+  },
+  "s44": {
+    "n": 500,
+    "capability_selection_acc": 0.212,
+    "skill_acc": 0.662,
+    "joint_exact": 0.148,
+    "no_call_rate": 0.0
+  }
+}
