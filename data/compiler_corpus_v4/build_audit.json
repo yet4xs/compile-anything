@@ -1,0 +1,41 @@
+{
+  "train": {
+    "records": 28093,
+    "with_capabilities": 20774,
+    "no_tool_source": 7319,
+    "skipped_tools_no_schema": 11,
+    "avg_available_per_task": 11.09,
+    "avg_selected_per_task": 0.87,
+    "selected_available_ratio": 0.0783,
+    "by_source": {
+      "src_toolbench_static": 1074,
+      "src_xlam": 19700
+    }
+  },
+  "val": {
+    "records": 1561,
+    "with_capabilities": 1048,
+    "no_tool_source": 513,
+    "skipped_tools_no_schema": 0,
+    "avg_available_per_task": 10.07,
+    "avg_selected_per_task": 0.79,
+    "selected_available_ratio": 0.0786,
+    "by_source": {
+      "src_toolbench_static": 6,
+      "src_xlam": 1042
+    }
+  },
+  "test": {
+    "records": 1561,
+    "with_capabilities": 1003,
+    "no_tool_source": 558,
+    "skipped_tools_no_schema": 0,
+    "avg_available_per_task": 9.64,
+    "avg_selected_per_task": 0.77,
+    "selected_available_ratio": 0.0797,
+    "by_source": {
+      "src_toolbench_static": 9,
+      "src_xlam": 994
+    }
+  }
+}

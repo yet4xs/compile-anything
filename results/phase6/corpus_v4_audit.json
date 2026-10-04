@@ -1,0 +1,114 @@
+{
+  "assertions": {
+    "A1_plan_params_nonempty_gt95": true,
+    "A1_selected_all_in_available": true,
+    "A1_inherited_note": "raw-argument preservation inherited from v3.1 audit (98.9%; lifter unchanged, plan_json copied verbatim)",
+    "A2_exec_action_contradictory_in_G3": true,
+    "A3_no_signature_ge90pct": true,
+    "A3_execaction_only_lt50pct": true
+  },
+  "by_split": {
+    "train": {
+      "records": 28093,
+      "tooluse_records": 20774,
+      "plan_params_nonempty_pct": 98.76,
+      "selected_missing_from_available": 0,
+      "tier_distribution_all": {
+        "G2": 77848,
+        "G1": 33489,
+        "G3": 200273
+      },
+      "selected_tier_distribution": {
+        "G2": 15619,
+        "G1": 8412,
+        "G3": 375
+      },
+      "selected_skill_support": {
+        "SEARCH": 7360,
+        "FETCH": 7344,
+        "QUERY_DB": 1969,
+        "CALCULATE": 1836,
+        "CODEGEN": 1536,
+        "EXEC_ACTION": 1337,
+        "SEND": 1000,
+        "EXTRACT_ENTITIES": 917,
+        "CLASSIFY": 763,
+        "CONVERT": 128
+      },
+      "selected_exec_action_support": 1337,
+      "selected_fetch_support": 7344,
+      "selected_send_support": 1000,
+      "xlam_signature_top_share_pct": 27.4,
+      "xlam_execaction_only_signature_pct": 4.82,
+      "xlam_unique_signatures": 73
+    },
+    "val": {
+      "records": 1561,
+      "tooluse_records": 1048,
+      "plan_params_nonempty_pct": 99.33,
+      "selected_missing_from_available": 0,
+      "tier_distribution_all": {
+        "G2": 3950,
+        "G1": 1475,
+        "G3": 10295
+      },
+      "selected_tier_distribution": {
+        "G2": 812,
+        "G1": 404,
+        "G3": 20
+      },
+      "selected_skill_support": {
+        "FETCH": 558,
+        "SEARCH": 322,
+        "QUERY_DB": 87,
+        "EXEC_ACTION": 62,
+        "CODEGEN": 60,
+        "CLASSIFY": 52,
+        "SEND": 37,
+        "CALCULATE": 26,
+        "EXTRACT_ENTITIES": 13,
+        "SUMMARIZE": 9
+      },
+      "selected_exec_action_support": 62,
+      "selected_fetch_support": 558,
+      "selected_send_support": 37,
+      "xlam_signature_top_share_pct": 41.65,
+      "xlam_execaction_only_signature_pct": 3.84,
+      "xlam_unique_signatures": 40
+    },
+    "test": {
+      "records": 1561,
+      "tooluse_records": 1003,
+      "plan_params_nonempty_pct": 99.2,
+      "selected_missing_from_available": 0,
+      "tier_distribution_all": {
+        "G1": 1477,
+        "G3": 9821,
+        "G2": 3747
+      },
+      "selected_tier_distribution": {
+        "G1": 441,
+        "G2": 741,
+        "G3": 17
+      },
+      "selected_skill_support": {
+        "FETCH": 491,
+        "SEARCH": 314,
+        "QUERY_DB": 98,
+        "CODEGEN": 71,
+        "EXEC_ACTION": 63,
+        "CALCULATE": 37,
+        "SEND": 34,
+        "CLASSIFY": 33,
+        "EXTRACT_ENTITIES": 29,
+        "SUMMARIZE": 12
+      },
+      "selected_exec_action_support": 63,
+      "selected_fetch_support": 491,
+      "selected_send_support": 34,
+      "xlam_signature_top_share_pct": 36.82,
+      "xlam_execaction_only_signature_pct": 4.93,
+      "xlam_unique_signatures": 37
+    }
+  }
+}

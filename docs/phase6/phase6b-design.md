@@ -1,5 +1,9 @@
 # Phase 6B 架构设计 — 三段式 Compiler Frontend
 
+> **结论口径（Stage 0 修正）**：现有 E5C-S 的 program-generation path 是当前主瓶颈；
+> **Resolver 同样尚未解决**（Phase 6A selection ≈ 0.20）——Composer 不是唯一待训组件。
+> 训练顺序：先修 Composer（6B-1），B1 outcome 成立后才训 Resolver（6B-2），最后接链（6B-3）。
+
 > 状态：spec 冻结于 Phase 6B-0 结果之前（先设计后看数，架构选择待 6B-0 表格裁决）
 > 依据：Phase 6A 六问裁决（`docs/phase6/results-phase6a-grounding-probe.md`）+ paper_snapshot_v2
 > 禁令：Skill ISA 不修改；CapabilityIR 是 frontend ABI/metadata 层，不是新 IR
@@ -80,6 +84,13 @@ B2 vs B3 回答：**modular compiler frontend 是否优于 shared multi-task mod
 （Phase 6A 信号分歧：grounder 内部赢、E5C-S 外部赢——不预设 two-stage 一定赢）。
 
 ## 4. Phase 6B-0 结果与裁决（2026-10-04，四协议终表）
+
+> **口径修正（Phase 6B Stage 0）**：本诊断的方法学定性为 **GT-derived domain-inventory
+> mechanism diagnostic**，不是完全干净的 env-visible matched-information experiment。
+> Limitations：(i) 工具 inventory 由 domain-level reference action names 并集 +
+> tools.py 解析构造，非纯环境 API 枚举；(ii) B/C/D prompt 截取前 15 个能力。
+> 允许结论："Oracle canonical annotations do not rescue the existing E5C-S
+> generation path"；禁止："information routing has been perfectly controlled"。
 
 | Protocol | Capability info | Parse% | Valid% | Pred/T | SemRecall% | EXEC_ACTION 输出率% | EXEC_ACTION ref-R% |
 |---|---|---:|---:|---:|---:|---:|---:|

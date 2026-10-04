@@ -1,0 +1,29 @@
+{
+  "phase": "6B-1 — Capability-conditioned TaskIR Composer",
+  "frozen_date": "2026-10-04",
+  "base_commit": "8039057",
+  "immutable": ["TaskIR", "Skill ISA", "Validator", "paper_snapshot_v1", "paper_snapshot_v2", "corpus v3.1"],
+  "research_question": "If capability semantics are made explicit and correctly supervised, can the compiler learn to consume them during TaskIR construction? (Resolver trained separately in 6B-2, NOT here)",
+  "corpus_v4": {
+    "path": "data/compiler_corpus_v4/",
+    "fields": ["available_capabilities (full runtime-visible tool list)", "selected_capabilities (GT trajectory tools; oracle-selected arms ONLY)", "canonical_capabilities (per-cap skill + tier + confidence)"],
+    "tiers": "G1 + audited G2 as strong supervision; G3 metadata excluded from conditioning blocks",
+    "audit": "results/phase6/corpus_v4_audit.json — ALL ASSERTIONS PASS (plan params nonempty 98.76%, selected all in available 100%, no signature >=90%, EXEC_ACTION-only signature 4.82%)",
+    "sizes": {"train": 28093, "val": 1561, "test": 1561},
+    "selected_support": {"EXEC_ACTION": 1337, "FETCH": 7344, "SEND": 1000, "SEARCH": 7360}
+  },
+  "arms": {
+    "C0": "frozen E1-A, bare prompts (matched protocol)",
+    "C1": "task + selected canonical SKILL NAMES only — tests whether Skill ISA alone guides composition",
+    "C2": "task + selected concrete capability + canonical skill — PRIMARY candidate",
+    "C3": "task + full available CapabilityIR table (selection implicit) — tests whether pushing Resolver back into Composer fails again"
+  },
+  "training": "Qwen2.5-3B QLoRA r16 a32 lr1.5e-4 1 epoch batch4 accum4 seq2048; seeds 42/43/44 for C1/C2, 42 for C3; no 7B; no external benchmark data",
+  "metrics": ["Parse", "Validator", "OpSeq", "Skill F1", "EXEC_ACTION recall", "argument fidelity", "NEW Condition Adherence: provided-skill recall/precision, hallucinated-skill rate", "depth buckets 1/2-3/4-6/7+"],
+  "decision_matrix": {
+    "B1_composer_conditioning_works": "C2 provided-skill recall >90% + OpSeq high + EXEC_ACTION recovered -> proceed to Resolver (6B-2)",
+    "B2_composer_ignores_oracle_skills": "C2 provided-skill recall low -> STOP Resolver; pivot to hierarchical composition (skill skeleton -> TaskIR expansion)",
+    "B3_chain_fails": "individual arms work but chain fails -> interface mismatch investigation"
+  },
+  "sixb0_wording": "GT-derived domain-inventory mechanism diagnostic (not clean env-visible matched-information); inventory = domain ref-name union + tools.py; prompt cap 15"
+}
