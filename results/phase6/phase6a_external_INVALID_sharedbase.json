@@ -1,0 +1,433 @@
+{
+  "_protocol": "external DIAGNOSTIC only (all three benchmarks already external-development or seen); golds: BFCL frozen oracle, tau3 hardened oracle; AgentBoard distribution-only",
+  "bfcl/B0_toolmap": {
+    "model": "B0_toolmap",
+    "n": 2501,
+    "boundary_n": 2264,
+    "boundary_acc": 0.5976,
+    "boundary_macro_f1": 0.5647,
+    "boundary_confusion": {
+      "retrieval_to_action": 41,
+      "action_to_retrieval": 761,
+      "action_to_miss": 0,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.5415,
+    "note": "regex toolmap on unseen BFCL function names"
+  },
+  "tau3/B0_toolmap": {
+    "model": "B0_toolmap",
+    "n": 2537,
+    "boundary_n": 2537,
+    "boundary_acc": 0.9917,
+    "boundary_macro_f1": 0.9399,
+    "boundary_confusion": {
+      "retrieval_to_action": 14,
+      "action_to_retrieval": 7,
+      "action_to_miss": 0,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.9971,
+    "note": "regex toolmap on tau3 tool names (the Phase 5C failure axis)"
+  },
+  "bfcl/B1_zeroshot_3b": {
+    "model": "B1_zeroshot_3b",
+    "n": 2501,
+    "boundary_n": 2264,
+    "boundary_acc": 0.436,
+    "boundary_macro_f1": 0.4334,
+    "boundary_confusion": {
+      "retrieval_to_action": 81,
+      "action_to_retrieval": 587,
+      "action_to_miss": 14,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.438,
+    "note": ""
+  },
+  "bfcl/B1_zeroshot_3b__single_op": {
+    "model": "B1_zeroshot_3b",
+    "n": 2061,
+    "boundary_n": 1918,
+    "boundary_acc": 0.4572,
+    "boundary_macro_f1": 0.4348,
+    "boundary_confusion": {
+      "retrieval_to_action": 72,
+      "action_to_retrieval": 493,
+      "action_to_miss": 7,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.471,
+    "note": ""
+  },
+  "tau3/B1_zeroshot_3b": {
+    "model": "B1_zeroshot_3b",
+    "n": 2537,
+    "boundary_n": 2537,
+    "boundary_acc": 0.0863,
+    "boundary_macro_f1": 0.2098,
+    "boundary_confusion": {
+      "retrieval_to_action": 0,
+      "action_to_retrieval": 4,
+      "action_to_miss": 2,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.0835,
+    "note": "name-only capability (tau3 ships no descriptions)"
+  },
+  "agentboard/B1_zeroshot_3b": {
+    "skill_distribution": {
+      "todo": {
+        "EXEC_ACTION": 8,
+        "QUERY_DB": 2,
+        "CODEGEN": 1,
+        "EXTRACT_ENTITIES": 1
+      },
+      "sheet": {
+        "EXTRACT_ENTITIES": 7,
+        "EXEC_ACTION": 5,
+        "QUERY_DB": 2,
+        "CODEGEN": 1
+      },
+      "academia": {
+        "EXTRACT_ENTITIES": 6,
+        "CODEGEN": 1,
+        "QUERY_DB": 1,
+        "EXEC_ACTION": 1
+      },
+      "movie": {
+        "EXTRACT_ENTITIES": 6,
+        "SEARCH": 4,
+        "EXEC_ACTION": 2,
+        "CODEGEN": 1,
+        "QUERY_DB": 1
+      },
+      "weather": {
+        "SEARCH": 10,
+        "QUERY_DB": 2,
+        "CODEGEN": 2,
+        "EXTRACT_ENTITIES": 1
+      }
+    }
+  },
+  "bfcl/B2_e5cs": {
+    "model": "B2_e5cs",
+    "n": 2501,
+    "boundary_n": 2264,
+    "boundary_acc": 0.436,
+    "boundary_macro_f1": 0.4334,
+    "boundary_confusion": {
+      "retrieval_to_action": 81,
+      "action_to_retrieval": 587,
+      "action_to_miss": 14,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.438,
+    "note": ""
+  },
+  "bfcl/B2_e5cs__single_op": {
+    "model": "B2_e5cs",
+    "n": 2061,
+    "boundary_n": 1918,
+    "boundary_acc": 0.4572,
+    "boundary_macro_f1": 0.4348,
+    "boundary_confusion": {
+      "retrieval_to_action": 72,
+      "action_to_retrieval": 493,
+      "action_to_miss": 7,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.471,
+    "note": ""
+  },
+  "tau3/B2_e5cs": {
+    "model": "B2_e5cs",
+    "n": 2537,
+    "boundary_n": 2537,
+    "boundary_acc": 0.0863,
+    "boundary_macro_f1": 0.2098,
+    "boundary_confusion": {
+      "retrieval_to_action": 0,
+      "action_to_retrieval": 4,
+      "action_to_miss": 2,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.0835,
+    "note": "name-only capability (tau3 ships no descriptions)"
+  },
+  "agentboard/B2_e5cs": {
+    "skill_distribution": {
+      "todo": {
+        "EXEC_ACTION": 8,
+        "QUERY_DB": 2,
+        "CODEGEN": 1,
+        "EXTRACT_ENTITIES": 1
+      },
+      "sheet": {
+        "EXTRACT_ENTITIES": 7,
+        "EXEC_ACTION": 5,
+        "QUERY_DB": 2,
+        "CODEGEN": 1
+      },
+      "academia": {
+        "EXTRACT_ENTITIES": 6,
+        "CODEGEN": 1,
+        "QUERY_DB": 1,
+        "EXEC_ACTION": 1
+      },
+      "movie": {
+        "EXTRACT_ENTITIES": 6,
+        "SEARCH": 4,
+        "EXEC_ACTION": 2,
+        "CODEGEN": 1,
+        "QUERY_DB": 1
+      },
+      "weather": {
+        "SEARCH": 10,
+        "QUERY_DB": 2,
+        "CODEGEN": 2,
+        "EXTRACT_ENTITIES": 1
+      }
+    }
+  },
+  "bfcl/G1_grounder_G1_s42": {
+    "model": "G1_grounder_G1_s42",
+    "n": 2501,
+    "boundary_n": 2264,
+    "boundary_acc": 0.436,
+    "boundary_macro_f1": 0.4334,
+    "boundary_confusion": {
+      "retrieval_to_action": 81,
+      "action_to_retrieval": 587,
+      "action_to_miss": 14,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.438,
+    "note": ""
+  },
+  "bfcl/G1_grounder_G1_s42__single_op": {
+    "model": "G1_grounder_G1_s42",
+    "n": 2061,
+    "boundary_n": 1918,
+    "boundary_acc": 0.4572,
+    "boundary_macro_f1": 0.4348,
+    "boundary_confusion": {
+      "retrieval_to_action": 72,
+      "action_to_retrieval": 493,
+      "action_to_miss": 7,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.471,
+    "note": ""
+  },
+  "tau3/G1_grounder_G1_s42": {
+    "model": "G1_grounder_G1_s42",
+    "n": 2537,
+    "boundary_n": 2537,
+    "boundary_acc": 0.0863,
+    "boundary_macro_f1": 0.2098,
+    "boundary_confusion": {
+      "retrieval_to_action": 0,
+      "action_to_retrieval": 4,
+      "action_to_miss": 2,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.0835,
+    "note": "name-only capability (tau3 ships no descriptions)"
+  },
+  "agentboard/G1_grounder_G1_s42": {
+    "skill_distribution": {
+      "todo": {
+        "EXEC_ACTION": 8,
+        "QUERY_DB": 2,
+        "CODEGEN": 1,
+        "EXTRACT_ENTITIES": 1
+      },
+      "sheet": {
+        "EXTRACT_ENTITIES": 7,
+        "EXEC_ACTION": 5,
+        "QUERY_DB": 2,
+        "CODEGEN": 1
+      },
+      "academia": {
+        "EXTRACT_ENTITIES": 6,
+        "CODEGEN": 1,
+        "QUERY_DB": 1,
+        "EXEC_ACTION": 1
+      },
+      "movie": {
+        "EXTRACT_ENTITIES": 6,
+        "SEARCH": 4,
+        "EXEC_ACTION": 2,
+        "CODEGEN": 1,
+        "QUERY_DB": 1
+      },
+      "weather": {
+        "SEARCH": 10,
+        "QUERY_DB": 2,
+        "CODEGEN": 2,
+        "EXTRACT_ENTITIES": 1
+      }
+    }
+  },
+  "bfcl/G1_grounder_G1_s43": {
+    "model": "G1_grounder_G1_s43",
+    "n": 2501,
+    "boundary_n": 2264,
+    "boundary_acc": 0.436,
+    "boundary_macro_f1": 0.4334,
+    "boundary_confusion": {
+      "retrieval_to_action": 81,
+      "action_to_retrieval": 587,
+      "action_to_miss": 14,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.438,
+    "note": ""
+  },
+  "bfcl/G1_grounder_G1_s43__single_op": {
+    "model": "G1_grounder_G1_s43",
+    "n": 2061,
+    "boundary_n": 1918,
+    "boundary_acc": 0.4572,
+    "boundary_macro_f1": 0.4348,
+    "boundary_confusion": {
+      "retrieval_to_action": 72,
+      "action_to_retrieval": 493,
+      "action_to_miss": 7,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.471,
+    "note": ""
+  },
+  "tau3/G1_grounder_G1_s43": {
+    "model": "G1_grounder_G1_s43",
+    "n": 2537,
+    "boundary_n": 2537,
+    "boundary_acc": 0.0863,
+    "boundary_macro_f1": 0.2098,
+    "boundary_confusion": {
+      "retrieval_to_action": 0,
+      "action_to_retrieval": 4,
+      "action_to_miss": 2,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.0835,
+    "note": "name-only capability (tau3 ships no descriptions)"
+  },
+  "agentboard/G1_grounder_G1_s43": {
+    "skill_distribution": {
+      "todo": {
+        "EXEC_ACTION": 8,
+        "QUERY_DB": 2,
+        "CODEGEN": 1,
+        "EXTRACT_ENTITIES": 1
+      },
+      "sheet": {
+        "EXTRACT_ENTITIES": 7,
+        "EXEC_ACTION": 5,
+        "QUERY_DB": 2,
+        "CODEGEN": 1
+      },
+      "academia": {
+        "EXTRACT_ENTITIES": 6,
+        "CODEGEN": 1,
+        "QUERY_DB": 1,
+        "EXEC_ACTION": 1
+      },
+      "movie": {
+        "EXTRACT_ENTITIES": 6,
+        "SEARCH": 4,
+        "EXEC_ACTION": 2,
+        "CODEGEN": 1,
+        "QUERY_DB": 1
+      },
+      "weather": {
+        "SEARCH": 10,
+        "QUERY_DB": 2,
+        "CODEGEN": 2,
+        "EXTRACT_ENTITIES": 1
+      }
+    }
+  },
+  "bfcl/G1_grounder_G1_s44": {
+    "model": "G1_grounder_G1_s44",
+    "n": 2501,
+    "boundary_n": 2264,
+    "boundary_acc": 0.436,
+    "boundary_macro_f1": 0.4334,
+    "boundary_confusion": {
+      "retrieval_to_action": 81,
+      "action_to_retrieval": 587,
+      "action_to_miss": 14,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.438,
+    "note": ""
+  },
+  "bfcl/G1_grounder_G1_s44__single_op": {
+    "model": "G1_grounder_G1_s44",
+    "n": 2061,
+    "boundary_n": 1918,
+    "boundary_acc": 0.4572,
+    "boundary_macro_f1": 0.4348,
+    "boundary_confusion": {
+      "retrieval_to_action": 72,
+      "action_to_retrieval": 493,
+      "action_to_miss": 7,
+      "retrieval_to_miss": 1
+    },
+    "exec_action_recall_in_boundary": 0.471,
+    "note": ""
+  },
+  "tau3/G1_grounder_G1_s44": {
+    "model": "G1_grounder_G1_s44",
+    "n": 2537,
+    "boundary_n": 2537,
+    "boundary_acc": 0.0863,
+    "boundary_macro_f1": 0.2098,
+    "boundary_confusion": {
+      "retrieval_to_action": 0,
+      "action_to_retrieval": 4,
+      "action_to_miss": 2,
+      "retrieval_to_miss": 0
+    },
+    "exec_action_recall_in_boundary": 0.0835,
+    "note": "name-only capability (tau3 ships no descriptions)"
+  },
+  "agentboard/G1_grounder_G1_s44": {
+    "skill_distribution": {
+      "todo": {
+        "EXEC_ACTION": 8,
+        "QUERY_DB": 2,
+        "CODEGEN": 1,
+        "EXTRACT_ENTITIES": 1
+      },
+      "sheet": {
+        "EXTRACT_ENTITIES": 7,
+        "EXEC_ACTION": 5,
+        "QUERY_DB": 2,
+        "CODEGEN": 1
+      },
+      "academia": {
+        "EXTRACT_ENTITIES": 6,
+        "CODEGEN": 1,
+        "QUERY_DB": 1,
+        "EXEC_ACTION": 1
+      },
+      "movie": {
+        "EXTRACT_ENTITIES": 6,
+        "SEARCH": 4,
+        "EXEC_ACTION": 2,
+        "CODEGEN": 1,
+        "QUERY_DB": 1
+      },
+      "weather": {
+        "SEARCH": 10,
+        "QUERY_DB": 2,
+        "CODEGEN": 2,
+        "EXTRACT_ENTITIES": 1
+      }
+    }
+  }
+}

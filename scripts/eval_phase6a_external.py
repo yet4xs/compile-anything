@@ -176,19 +176,40 @@ def main():
         "weights/Qwen2.5-3B-Instruct", trust_remote_code=True,
         torch_dtype=torch.bfloat16, device_map="auto")
 
-    models = {"B1_zeroshot_3b": base}
-    m = PeftModel.from_pretrained(base, "runs/phase5c/e5c_s/final")
-    m.eval()
-    models["B2_e5cs"] = m
-    for tag, path in (("G1_s42", "runs/phase6/grounder_g1_s42/final"),
-                      ("G1_s43", "runs/phase6/grounder_g1_s43/final"),
-                      ("G1_s44", "runs/phase6/grounder_g1_s44/final")):
-        if os.path.exists(path):
-            g = PeftModel.from_pretrained(base, path)
-            g.eval()
-            models[f"G1_grounder_{tag}"] = g
+    # SEQUENTIAL loading: one fresh base per adapter. The first run of this
+    # script shared one base across PeftModel wrappers and every neural row
+    # came out bit-identical (adapters never affected generation) — those rows
+    # were invalid and have been discarded. Sanity guard below verifies each
+    # adapter actually changes outputs before the expensive sweep.
+    SPECS = [("B1_zeroshot_3b", None),
+             ("B2_e5cs", "runs/phase5c/e5c_s/final"),
+             ("G1_grounder_G1_s42", "runs/phase6/grounder_g1_s42/final"),
+             ("G1_grounder_G1_s43", "runs/phase6/grounder_g1_s43/final"),
+             ("G1_grounder_G1_s44", "runs/phase6/grounder_g1_s44/final"),
+             ("G1_grounder_G1G2_s42", "runs/phase6/grounder_g1g2_s42/final")]
 
-    for name, model in models.items():
+    import gc
+    for name, adapter in SPECS:
+        del base
+        gc.collect()
+        torch.cuda.empty_cache()
+        base = AutoModelForCausalLM.from_pretrained(
+            "weights/Qwen2.5-3B-Instruct", trust_remote_code=True,
+            torch_dtype=torch.bfloat16, device_map="auto")
+        if adapter:
+            if not os.path.exists(adapter):
+                print(f"[skip missing {adapter}]", flush=True)
+                continue
+            model = PeftModel.from_pretrained(base, adapter)
+            model.eval()
+            # sanity guard: adapter must change outputs vs the plain base
+            guard_caps = ["name: book_reservation", "name: get_weather_data"]
+            g_base = classify(tok, base, guard_caps)
+            g_ad = classify(tok, model, guard_caps)
+            if g_base == g_ad:
+                print(f"  WARNING: {name} outputs identical to base on guard set", flush=True)
+        else:
+            model = base
         # BFCL
         preds = classify(tok, model,
                          [cap_text(r["cap"]) for r in bfcl_rows],
@@ -216,6 +237,9 @@ def main():
         results[f"agentboard/{name}"] = {"skill_distribution": dist}
         print(f"agentboard/{name}: EXEC_ACTION rates:",
               {t: d.get("EXEC_ACTION", 0) for t, d in dist.items()}, flush=True)
+        del model
+        gc.collect()
+        torch.cuda.empty_cache()
 
     os.makedirs("results/phase6", exist_ok=True)
     with open("results/phase6/phase6a_external.json", "w", encoding="utf-8") as f:

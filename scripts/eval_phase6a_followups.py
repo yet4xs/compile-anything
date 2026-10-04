@@ -115,33 +115,37 @@ def main():
     tok.padding_side = "left"
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
-    base = AutoModelForCausalLM.from_pretrained(
-        "weights/Qwen2.5-3B-Instruct", trust_remote_code=True,
-        torch_dtype=torch.bfloat16, device_map="auto")
 
-    models = {}
-    m = PeftModel.from_pretrained(base, "runs/phase5b1/e1_3b_qlora/final")
-    m.eval()
-    models["E1A_classifier"] = m
-    m2 = PeftModel.from_pretrained(base, "runs/phase5c/e5c_s/final")
-    m2.eval()
-    models["B2_e5cs"] = m2
-    for tag, path in (("g1g2_s42", "runs/phase6/grounder_g1g2_s42/final"),
-                      ("g1g2_s43", "runs/phase6/grounder_g1g2_s43/final"),
-                      ("g1g2_s44", "runs/phase6/grounder_g1g2_s44/final")):
-        if os.path.exists(path):
-            g = PeftModel.from_pretrained(base, path)
-            g.eval()
-            models[f"grounder_{tag}"] = g
+    # model specs: load ONE fresh base per adapter (no shared-base PEFT state
+    # pollution, no lingering GPU references), evaluate, release, continue
+    SPECS = [
+        ("E1A_classifier", "runs/phase5b1/e1_3b_qlora/final"),
+        ("B2_e5cs", "runs/phase5c/e5c_s/final"),
+        ("grounder_g1g2_s42", "runs/phase6/grounder_g1g2_s42/final"),
+        ("grounder_g1g2_s43", "runs/phase6/grounder_g1g2_s43/final"),
+        ("grounder_g1g2_s44", "runs/phase6/grounder_g1g2_s44/final"),
+    ]
 
     results = {"_note": "E1-A rows are post-hoc attribution diagnostics, not "
-                        "preregistered primary results; description-supported "
-                        "subset is selected by description evidence only"}
+                        "preregistered primary results; the subset is "
+                        "description-CORROBORATED (target skill still originates "
+                        "from toolmap labels; description evidence only "
+                        "corroborates it) — independent evidence comes from the "
+                        "BFCL/tau3/AgentBoard oracles"}
 
-    for name, model in models.items():
-        print(f"\n[{name}]", flush=True)
+    import gc
+    for name, adapter in SPECS:
+        if not os.path.exists(adapter):
+            print(f"\n[skip missing {adapter}]", flush=True)
+            continue
+        print(f"\n[{name}] loading fresh base + adapter", flush=True)
+        base = AutoModelForCausalLM.from_pretrained(
+            "weights/Qwen2.5-3B-Instruct", trust_remote_code=True,
+            torch_dtype=torch.bfloat16, device_map="auto")
+        model = PeftModel.from_pretrained(base, adapter)
+        model.eval()
+
         r = {}
-        # probes A/B on test_ood + action boundary
         for probe in ("A", "B"):
             preds = run_transform(tok, model, test_ood, "full", probe)
             r[f"probe{probe}_test_ood"] = score(test_ood, preds)
@@ -149,25 +153,24 @@ def main():
         r["action_boundary"] = score(abt, preds)
         print(f"  probeA ood: F1={r['probeA_test_ood']['boundary_macro_f1']} "
               f"EXR={r['probeA_test_ood']['EXEC_ACTION_recall']} "
-              f"AR={r['probeA_test_ood']['ACTION_family_recall']}", flush=True)
-        # counterfactuals on full test_ood and description-supported slice
+              f"ACTION_R={r['probeA_test_ood']['ACTION_family_recall']} "
+              f"SEND_R={r['probeA_test_ood']['SEND_recall']}", flush=True)
         cf = {}
         for transform in ("full", "name_masked", "desc_masked", "name_perturbed"):
             preds_full = run_transform(tok, model, test_ood, transform, "A")
             preds_ds = run_transform(tok, model, ds, transform, "A")
             cf[transform] = {"full_test_ood": score(test_ood, preds_full),
-                             "description_supported": score(ds, preds_ds)}
+                             "description_corroborated": score(ds, preds_ds)}
             print(f"  {transform:15s} full F1={cf[transform]['full_test_ood']['boundary_macro_f1']} "
-                  f"| ds F1={cf[transform]['description_supported']['boundary_macro_f1']} "
-                  f"ds-name-masked EXR={cf[transform]['description_supported']['EXEC_ACTION_recall']}",
+                  f"| dc F1={cf[transform]['description_corroborated']['boundary_macro_f1']} "
+                  f"dc EXR={cf[transform]['description_corroborated']['EXEC_ACTION_recall']}",
                   flush=True)
         r["counterfactuals"] = cf
         results[name] = r
-        del model
+
+        del model, base
+        gc.collect()
         torch.cuda.empty_cache()
-        # reload base reference for next iteration safety
-        if name != list(models.keys())[-1]:
-            pass
 
     os.makedirs("results/phase6", exist_ok=True)
     with open("results/phase6/phase6a_followups.json", "w", encoding="utf-8") as f:

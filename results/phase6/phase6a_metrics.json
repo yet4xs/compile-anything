@@ -1,0 +1,4453 @@
+{
+  "B0_toolmap/dev": {
+    "boundary": {
+      "n": 1900,
+      "binary_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1774
+        },
+        "ACTION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 126
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 0,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 2411,
+      "micro_f1": 1.0,
+      "macro_f1": 1.0,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 204
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 56
+        },
+        "CODEGEN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 94
+        },
+        "CONVERT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        },
+        "EXEC_ACTION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 25
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 148
+        },
+        "FETCH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 806
+        },
+        "QUERY_DB": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 145
+        },
+        "SEARCH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 823
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 101
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        }
+      }
+    }
+  },
+  "B0_toolmap/test_id": {
+    "boundary": {
+      "n": 1436,
+      "binary_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1277
+        },
+        "ACTION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 159
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 0,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 1868,
+      "micro_f1": 1.0,
+      "macro_f1": 1.0,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 142
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 64
+        },
+        "CODEGEN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 136
+        },
+        "CONVERT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        },
+        "EXEC_ACTION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 83
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 68
+        },
+        "FETCH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 526
+        },
+        "QUERY_DB": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 162
+        },
+        "SEARCH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 589
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 76
+        },
+        "SUMMARIZE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 7
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 8
+        }
+      }
+    }
+  },
+  "B0_toolmap/test_ood": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 0,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 2218,
+      "micro_f1": 1.0,
+      "macro_f1": 1.0,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 4
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 55
+        },
+        "CODEGEN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 180
+        },
+        "CONVERT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 11
+        },
+        "EXEC_ACTION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 47
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 81
+        },
+        "FETCH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 84
+        },
+        "SUMMARIZE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 31
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/probeA/dev": {
+    "boundary": {
+      "n": 1900,
+      "binary_accuracy": 0.7105,
+      "macro_f1": 0.4263,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9691,
+          "recall": 0.761,
+          "f1": 0.8525,
+          "support": 1774
+        },
+        "ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 126
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 43,
+        "action_to_miss": 71,
+        "retrieval_to_miss": 4
+      }
+    },
+    "exact": {
+      "n": 2411,
+      "micro_f1": 0.4923,
+      "macro_f1": 0.373,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.9103,
+          "recall": 0.9951,
+          "f1": 0.9508,
+          "support": 204
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.6786,
+          "f1": 0.8085,
+          "support": 56
+        },
+        "CODEGEN": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 94
+        },
+        "CONVERT": {
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 3
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.12,
+          "recall": 0.0203,
+          "f1": 0.0347,
+          "support": 148
+        },
+        "FETCH": {
+          "precision": 0.5889,
+          "recall": 0.8672,
+          "f1": 0.7015,
+          "support": 806
+        },
+        "QUERY_DB": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 145
+        },
+        "SEARCH": {
+          "precision": 0.9057,
+          "recall": 0.2916,
+          "f1": 0.4412,
+          "support": 823
+        },
+        "SEND": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 101
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667,
+          "support": 6
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/probeA/test_id": {
+    "boundary": {
+      "n": 1436,
+      "binary_accuracy": 0.7556,
+      "macro_f1": 0.448,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9476,
+          "recall": 0.8496,
+          "f1": 0.896,
+          "support": 1277
+        },
+        "ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 159
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 60,
+        "action_to_miss": 36,
+        "retrieval_to_miss": 11
+      }
+    },
+    "exact": {
+      "n": 1868,
+      "micro_f1": 0.4909,
+      "macro_f1": 0.2758,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.8767,
+          "recall": 0.9014,
+          "f1": 0.8889,
+          "support": 142
+        },
+        "CLASSIFY": {
+          "precision": 0.6667,
+          "recall": 0.0312,
+          "f1": 0.0597,
+          "support": 64
+        },
+        "CODEGEN": {
+          "precision": 0.4375,
+          "recall": 0.0515,
+          "f1": 0.0921,
+          "support": 136
+        },
+        "CONVERT": {
+          "precision": 0.5,
+          "recall": 0.1429,
+          "f1": 0.2222,
+          "support": 7
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 83
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 68
+        },
+        "FETCH": {
+          "precision": 0.4705,
+          "recall": 0.8783,
+          "f1": 0.6127,
+          "support": 526
+        },
+        "QUERY_DB": {
+          "precision": 0.6571,
+          "recall": 0.142,
+          "f1": 0.2335,
+          "support": 162
+        },
+        "SEARCH": {
+          "precision": 0.9091,
+          "recall": 0.4924,
+          "f1": 0.6388,
+          "support": 589
+        },
+        "SEND": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 76
+        },
+        "SUMMARIZE": {
+          "precision": 0.0769,
+          "recall": 0.1429,
+          "f1": 0.1,
+          "support": 7
+        },
+        "TRANSLATE": {
+          "precision": 0.6,
+          "recall": 0.375,
+          "f1": 0.4615,
+          "support": 8
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/probeA/test_ood": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 0.8809,
+      "macro_f1": 0.4768,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9595,
+          "recall": 0.9478,
+          "f1": 0.9536,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 69,
+        "action_to_miss": 18,
+        "retrieval_to_miss": 1
+      }
+    },
+    "exact": {
+      "n": 2218,
+      "micro_f1": 0.5117,
+      "macro_f1": 0.283,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.4444,
+          "recall": 1.0,
+          "f1": 0.6154,
+          "support": 4
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.0182,
+          "f1": 0.0357,
+          "support": 55
+        },
+        "CODEGEN": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 180
+        },
+        "CONVERT": {
+          "precision": 0.6667,
+          "recall": 0.1818,
+          "f1": 0.2857,
+          "support": 11
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 47
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.2,
+          "recall": 0.1852,
+          "f1": 0.1923,
+          "support": 81
+        },
+        "FETCH": {
+          "precision": 0.5246,
+          "recall": 0.9174,
+          "f1": 0.6675,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 0.8329,
+          "recall": 0.479,
+          "f1": 0.6082,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 84
+        },
+        "SUMMARIZE": {
+          "precision": 1.0,
+          "recall": 0.5484,
+          "f1": 0.7083,
+          "support": 31
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/probeB/dev": {
+    "boundary": {
+      "n": 1900,
+      "binary_accuracy": 0.6832,
+      "macro_f1": 0.4153,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9601,
+          "recall": 0.7317,
+          "f1": 0.8305,
+          "support": 1774
+        },
+        "ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 126
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 3,
+        "action_to_retrieval": 54,
+        "action_to_miss": 36,
+        "retrieval_to_miss": 41
+      }
+    },
+    "exact": {
+      "n": 2411,
+      "micro_f1": 0.465,
+      "macro_f1": 0.3196,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.9949,
+          "recall": 0.9608,
+          "f1": 0.9776,
+          "support": 204
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.5357,
+          "f1": 0.6977,
+          "support": 56
+        },
+        "CODEGEN": {
+          "precision": 0.2353,
+          "recall": 0.0426,
+          "f1": 0.0721,
+          "support": 94
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 148
+        },
+        "FETCH": {
+          "precision": 0.5819,
+          "recall": 0.8201,
+          "f1": 0.6807,
+          "support": 806
+        },
+        "QUERY_DB": {
+          "precision": 0.3333,
+          "recall": 0.0069,
+          "f1": 0.0135,
+          "support": 145
+        },
+        "SEARCH": {
+          "precision": 0.7875,
+          "recall": 0.2746,
+          "f1": 0.4072,
+          "support": 823
+        },
+        "SEND": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 101
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667,
+          "support": 6
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/probeB/test_id": {
+    "boundary": {
+      "n": 1436,
+      "binary_accuracy": 0.7451,
+      "macro_f1": 0.4809,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9551,
+          "recall": 0.8332,
+          "f1": 0.89,
+          "support": 1277
+        },
+        "ACTION": {
+          "precision": 0.75,
+          "recall": 0.0377,
+          "f1": 0.0719,
+          "support": 159
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 2,
+        "action_to_retrieval": 50,
+        "action_to_miss": 36,
+        "retrieval_to_miss": 23
+      }
+    },
+    "exact": {
+      "n": 1868,
+      "micro_f1": 0.4781,
+      "macro_f1": 0.27,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.8684,
+          "recall": 0.9296,
+          "f1": 0.898,
+          "support": 142
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.0156,
+          "f1": 0.0308,
+          "support": 64
+        },
+        "CODEGEN": {
+          "precision": 0.3846,
+          "recall": 0.0368,
+          "f1": 0.0671,
+          "support": 136
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 83
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.0299,
+          "recall": 0.0294,
+          "f1": 0.0296,
+          "support": 68
+        },
+        "FETCH": {
+          "precision": 0.4721,
+          "recall": 0.8213,
+          "f1": 0.5996,
+          "support": 526
+        },
+        "QUERY_DB": {
+          "precision": 0.7,
+          "recall": 0.1296,
+          "f1": 0.2188,
+          "support": 162
+        },
+        "SEARCH": {
+          "precision": 0.8295,
+          "recall": 0.4958,
+          "f1": 0.6206,
+          "support": 589
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 0.0395,
+          "f1": 0.0759,
+          "support": 76
+        },
+        "SUMMARIZE": {
+          "precision": 0.1538,
+          "recall": 0.2857,
+          "f1": 0.2,
+          "support": 7
+        },
+        "TRANSLATE": {
+          "precision": 0.75,
+          "recall": 0.375,
+          "f1": 0.5,
+          "support": 8
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/probeB/test_ood": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 0.8621,
+      "macro_f1": 0.471,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9569,
+          "recall": 0.9275,
+          "f1": 0.942,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 72,
+        "action_to_miss": 14,
+        "retrieval_to_miss": 27
+      }
+    },
+    "exact": {
+      "n": 2218,
+      "micro_f1": 0.4608,
+      "macro_f1": 0.2054,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.1818,
+          "recall": 0.5,
+          "f1": 0.2667,
+          "support": 4
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.1818,
+          "f1": 0.3077,
+          "support": 55
+        },
+        "CODEGEN": {
+          "precision": 0.2,
+          "recall": 0.0111,
+          "f1": 0.0211,
+          "support": 180
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 47
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.2286,
+          "recall": 0.1975,
+          "f1": 0.2119,
+          "support": 81
+        },
+        "FETCH": {
+          "precision": 0.4924,
+          "recall": 0.7993,
+          "f1": 0.6094,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 0.6761,
+          "recall": 0.464,
+          "f1": 0.5503,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 84
+        },
+        "SUMMARIZE": {
+          "precision": 0.6,
+          "recall": 0.1935,
+          "f1": 0.2927,
+          "support": 31
+        }
+      }
+    }
+  },
+  "B1_zeroshot_3b/action_boundary": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 0.8809,
+      "macro_f1": 0.4768,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9595,
+          "recall": 0.9478,
+          "f1": 0.9536,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 69,
+        "action_to_miss": 18,
+        "retrieval_to_miss": 1
+      }
+    },
+    "exact": {
+      "n": 1856,
+      "micro_f1": 0.5905,
+      "macro_f1": 0.2652,
+      "per_skill": {
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 47
+        },
+        "FETCH": {
+          "precision": 0.5864,
+          "recall": 0.9174,
+          "f1": 0.7155,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 0.8417,
+          "recall": 0.479,
+          "f1": 0.6105,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 84
+        }
+      }
+    }
+  },
+  "B2_e5cs/probeA/dev": {
+    "boundary": {
+      "n": 1900,
+      "binary_accuracy": 0.9474,
+      "macro_f1": 0.9101,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9844,
+          "recall": 0.9594,
+          "f1": 0.9717,
+          "support": 1774
+        },
+        "ACTION": {
+          "precision": 0.9333,
+          "recall": 0.7778,
+          "f1": 0.8485,
+          "support": 126
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 7,
+        "action_to_retrieval": 27,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 2411,
+      "micro_f1": 0.7142,
+      "macro_f1": 0.5025,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 1.0,
+          "recall": 0.9951,
+          "f1": 0.9975,
+          "support": 204
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.6786,
+          "f1": 0.8085,
+          "support": 56
+        },
+        "CODEGEN": {
+          "precision": 0.2615,
+          "recall": 0.7872,
+          "f1": 0.3926,
+          "support": 94
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 148
+        },
+        "FETCH": {
+          "precision": 0.6326,
+          "recall": 0.9293,
+          "f1": 0.7528,
+          "support": 806
+        },
+        "QUERY_DB": {
+          "precision": 0.4722,
+          "recall": 0.2345,
+          "f1": 0.3134,
+          "support": 145
+        },
+        "SEARCH": {
+          "precision": 1.0,
+          "recall": 0.6367,
+          "f1": 0.778,
+          "support": 823
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 0.9703,
+          "f1": 0.9849,
+          "support": 101
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 6
+        }
+      }
+    }
+  },
+  "B2_e5cs/probeA/test_id": {
+    "boundary": {
+      "n": 1436,
+      "binary_accuracy": 0.9206,
+      "macro_f1": 0.8049,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9666,
+          "recall": 0.9742,
+          "f1": 0.9704,
+          "support": 1277
+        },
+        "ACTION": {
+          "precision": 0.9176,
+          "recall": 0.4906,
+          "f1": 0.6393,
+          "support": 159
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 7,
+        "action_to_retrieval": 43,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 1868,
+      "micro_f1": 0.6574,
+      "macro_f1": 0.4502,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.875,
+          "recall": 0.9859,
+          "f1": 0.9272,
+          "support": 142
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.0469,
+          "f1": 0.0896,
+          "support": 64
+        },
+        "CODEGEN": {
+          "precision": 0.384,
+          "recall": 0.3529,
+          "f1": 0.3678,
+          "support": 136
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        },
+        "EXEC_ACTION": {
+          "precision": 0.7667,
+          "recall": 0.2771,
+          "f1": 0.4071,
+          "support": 83
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 1.0,
+          "recall": 0.0147,
+          "f1": 0.029,
+          "support": 68
+        },
+        "FETCH": {
+          "precision": 0.5275,
+          "recall": 0.9848,
+          "f1": 0.687,
+          "support": 526
+        },
+        "QUERY_DB": {
+          "precision": 0.6371,
+          "recall": 0.4877,
+          "f1": 0.5524,
+          "support": 162
+        },
+        "SEARCH": {
+          "precision": 0.9916,
+          "recall": 0.6027,
+          "f1": 0.7497,
+          "support": 589
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 0.7237,
+          "f1": 0.8397,
+          "support": 76
+        },
+        "SUMMARIZE": {
+          "precision": 0.1364,
+          "recall": 0.4286,
+          "f1": 0.2069,
+          "support": 7
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 0.375,
+          "f1": 0.5455,
+          "support": 8
+        }
+      }
+    }
+  },
+  "B2_e5cs/probeA/test_ood": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 0.9531,
+      "macro_f1": 0.7816,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9651,
+          "recall": 0.9942,
+          "f1": 0.9794,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 1.0,
+          "recall": 0.4122,
+          "f1": 0.5838,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 62,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 2218,
+      "micro_f1": 0.6371,
+      "macro_f1": 0.4857,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667,
+          "support": 4
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.4182,
+          "f1": 0.5897,
+          "support": 55
+        },
+        "CODEGEN": {
+          "precision": 0.5787,
+          "recall": 0.5722,
+          "f1": 0.5754,
+          "support": 180
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 47
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.8824,
+          "recall": 0.1852,
+          "f1": 0.3061,
+          "support": 81
+        },
+        "FETCH": {
+          "precision": 0.5534,
+          "recall": 0.9965,
+          "f1": 0.7116,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 0.7654,
+          "recall": 0.5849,
+          "f1": 0.6631,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 1.0,
+          "recall": 0.3514,
+          "f1": 0.52,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 0.9643,
+          "recall": 0.6429,
+          "f1": 0.7714,
+          "support": 84
+        },
+        "SUMMARIZE": {
+          "precision": 0.6667,
+          "recall": 0.4516,
+          "f1": 0.5385,
+          "support": 31
+        }
+      }
+    }
+  },
+  "B2_e5cs/probeB/dev": {
+    "boundary": {
+      "n": 1900,
+      "binary_accuracy": 0.9153,
+      "macro_f1": 0.9119,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9838,
+          "recall": 0.9256,
+          "f1": 0.9538,
+          "support": 1774
+        },
+        "ACTION": {
+          "precision": 1.0,
+          "recall": 0.7698,
+          "f1": 0.87,
+          "support": 126
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 27,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 37
+      }
+    },
+    "exact": {
+      "n": 2411,
+      "micro_f1": 0.6823,
+      "macro_f1": 0.5614,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 1.0,
+          "recall": 0.9951,
+          "f1": 0.9975,
+          "support": 204
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.6786,
+          "f1": 0.8085,
+          "support": 56
+        },
+        "CODEGEN": {
+          "precision": 0.6905,
+          "recall": 0.617,
+          "f1": 0.6517,
+          "support": 94
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "EXEC_ACTION": {
+          "precision": 1.0,
+          "recall": 0.04,
+          "f1": 0.0769,
+          "support": 25
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.9565,
+          "recall": 0.1486,
+          "f1": 0.2573,
+          "support": 148
+        },
+        "FETCH": {
+          "precision": 0.6304,
+          "recall": 0.9839,
+          "f1": 0.7684,
+          "support": 806
+        },
+        "QUERY_DB": {
+          "precision": 0.6311,
+          "recall": 0.4483,
+          "f1": 0.5242,
+          "support": 145
+        },
+        "SEARCH": {
+          "precision": 0.9946,
+          "recall": 0.4459,
+          "f1": 0.6158,
+          "support": 823
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 0.9505,
+          "f1": 0.9746,
+          "support": 101
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 6
+        }
+      }
+    }
+  },
+  "B2_e5cs/probeB/test_id": {
+    "boundary": {
+      "n": 1436,
+      "binary_accuracy": 0.9123,
+      "macro_f1": 0.8099,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9708,
+          "recall": 0.9624,
+          "f1": 0.9666,
+          "support": 1277
+        },
+        "ACTION": {
+          "precision": 0.9101,
+          "recall": 0.5094,
+          "f1": 0.6532,
+          "support": 159
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 8,
+        "action_to_retrieval": 37,
+        "action_to_miss": 2,
+        "retrieval_to_miss": 19
+      }
+    },
+    "exact": {
+      "n": 1868,
+      "micro_f1": 0.6788,
+      "macro_f1": 0.5103,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.8917,
+          "recall": 0.9859,
+          "f1": 0.9365,
+          "support": 142
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.0469,
+          "f1": 0.0896,
+          "support": 64
+        },
+        "CODEGEN": {
+          "precision": 0.6279,
+          "recall": 0.3971,
+          "f1": 0.4865,
+          "support": 136
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 7
+        },
+        "EXEC_ACTION": {
+          "precision": 0.7812,
+          "recall": 0.3012,
+          "f1": 0.4348,
+          "support": 83
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.7895,
+          "recall": 0.2206,
+          "f1": 0.3448,
+          "support": 68
+        },
+        "FETCH": {
+          "precision": 0.5529,
+          "recall": 0.9734,
+          "f1": 0.7052,
+          "support": 526
+        },
+        "QUERY_DB": {
+          "precision": 0.7479,
+          "recall": 0.5494,
+          "f1": 0.6335,
+          "support": 162
+        },
+        "SEARCH": {
+          "precision": 0.9786,
+          "recall": 0.6214,
+          "f1": 0.7601,
+          "support": 589
+        },
+        "SEND": {
+          "precision": 0.9825,
+          "recall": 0.7368,
+          "f1": 0.8421,
+          "support": 76
+        },
+        "SUMMARIZE": {
+          "precision": 0.2273,
+          "recall": 0.7143,
+          "f1": 0.3448,
+          "support": 7
+        },
+        "TRANSLATE": {
+          "precision": 1.0,
+          "recall": 0.375,
+          "f1": 0.5455,
+          "support": 8
+        }
+      }
+    }
+  },
+  "B2_e5cs/probeB/test_ood": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 0.9192,
+      "macro_f1": 0.7707,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9638,
+          "recall": 0.9577,
+          "f1": 0.9607,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 0.9818,
+          "recall": 0.4122,
+          "f1": 0.5806,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 1,
+        "action_to_retrieval": 62,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 21
+      }
+    },
+    "exact": {
+      "n": 2218,
+      "micro_f1": 0.6474,
+      "macro_f1": 0.4813,
+      "per_skill": {
+        "CALCULATE": {
+          "precision": 0.0833,
+          "recall": 0.25,
+          "f1": 0.125,
+          "support": 4
+        },
+        "CLASSIFY": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714,
+          "support": 55
+        },
+        "CODEGEN": {
+          "precision": 0.6358,
+          "recall": 0.5722,
+          "f1": 0.6023,
+          "support": 180
+        },
+        "CONVERT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 47
+        },
+        "EXTRACT_ENTITIES": {
+          "precision": 0.8667,
+          "recall": 0.321,
+          "f1": 0.4685,
+          "support": 81
+        },
+        "FETCH": {
+          "precision": 0.5858,
+          "recall": 0.9917,
+          "f1": 0.7365,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 0.8376,
+          "recall": 0.4623,
+          "f1": 0.5957,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 0.9066,
+          "recall": 0.3934,
+          "f1": 0.5487,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 0.9818,
+          "recall": 0.6429,
+          "f1": 0.777,
+          "support": 84
+        },
+        "SUMMARIZE": {
+          "precision": 0.7895,
+          "recall": 0.9677,
+          "f1": 0.8696,
+          "support": 31
+        }
+      }
+    }
+  },
+  "B2_e5cs/action_boundary": {
+    "boundary": {
+      "n": 1856,
+      "binary_accuracy": 0.9531,
+      "macro_f1": 0.7816,
+      "per_class": {
+        "RETRIEVAL": {
+          "precision": 0.9651,
+          "recall": 0.9942,
+          "f1": 0.9794,
+          "support": 1725
+        },
+        "ACTION": {
+          "precision": 1.0,
+          "recall": 0.4122,
+          "f1": 0.5838,
+          "support": 131
+        }
+      },
+      "confusion": {
+        "retrieval_to_action": 0,
+        "action_to_retrieval": 62,
+        "action_to_miss": 0,
+        "retrieval_to_miss": 0
+      }
+    },
+    "exact": {
+      "n": 1856,
+      "micro_f1": 0.6767,
+      "macro_f1": 0.5447,
+      "per_skill": {
+        "EXEC_ACTION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 47
+        },
+        "FETCH": {
+          "precision": 0.6112,
+          "recall": 0.9965,
+          "f1": 0.7576,
+          "support": 847
+        },
+        "QUERY_DB": {
+          "precision": 0.7654,
+          "recall": 0.5849,
+          "f1": 0.6631,
+          "support": 212
+        },
+        "SEARCH": {
+          "precision": 1.0,
+          "recall": 0.3514,
+          "f1": 0.52,
+          "support": 666
+        },
+        "SEND": {
+          "precision": 1.0,
+          "recall": 0.6429,
+          "f1": 0.7826,
+          "support": 84
+        }
+      }
+    }
+  },
+  "G1_grounder_agg": {
+    "probeA/dev": {
+      "boundary_macro_f1_mean": 0.3342,
+      "boundary_macro_f1_std": 0.0323,
+      "boundary_acc_mean": 0.3647,
+      "boundary_acc_std": 0.061
+    },
+    "probeA/test_id": {
+      "boundary_macro_f1_mean": 0.5731,
+      "boundary_macro_f1_std": 0.0216,
+      "boundary_acc_mean": 0.4986,
+      "boundary_acc_std": 0.0362
+    },
+    "probeA/test_ood": {
+      "boundary_macro_f1_mean": 0.517,
+      "boundary_macro_f1_std": 0.0122,
+      "boundary_acc_mean": 0.5512,
+      "boundary_acc_std": 0.0275
+    },
+    "probeB/dev": {
+      "boundary_macro_f1_mean": 0.3681,
+      "boundary_macro_f1_std": 0.0081,
+      "boundary_acc_mean": 0.4342,
+      "boundary_acc_std": 0.011
+    },
+    "probeB/test_id": {
+      "boundary_macro_f1_mean": 0.5528,
+      "boundary_macro_f1_std": 0.0188,
+      "boundary_acc_mean": 0.5118,
+      "boundary_acc_std": 0.005
+    },
+    "probeB/test_ood": {
+      "boundary_macro_f1_mean": 0.4967,
+      "boundary_macro_f1_std": 0.0069,
+      "boundary_acc_mean": 0.576,
+      "boundary_acc_std": 0.0116
+    },
+    "action_boundary_EXEC_ACTION_recall": {
+      "mean": 0.6525,
+      "std": 0.0402
+    }
+  },
+  "G1_grounder_per_run": {
+    "grounder_g1_s42": {
+      "probeA/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.3626,
+          "macro_f1": 0.3318,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9985,
+              "recall": 0.3749,
+              "f1": 0.5451,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 0.086,
+              "recall": 0.1905,
+              "f1": 0.1185,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 255,
+            "action_to_retrieval": 1,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 17
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.3534,
+          "macro_f1": 0.3428,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 0.6,
+              "recall": 0.9107,
+              "f1": 0.7234,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.2291,
+              "recall": 0.9894,
+              "f1": 0.372,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.0426,
+              "recall": 0.6667,
+              "f1": 0.08,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 0.0842,
+              "recall": 0.96,
+              "f1": 0.1548,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1892,
+              "recall": 0.9662,
+              "f1": 0.3164,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.3511,
+              "recall": 0.7724,
+              "f1": 0.4828,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.8609,
+              "recall": 0.5115,
+              "f1": 0.6418,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeA/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.5007,
+          "macro_f1": 0.5518,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9891,
+              "recall": 0.4957,
+              "f1": 0.6604,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 0.3755,
+              "recall": 0.5409,
+              "f1": 0.4433,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 143,
+            "action_to_retrieval": 7,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.4384,
+          "macro_f1": 0.4817,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.5333,
+              "recall": 1.0,
+              "f1": 0.6957,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.3719,
+              "recall": 0.9926,
+              "f1": 0.5411,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6667,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 0.2867,
+              "recall": 0.988,
+              "f1": 0.4444,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1282,
+              "recall": 0.8088,
+              "f1": 0.2213,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.5902,
+              "recall": 0.8889,
+              "f1": 0.7094,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.7995,
+              "recall": 0.5416,
+              "f1": 0.6457,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.8571,
+              "f1": 0.9231,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeA/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5496,
+          "macro_f1": 0.5147,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 1.0,
+              "recall": 0.5722,
+              "f1": 0.7279,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.375,
+              "recall": 0.2519,
+              "f1": 0.3014,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 55,
+            "action_to_retrieval": 0,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.45,
+          "macro_f1": 0.4419,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.3438,
+              "recall": 1.0,
+              "f1": 0.5116,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.2699,
+              "recall": 1.0,
+              "f1": 0.425,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.9091,
+              "f1": 0.9524,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.3404,
+              "recall": 0.6809,
+              "f1": 0.4539,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1255,
+              "recall": 0.4074,
+              "f1": 0.1919,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.3734,
+              "recall": 0.8349,
+              "f1": 0.516,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9249,
+              "recall": 0.7207,
+              "f1": 0.8101,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 31
+            }
+          }
+        }
+      },
+      "probeB/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.4468,
+          "macro_f1": 0.3766,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9976,
+              "recall": 0.4651,
+              "f1": 0.6344,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 0.0863,
+              "recall": 0.1905,
+              "f1": 0.1188,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 254,
+            "action_to_retrieval": 2,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 31
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.3571,
+          "macro_f1": 0.3268,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 0.68,
+              "recall": 0.9107,
+              "f1": 0.7786,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.2514,
+              "recall": 0.9255,
+              "f1": 0.3955,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 0.0654,
+              "recall": 0.96,
+              "f1": 0.1224,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.2193,
+              "recall": 0.9662,
+              "f1": 0.3575,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.4056,
+              "recall": 0.8,
+              "f1": 0.5383,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.6987,
+              "recall": 0.5298,
+              "f1": 0.6026,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.6667,
+              "f1": 0.8,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeB/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.5049,
+          "macro_f1": 0.5262,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9862,
+              "recall": 0.502,
+              "f1": 0.6653,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 0.3055,
+              "recall": 0.5283,
+              "f1": 0.3871,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 191,
+            "action_to_retrieval": 9,
+            "action_to_miss": 3,
+            "retrieval_to_miss": 15
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.4325,
+          "macro_f1": 0.4375,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.4729,
+              "recall": 0.9531,
+              "f1": 0.6321,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.4217,
+              "recall": 0.9706,
+              "f1": 0.588,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 0.375,
+              "recall": 0.4286,
+              "f1": 0.4,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 0.2395,
+              "recall": 0.9639,
+              "f1": 0.3837,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.141,
+              "recall": 0.8088,
+              "f1": 0.2402,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.6101,
+              "recall": 0.821,
+              "f1": 0.7,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.7517,
+              "recall": 0.5654,
+              "f1": 0.6453,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.5714,
+              "f1": 0.7273,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeB/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5706,
+          "macro_f1": 0.4879,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9971,
+              "recall": 0.5948,
+              "f1": 0.7451,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.2129,
+              "recall": 0.2519,
+              "f1": 0.2308,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 122,
+            "action_to_retrieval": 3,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 12
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.44,
+          "macro_f1": 0.3036,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.5098,
+              "recall": 0.9455,
+              "f1": 0.6624,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.3087,
+              "recall": 0.95,
+              "f1": 0.4659,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 0.1,
+              "recall": 0.1818,
+              "f1": 0.129,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.1808,
+              "recall": 0.6809,
+              "f1": 0.2857,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.11,
+              "recall": 0.3951,
+              "f1": 0.172,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.4406,
+              "recall": 0.8396,
+              "f1": 0.5779,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.7802,
+              "recall": 0.7568,
+              "f1": 0.7683,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.1613,
+              "f1": 0.2778,
+              "support": 31
+            }
+          }
+        }
+      },
+      "action_boundary": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5501,
+          "macro_f1": 0.5149,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 1.0,
+              "recall": 0.5728,
+              "f1": 0.7283,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.375,
+              "recall": 0.2519,
+              "f1": 0.3014,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 55,
+            "action_to_retrieval": 0,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1856,
+          "micro_f1": 0.3718,
+          "macro_f1": 0.3611,
+          "per_skill": {
+            "EXEC_ACTION": {
+              "precision": 0.3636,
+              "recall": 0.6809,
+              "f1": 0.4741,
+              "support": 47
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.3774,
+              "recall": 0.8349,
+              "f1": 0.5198,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9268,
+              "recall": 0.7222,
+              "f1": 0.8118,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            }
+          }
+        }
+      }
+    },
+    "grounder_g1_s43": {
+      "probeA/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.2911,
+          "macro_f1": 0.2959,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9981,
+              "recall": 0.2982,
+              "f1": 0.4592,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 0.1017,
+              "recall": 0.1905,
+              "f1": 0.1326,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 212,
+            "action_to_retrieval": 1,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 17
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.297,
+          "macro_f1": 0.3229,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 0.6071,
+              "recall": 0.9107,
+              "f1": 0.7286,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.2196,
+              "recall": 0.9787,
+              "f1": 0.3587,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.0217,
+              "recall": 0.3333,
+              "f1": 0.0408,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 0.093,
+              "recall": 0.96,
+              "f1": 0.1696,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1542,
+              "recall": 0.9595,
+              "f1": 0.2657,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.3593,
+              "recall": 0.8276,
+              "f1": 0.501,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.8589,
+              "recall": 0.3402,
+              "f1": 0.4874,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeA/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.4533,
+          "macro_f1": 0.5647,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9896,
+              "recall": 0.4464,
+              "f1": 0.6152,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 0.5192,
+              "recall": 0.5094,
+              "f1": 0.5143,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 75,
+            "action_to_retrieval": 6,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.4224,
+          "macro_f1": 0.4827,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.5203,
+              "recall": 1.0,
+              "f1": 0.6845,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.3402,
+              "recall": 0.9779,
+              "f1": 0.5047,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6667,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 0.3932,
+              "recall": 0.9759,
+              "f1": 0.5606,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1181,
+              "recall": 0.9412,
+              "f1": 0.2098,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.5652,
+              "recall": 0.8827,
+              "f1": 0.6892,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.8712,
+              "recall": 0.4822,
+              "f1": 0.6208,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.8571,
+              "f1": 0.9231,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeA/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5183,
+          "macro_f1": 0.5034,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 1.0,
+              "recall": 0.5391,
+              "f1": 0.7006,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.4103,
+              "recall": 0.2443,
+              "f1": 0.3062,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 46,
+            "action_to_retrieval": 0,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.4342,
+          "macro_f1": 0.447,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.534,
+              "recall": 1.0,
+              "f1": 0.6962,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.2476,
+              "recall": 0.8778,
+              "f1": 0.3863,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.9091,
+              "f1": 0.9524,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.3721,
+              "recall": 0.6809,
+              "f1": 0.4812,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.0881,
+              "recall": 0.4568,
+              "f1": 0.1477,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.403,
+              "recall": 0.8821,
+              "f1": 0.5533,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9725,
+              "recall": 0.6892,
+              "f1": 0.8067,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.8065,
+              "f1": 0.8929,
+              "support": 31
+            }
+          }
+        }
+      },
+      "probeB/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.42,
+          "macro_f1": 0.3571,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9974,
+              "recall": 0.438,
+              "f1": 0.6087,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 0.0772,
+              "recall": 0.1667,
+              "f1": 0.1055,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 251,
+            "action_to_retrieval": 2,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 38
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.3434,
+          "macro_f1": 0.3333,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 0.7143,
+              "recall": 0.8929,
+              "f1": 0.7937,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.2842,
+              "recall": 0.8617,
+              "f1": 0.4274,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 0.0571,
+              "recall": 0.84,
+              "f1": 0.1069,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1836,
+              "recall": 0.9662,
+              "f1": 0.3085,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.3706,
+              "recall": 0.869,
+              "f1": 0.5196,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.7806,
+              "recall": 0.4885,
+              "f1": 0.6009,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.8333,
+              "f1": 0.9091,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeB/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.5167,
+          "macro_f1": 0.5665,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9866,
+              "recall": 0.5184,
+              "f1": 0.6797,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 0.4124,
+              "recall": 0.5031,
+              "f1": 0.4533,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 114,
+            "action_to_retrieval": 9,
+            "action_to_miss": 3,
+            "retrieval_to_miss": 14
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.4347,
+          "macro_f1": 0.4444,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.4919,
+              "recall": 0.9531,
+              "f1": 0.6489,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.4175,
+              "recall": 0.9118,
+              "f1": 0.5727,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 0.5,
+              "recall": 0.5714,
+              "f1": 0.5333,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 0.3493,
+              "recall": 0.9639,
+              "f1": 0.5128,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1202,
+              "recall": 0.8824,
+              "f1": 0.2116,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.5197,
+              "recall": 0.8951,
+              "f1": 0.6576,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.818,
+              "recall": 0.5569,
+              "f1": 0.6626,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.4286,
+              "f1": 0.6,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeB/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5921,
+          "macro_f1": 0.5048,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 1.0,
+              "recall": 0.6186,
+              "f1": 0.7643,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.2462,
+              "recall": 0.2443,
+              "f1": 0.2452,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 98,
+            "action_to_retrieval": 0,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 12
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.4202,
+          "macro_f1": 0.2955,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.5,
+              "recall": 0.9455,
+              "f1": 0.6541,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.3015,
+              "recall": 0.6833,
+              "f1": 0.4184,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 0.1053,
+              "recall": 0.1818,
+              "f1": 0.1333,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.2148,
+              "recall": 0.6809,
+              "f1": 0.3265,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1185,
+              "recall": 0.6173,
+              "f1": 0.1988,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.371,
+              "recall": 0.8821,
+              "f1": 0.5223,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.8183,
+              "recall": 0.7237,
+              "f1": 0.7681,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.129,
+              "f1": 0.2286,
+              "support": 31
+            }
+          }
+        }
+      },
+      "action_boundary": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5178,
+          "macro_f1": 0.5031,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 1.0,
+              "recall": 0.5386,
+              "f1": 0.7001,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.4103,
+              "recall": 0.2443,
+              "f1": 0.3062,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 46,
+            "action_to_retrieval": 0,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1856,
+          "micro_f1": 0.3658,
+          "macro_f1": 0.3759,
+          "per_skill": {
+            "EXEC_ACTION": {
+              "precision": 0.4103,
+              "recall": 0.6809,
+              "f1": 0.512,
+              "support": 47
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.4092,
+              "recall": 0.8821,
+              "f1": 0.559,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9746,
+              "recall": 0.6907,
+              "f1": 0.8084,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            }
+          }
+        }
+      }
+    },
+    "grounder_g1_s44": {
+      "probeA/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.4405,
+          "macro_f1": 0.3749,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9988,
+              "recall": 0.4583,
+              "f1": 0.6283,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 0.0892,
+              "recall": 0.1905,
+              "f1": 0.1215,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 245,
+            "action_to_retrieval": 1,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.3671,
+          "macro_f1": 0.377,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 0.5,
+              "recall": 0.9107,
+              "f1": 0.6456,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.2632,
+              "recall": 0.9574,
+              "f1": 0.4128,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.3333,
+              "f1": 0.5,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 0.0857,
+              "recall": 0.96,
+              "f1": 0.1574,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1997,
+              "recall": 0.9595,
+              "f1": 0.3306,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.296,
+              "recall": 0.8759,
+              "f1": 0.4425,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.8425,
+              "recall": 0.5395,
+              "f1": 0.6578,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeA/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.5418,
+          "macro_f1": 0.6027,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9915,
+              "recall": 0.5458,
+              "f1": 0.704,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 0.4939,
+              "recall": 0.5094,
+              "f1": 0.5015,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 83,
+            "action_to_retrieval": 6,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.4518,
+          "macro_f1": 0.4851,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.4103,
+              "recall": 1.0,
+              "f1": 0.5818,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.4594,
+              "recall": 0.9559,
+              "f1": 0.6205,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 0.6364,
+              "recall": 1.0,
+              "f1": 0.7778,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 0.3716,
+              "recall": 0.9759,
+              "f1": 0.5382,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1289,
+              "recall": 0.9118,
+              "f1": 0.2259,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.5471,
+              "recall": 0.9321,
+              "f1": 0.6895,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.7819,
+              "recall": 0.5722,
+              "f1": 0.6608,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.5714,
+              "f1": 0.7273,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeA/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5857,
+          "macro_f1": 0.5329,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9962,
+              "recall": 0.6139,
+              "f1": 0.7597,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.5385,
+              "recall": 0.2137,
+              "f1": 0.306,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 24,
+            "action_to_retrieval": 4,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.4265,
+          "macro_f1": 0.2985,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.3873,
+              "recall": 1.0,
+              "f1": 0.5584,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.2432,
+              "recall": 0.6444,
+              "f1": 0.3531,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.1818,
+              "f1": 0.3077,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.4118,
+              "recall": 0.5957,
+              "f1": 0.487,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.154,
+              "recall": 0.8272,
+              "f1": 0.2597,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.3741,
+              "recall": 0.9528,
+              "f1": 0.5372,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.8592,
+              "recall": 0.7147,
+              "f1": 0.7803,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 31
+            }
+          }
+        }
+      },
+      "probeB/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.4358,
+          "macro_f1": 0.3705,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9988,
+              "recall": 0.4532,
+              "f1": 0.6235,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 0.0848,
+              "recall": 0.1905,
+              "f1": 0.1174,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 259,
+            "action_to_retrieval": 1,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 28
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.355,
+          "macro_f1": 0.2962,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 0.2889,
+              "recall": 0.9286,
+              "f1": 0.4407,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.2638,
+              "recall": 0.9681,
+              "f1": 0.4146,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 0.0777,
+              "recall": 0.96,
+              "f1": 0.1437,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.2411,
+              "recall": 0.9595,
+              "f1": 0.3853,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.3279,
+              "recall": 0.8276,
+              "f1": 0.4697,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.7331,
+              "recall": 0.514,
+              "f1": 0.6043,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.6667,
+              "f1": 0.8,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeB/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.5139,
+          "macro_f1": 0.5656,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.991,
+              "recall": 0.5153,
+              "f1": 0.678,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 0.4124,
+              "recall": 0.5031,
+              "f1": 0.4533,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 114,
+            "action_to_retrieval": 6,
+            "action_to_miss": 3,
+            "retrieval_to_miss": 15
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.4342,
+          "macro_f1": 0.4225,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.3116,
+              "recall": 0.9688,
+              "f1": 0.4715,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.4221,
+              "recall": 0.9559,
+              "f1": 0.5856,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 0.4286,
+              "recall": 0.4286,
+              "f1": 0.4286,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 0.3292,
+              "recall": 0.9639,
+              "f1": 0.4908,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1378,
+              "recall": 0.8088,
+              "f1": 0.2355,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.5441,
+              "recall": 0.8765,
+              "f1": 0.6714,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.7852,
+              "recall": 0.5586,
+              "f1": 0.6528,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.4286,
+              "f1": 0.6,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeB/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.5652,
+          "macro_f1": 0.4975,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 1.0,
+              "recall": 0.589,
+              "f1": 0.7413,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.2558,
+              "recall": 0.2519,
+              "f1": 0.2538,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 96,
+            "action_to_retrieval": 0,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 12
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.4418,
+          "macro_f1": 0.2869,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.2798,
+              "recall": 0.9818,
+              "f1": 0.4355,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.2833,
+              "recall": 0.8278,
+              "f1": 0.4221,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 0.25,
+              "recall": 0.0909,
+              "f1": 0.1333,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.2192,
+              "recall": 0.6809,
+              "f1": 0.3316,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.1423,
+              "recall": 0.4938,
+              "f1": 0.221,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.4266,
+              "recall": 0.8915,
+              "f1": 0.5771,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.8502,
+              "recall": 0.7673,
+              "f1": 0.8066,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 0.129,
+              "f1": 0.2286,
+              "support": 31
+            }
+          }
+        }
+      },
+      "action_boundary": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.59,
+          "macro_f1": 0.5363,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9963,
+              "recall": 0.6186,
+              "f1": 0.7632,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.56,
+              "recall": 0.2137,
+              "f1": 0.3094,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 22,
+            "action_to_retrieval": 4,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1856,
+          "micro_f1": 0.3798,
+          "macro_f1": 0.382,
+          "per_skill": {
+            "EXEC_ACTION": {
+              "precision": 0.56,
+              "recall": 0.5957,
+              "f1": 0.5773,
+              "support": 47
+            },
+            "FETCH": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.3892,
+              "recall": 0.9528,
+              "f1": 0.5527,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.8605,
+              "recall": 0.7132,
+              "f1": 0.78,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "support": 84
+            }
+          }
+        }
+      }
+    },
+    "grounder_g1g2_s42": {
+      "probeA/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.9468,
+          "macro_f1": 0.9576,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9982,
+              "recall": 0.951,
+              "f1": 0.974,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 1.0,
+              "recall": 0.8889,
+              "f1": 0.9412,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 0,
+            "action_to_retrieval": 3,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.944,
+          "macro_f1": 0.8715,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 1.0,
+              "recall": 0.9107,
+              "f1": 0.9533,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.6912,
+              "recall": 1.0,
+              "f1": 0.8174,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.0426,
+              "recall": 0.6667,
+              "f1": 0.08,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 1.0,
+              "recall": 0.96,
+              "f1": 0.9796,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.9299,
+              "recall": 0.9865,
+              "f1": 0.9574,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.962,
+              "recall": 0.9417,
+              "f1": 0.9517,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.9853,
+              "recall": 0.9241,
+              "f1": 0.9537,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.9935,
+              "recall": 0.9332,
+              "f1": 0.9624,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 1.0,
+              "recall": 0.8713,
+              "f1": 0.9312,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeA/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.9833,
+          "macro_f1": 0.9768,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9953,
+              "recall": 0.9906,
+              "f1": 0.9929,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 1.0,
+              "recall": 0.9245,
+              "f1": 0.9608,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 0,
+            "action_to_retrieval": 6,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.9673,
+          "macro_f1": 0.9587,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.9552,
+              "recall": 1.0,
+              "f1": 0.9771,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.964,
+              "recall": 0.9853,
+              "f1": 0.9745,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.8571,
+              "f1": 0.9231,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 1.0,
+              "recall": 0.9759,
+              "f1": 0.9878,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.8611,
+              "recall": 0.9118,
+              "f1": 0.8857,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.9423,
+              "recall": 0.9943,
+              "f1": 0.9676,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.9509,
+              "recall": 0.9568,
+              "f1": 0.9538,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.9964,
+              "recall": 0.9491,
+              "f1": 0.9722,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 1.0,
+              "recall": 0.8684,
+              "f1": 0.9296,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 0.875,
+              "recall": 1.0,
+              "f1": 0.9333,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeA/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.9547,
+          "macro_f1": 0.8468,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9825,
+              "recall": 0.9774,
+              "f1": 0.9799,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.7818,
+              "recall": 0.6565,
+              "f1": 0.7137,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 24,
+            "action_to_retrieval": 30,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.9143,
+          "macro_f1": 0.8448,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6667,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.9643,
+              "recall": 0.9818,
+              "f1": 0.973,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.8836,
+              "recall": 0.9278,
+              "f1": 0.9051,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.9091,
+              "f1": 0.9524,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.5714,
+              "recall": 0.6809,
+              "f1": 0.6214,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.7733,
+              "recall": 0.716,
+              "f1": 0.7436,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.9296,
+              "recall": 0.9823,
+              "f1": 0.9552,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.9932,
+              "recall": 0.6887,
+              "f1": 0.8134,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9304,
+              "recall": 0.964,
+              "f1": 0.9469,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.806,
+              "recall": 0.6429,
+              "f1": 0.7152,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 31
+            }
+          }
+        }
+      },
+      "probeB/dev": {
+        "boundary": {
+          "n": 1900,
+          "binary_accuracy": 0.9779,
+          "macro_f1": 0.9639,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9977,
+              "recall": 0.9848,
+              "f1": 0.9912,
+              "support": 1774
+            },
+            "ACTION": {
+              "precision": 1.0,
+              "recall": 0.881,
+              "f1": 0.9367,
+              "support": 126
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 0,
+            "action_to_retrieval": 4,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 19
+          }
+        },
+        "exact": {
+          "n": 2411,
+          "micro_f1": 0.9598,
+          "macro_f1": 0.8787,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 1.0,
+              "recall": 0.9951,
+              "f1": 0.9975,
+              "support": 204
+            },
+            "CLASSIFY": {
+              "precision": 1.0,
+              "recall": 0.9107,
+              "f1": 0.9533,
+              "support": 56
+            },
+            "CODEGEN": {
+              "precision": 0.9787,
+              "recall": 0.9787,
+              "f1": 0.9787,
+              "support": 94
+            },
+            "CONVERT": {
+              "precision": 0.25,
+              "recall": 0.3333,
+              "f1": 0.2857,
+              "support": 3
+            },
+            "EXEC_ACTION": {
+              "precision": 1.0,
+              "recall": 0.96,
+              "f1": 0.9796,
+              "support": 25
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.9295,
+              "recall": 0.9797,
+              "f1": 0.9539,
+              "support": 148
+            },
+            "FETCH": {
+              "precision": 0.9696,
+              "recall": 0.9491,
+              "f1": 0.9592,
+              "support": 806
+            },
+            "QUERY_DB": {
+              "precision": 0.985,
+              "recall": 0.9034,
+              "f1": 0.9424,
+              "support": 145
+            },
+            "SEARCH": {
+              "precision": 0.9677,
+              "recall": 0.9842,
+              "f1": 0.9759,
+              "support": 823
+            },
+            "SEND": {
+              "precision": 1.0,
+              "recall": 0.8614,
+              "f1": 0.9255,
+              "support": 101
+            },
+            "TRANSLATE": {
+              "precision": 0.625,
+              "recall": 0.8333,
+              "f1": 0.7143,
+              "support": 6
+            }
+          }
+        }
+      },
+      "probeB/test_id": {
+        "boundary": {
+          "n": 1436,
+          "binary_accuracy": 0.9749,
+          "macro_f1": 0.9712,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9945,
+              "recall": 0.9828,
+              "f1": 0.9886,
+              "support": 1277
+            },
+            "ACTION": {
+              "precision": 1.0,
+              "recall": 0.9119,
+              "f1": 0.9539,
+              "support": 159
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 0,
+            "action_to_retrieval": 7,
+            "action_to_miss": 3,
+            "retrieval_to_miss": 15
+          }
+        },
+        "exact": {
+          "n": 1868,
+          "micro_f1": 0.9577,
+          "macro_f1": 0.941,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 142
+            },
+            "CLASSIFY": {
+              "precision": 0.9531,
+              "recall": 0.9531,
+              "f1": 0.9531,
+              "support": 64
+            },
+            "CODEGEN": {
+              "precision": 0.9565,
+              "recall": 0.9706,
+              "f1": 0.9635,
+              "support": 136
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.5714,
+              "f1": 0.7273,
+              "support": 7
+            },
+            "EXEC_ACTION": {
+              "precision": 1.0,
+              "recall": 0.9639,
+              "f1": 0.9816,
+              "support": 83
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.9683,
+              "recall": 0.8971,
+              "f1": 0.9313,
+              "support": 68
+            },
+            "FETCH": {
+              "precision": 0.9361,
+              "recall": 0.9753,
+              "f1": 0.9553,
+              "support": 526
+            },
+            "QUERY_DB": {
+              "precision": 0.962,
+              "recall": 0.9383,
+              "f1": 0.95,
+              "support": 162
+            },
+            "SEARCH": {
+              "precision": 0.993,
+              "recall": 0.9576,
+              "f1": 0.9749,
+              "support": 589
+            },
+            "SEND": {
+              "precision": 1.0,
+              "recall": 0.8553,
+              "f1": 0.922,
+              "support": 76
+            },
+            "SUMMARIZE": {
+              "precision": 0.875,
+              "recall": 1.0,
+              "f1": 0.9333,
+              "support": 7
+            },
+            "TRANSLATE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 8
+            }
+          }
+        }
+      },
+      "probeB/test_ood": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.9542,
+          "macro_f1": 0.8493,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9831,
+              "recall": 0.9762,
+              "f1": 0.9796,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.7838,
+              "recall": 0.6641,
+              "f1": 0.719,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 24,
+            "action_to_retrieval": 29,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 12
+          }
+        },
+        "exact": {
+          "n": 2218,
+          "micro_f1": 0.908,
+          "macro_f1": 0.7909,
+          "per_skill": {
+            "CALCULATE": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6667,
+              "support": 4
+            },
+            "CLASSIFY": {
+              "precision": 0.9643,
+              "recall": 0.9818,
+              "f1": 0.973,
+              "support": 55
+            },
+            "CODEGEN": {
+              "precision": 0.9489,
+              "recall": 0.9278,
+              "f1": 0.9382,
+              "support": 180
+            },
+            "CONVERT": {
+              "precision": 1.0,
+              "recall": 0.1818,
+              "f1": 0.3077,
+              "support": 11
+            },
+            "EXEC_ACTION": {
+              "precision": 0.5818,
+              "recall": 0.6809,
+              "f1": 0.6275,
+              "support": 47
+            },
+            "EXTRACT_ENTITIES": {
+              "precision": 0.7895,
+              "recall": 0.7407,
+              "f1": 0.7643,
+              "support": 81
+            },
+            "FETCH": {
+              "precision": 0.9406,
+              "recall": 0.9728,
+              "f1": 0.9565,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 0.9416,
+              "recall": 0.684,
+              "f1": 0.7923,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9093,
+              "recall": 0.964,
+              "f1": 0.9359,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 0.8462,
+              "recall": 0.6548,
+              "f1": 0.7383,
+              "support": 84
+            },
+            "SUMMARIZE": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "support": 31
+            }
+          }
+        }
+      },
+      "action_boundary": {
+        "boundary": {
+          "n": 1856,
+          "binary_accuracy": 0.9547,
+          "macro_f1": 0.8468,
+          "per_class": {
+            "RETRIEVAL": {
+              "precision": 0.9825,
+              "recall": 0.9774,
+              "f1": 0.9799,
+              "support": 1725
+            },
+            "ACTION": {
+              "precision": 0.7818,
+              "recall": 0.6565,
+              "f1": 0.7137,
+              "support": 131
+            }
+          },
+          "confusion": {
+            "retrieval_to_action": 24,
+            "action_to_retrieval": 30,
+            "action_to_miss": 0,
+            "retrieval_to_miss": 0
+          }
+        },
+        "exact": {
+          "n": 1856,
+          "micro_f1": 0.9192,
+          "macro_f1": 0.8262,
+          "per_skill": {
+            "EXEC_ACTION": {
+              "precision": 0.5714,
+              "recall": 0.6809,
+              "f1": 0.6214,
+              "support": 47
+            },
+            "FETCH": {
+              "precision": 0.9401,
+              "recall": 0.9823,
+              "f1": 0.9607,
+              "support": 847
+            },
+            "QUERY_DB": {
+              "precision": 1.0,
+              "recall": 0.6887,
+              "f1": 0.8156,
+              "support": 212
+            },
+            "SEARCH": {
+              "precision": 0.9372,
+              "recall": 0.964,
+              "f1": 0.9504,
+              "support": 666
+            },
+            "SEND": {
+              "precision": 1.0,
+              "recall": 0.6429,
+              "f1": 0.7826,
+              "support": 84
+            }
+          }
+        }
+      }
+    }
+  },
+  "counterfactuals": {
+    "full": {
+      "boundary_macro_f1": 0.5147,
+      "boundary_acc": 0.5496,
+      "exact_micro": 0.45,
+      "action_recall": 0.6809
+    },
+    "name_masked": {
+      "boundary_macro_f1": 0.4479,
+      "boundary_acc": 0.4159,
+      "exact_micro": 0.3742,
+      "action_recall": 0.6809
+    },
+    "desc_masked": {
+      "boundary_macro_f1": 0.4607,
+      "boundary_acc": 0.5016,
+      "exact_micro": 0.4238,
+      "action_recall": 0.6809
+    },
+    "name_perturbed": {
+      "boundary_macro_f1": 0.4313,
+      "boundary_acc": 0.4283,
+      "exact_micro": 0.381,
+      "action_recall": 0.6809
+    }
+  },
+  "probe_C": {
+    "n": 500,
+    "capability_selection_acc": 0.194,
+    "skill_acc": 0.392,
+    "joint_exact": 0.072
+  },
+  "no_call": {
+    "n": 500,
+    "synthetic_negative": true,
+    "no_call_rate": 0.0
+  }
+}
