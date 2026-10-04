@@ -1,0 +1,39 @@
+{
+  "_protocol": "matched-information tau3 diagnostic; frozen E5C-S; D is an ORACLE CAPABILITYIR UPPER-BOUND DIAGNOSTIC, not model performance",
+  "A_bare": {
+    "n": 2546,
+    "parse_pct": 97.25,
+    "valid_pct": 96.74,
+    "pred_per_task": 1.75,
+    "semantic_recall_pct": 0.58,
+    "exec_action_output_rate_pct": 0.25,
+    "exec_action_reference_recall_pct": null
+  },
+  "B_names": {
+    "n": 2546,
+    "parse_pct": 87.04,
+    "valid_pct": 87.0,
+    "pred_per_task": 1.66,
+    "semantic_recall_pct": 0.24,
+    "exec_action_output_rate_pct": 2.78,
+    "exec_action_reference_recall_pct": 100.0
+  },
+  "C_learned_ir": {
+    "n": 2546,
+    "parse_pct": 87.12,
+    "valid_pct": 87.04,
+    "pred_per_task": 1.66,
+    "semantic_recall_pct": 0.23,
+    "exec_action_output_rate_pct": 3.01,
+    "exec_action_reference_recall_pct": null
+  },
+  "D_oracle_ir": {
+    "n": 2546,
+    "parse_pct": 87.04,
+    "valid_pct": 87.0,
+    "pred_per_task": 1.66,
+    "semantic_recall_pct": 0.22,
+    "exec_action_output_rate_pct": 3.28,
+    "exec_action_reference_recall_pct": 100.0
+  }
+}
