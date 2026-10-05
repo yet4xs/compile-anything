@@ -1,0 +1,43 @@
+{
+  "phase": "6B-2 — Task-conditioned Capability Resolver",
+  "frozen_date": "2026-10-05",
+  "base_commit": "c517929",
+  "research_question": "Given a task and an available CapabilityIR table, can a dedicated resolver select the correct concrete capabilities, including deciding that no capability should be used?",
+  "inputs": {
+    "training": "data/compiler_corpus_v4/train.jsonl ONLY (tool-use records; canonical skills as input metadata)",
+    "prohibited": ["BFCL", "tau3", "AgentBoard"]
+  },
+  "leakage_rules": [
+    "selected=true, reference actions, and future TaskIR nodes NEVER appear inside capability blocks",
+    "capability blocks carry only: capability_id, name, description, parameters, canonical_skill, skill_family"
+  ],
+  "models": {
+    "R1_generative": "task + available CapabilityIR -> 'c3,c7' or 'NONE' (baseline only)",
+    "R2_pairwise_scorer": "(task, capability) -> relevant | irrelevant, independent binary scoring, threshold selection (PRIMARY)"
+  },
+  "negative_construction": {
+    "hard_negative_types": [
+      "same_object_opposite_intent (get_order vs cancel_order; retrieval vs mutation on the same object)",
+      "same_domain_similar_name (get_booking vs create_booking)",
+      "same_family_wrong_object",
+      "random_cross_domain (minority only)"
+    ],
+    "hard negatives preferred from the record's real available set (incl. v4 distractor pool)",
+    "each negative tagged negative_type for failure analysis"
+  },
+  "none_supervision": {
+    "construction": "task paired with an available table from a different-domain record; label NONE",
+    "synthetic_negative": true,
+    "share": "~10% of training examples",
+    "NONE is a Resolver decision, NOT a Skill ISA instruction"
+  },
+  "class_balance": "positive:negative ~= 1:3 (hard negatives prioritized); effective distribution recorded",
+  "multi_capability": "independent binary relevance (no top-1 softmax); inference = all pairs scoring>threshold; empty -> NONE",
+  "training": "Qwen2.5-3B QLoRA r16 a32 lr1.5e-4 1 epoch; R2 pairs capped at 50k (record subsample if needed); R1 record-level",
+  "seeds": "42/43/44 for R2 (mean±std MANDATORY), 42 for R1 baseline",
+  "primary_metrics": ["set F1", "exact-set match", "NO_CALL F1"],
+  "secondary_metrics": ["set precision/recall", "top-1 accuracy", "top-3 recall", "false-call rate"],
+  "slices": ["single-capability", "multi-capability", "ACTION-selected", "RETRIEVAL-selected", "unseen tool family", "hard-negative type (headline: get_X vs cancel/create/delete_X)"],
+  "decision_rule": "freeze R2 if R2 set-F1 > R1 AND exact-set > R1 AND NO_CALL F1 > R1",
+  "no_composer_chaining": "6B-2 trains/evals Resolver ONLY; chaining happens in 6B-3 after freeze"
+}
