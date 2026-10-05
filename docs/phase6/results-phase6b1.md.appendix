@@ -1,0 +1,63 @@
+# Phase 6B-1.1 附录 — E2E 语义冻结（v3 终版）
+
+> 替代主报告 §主表/裁决 的最终口径。评测：`results/phase6b/composer_eval_v3.json`
+> （A1 CondR-E2E 需 valid；A2/A3 SkillF1 与 EA-R 双口径；A5 taxonomy；preds 已落盘）。
+
+## 终版主表（matched 994，E2E）
+
+| Arm | Valid% | OpSeq% | SkillF1\|V | **SkillF1-E2E** | EA-R\|V% | **EA-R-E2E%** | **CondR-E2E%** | unsup% |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| C0 E1-A matched | 98.99 | 89.94 | 0.9235 | 0.9127 | 90.32 | 90.32 | 93.34 | 6.56 |
+| C0T 对照 | 98.69 | 78.17 | 0.8309 | 0.8194 | 54.39 | 50.00 | 84.05 | 16.22 |
+| C1 s42 | 97.79 | 92.05 | 0.9674 | 0.9472 | 85.25 | 83.87 | 97.30 | 2.35 |
+| C1 s43 | 98.19 | 92.05 | 0.9715 | 0.9454 | 88.71 | 88.71 | 97.65 | 2.73 |
+| **C2 s42** | **98.29** | **95.88** | 0.9810 | **0.9643** | 98.36 | **96.77** | **98.24** | **0.46** |
+| C2 s43（坏seed） | 67.00 | 64.89 | 0.9880 | 0.7725 | 96.36 | 85.48 | **66.78** | 0.48 |
+| C2 s44 | 96.88 | 93.96 | 0.9786 | 0.9501 | 95.08 | 93.55 | 96.63 | 0.74 |
+| C3 s42 | 97.38 | 94.57 | 0.9760 | 0.9502 | 98.31 | 93.55 | 97.00 | 0.87 |
+
+## 裁决（修正版）
+
+```text
+B1-mechanism:        CONFIRMED
+B1-seed-robustness:  NOT CONFIRMED
+```
+
+- 严格事实：**只有 s42 五条件全过**（s44 Valid 96.88 < 97；s43 67.0）。
+- E2E 修正后 C2_s42 headline 全部保持：Valid 98.29 / OpSeq 95.88 / SkillF1-E2E 0.9643 /
+  EA-R-E2E 96.77 / CondR-E2E 98.24 / unsup 0.46%。
+- C0T 措辞：controlled evidence（同子集/同 epoch/同 seed/同 QLoRA、仅条件化不同、
+  post-hoc 单 seed）——"CapabilityIR conditioning, rather than the tool-use subset
+  alone, drives the improvement"，不写跨 seed 因果普遍性。
+- s43 的 CondR-E2E 从 97.87 修正为 66.78（A1 bug 确如审稿人所料）；
+  SkillF1 从 0.988（|Valid）修正解读为 E2E 0.7725。
+
+## s43 Validator Failure Taxonomy（A5）
+
+| 错误码 | s42 | s43 | s44 |
+|---|---:|---:|---:|
+| STRUCT | 0 | **373** | 0 |
+| UNDEFINED_REF | 2 | **287** | 1 |
+| ARITY | 1 | **168** | 0 |
+| TYPE_MISMATCH | 6 | 83 | 20 |
+| OUTPUT | 0 | 3 | 1 |
+| **合计** | 9 | **914** | 22 |
+
+**s43 是一种集中性结构失败**（结构畸形 + 未定义引用 + 参数数量，占 90%+），
+不是弥散性漂移；对照 s42/s44 全部错误仅 9/22 个。允许的措辞：
+"seed-specific structural invalidity despite similar training loss (0.15)"。
+根因（如特定 token 化病态）留待结构稳定化工作。
+
+## 冻结 headline 与双句结论
+
+```text
+C2-s42: Valid-E2E 98.29 / OpSeq-E2E 95.88 / SkillF1-E2E 0.9643 /
+        EXEC_ACTION-R-E2E 96.77 / CondR-E2E 98.24 / unsup-vs-ref 0.46%
+```
+
+> **Canonical capability semantics were not missing from the model; they were
+> missing from the training interface. Once the TaskIR Composer was explicitly
+> trained to consume selected CapabilityIR, semantic controllability was restored.**
+
+> **This controllability is semantically strong but structurally seed-sensitive,
+> motivating explicit structural stabilization in later work.**
