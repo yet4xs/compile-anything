@@ -1,0 +1,391 @@
+{
+  "_matched_subset_n": 994,
+  "_note": "C0T is a POST-HOC matched-training control (bare retrain on the C2-filtered training records), not preregistered",
+  "C0_e1a_fulltest": {
+    "n": 1561,
+    "parse_pct": 99.49,
+    "valid_e2e_pct": 99.23,
+    "opseq_e2e_pct": 92.76,
+    "skill_micro_f1": 0.9398,
+    "exec_action_recall_micro_pct": 90.12,
+    "exec_action_recall_taskavg_pct": 87.3,
+    "unsupported_vs_reference_skill_rate_pct": 5.21,
+    "off_condition_skill_rate_pct": 33.69,
+    "provided_skill_recall_given_valid_pct": 94.18,
+    "provided_skill_recall_e2e_pct": 93.2,
+    "by_depth_e2e": {
+      "1": {
+        "n": 1068,
+        "parse_pct": 99.72,
+        "valid_pct": 99.72,
+        "opseq_pct": 95.79,
+        "provided_recall_e2e_pct": 93.74
+      },
+      "2-3": {
+        "n": 466,
+        "parse_pct": 99.57,
+        "valid_pct": 98.93,
+        "opseq_pct": 87.98,
+        "provided_recall_e2e_pct": 93.08
+      },
+      "4-6": {
+        "n": 24,
+        "parse_pct": 91.67,
+        "valid_pct": 87.5,
+        "opseq_pct": 62.5,
+        "provided_recall_e2e_pct": 87.5
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C0_e1a_matched": {
+    "n": 994,
+    "parse_pct": 99.4,
+    "valid_e2e_pct": 98.99,
+    "opseq_e2e_pct": 89.94,
+    "skill_micro_f1": 0.9235,
+    "exec_action_recall_micro_pct": 90.32,
+    "exec_action_recall_taskavg_pct": 88.89,
+    "unsupported_vs_reference_skill_rate_pct": 6.56,
+    "off_condition_skill_rate_pct": 33.44,
+    "provided_skill_recall_given_valid_pct": 94.29,
+    "provided_skill_recall_e2e_pct": 93.49,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 99.41,
+        "valid_pct": 99.41,
+        "opseq_pct": 93.31,
+        "provided_recall_e2e_pct": 94.29
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 100.0,
+        "valid_pct": 99.35,
+        "opseq_pct": 88.26,
+        "provided_recall_e2e_pct": 93.12
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 91.3,
+        "valid_pct": 86.96,
+        "opseq_pct": 60.87,
+        "provided_recall_e2e_pct": 86.96
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C0T_matched_control": {
+    "n": 994,
+    "parse_pct": 98.79,
+    "valid_e2e_pct": 98.69,
+    "opseq_e2e_pct": 78.17,
+    "skill_micro_f1": 0.8309,
+    "exec_action_recall_micro_pct": 54.39,
+    "exec_action_recall_taskavg_pct": 54.9,
+    "unsupported_vs_reference_skill_rate_pct": 16.22,
+    "off_condition_skill_rate_pct": 40.24,
+    "provided_skill_recall_given_valid_pct": 85.17,
+    "provided_skill_recall_e2e_pct": 84.12,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 98.82,
+        "valid_pct": 98.82,
+        "opseq_pct": 82.09,
+        "provided_recall_e2e_pct": 83.66
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 99.57,
+        "valid_pct": 99.35,
+        "opseq_pct": 75.87,
+        "provided_recall_e2e_pct": 85.33
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 86.96,
+        "valid_pct": 86.96,
+        "opseq_pct": 47.83,
+        "provided_recall_e2e_pct": 72.46
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C1_s42": {
+    "n": 994,
+    "parse_pct": 99.09,
+    "valid_e2e_pct": 97.79,
+    "opseq_e2e_pct": 92.05,
+    "skill_micro_f1": 0.9674,
+    "exec_action_recall_micro_pct": 85.25,
+    "exec_action_recall_taskavg_pct": 85.53,
+    "unsupported_vs_reference_skill_rate_pct": 2.35,
+    "off_condition_skill_rate_pct": 29.8,
+    "provided_skill_recall_given_valid_pct": 99.5,
+    "provided_skill_recall_e2e_pct": 98.61,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 99.02,
+        "valid_pct": 99.02,
+        "opseq_pct": 97.64,
+        "provided_recall_e2e_pct": 99.02
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 100.0,
+        "valid_pct": 97.17,
+        "opseq_pct": 88.7,
+        "provided_recall_e2e_pct": 99.06
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 86.96,
+        "valid_pct": 86.96,
+        "opseq_pct": 47.83,
+        "provided_recall_e2e_pct": 84.78
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C1_s43": {
+    "n": 994,
+    "parse_pct": 99.09,
+    "valid_e2e_pct": 98.19,
+    "opseq_e2e_pct": 92.05,
+    "skill_micro_f1": 0.9715,
+    "exec_action_recall_micro_pct": 88.71,
+    "exec_action_recall_taskavg_pct": 87.04,
+    "unsupported_vs_reference_skill_rate_pct": 2.73,
+    "off_condition_skill_rate_pct": 29.82,
+    "provided_skill_recall_given_valid_pct": 99.45,
+    "provided_skill_recall_e2e_pct": 98.52,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 99.21,
+        "valid_pct": 99.21,
+        "opseq_pct": 96.85,
+        "provided_recall_e2e_pct": 99.02
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 100.0,
+        "valid_pct": 98.26,
+        "opseq_pct": 89.57,
+        "provided_recall_e2e_pct": 99.06
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 86.96,
+        "valid_pct": 82.61,
+        "opseq_pct": 47.83,
+        "provided_recall_e2e_pct": 85.51
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 33.33,
+        "valid_pct": 33.33,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 33.33
+      }
+    }
+  },
+  "C2_s42": {
+    "n": 994,
+    "parse_pct": 98.99,
+    "valid_e2e_pct": 98.29,
+    "opseq_e2e_pct": 95.88,
+    "skill_micro_f1": 0.981,
+    "exec_action_recall_micro_pct": 98.36,
+    "exec_action_recall_taskavg_pct": 98.11,
+    "unsupported_vs_reference_skill_rate_pct": 0.46,
+    "off_condition_skill_rate_pct": 28.49,
+    "provided_skill_recall_given_valid_pct": 99.95,
+    "provided_skill_recall_e2e_pct": 98.89,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 98.82,
+        "valid_pct": 98.82,
+        "opseq_pct": 98.62,
+        "provided_recall_e2e_pct": 98.82
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 100.0,
+        "valid_pct": 98.48,
+        "opseq_pct": 95.0,
+        "provided_recall_e2e_pct": 99.78
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 86.96,
+        "valid_pct": 86.96,
+        "opseq_pct": 65.22,
+        "provided_recall_e2e_pct": 86.96
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C2_s43": {
+    "n": 994,
+    "parse_pct": 98.19,
+    "valid_e2e_pct": 67.0,
+    "opseq_e2e_pct": 64.89,
+    "skill_micro_f1": 0.988,
+    "exec_action_recall_micro_pct": 96.36,
+    "exec_action_recall_taskavg_pct": 95.74,
+    "unsupported_vs_reference_skill_rate_pct": 0.48,
+    "off_condition_skill_rate_pct": 28.21,
+    "provided_skill_recall_given_valid_pct": 99.67,
+    "provided_skill_recall_e2e_pct": 97.87,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 98.82,
+        "valid_pct": 67.91,
+        "opseq_pct": 67.32,
+        "provided_recall_e2e_pct": 98.82
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 98.26,
+        "valid_pct": 66.96,
+        "opseq_pct": 63.7,
+        "provided_recall_e2e_pct": 97.57
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 86.96,
+        "valid_pct": 56.52,
+        "opseq_pct": 43.48,
+        "provided_recall_e2e_pct": 86.96
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 0.0,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C2_s44": {
+    "n": 994,
+    "parse_pct": 98.59,
+    "valid_e2e_pct": 96.88,
+    "opseq_e2e_pct": 93.96,
+    "skill_micro_f1": 0.9786,
+    "exec_action_recall_micro_pct": 95.08,
+    "exec_action_recall_taskavg_pct": 94.34,
+    "unsupported_vs_reference_skill_rate_pct": 0.74,
+    "off_condition_skill_rate_pct": 28.71,
+    "provided_skill_recall_given_valid_pct": 99.74,
+    "provided_skill_recall_e2e_pct": 98.34,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 99.41,
+        "valid_pct": 99.02,
+        "opseq_pct": 98.03,
+        "provided_recall_e2e_pct": 99.41
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 98.26,
+        "valid_pct": 95.65,
+        "opseq_pct": 91.74,
+        "provided_recall_e2e_pct": 97.83
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 91.3,
+        "valid_pct": 78.26,
+        "opseq_pct": 60.87,
+        "provided_recall_e2e_pct": 89.13
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  },
+  "C3_s42": {
+    "n": 994,
+    "parse_pct": 98.99,
+    "valid_e2e_pct": 97.38,
+    "opseq_e2e_pct": 94.57,
+    "skill_micro_f1": 0.976,
+    "exec_action_recall_micro_pct": 98.31,
+    "exec_action_recall_taskavg_pct": 98.11,
+    "unsupported_vs_reference_skill_rate_pct": 0.87,
+    "off_condition_skill_rate_pct": 28.52,
+    "provided_skill_recall_given_valid_pct": 99.6,
+    "provided_skill_recall_e2e_pct": 98.61,
+    "by_depth_e2e": {
+      "1": {
+        "n": 508,
+        "parse_pct": 99.02,
+        "valid_pct": 99.02,
+        "opseq_pct": 98.62,
+        "provided_recall_e2e_pct": 99.02
+      },
+      "2-3": {
+        "n": 460,
+        "parse_pct": 99.78,
+        "valid_pct": 96.96,
+        "opseq_pct": 92.17,
+        "provided_recall_e2e_pct": 98.95
+      },
+      "4-6": {
+        "n": 23,
+        "parse_pct": 86.96,
+        "valid_pct": 73.91,
+        "opseq_pct": 65.22,
+        "provided_recall_e2e_pct": 86.96
+      },
+      "7+": {
+        "n": 3,
+        "parse_pct": 66.67,
+        "valid_pct": 66.67,
+        "opseq_pct": 0.0,
+        "provided_recall_e2e_pct": 66.67
+      }
+    }
+  }
+}
