@@ -44,11 +44,12 @@ def run_adapter(tok, base, adapter, arm):
     model = PeftModel.from_pretrained(base, adapter) if adapter else base
     if adapter:
         model.eval()
-    prompts, provided, buckets = [], [], []
+    prompts, provided, buckets, subrecs = [], [], [], []
     for r in test:
         user = tpc_build_user(arm, r)
         if user is None:
             continue  # same filtering as training (fair comparison)
+        subrecs.append(r)  # keep paired records aligned with prompts
         prompts.append(tok.apply_chat_template(
             [{"role": "system", "content": SYSTEM_PROMPT},
              {"role": "user", "content": user}],
@@ -73,7 +74,7 @@ def run_adapter(tok, base, adapter, arm):
     g = Counter()
     n = len(prompts)
     per_depth = defaultdict(lambda: Counter())
-    for comp, prov, bk, r in zip(comps, provided, buckets, test):
+    for comp, prov, bk, r in zip(comps, provided, buckets, subrecs):
         try:
             module = parse_text(extract_taskir_text(comp))
             g["parse"] += 1
