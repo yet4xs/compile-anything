@@ -84,8 +84,8 @@ model = get_peft_model(base, lora)
 model.print_trainable_parameters()
 ds = Dataset.from_list(sft).map(
     lambda ex: {"text": tok.apply_chat_template(ex["messages"], tokenize=False)})
-batch = 16 if args.mode == "R2" else 4
-accum = 1 if args.mode == "R2" else 4
+batch = 8 if args.mode == "R2" else 4
+accum = 2 if args.mode == "R2" else 4
 cfg = SFTConfig(
     output_dir=args.out,
     per_device_train_batch_size=batch,

@@ -170,6 +170,8 @@ def main():
                       "Answer as a comma-separated id list (e.g. c3,c7) or NONE."}],
                     tokenize=False, add_generation_prompt=True))
             outs = gen(prompts, max_new=24)
+            for t, o in list(zip(tasks, outs))[:3]:
+                print(f"  R1 RAW: {o[:120]!r}", flush=True)
             for t, o in zip(tasks, outs):
                 ou = o.upper()
                 if "NONE" in ou:
