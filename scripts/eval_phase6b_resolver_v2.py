@@ -57,7 +57,7 @@ def table_prompt(tok, task, blocks):
         tokenize=False, add_generation_prompt=True)
 
 
-def label_scores(tok, model, prompts, batch=24):
+def label_scores(tok, model, prompts, batch=16):
     """score = logP(relevant-seq) - logP(irrelevant-seq), teacher-forced."""
     cand_texts = ["relevant", "irrelevant"]
     scores = []
@@ -75,12 +75,12 @@ def label_scores(tok, model, prompts, batch=24):
         ii = torch.tensor(input_ids).to(model.device)
         am = torch.tensor(attn).to(model.device)
         with torch.no_grad():
-            logits = model(input_ids=ii, attention_mask=am).logits
+            logits = model(input_ids=ii, attention_mask=am,
+                           num_logits_to_keep=1).logits
         for j in range(len(chunk)):
             seq_len = int(am[j].sum())
-            # next-token position = last prompt token
-            last = ii[j, maxlen - 1]
-            row = logits[j, maxlen - 1]
+            # num_logits_to_keep=1 -> logits has shape [B, 1, V]
+            row = logits[j, 0]
             lp = torch.log_softmax(row.float(), -1)
             r_id = tok.encode("relevant", add_special_tokens=False)
             i_id = tok.encode("irrelevant", add_special_tokens=False)
@@ -249,8 +249,11 @@ def main():
                 g["rec_sum"] += rec
                 g["f1_sum"] += f1
                 g["exact"] += exact
-                ranked = list(pred)
+                ordered = re.findall(r"[c][0-9]+", ol)
+                ranked = list(dict.fromkeys(ordered))
                 g["top1"] += bool(ranked) and ranked[0] in gold
+                top3 = set(ranked[:3])
+                g["top3"] += bool(gold & top3)
                 for key in (("multi" if len(gold) > 1 else "single"), fam_class(t["gold_skills"])):
                     slices[key]["n"] += 1
                     slices[key]["f1_sum"] += f1

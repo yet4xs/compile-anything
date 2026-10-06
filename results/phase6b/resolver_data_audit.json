@@ -1,0 +1,25 @@
+{
+  "fix2_r1_gold_visibility": {
+    "train_visible_pct": 100.0,
+    "test_visible_pct": 100.0
+  },
+  "fix8_effective_distribution": {
+    "labels": {
+      "irrelevant": 35172,
+      "NONE": 1152,
+      "relevant": 13676
+    },
+    "pos_neg_ratio": "1:2.57",
+    "none_share_pct": 2.3,
+    "negative_types": {
+      "same_family_wrong_object": 27928,
+      "random_cross_domain": 7099,
+      "same_domain_similar_name": 143,
+      "same_object_opposite_intent": 2
+    }
+  },
+  "fix9_test_family_counts": {
+    "seen": 994,
+    "unseen": 0
+  }
+}
