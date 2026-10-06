@@ -57,44 +57,48 @@ def table_prompt(tok, task, blocks):
         tokenize=False, add_generation_prompt=True)
 
 
-def label_scores(tok, model, prompts, batch=16):
-    """score = logP(relevant-seq) - logP(irrelevant-seq), teacher-forced."""
-    cand_texts = ["relevant", "irrelevant"]
+def label_scores(tok, model, prompts, batch=8):
+    """score = logP('relevant'|p) - logP('irrelevant'|p) as FULL sequence
+    likelihoods (irrelevant = 'ir'+'relevant' for this tokenizer)."""
+    r_ids = tok.encode("relevant", add_special_tokens=False)
+    i_ids = tok.encode("irrelevant", add_special_tokens=False)
     scores = []
     for bs in range(0, len(prompts), batch):
         chunk = prompts[bs:bs+batch]
-        enc = [tok(p, return_tensors="pt") for p in chunk]
-        maxlen = max(e["input_ids"].shape[1] for e in enc)
-        # pad manually on the left
-        pad_id = tok.pad_token_id
-        input_ids, attn = [], []
-        for e in enc:
-            n = maxlen - e["input_ids"].shape[1]
-            input_ids.append([pad_id] * n + e["input_ids"][0].tolist())
-            attn.append([0] * n + e["attention_mask"][0].tolist())
-        ii = torch.tensor(input_ids).to(model.device)
-        am = torch.tensor(attn).to(model.device)
+        # build two sequences per prompt: prompt+relevant, prompt+irrelevant
+        seqs, kinds = [], []
+        for p in chunk:
+            seqs.append(tok(p + "relevant", return_tensors="pt"))
+            seqs.append(tok(p + "irrelevant", return_tensors="pt"))
+            kinds.extend(["r", "i"])
+        maxlen = max(s["input_ids"].shape[1] for s in seqs)
+        pad = tok.pad_token_id
+        ii, am = [], []
+        for s in seqs:
+            n = maxlen - s["input_ids"].shape[1]
+            ii.append([pad] * n + s["input_ids"][0].tolist())
+            am.append([0] * n + s["attention_mask"][0].tolist())
+        ii = torch.tensor(ii).to(model.device)
+        am = torch.tensor(am).to(model.device)
         with torch.no_grad():
-            logits = model(input_ids=ii, attention_mask=am,
-                           num_logits_to_keep=1).logits
-        for j in range(len(chunk)):
-            seq_len = int(am[j].sum())
-            # num_logits_to_keep=1 -> logits has shape [B, 1, V]
-            row = logits[j, 0]
-            lp = torch.log_softmax(row.float(), -1)
-            r_id = tok.encode("relevant", add_special_tokens=False)
-            i_id = tok.encode("irrelevant", add_special_tokens=False)
-            # single-token comparison when both are single tokens (Qwen BPE:
-            # 'relevant'/'irrelevant' each tokenize to one token after a prompt)
-            if len(r_id) == 1 and len(i_id) == 1:
-                scores.append(float(lp[r_id[0]] - lp[i_id[0]]))
-            else:
-                # multi-token: sum of first-token logprob (documented fallback)
-                scores.append(float(lp[r_id[0]] - lp[i_id[0]]))
-        if bs % 2400 == 0:
-            print(f"    score {bs}/{len(prompts)}", flush=True)
+            logits = model(input_ids=ii, attention_mask=am).logits
+        # log-softmax ONLY at the <=2 label positions per sequence (slicing
+        # avoids materializing the full [B,L,V] float tensor — the earlier
+        # version OOM'd on exactly that)
+        seq_lp = []
+        for j in range(len(seqs)):
+            lab_len = len(r_ids) if kinds[j] == "r" else len(i_ids)
+            total = 0.0
+            for t_pos in range(maxlen - lab_len, maxlen):
+                tok_id = ii[j, t_pos]
+                row_lp = torch.log_softmax(logits[j, t_pos - 1].float(), -1)
+                total += float(row_lp[tok_id])
+            seq_lp.append(total)
+        for j in range(0, len(seqs), 2):
+            scores.append(seq_lp[j] - seq_lp[j + 1])  # relevant - irrelevant
+        if bs % 1600 == 0:
+            print(f"    seqscore {bs}/{len(prompts)}", flush=True)
     return scores
-
 
 def gen(tok, model, prompts, max_new=24, batch=32):
     outs = []
