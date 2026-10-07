@@ -1,0 +1,21 @@
+{
+  "_protocol": "learned modular (canonicalizer+resolver+composer s42) on tau3; env-visible tool names (source + ref union); no GT used in pipeline",
+  "n": 2546,
+  "parse_pct": 96.15,
+  "valid_pct": 96.07,
+  "pred_per_task": 2.79,
+  "semantic_recall_pct": 23.02,
+  "exec_action_output_rate_pct": 60.23,
+  "exec_action_reference_recall_pct": 100.0,
+  "exec_ref_total": 3023,
+  "_baselines": {
+    "E5C-S monolithic (frozen 6B-0 Protocol A)": {
+      "semantic_recall_pct": 0.58,
+      "exec_action_output_rate_pct": 0.25
+    },
+    "E5C-S monolithic + oracle CapabilityIR (6B-0 Protocol D)": {
+      "semantic_recall_pct": 0.22,
+      "exec_action_output_rate_pct": 3.28
+    }
+  }
+}
