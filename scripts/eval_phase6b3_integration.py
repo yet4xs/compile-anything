@@ -134,8 +134,9 @@ def main(seed=42):
               "Answer 'relevant' or 'irrelevant'."}],
             tokenize=False, add_generation_prompt=True) for c in cands]
         scores = []
-        for bs in range(0, len(prompts), 8):
-            chunk = prompts[bs:bs+8]
+        K = 4  # keep logits for only the last K positions (labels occupy <=2)
+        for bs in range(0, len(prompts), 4):
+            chunk = prompts[bs:bs+4]
             seqs, kinds = [], []
             for p in chunk:
                 seqs.append(tok(p + "relevant", return_tensors="pt"))
@@ -151,16 +152,21 @@ def main(seed=42):
             ii = torch.tensor(ii).to(model.device)
             am = torch.tensor(am).to(model.device)
             with torch.no_grad():
-                logits = model(input_ids=ii, attention_mask=am).logits
-            lp_all = torch.log_softmax(logits.float(), -1)
-            seq_lp = []
+                logits = model(input_ids=ii, attention_mask=am,
+                               num_logits_to_keep=K).logits
+            # returned logits cover global positions [maxlen-K, maxlen-1];
+            # logits[idx] predicts the token at global position maxlen-K+idx+1
             r_ids = tok.encode("relevant", add_special_tokens=False)
             i_ids = tok.encode("irrelevant", add_special_tokens=False)
-            for j, s in enumerate(seqs):
+            seq_lp = []
+            for j in range(len(seqs)):
                 lab_len = len(r_ids) if kinds[j] == "r" else len(i_ids)
                 total = 0.0
                 for t_pos in range(maxlen - lab_len, maxlen):
-                    total += float(lp_all[j, t_pos - 1, ii[j, t_pos]])
+                    # predictor position p = t_pos-1; returned index:
+                    idx = t_pos - 1 - (maxlen - K)
+                    row_lp = torch.log_softmax(logits[j, idx].float(), -1)
+                    total += float(row_lp[ii[j, t_pos]])
                 seq_lp.append(total)
             for j in range(0, len(seqs), 2):
                 scores.append(seq_lp[j] - seq_lp[j + 1])
@@ -178,11 +184,15 @@ def main(seed=42):
     learned_selected = {}
     gate_refused = set()
     accepted_but_empty = set()
+    # 6B-2.1 verdict: the explicit gate is NOT deployable (format shortcut,
+    # 99% false refusal on positives). Per the frozen decision, the learned
+    # resolver chain runs WITHOUT the gate: pairwise selection on every task.
+    # Gate outputs are recorded for the waterfall only.
     for t, o in zip(tasks, gate_outs):
         ol = o.lower()
         if "none" in ol and not re.findall(r"\bc\d+\b", ol):
-            gate_refused.add(t["id"])
-            continue
+            gate_refused.add(t["id"])  # recorded, NOT enforced
+    for t in tasks:
         cands = [c for c in t["candidates"]]
         scores = pair_scores(res_model, t["task"], cands)
         sel = {c["capability_id"] for c, s in zip(cands, scores) if s > 0}
