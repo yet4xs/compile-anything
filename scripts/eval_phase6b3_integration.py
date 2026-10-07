@@ -62,6 +62,15 @@ def main(seed=42):
 
     tasks = [json.loads(l) for l in open(f"{D}/common_eval_tasks.jsonl",
                                          encoding="utf-8") if l.strip()]
+    # common_eval_tasks carry no plan_target — join it from corpus v4 test by id
+    v4_plan = {}
+    for line in open("data/compiler_corpus_v4/test.jsonl", encoding="utf-8"):
+        if not line.strip():
+            continue
+        r = json.loads(line)
+        v4_plan[r["id"]] = r.get("plan_target", "")
+    for t in tasks:
+        t["plan_target"] = v4_plan.get(t["id"], "")
     nones = [json.loads(l) for l in open(f"{D}/none_tasks_common.jsonl",
                                          encoding="utf-8") if l.strip()]
     clean_none = [t for t in nones if not t["potential_collision"]]
@@ -219,7 +228,9 @@ def main(seed=42):
     gc.collect(); torch.cuda.empty_cache()
 
     # R1 resolver (for I4R1)
-    r1_model = PeftModel.from_pretrained(base, f"runs/phase6b/resolver_R1_s{seed}/final")
+    # R1 is a single-seed baseline (frozen 6B-2 manifest); use s42 for both
+    # replicates so the I4R1 control arm references a constant baseline.
+    r1_model = PeftModel.from_pretrained(base, "runs/phase6b/resolver_R1_s42/final")
     r1_model.eval()
     r1_selected = {}
     r1_outs = gen(r1_model, gate_prompts)
@@ -318,6 +329,12 @@ def main(seed=42):
             "final_success_pct": round(100 * g["final"] / n, 2),
         }
         print(f"[{arm_name}] {json.dumps(res)}", flush=True)
+        os.makedirs(f"results/phase6b/integration_preds_s{seed}", exist_ok=True)
+        with open(f"results/phase6b/integration_preds_s{seed}/{arm_name}.jsonl", "w",
+                  encoding="utf-8") as pf:
+            for t, o in zip(kept, outs):
+                pf.write(json.dumps({"id": t["id"], "gold_ids": t["gold_ids"],
+                                     "output": o[:3000]}, ensure_ascii=False) + "\n")
         return res, wf
 
     results = {}

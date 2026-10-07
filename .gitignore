@@ -40,3 +40,4 @@ data/compiler_corpus_v3_1/test.jsonl
 data/compiler_corpus_v3_1/tier_c.jsonl
 data/sft_v3_1/
 data/compiler_corpus_v4/*.jsonl
+data/bfcl_training/xlam_train.jsonl
