@@ -1,0 +1,69 @@
+{
+  "fc_7b": {
+    "irrelevance": {
+      "n": 48,
+      "correct": 39,
+      "accuracy": 0.8125
+    },
+    "live_irrelevance": {
+      "n": 176,
+      "correct": 134,
+      "accuracy": 0.7614
+    },
+    "live_multiple": {
+      "n": 210,
+      "correct": 171,
+      "accuracy": 0.8143
+    },
+    "live_parallel": {
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1.0
+    },
+    "live_parallel_multiple": {
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "live_simple": {
+      "n": 51,
+      "correct": 31,
+      "accuracy": 0.6078
+    },
+    "multiple": {
+      "n": 40,
+      "correct": 31,
+      "accuracy": 0.775
+    },
+    "parallel": {
+      "n": 40,
+      "correct": 32,
+      "accuracy": 0.8
+    },
+    "parallel_multiple": {
+      "n": 40,
+      "correct": 27,
+      "accuracy": 0.675
+    },
+    "simple_java": {
+      "n": 20,
+      "correct": 17,
+      "accuracy": 0.85
+    },
+    "simple_javascript": {
+      "n": 10,
+      "correct": 6,
+      "accuracy": 0.6
+    },
+    "simple_python": {
+      "n": 80,
+      "correct": 61,
+      "accuracy": 0.7625
+    },
+    "OVERALL": {
+      "n": 722,
+      "correct": 556,
+      "accuracy": 0.7701
+    }
+  }
+}
