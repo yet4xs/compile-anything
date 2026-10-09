@@ -1,0 +1,136 @@
+{
+  "heldout": {
+    "irrelevance": {
+      "n": 48,
+      "correct": 43,
+      "accuracy": 0.8958
+    },
+    "live_irrelevance": {
+      "n": 176,
+      "correct": 157,
+      "accuracy": 0.892
+    },
+    "live_multiple": {
+      "n": 210,
+      "correct": 192,
+      "accuracy": 0.9143
+    },
+    "live_parallel": {
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1.0
+    },
+    "live_parallel_multiple": {
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "live_simple": {
+      "n": 51,
+      "correct": 44,
+      "accuracy": 0.8627
+    },
+    "multiple": {
+      "n": 40,
+      "correct": 38,
+      "accuracy": 0.95
+    },
+    "parallel": {
+      "n": 40,
+      "correct": 34,
+      "accuracy": 0.85
+    },
+    "parallel_multiple": {
+      "n": 40,
+      "correct": 31,
+      "accuracy": 0.775
+    },
+    "simple_java": {
+      "n": 20,
+      "correct": 18,
+      "accuracy": 0.9
+    },
+    "simple_javascript": {
+      "n": 10,
+      "correct": 7,
+      "accuracy": 0.7
+    },
+    "simple_python": {
+      "n": 80,
+      "correct": 73,
+      "accuracy": 0.9125
+    },
+    "OVERALL": {
+      "n": 722,
+      "correct": 644,
+      "accuracy": 0.892
+    }
+  },
+  "train_full": {
+    "irrelevance": {
+      "n": 240,
+      "correct": 224,
+      "accuracy": 0.9333
+    },
+    "live_irrelevance": {
+      "n": 880,
+      "correct": 798,
+      "accuracy": 0.9068
+    },
+    "live_multiple": {
+      "n": 1053,
+      "correct": 962,
+      "accuracy": 0.9136
+    },
+    "live_parallel": {
+      "n": 16,
+      "correct": 13,
+      "accuracy": 0.8125
+    },
+    "live_parallel_multiple": {
+      "n": 24,
+      "correct": 18,
+      "accuracy": 0.75
+    },
+    "live_simple": {
+      "n": 258,
+      "correct": 226,
+      "accuracy": 0.876
+    },
+    "multiple": {
+      "n": 200,
+      "correct": 179,
+      "accuracy": 0.895
+    },
+    "parallel": {
+      "n": 200,
+      "correct": 180,
+      "accuracy": 0.9
+    },
+    "parallel_multiple": {
+      "n": 200,
+      "correct": 166,
+      "accuracy": 0.83
+    },
+    "simple_java": {
+      "n": 100,
+      "correct": 90,
+      "accuracy": 0.9
+    },
+    "simple_javascript": {
+      "n": 50,
+      "correct": 42,
+      "accuracy": 0.84
+    },
+    "simple_python": {
+      "n": 400,
+      "correct": 354,
+      "accuracy": 0.885
+    },
+    "OVERALL": {
+      "n": 3621,
+      "correct": 3252,
+      "accuracy": 0.8981
+    }
+  }
+}
