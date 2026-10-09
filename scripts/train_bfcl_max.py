@@ -237,7 +237,7 @@ cfg = SFTConfig(
     report_to=[],
 )
 SFTTrainer(model=model, args=cfg, train_dataset=ds).train()
-model.save_pretrained(f"{args.out}/final")
-tok.save_pretrained(f"{args.out}/final")
+model.save_pretrained(f"{_OUT_DIR}/final")
+tok.save_pretrained(f"{_OUT_DIR}/final")
 print(f"saved {_OUT_DIR}/final")
 print("BFCL-MAX-TRAIN-DONE")
