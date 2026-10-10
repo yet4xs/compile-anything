@@ -1,0 +1,68 @@
+{
+  "irrelevance": {
+    "n": 48,
+    "correct": 43,
+    "accuracy": 0.8958
+  },
+  "live_irrelevance": {
+    "n": 176,
+    "correct": 160,
+    "accuracy": 0.9091
+  },
+  "live_multiple": {
+    "n": 210,
+    "correct": 56,
+    "accuracy": 0.2667
+  },
+  "live_parallel": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+  },
+  "live_parallel_multiple": {
+    "n": 4,
+    "correct": 0,
+    "accuracy": 0.0
+  },
+  "live_simple": {
+    "n": 51,
+    "correct": 14,
+    "accuracy": 0.2745
+  },
+  "multiple": {
+    "n": 40,
+    "correct": 0,
+    "accuracy": 0.0
+  },
+  "parallel": {
+    "n": 40,
+    "correct": 4,
+    "accuracy": 0.1
+  },
+  "parallel_multiple": {
+    "n": 40,
+    "correct": 1,
+    "accuracy": 0.025
+  },
+  "simple_java": {
+    "n": 20,
+    "correct": 0,
+    "accuracy": 0.0
+  },
+  "simple_javascript": {
+    "n": 10,
+    "correct": 4,
+    "accuracy": 0.4
+  },
+  "simple_python": {
+    "n": 80,
+    "correct": 9,
+    "accuracy": 0.1125
+  },
+  "OVERALL": {
+    "n": 722,
+    "correct": 291,
+    "accuracy": 0.403
+  },
+  "_corrections_needed": 281
+}
