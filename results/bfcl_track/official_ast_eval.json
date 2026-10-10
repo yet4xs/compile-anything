@@ -1,0 +1,73 @@
+{
+  "overall_ast_accuracy": 0.2812,
+  "total_samples": 3641,
+  "total_correct": 1024,
+  "by_category": {
+    "simple_python": {
+      "n": 400,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "simple_java": {
+      "n": 100,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "simple_javascript": {
+      "n": 50,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "multiple": {
+      "n": 200,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "parallel": {
+      "n": 200,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "parallel_multiple": {
+      "n": 200,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "irrelevance": {
+      "n": 240,
+      "correct": 224,
+      "accuracy": 0.9333
+    },
+    "live_simple": {
+      "n": 258,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "live_multiple": {
+      "n": 1053,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "live_parallel": {
+      "n": 16,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "live_parallel_multiple": {
+      "n": 24,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "live_irrelevance": {
+      "n": 884,
+      "correct": 797,
+      "accuracy": 0.9016
+    },
+    "live_relevance": {
+      "n": 16,
+      "correct": 3,
+      "accuracy": 0.1875
+    }
+  },
+  "_note": "Official BFCL ast_checker used; model trained on BFCL V4 data (disclosed)"
+}
