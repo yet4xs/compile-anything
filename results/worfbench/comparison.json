@@ -1,0 +1,58 @@
+{
+  "toolbench/zero_shot_7B": {
+    "label": "zero-shot_7B",
+    "n": 100,
+    "node_f1_avg": 0.0,
+    "edge_f1_avg": 0.02,
+    "graph_f1_avg": 0.01
+  },
+  "toolbench/ours_7B_MAX": {
+    "label": "ours_7B_MAX",
+    "n": 100,
+    "node_f1_avg": 0.0,
+    "edge_f1_avg": 0.02,
+    "graph_f1_avg": 0.01
+  },
+  "wikihow/zero_shot_7B": {
+    "label": "zero-shot_7B",
+    "n": 100,
+    "node_f1_avg": 0.0073,
+    "edge_f1_avg": 0.14,
+    "graph_f1_avg": 0.0737
+  },
+  "wikihow/ours_7B_MAX": {
+    "label": "ours_7B_MAX",
+    "n": 100,
+    "node_f1_avg": 0.0046,
+    "edge_f1_avg": 0.14,
+    "graph_f1_avg": 0.0723
+  },
+  "webshop/zero_shot_7B": {
+    "label": "zero-shot_7B",
+    "n": 100,
+    "node_f1_avg": 0.0029,
+    "edge_f1_avg": 0.0,
+    "graph_f1_avg": 0.0014
+  },
+  "webshop/ours_7B_MAX": {
+    "label": "ours_7B_MAX",
+    "n": 100,
+    "node_f1_avg": 0.0109,
+    "edge_f1_avg": 0.0,
+    "graph_f1_avg": 0.0054
+  },
+  "seal_tools/zero_shot_7B": {
+    "label": "zero-shot_7B",
+    "n": 100,
+    "node_f1_avg": 0.022,
+    "edge_f1_avg": 0.0,
+    "graph_f1_avg": 0.011
+  },
+  "seal_tools/ours_7B_MAX": {
+    "label": "ours_7B_MAX",
+    "n": 100,
+    "node_f1_avg": 0.0,
+    "edge_f1_avg": 0.0,
+    "graph_f1_avg": 0.0
+  }
+}
