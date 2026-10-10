@@ -56,9 +56,9 @@
   "R2_s42": {
     "n": 994,
     "set_precision": 0.996,
-    "set_recall": 0.9995,
-    "set_f1": 0.997,
-    "exact_set": 0.9909,
+    "set_recall": 1.0,
+    "set_f1": 0.9973,
+    "exact_set": 0.992,
     "top1": 0.999,
     "top3": 1.0,
     "none_precision": 0.0,
@@ -71,17 +71,17 @@
       "same_family_wrong_object": {
         "n": 3147,
         "FPR": 0.0,
-        "mean_score": -13.702
+        "mean_score": -13.699
       },
       "random_cross_domain": {
         "n": 10553,
         "FPR": 0.0008,
-        "mean_score": -14.091
+        "mean_score": -14.093
       },
       "same_domain_similar_name": {
         "n": 28,
         "FPR": 0.0,
-        "mean_score": -13.054
+        "mean_score": -13.04
       }
     },
     "slices": {
@@ -102,12 +102,12 @@
       },
       "RETRIEVAL": {
         "n": 780,
-        "f1": 0.9962,
-        "exact": 0.9885
+        "f1": 0.9966,
+        "exact": 0.9897
       },
       "seen_family": {
         "n": 987,
-        "f1": 0.997,
+        "f1": 0.9973,
         "exact": 0.0
       },
       "OTHER": {
@@ -117,18 +117,18 @@
       },
       "multi": {
         "n": 170,
-        "f1": 0.998,
-        "exact": 0.9941
+        "f1": 1.0,
+        "exact": 1.0
       }
     }
   },
   "R2_s43": {
     "n": 994,
-    "set_precision": 0.9871,
+    "set_precision": 0.9873,
     "set_recall": 1.0,
-    "set_f1": 0.9914,
+    "set_f1": 0.9915,
     "exact_set": 0.9738,
-    "top1": 0.998,
+    "top1": 0.997,
     "top3": 1.0,
     "none_precision": 0.0,
     "none_recall": 0.0,
@@ -139,25 +139,25 @@
     "negative_type_stats": {
       "same_family_wrong_object": {
         "n": 3147,
-        "FPR": 0.0013,
-        "mean_score": -10.903
+        "FPR": 0.001,
+        "mean_score": -10.901
       },
       "random_cross_domain": {
         "n": 10553,
-        "FPR": 0.0021,
-        "mean_score": -10.154
+        "FPR": 0.0022,
+        "mean_score": -10.158
       },
       "same_domain_similar_name": {
         "n": 28,
         "FPR": 0.0,
-        "mean_score": -9.71
+        "mean_score": -9.674
       }
     },
     "slices": {
       "single": {
         "n": 824,
-        "f1": 0.9899,
-        "exact": 0.9697
+        "f1": 0.9903,
+        "exact": 0.9709
       },
       "ACTION": {
         "n": 79,
@@ -171,12 +171,12 @@
       },
       "RETRIEVAL": {
         "n": 780,
-        "f1": 0.9908,
+        "f1": 0.9909,
         "exact": 0.9718
       },
       "seen_family": {
         "n": 987,
-        "f1": 0.9914,
+        "f1": 0.9915,
         "exact": 0.0
       },
       "OTHER": {
@@ -186,18 +186,18 @@
       },
       "multi": {
         "n": 170,
-        "f1": 0.9988,
-        "exact": 0.9941
+        "f1": 0.9976,
+        "exact": 0.9882
       }
     }
   },
   "R2_s44": {
     "n": 994,
-    "set_precision": 0.9945,
-    "set_recall": 0.998,
+    "set_precision": 0.994,
+    "set_recall": 0.9985,
     "set_f1": 0.9953,
     "exact_set": 0.9879,
-    "top1": 0.998,
+    "top1": 0.997,
     "top3": 1.0,
     "none_precision": 0.0,
     "none_recall": 0.0,
@@ -209,24 +209,24 @@
       "same_family_wrong_object": {
         "n": 3147,
         "FPR": 0.0,
-        "mean_score": -13.077
+        "mean_score": -13.07
       },
       "random_cross_domain": {
         "n": 10553,
         "FPR": 0.0009,
-        "mean_score": -12.906
+        "mean_score": -12.899
       },
       "same_domain_similar_name": {
         "n": 28,
         "FPR": 0.0,
-        "mean_score": -12.138
+        "mean_score": -12.107
       }
     },
     "slices": {
       "single": {
         "n": 824,
-        "f1": 0.9951,
-        "exact": 0.9879
+        "f1": 0.9947,
+        "exact": 0.9867
       },
       "ACTION": {
         "n": 79,
@@ -255,15 +255,15 @@
       },
       "multi": {
         "n": 170,
-        "f1": 0.9961,
-        "exact": 0.9882
+        "f1": 0.998,
+        "exact": 0.9941
       }
     }
   },
   "R2_mean_std": {
-    "set_f1": "0.9946±0.0023",
-    "exact_set": "0.9842±0.0075",
+    "set_f1": "0.9947±0.0024",
+    "exact_set": "0.9846±0.0078",
     "none_f1": "0.0000±0.0000",
-    "top1": "0.9983±0.0005"
+    "top1": "0.9977±0.0009"
   }
 }

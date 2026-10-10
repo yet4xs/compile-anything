@@ -88,8 +88,8 @@ ds = Dataset.from_list(sft).map(
     lambda ex: {"text": tok.apply_chat_template(ex["messages"], tokenize=False)})
 
 # 3B can handle batch 4 with seq 1024 (short targets)
-batch = 4 if model_short == "3b" else 2
-accum = 4 if model_short == "3b" else 8
+batch = 4 if model_short == "3b" else 1
+accum = 4 if model_short == "3b" else 16
 cfg = SFTConfig(
     output_dir=args.out,
     per_device_train_batch_size=batch,
