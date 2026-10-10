@@ -1,0 +1,491 @@
+{
+  "summary": {
+    "n": 200,
+    "parse": 197,
+    "valid": 194,
+    "executed": 194,
+    "exec_error": 0,
+    "forge_crash": 0,
+    "ops_match": 182,
+    "ops_mismatch": 12,
+    "e2e_success_rate_pct": 97.0,
+    "per_op": {
+      "EXEC_ACTION": {
+        "n": 12,
+        "ok": 12,
+        "rate_pct": 100.0
+      },
+      "CODEGEN": {
+        "n": 19,
+        "ok": 19,
+        "rate_pct": 100.0
+      },
+      "CALCULATE": {
+        "n": 13,
+        "ok": 13,
+        "rate_pct": 100.0
+      },
+      "SEND": {
+        "n": 11,
+        "ok": 11,
+        "rate_pct": 100.0
+      },
+      "FETCH": {
+        "n": 143,
+        "ok": 143,
+        "rate_pct": 100.0
+      },
+      "SEARCH": {
+        "n": 72,
+        "ok": 72,
+        "rate_pct": 100.0
+      },
+      "EXTRACT": {
+        "n": 27,
+        "ok": 27,
+        "rate_pct": 100.0
+      },
+      "CLASSIFY": {
+        "n": 10,
+        "ok": 10,
+        "rate_pct": 100.0
+      },
+      "QUERY_DB": {
+        "n": 9,
+        "ok": 9,
+        "rate_pct": 100.0
+      },
+      "EXTRACT_ENTITIES": {
+        "n": 5,
+        "ok": 5,
+        "rate_pct": 100.0
+      },
+      "SUMMARIZE": {
+        "n": 4,
+        "ok": 4,
+        "rate_pct": 100.0
+      }
+    }
+  },
+  "details": [
+    {
+      "id": "tbs-in_domain.jsonl-611",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "EXEC_ACTION"
+      ]
+    },
+    {
+      "id": "tbs-in_domain.jsonl-640",
+      "stage": "parse",
+      "ok": false
+    },
+    {
+      "id": "tbs-in_domain.jsonl-641",
+      "stage": "parse",
+      "ok": false
+    },
+    {
+      "id": "tbs-in_domain.jsonl-975",
+      "stage": "parse",
+      "ok": false
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-36",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CODEGEN"
+      ]
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-37",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CODEGEN"
+      ]
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-38",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CODEGEN"
+      ]
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-80",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CALCULATE"
+      ]
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-223",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEND"
+      ]
+    },
+    {
+      "id": "xlam-54",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-198",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-203",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH",
+        "EXTRACT",
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-205",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-227",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-283",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CLASSIFY"
+      ]
+    },
+    {
+      "id": "xlam-344",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-363",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "EXEC_ACTION"
+      ]
+    },
+    {
+      "id": "xlam-375",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-494",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-603",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH",
+        "EXTRACT",
+        "SEARCH",
+        "EXTRACT",
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-669",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-748",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CODEGEN",
+        "CODEGEN"
+      ]
+    },
+    {
+      "id": "xlam-757",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-768",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-884",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-899",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH",
+        "EXTRACT",
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-978",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CALCULATE"
+      ]
+    },
+    {
+      "id": "xlam-1070",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEND",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-1090",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "CLASSIFY"
+      ]
+    },
+    {
+      "id": "xlam-1107",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-1123",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "EXEC_ACTION"
+      ]
+    },
+    {
+      "id": "xlam-1137",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "EXEC_ACTION"
+      ]
+    },
+    {
+      "id": "xlam-1142",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CODEGEN"
+      ]
+    },
+    {
+      "id": "xlam-1147",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-1217",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-1330",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "CLASSIFY",
+        "CLASSIFY"
+      ]
+    },
+    {
+      "id": "xlam-1555",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-1724",
+      "stage": "validate",
+      "ok": false
+    },
+    {
+      "id": "xlam-1844",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-1912",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "QUERY_DB",
+        "EXTRACT",
+        "QUERY_DB"
+      ]
+    },
+    {
+      "id": "xlam-1916",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-1948",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-1963",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-2035",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH",
+        "EXTRACT",
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-2137",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH"
+      ]
+    },
+    {
+      "id": "xlam-2151",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "EXTRACT_ENTITIES"
+      ]
+    },
+    {
+      "id": "xlam-2174",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH",
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-2251",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "EXTRACT_ENTITIES"
+      ]
+    },
+    {
+      "id": "xlam-2283",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "FETCH",
+        "FETCH"
+      ]
+    },
+    {
+      "id": "xlam-2295",
+      "stage": "execute",
+      "ok": true,
+      "ops": [
+        "SEARCH",
+        "CODEGEN"
+      ]
+    }
+  ]
+}
