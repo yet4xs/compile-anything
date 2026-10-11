@@ -1,4 +1,8 @@
-"""Online (generation-time) constraint-guided TaskIR decoding — Phase 7C-1.
+"""Online (generation-time) constraint-guided TaskIR decoding.
+
+Phase 7C-1: G0/G1/G2 mechanism validation on the s43 development set.
+Phase 7C-2: arms re-frozen + isolation ablations + G3, evaluated on a
+held-out confirmation set across seeds.
 
 Unlike constrained_assembly.py (post-hoc: parse a finished completion, then
 repair), this module constrains the model DURING decoding: a character-level
@@ -6,34 +10,39 @@ incremental FSM over the TaskIR text grammar tracks the generation prefix,
 and a HuggingFace LogitsProcessor masks, at every step, the tokens whose
 text would drive the prefix off the grammar BEFORE they are sampled.
 
-Arm levels:
-  G0: no constraints (frozen greedy baseline, identical prompts)
-  G1: grammar FSM — header/comments, inputs line, node lines
-      (%id = OP(args) annotations), return line, literals.
-      Target: eliminate preventable parse failures.
-  G2: G1 + dynamic SSA constraints enforced AT DECODE TIME (never by
-      substituting references afterwards):
-        - operand / return references restricted to ids DEFINED so far
-          (trie over defined ids; defined-before-use)
-        - duplicate node-id definition prevented by banning the terminator,
-          forcing the model itself to extend the name (logged; after 8
-          forced extensions it is allowed through as a recorded fallback)
-        - operand count capped at spec.max_inputs (`,` leads to key=value
-          or ')' only)
-        - Skill-ISA type preference: the operand trie is restricted to
-          type-compatible ∪ unknown-typed ids; empty preferred set falls
-          back to all defined ids (logged)
+Arm levels (frozen for 7C-2):
+  G0  (0): no constraints (frozen greedy baseline, identical prompts)
+  G1  (1): grammar FSM — header/comments, inputs line, node lines
+           (%id = OP(args) annotations), return line, literals, EOS gate,
+           comment cap. Target: eliminate preventable parse failures.
+  G2a (2): G1 + dynamic SSA ENFORCED AT DECODE TIME (never by substituting
+           references afterwards):
+             - operand / return references restricted to ids DEFINED so far
+             - duplicate node-id definition prevented by banning the
+               terminator (forced extension, max 8, then logged fallback)
+             - operand count capped at spec.max_inputs
+  G2  (3): G2a + Skill-ISA type PREFERENCE (trie restricted to
+           type-compatible ∪ unknown-typed ids; empty preferred set falls
+           back to all defined ids, logged). G2 == the 7C-1 arm of the
+           same name (pure refactor of the level constant).
+  G3  (4): G2 + canonical input-type literal trie (name normalization only:
+           forces str->Str spelling; does NOT claim semantic compatibility
+           — a genuinely incompatible declaration still fails validation).
 
-Conservative policies (recorded, per advisor Task 3):
+Conservative policies (recorded):
   - unknown/uninferable types are compatible with everything
   - annotation bodies (after/guard/retry/hints) are grammar-checked only;
     reference legality inside them is left to the final validator
+  - deadlock fallback returns UNMASKED scores (best-effort constrained
+    decoding, not a soundness guarantee) — every such event is logged and
+    reported as a rate
   - the FSM never lowers the final bar: legality is always re-judged by
     src/ir/parser.py::parse_text() + validator on the completed text
 
 Stats per generation: banned-token count per step, forced-choice steps
-(model top-1 was banned), state trace length, deadlocks + fallback reason,
-forced duplicate extensions, type-preference applications/fallbacks.
+(model top-1 was banned, with state + the banned top-1 text), deadlocks +
+fallback, forced duplicate extensions, type-preference applications and
+fallbacks, FSM violations observed while feeding emitted tokens.
 """
 from __future__ import annotations
 
@@ -54,6 +63,18 @@ NUM_CHARS = set("-+0123456789.eE")
 # burn the whole token budget. Cap forces '\n' via the MASK layer only —
 # feed() stays permissive, so the FSM remains lossless on valid corpus.
 COMMENT_CAP = 800
+
+# G3 canonical input-type literals — FROZEN before the Phase 7C-2
+# confirmation run. Sources: ISA signatures (src/isa/registry.py FIXED/input
+# types) ∪ input-type literals observed across data/compiler_corpus_v4
+# (Str, List[Any]) ∪ spec scalars. Scope: NAME NORMALIZATION only — the trie
+# forces canonical spelling (str->Str, int->Int); it does NOT claim semantic
+# compatibility (declaring @page: Int when FETCH wants Str still fails the
+# validator, honestly).
+CANONICAL_SCALARS = ["Any", "Bool", "Date", "Dict", "Entity", "Float",
+                     "Int", "Json", "Str", "Table"]
+CANONICAL_INPUT_TYPES = (CANONICAL_SCALARS
+                         + [f"List[{s}]" for s in CANONICAL_SCALARS])
 
 
 # ---------------- trie ----------------
@@ -89,6 +110,7 @@ class Trie:
 
 
 _OP_TRIE = Trie.from_words(sorted(VALID_OPS))
+_TYPE_TRIE = Trie.from_words(sorted(CANONICAL_INPUT_TYPES))
 
 
 # ---------------- stats ----------------
@@ -150,7 +172,9 @@ class TaskIRGenFSM:
     S_TRAIL_NL = "trail_nl"
 
     def __init__(self, level: int = 1, stats: Optional[GenStats] = None):
-        assert level in (1, 2), "G1/G2 only; G0 uses no FSM"
+        assert level in (1, 2, 3, 4), \
+            "levels: 1=G1 grammar, 2=G2a (+SSA/arity), 3=G2/G2b (+type " \
+            "preference), 4=G3 (+canonical input type trie); G0 uses no FSM"
         self.level = level
         self.stats = stats or GenStats()
         self.state = self.S_LINE_START
@@ -231,11 +255,12 @@ class TaskIRGenFSM:
                     and self.operand_count >= spec.max_inputs)
 
     def _ref_choices(self, want_type: Optional[str]) -> List[str]:
-        """Legal reference ids for the current position (G2)."""
+        """Legal reference ids for the current position (def-use from G2a;
+        type PREFERENCE only from G2b — G2a returns the plain defined set)."""
         if self.level < 2:
-            return None  # unrestricted
+            return None  # unrestricted (G1)
         ids = list(self.defined)
-        if want_type is not None:
+        if want_type is not None and self.level >= 3:
             from src.ir.types import is_compatible
             preferred = [d for d in ids
                          if self.type_map.get(d) is None
@@ -248,7 +273,7 @@ class TaskIRGenFSM:
         return ids
 
     def _want_type(self) -> Optional[str]:
-        if self.level < 2:
+        if self.level < 3:
             return None
         spec = get_skill(self.cur_op) if self.cur_op else None
         if spec and spec.input_types:
@@ -696,6 +721,16 @@ class TaskIRGenFSM:
         if st == self.S_INPUT_COLON:
             return {"kind": "chars", "set": TYPE_CHARS | {" "}}
         if st == self.S_INPUT_TYPE:
+            if self.level >= 4:
+                # G3: canonical type literals only (name normalization).
+                # Terminators legal only at a complete literal.
+                node = _TYPE_TRIE.node_for(self.buf.strip())
+                if node is None:
+                    return {"kind": "chars", "set": set()}
+                chars = set(node.next_chars())
+                if node.terminal:
+                    chars |= {",", "\n"}
+                return {"kind": "chars", "set": chars}
             return {"kind": "chars", "set": TYPE_CHARS | {" ", ",", "\n"}}
         if st == self.S_INPUT_SEP:
             return {"kind": "chars", "set": {" ", "@"}}
@@ -840,11 +875,18 @@ class TokenMask:
                 texts[tid] = ""
         return texts
 
-    def allowed_ids(self, fsm: TaskIRGenFSM, eos_token_id: int) -> List[int]:
+    def allowed_ids(self, fsm: TaskIRGenFSM) -> List[int]:
+        """Legal non-special token ids for the current FSM state.
+
+        EOS legality is the caller's concern (processor adds real eos ids
+        when fsm.eos_ok()); a sentinel like -1 must never enter this list —
+        it would become a negative tensor index and un-ban an arbitrary
+        vocab slot.
+        """
         spec = fsm.allowed()
         # cache key must cover EVERYTHING _token_ok depends on: the resume
         # stack (string/list exit context), keyword candidates, and — at
-        # G2 — the dynamic SSA sets. A stale entry here leaks bans across
+        # G2+ — the dynamic SSA sets. A stale entry here leaks bans across
         # contexts (observed: '"])\n' banned inside lists because a param-
         # value string computed the key first).
         key = (fsm.state, fsm.buf, tuple(fsm.resume),
@@ -857,14 +899,10 @@ class TokenMask:
                     tuple(fsm._cur_operand_choices or []),
                     fsm.dup_ext_attempts)
         if key in self._cache:
-            allowed = self._cache[key]
-        else:
-            allowed = self._compute(fsm, spec)
-            self._cache[key] = allowed
-        out = list(allowed)
-        if fsm.eos_ok():
-            out.append(eos_token_id)
-        return out
+            return list(self._cache[key])
+        allowed = self._compute(fsm, spec)
+        self._cache[key] = allowed
+        return list(allowed)
 
     def _compute(self, fsm: TaskIRGenFSM, spec: Dict) -> List[int]:
         kind = spec["kind"]
@@ -957,8 +995,8 @@ class ConstrainedLogitsProcessor:
                     self.stats.fsm_violation = (
                         f"state={self.fsm.state} char={c!r} after "
                         f"{self.gen_fed} tokens")
-        # 2) compute legal token set
-        allowed = set(self.mask.allowed_ids(self.fsm, eos_token_id=-1))
+        # 2) compute legal token set (EOS added separately — never a sentinel)
+        allowed = set(self.mask.allowed_ids(self.fsm))
         # ban every special token except EOS-when-legal
         for e in self.eos_ids:
             if self.fsm.eos_ok():
@@ -995,10 +1033,11 @@ class ConstrainedLogitsProcessor:
 
 def generate_constrained(model, tokenizer, prompt_text: str, level: int,
                          max_new_tokens: int = 512):
-    """Greedily generate one completion under G0/G1/G2.
+    """Greedily generate one completion under G0(0)/G1(1)/G2a(2)/G2(3)/G3(4).
 
     Returns (text, stats_or_None, n_prompt_tokens).
     """
+    assert 0 <= level <= 4, f"unknown arm level {level}"
     inputs = tokenizer(prompt_text, return_tensors="pt", truncation=True,
                        max_length=2048).to(model.device)
     eos_ids = model.generation_config.eos_token_id or tokenizer.eos_token_id

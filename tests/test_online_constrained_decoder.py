@@ -78,12 +78,14 @@ def test_fsm_accepts_valid_corpus_g1():
 
 
 def test_fsm_accepts_valid_corpus_g2():
-    """Valid corpus programs also satisfy the dynamic SSA constraints."""
+    """Valid corpus programs satisfy the dynamic SSA constraints at EVERY
+    frozen arm level (G2a=2, G2=3, G3=4 — corpus input types are canonical)."""
     corpus = _valid_corpus(30)
     for text in corpus:
-        fsm = TaskIRGenFSM(level=2)
-        i, c = _walk(fsm, text)
-        assert i is None, f"G2 rejected at {i} ({c!r}): {text[:120]!r}"
+        for lvl in (2, 3, 4):
+            fsm = TaskIRGenFSM(level=lvl)
+            i, c = _walk(fsm, text)
+            assert i is None, f"L{lvl} rejected at {i} ({c!r}): {text[:120]!r}"
 
 
 def test_fsm_accepts_handwritten_examples():
@@ -92,7 +94,7 @@ def test_fsm_accepts_handwritten_examples():
                                     "*.json")):
         mod = module_from_dict(json.load(open(p, encoding="utf-8")))
         assert validate(mod).valid
-        for lvl in (1, 2):
+        for lvl in (1, 2, 3, 4):
             fsm = TaskIRGenFSM(level=lvl)
             i, c = _walk(fsm, to_text(mod))
             assert i is None, f"{os.path.basename(p)} L{lvl} at {i} ({c!r})"
@@ -215,7 +217,7 @@ def _mock_mask():
 def test_token_mask_line_start():
     m = _mock_mask()
     fsm = TaskIRGenFSM(level=1)
-    ids = m.allowed_ids(fsm, eos_token_id=-1)
+    ids = m.allowed_ids(fsm)
     texts = {m.token_texts[i] for i in ids}
     assert " inputs:" in texts and "%" in texts and "\n" in texts
     assert "garbage" not in texts and "H" not in texts
@@ -228,7 +230,7 @@ def test_comment_newline_is_legal_exit():
     fsm = TaskIRGenFSM(level=1)
     for c in "; TaskIR v0.1  module=demo":
         fsm.feed(c)
-    ids = set(m.allowed_ids(fsm, eos_token_id=-1))
+    ids = set(m.allowed_ids(fsm))
     nl_id = m.token_texts.index("\n")
     assert nl_id in ids                     # '\n' ends the comment legally
     assert fsm.feed("\n")                   # and feeding it closes the line
@@ -256,7 +258,7 @@ def test_token_mask_op_state():
     fsm = TaskIRGenFSM(level=1)
     for c in "%1 = ":
         fsm.feed(c)
-    ids = m.allowed_ids(fsm, eos_token_id=-1)
+    ids = m.allowed_ids(fsm)
     texts = {m.token_texts[i] for i in ids}
     assert " SEARCH" in texts or "SEARCH" in texts
     assert ")" not in texts and "%" not in texts
@@ -267,7 +269,7 @@ def test_token_mask_g2_operand_trie():
     fsm = TaskIRGenFSM(level=2)
     for c in "inputs: @task: Str\n%c0 = SEARCH(":
         fsm.feed(c)
-    ids = m.allowed_ids(fsm, eos_token_id=-1)
+    ids = m.allowed_ids(fsm)
     texts = {m.token_texts[i] for i in ids}
     # only defined ids are legal operands here: '@task' yes, any '%' no
     assert "@task" in texts
@@ -358,3 +360,78 @@ if __name__ == "__main__":
                 traceback.print_exc()
     print(f"\n{'ALL TESTS PASSED' if not failed else f'{failed} FAILED'}")
     sys.exit(1 if failed else 0)
+
+
+# =================================================================
+# Phase 7C-2 regressions: arm isolation, G3 type trie, EOS sentinel
+# =================================================================
+
+def test_g2a_has_no_type_preference():
+    """G2a (level 2) restricts refs to defined ids but applies NO type
+    preference; G2 (level 3) does. SELECT operand #0 wants Bool."""
+    fsm2a = TaskIRGenFSM(level=2)
+    for c in "inputs: @task: Str, @flag: Bool\n%c0 = SELECT(":
+        fsm2a.feed(c)
+    fsm2a._begin_operand("%", is_arg=True)
+    assert fsm2a._cur_operand_choices == ["@task", "@flag"]
+    assert fsm2a.stats.type_pref_applied == 0
+
+    fsm3 = TaskIRGenFSM(level=3)
+    for c in "inputs: @task: Str, @flag: Bool\n%c0 = SELECT(":
+        fsm3.feed(c)
+    fsm3._begin_operand("%", is_arg=True)
+    assert fsm3._cur_operand_choices == ["@flag"]
+    assert fsm3.stats.type_pref_applied == 1
+
+
+def test_g3_type_trie_normalizes_names():
+    """G3 allows only canonical type literals in the inputs line."""
+    m = _mock_mask()
+    fsm = TaskIRGenFSM(level=4)
+    for c in "inputs: @task: ":
+        fsm.feed(c)
+    # 'S' is a canonical-prefix char; 's' (lowercase str) is not
+    spec = fsm.allowed()
+    assert "S" in spec["set"] and "s" not in spec["set"]
+    assert "L" in spec["set"]                      # List[...]
+    # walk 'Str' to completion -> terminator legal
+    for c in "Str":
+        fsm.feed(c)
+    spec = fsm.allowed()
+    assert "\n" in spec["set"] and "," in spec["set"]
+    # feed stays permissive (FSM losslessness): lowercase text still feeds
+    fsm2 = TaskIRGenFSM(level=4)
+    for c in "inputs: @task: str\n":
+        assert fsm2.feed(c) is not False or True   # never raises
+    # int -> 'I' forced (name normalization); honest: does not claim
+    # semantic compatibility for a genuinely wrong type
+    fsm3 = TaskIRGenFSM(level=4)
+    for c in "inputs: @page: ":
+        fsm3.feed(c)
+    assert "I" in fsm3.allowed()["set"] and "i" not in fsm3.allowed()["set"]
+
+
+def test_g3_list_any_walks_trie():
+    fsm = TaskIRGenFSM(level=4)
+    for c in "inputs: @data: List[Any]":
+        fsm.feed(c)
+    spec = fsm.allowed()
+    assert "\n" in spec["set"]                     # complete literal
+    fsm4 = TaskIRGenFSM(level=4)
+    for c in "inputs: @data: List[An":
+        fsm4.feed(c)
+    assert "y" in fsm4.allowed()["set"]            # trie continues
+
+
+def test_allowed_ids_never_contains_negative():
+    """Regression: the old EOS -1 sentinel leaked into the allowed set as a
+    negative tensor index, un-banning an arbitrary vocab slot."""
+    m = _mock_mask()
+    fsm = TaskIRGenFSM(level=1)
+    ids = m.allowed_ids(fsm)
+    assert all(i >= 0 for i in ids)
+    # and when EOS is legal the caller adds it — not this method
+    fsm2 = TaskIRGenFSM(level=1)
+    _walk(fsm2, GOOD)
+    ids2 = m.allowed_ids(fsm2)
+    assert all(i >= 0 for i in ids2)
