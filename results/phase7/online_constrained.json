@@ -1,0 +1,2148 @@
+{
+  "seed": "s43",
+  "n": 30,
+  "arms": {
+    "G0": {
+      "n": 30,
+      "parse_ok": 26,
+      "parse_pct": 86.7,
+      "valid": 18,
+      "valid_pct": 60.0,
+      "opseq": 22,
+      "opseq_pct": 73.3,
+      "param_key_acc_mean": 0.488,
+      "tokens_mean": 244.5,
+      "latency_p50": 10.29,
+      "latency_p95": 22.61,
+      "latency_mean": 10.76
+    },
+    "G1": {
+      "n": 30,
+      "parse_ok": 30,
+      "parse_pct": 100.0,
+      "valid": 24,
+      "valid_pct": 80.0,
+      "opseq": 26,
+      "opseq_pct": 86.7,
+      "param_key_acc_mean": 0.529,
+      "tokens_mean": 238.0,
+      "latency_p50": 19.73,
+      "latency_p95": 30.05,
+      "latency_mean": 20.5,
+      "constraints": {
+        "forced_steps_total": 8,
+        "deadlocks_total": 0,
+        "dup_ext_total": 0,
+        "type_pref_total": 0,
+        "fsm_violations": 0
+      }
+    },
+    "G2": {
+      "n": 30,
+      "parse_ok": 30,
+      "parse_pct": 100.0,
+      "valid": 25,
+      "valid_pct": 83.3,
+      "opseq": 26,
+      "opseq_pct": 86.7,
+      "param_key_acc_mean": 0.577,
+      "tokens_mean": 238.3,
+      "latency_p50": 17.69,
+      "latency_p95": 28.38,
+      "latency_mean": 19.26,
+      "constraints": {
+        "forced_steps_total": 13,
+        "deadlocks_total": 11,
+        "dup_ext_total": 0,
+        "type_pref_total": 45,
+        "fsm_violations": 1
+      }
+    }
+  },
+  "transitions": [
+    {
+      "id": "tbs-in_domain.jsonl-611",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "tbs-in_domain.jsonl-640",
+      "G0": "parse_fail",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "FIXED",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "tbs-in_domain.jsonl-641",
+      "G0": "parse_fail",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "FIXED",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "tbs-in_domain.jsonl-975",
+      "G0": "parse_fail",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "FIXED",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-36",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-37",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-38",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-80",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "tbs-out_of_domain.jsonl-223",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-54",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-198",
+      "G0": "invalid",
+      "G1": "invalid",
+      "G2": "invalid",
+      "G1_effect": "still_failing",
+      "G2_effect": "still_failing"
+    },
+    {
+      "id": "xlam-203",
+      "G0": "invalid",
+      "G1": "invalid",
+      "G2": "invalid",
+      "G1_effect": "still_failing",
+      "G2_effect": "still_failing"
+    },
+    {
+      "id": "xlam-205",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-227",
+      "G0": "invalid",
+      "G1": "invalid",
+      "G2": "invalid",
+      "G1_effect": "still_failing",
+      "G2_effect": "still_failing"
+    },
+    {
+      "id": "xlam-283",
+      "G0": "invalid",
+      "G1": "invalid",
+      "G2": "valid",
+      "G1_effect": "still_failing",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "xlam-344",
+      "G0": "invalid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "FIXED",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "xlam-363",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-375",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-494",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-603",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-669",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-748",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-757",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-768",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-884",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-899",
+      "G0": "invalid",
+      "G1": "invalid",
+      "G2": "invalid",
+      "G1_effect": "still_failing",
+      "G2_effect": "still_failing"
+    },
+    {
+      "id": "xlam-978",
+      "G0": "parse_fail",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "FIXED",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "xlam-1070",
+      "G0": "valid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "kept",
+      "G2_effect": "kept"
+    },
+    {
+      "id": "xlam-1090",
+      "G0": "invalid",
+      "G1": "valid",
+      "G2": "valid",
+      "G1_effect": "FIXED",
+      "G2_effect": "FIXED"
+    },
+    {
+      "id": "xlam-1107",
+      "G0": "invalid",
+      "G1": "invalid",
+      "G2": "invalid",
+      "G1_effect": "still_failing",
+      "G2_effect": "still_failing"
+    }
+  ],
+  "samples": {
+    "tbs-in_domain.jsonl-611": {
+      "G0": {
+        "id": "tbs-in_domain.jsonl-611",
+        "arm": "G0",
+        "latency_s": 16.6,
+        "text": "; TaskIR v0.1  module=could_you_please_provide_me_with_the_annu\n; task: Could you please provide me with the annual dividends for the share with ISIN US4592001014 from 1962-01-01 to 2020-03-31? Additionally, fetch the price-book ratio and price-cash-flow ratio for the same share from 2019-12-15 to 2020-03-15.\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-178\n; provenance.tools: ['get_annual_dividend', 'api_pricetobook_for_finanzoo_api_fundamentals']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_annual_dividend', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}, {'tool': 'api_pricetobook_for_finanzoo_api_fundamentals', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'book|reserv|order|purchase|buy|checkout', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = EXEC_ACTION(action=\"book\", isin=\"US4592001014\")\n%c1 = EXEC_ACTION(%c0, action=\"book\", start_date=\"2019-12-15\", end_date=\"2020-03-15\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "tbs-in_domain.jsonl-611",
+        "arm": "G1",
+        "latency_s": 26.92,
+        "text": "; TaskIR v0.1  module=could_you_please_provide_me_with_the_annu\n; task: Could you please provide me with the annual dividends for the share with ISIN US4592001014 from 1962-01-01 to 2020-03-31? Additionally, fetch the price-book ratio and price-cash-flow ratio for the same share from 2019-12-15 to 2020-03-15.\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-178\n; provenance.tools: ['get_annual_dividend', 'api_pricetobook_for_finanzoo_api_fundamentals']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_annual_dividend', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}, {'tool': 'api_pricetobook_for_finanzoo_api_fundamentals', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'book|reserv|order|purchase|buy|checkout', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = EXEC_ACTION(action=\"book\", isin=\"US4592001014\")\n%c1 = EXEC_ACTION(%c0, action=\"book\", start_date=\"2019-12-15\", end_date=\"2020-03-15\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 366,
+          "mean_banned": 16285.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-in_domain.jsonl-611",
+        "arm": "G2",
+        "latency_s": 26.31,
+        "text": "; TaskIR v0.1  module=could_you_please_provide_me_with_the_annu\n; task: Could you please provide me with the annual dividends for the share with ISIN US4592001014 from 1962-01-01 to 2020-03-31? Additionally, fetch the price-book ratio and price-cash-flow ratio for the same share from 2019-12-15 to 2020-03-15.\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-178\n; provenance.tools: ['get_annual_dividend', 'api_pricetobook_for_finanzoo_api_fundamentals']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_annual_dividend', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}, {'tool': 'api_pricetobook_for_finanzoo_api_fundamentals', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'book|reserv|order|purchase|buy|checkout', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = EXEC_ACTION(action=\"book\", isin=\"US4592001014\")\n%c1 = EXEC_ACTION(%c0, action=\"book\", start_date=\"2019-12-15\", end_date=\"2020-03-15\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 366,
+          "mean_banned": 17173.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-in_domain.jsonl-640": {
+      "G0": {
+        "id": "tbs-in_domain.jsonl-640",
+        "arm": "G0",
+        "latency_s": 22.63,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"stock_institution_ownership_for_yahoo_finance_v2\",\\n    \"arguments\": \"{\\\\n  \\\\\"symbol\\\\\": \\\\\"AAPL\\\\\"\\\\n}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"{'institutionOwnership': {'maxAge': 1, 'ownershipList': [{'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Vanguard Group, Inc. (The)', 'pctHeld': {'raw': 0.0833, 'fmt': '8.33%'}, 'position': {'raw': 1309785362, 'fmt': '1.31B', 'longFmt': '1,309,785,362'}, 'value': {'raw': 245840173113, 'fmt': '245.84B', 'longFmt': '245,840,173,113'}, 'pctChange': {'raw': 0.0247, 'fmt': '2.47%'}}, {'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Blackrock Inc.', 'pctHeld': {'raw': 0.065799996, 'fmt': '6.58%'}, 'position': {'raw': 1035008939, 'fmt': '1.04B', 'longFmt': '1,035,008,939'}, 'value': {'raw': 1",
+        "judge": {
+          "parse_ok": false,
+          "valid": false,
+          "opseq_match": null,
+          "param_key_acc": null,
+          "error": "TaskIRSyntaxError: no nodes found"
+        }
+      },
+      "G1": {
+        "id": "tbs-in_domain.jsonl-640",
+        "arm": "G1",
+        "latency_s": 29.01,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"stock_institution_ownership_for_yahoo_finance_v2\",\\n    \"arguments\": \"{\\\\n  \\\\\"symbol\\\\\": \\\\\"AAPL\\\\\"\\\\n}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"{'institutionOwnership': {'maxAge': 1, 'ownershipList': [{'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Vanguard Group, Inc. (The)', 'pctHeld': {'raw': 0.0833, 'fmt': '8.33%'}, 'position': {'raw': 1309785362, 'fmt': '1.31B', 'longFmt': '1,309,785,362'}, 'value':\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-112\n; provenance.tools: ['stock_calendar_events_for_yahoo_finance_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'stock_calendar_events_for_yahoo_finance_v2', 'skill': 'QUERY_DB', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = QUERY_DB(@task, table=\"market\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.333,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 431,
+          "mean_banned": 9636.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-in_domain.jsonl-640",
+        "arm": "G2",
+        "latency_s": 27.48,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"stock_institution_ownership_for_yahoo_finance_v2\",\\n    \"arguments\": \"{\\\\n  \\\\\"symbol\\\\\": \\\\\"AAPL\\\\\"\\\\n}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"{'institutionOwnership': {'maxAge': 1, 'ownershipList': [{'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Vanguard Group, Inc. (The)', 'pctHeld': {'raw': 0.0833, 'fmt': '8.33%'}, 'position': {'raw': 1309785362, 'fmt': '1.31B', 'longFmt': '1,309,785,362'}, 'value':\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-112\n; provenance.tools: ['stock_calendar_events_for_yahoo_finance_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'stock_calendar_events_for_yahoo_finance_v2', 'skill': 'QUERY_DB', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = QUERY_DB(@task, table=\"market\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.333,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 431,
+          "mean_banned": 10200.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-in_domain.jsonl-641": {
+      "G0": {
+        "id": "tbs-in_domain.jsonl-641",
+        "arm": "G0",
+        "latency_s": 22.61,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"stock_institution_ownership_for_yahoo_finance_v2\",\\n    \"arguments\": \"{\\\\n  \\\\\"symbol\\\\\": \\\\\"AAPL\\\\\"\\\\n}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"{'institutionOwnership': {'maxAge': 1, 'ownershipList': [{'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Vanguard Group, Inc. (The)', 'pctHeld': {'raw': 0.0833, 'fmt': '8.33%'}, 'position': {'raw': 1309785362, 'fmt': '1.31B', 'longFmt': '1,309,785,362'}, 'value': {'raw': 245840173113, 'fmt': '245.84B', 'longFmt': '245,840,173,113'}, 'pctChange': {'raw': 0.0247, 'fmt': '2.47%'}}, {'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Blackrock Inc.', 'pctHeld': {'raw': 0.065799996, 'fmt': '6.58%'}, 'position': {'raw': 1035008939, 'fmt': '1.04B', 'longFmt': '1,035,008,939'}, 'value': {'raw': 1",
+        "judge": {
+          "parse_ok": false,
+          "valid": false,
+          "opseq_match": null,
+          "param_key_acc": null,
+          "error": "TaskIRSyntaxError: no nodes found"
+        }
+      },
+      "G1": {
+        "id": "tbs-in_domain.jsonl-641",
+        "arm": "G1",
+        "latency_s": 30.05,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"stock_institution_ownership_for_yahoo_finance_v2\",\\n    \"arguments\": \"{\\\\n  \\\\\"symbol\\\\\": \\\\\"AAPL\\\\\"\\\\n}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"{'institutionOwnership': {'maxAge': 1, 'ownershipList': [{'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Vanguard Group, Inc. (The)', 'pctHeld': {'raw': 0.0833, 'fmt': '8.33%'}, 'position': {'raw': 1309785362, 'fmt': '1.31B', 'longFmt': '1,309,785,362'}, 'value':\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-111\n; provenance.tools: ['stock_sec_filings_for_yahoo_finance_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'stock_sec_filings_for_yahoo_finance_v2', 'skill': 'QUERY_DB', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = QUERY_DB(@task, table=\"market\", query=\"AAPL\", symbol=\"AAPL\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 443,
+          "mean_banned": 10279.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-in_domain.jsonl-641",
+        "arm": "G2",
+        "latency_s": 28.38,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"stock_institution_ownership_for_yahoo_finance_v2\",\\n    \"arguments\": \"{\\\\n  \\\\\"symbol\\\\\": \\\\\"AAPL\\\\\"\\\\n}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"{'institutionOwnership': {'maxAge': 1, 'ownershipList': [{'maxAge': 1, 'reportDate': {'raw': 1680220800, 'fmt': '2023-03-31'}, 'organization': 'Vanguard Group, Inc. (The)', 'pctHeld': {'raw': 0.0833, 'fmt': '8.33%'}, 'position': {'raw': 1309785362, 'fmt': '1.31B', 'longFmt': '1,309,785,362'}, 'value':\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-111\n; provenance.tools: ['stock_sec_filings_for_yahoo_finance_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'stock_sec_filings_for_yahoo_finance_v2', 'skill': 'QUERY_DB', 'mapping_kind': 'exact', 'matched_rule': 'stock|market|ticker|quote', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = QUERY_DB(@task, table=\"market\", query=\"AAPL\", symbol=\"AAPL\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 443,
+          "mean_banned": 10829.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-in_domain.jsonl-975": {
+      "G0": {
+        "id": "tbs-in_domain.jsonl-975",
+        "arm": "G0",
+        "latency_s": 22.5,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"ricts_of_a_city_in_vietnam_for_viet_nam_administrative_divisions\",\\n    \"arguments\": \"{}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"[{\\\\\"code\\\\\":\\\\\"001\\\\\",\\\\\"name\\\\\":\\\\\"Qu\\\\u1eadn Ba \\\\u0110\\\\u00ecnh\\\\\",\\\\\"unit\\\\\":\\\\\"Qu\\\\u1eadn\\\\\",\\\\\"province_code\\\\\":\\\\\"01\\\\\",\\\\\"province_name\\\\\":\\\\\"Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\",\\\\\"full_name\\\\\":\\\\\"Qu\\\\u1eadn Ba \\\\u0110\\\\u00ecnh, Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\\\\\"},{\\\\\"code\\\\\":\\\\\"002\\\\\",\\\\\"name\\\\\":\\\\\"Qu\\\\u1eadn Ho\\\\u00e0n Ki\\\\u1ebfm\\\\\",\\\\\"unit\\\\\":\\\\\"Qu\\\\u1eadn\\\\\",\\\\\"province_code\\\\\":\\\\\"01\\\\\",\\\\\"province_name\\\\\":\\\\\"Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\",\\\\\"full_name\\\\\":\\\\\"Qu\\\\u1eadn Ho\\\\u00e0n Ki\\\\u1ebfm, Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\\\\\"},{\\\\\"code\\\\\":\\\\\"003\\\\\",\\\\\"name\\\\\":\\\\\"Qu\\\\u1eadn T\\\\u00e2y H\\\\u1ed3\\\\\",\\\\\"unit\\\\\":\\\\\"Qu\\\\u1eadn\\\\\",\\\\\"province_code\\\\\":\\\\\"01\\\\\",",
+        "judge": {
+          "parse_ok": false,
+          "valid": false,
+          "opseq_match": null,
+          "param_key_acc": null,
+          "error": "TaskIRSyntaxError: no nodes found"
+        }
+      },
+      "G1": {
+        "id": "tbs-in_domain.jsonl-975",
+        "arm": "G1",
+        "latency_s": 29.61,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"ricts_of_a_city_in_vietnam_for_viet_nam_administrative_divisions\",\\n    \"arguments\": \"{}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"[{\\\\\"code\\\\\":\\\\\"001\\\\\",\\\\\"name\\\\\":\\\\\"Qu\\\\u1eadn Ba \\\\u0110\\\\u00ecnh\\\\\",\\\\\"unit\\\\\":\\\\\"Qu\\\\u1eadn\\\\\",\\\\\"province_code\\\\\":\\\\\"01\\\\\",\\\\\"province_name\\\\\":\\\\\"Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\",\\\\\"full_name\\\\\":\\\\\"Qu\\\\u1eadn Ba \\\\u0110\\\\u00ecnh, Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\\\\\"},{\\\\\"code\\\\\":\\\\\"002\\\\\",\\\\\"\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-111\n; provenance.tools: ['get_all_cities_in_vietnam_for_viet_nam_administrative_divisions']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_all_cities_in_vietnam_for_viet_nam_administrative_divisions', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 453,
+          "mean_banned": 8418.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-in_domain.jsonl-975",
+        "arm": "G2",
+        "latency_s": 27.8,
+        "text": "; TaskIR v0.1  module=this_is_not_the_first_time_you_try_this_tas\n; task: This is not the first time you try this task, all previous trails failed.\\nBefore you generate my thought for this state, I will first show you your previous actions for this state, and then you must generate actions that is different from all of them. Here are some previous actions candidates:\\n[\\n  {\\n    \"name\": \"ricts_of_a_city_in_vietnam_for_viet_nam_administrative_divisions\",\\n    \"arguments\": \"{}\",\\n    \"function_output\": \"{\\\\\"error\\\\\": \\\\\"\\\\\", \\\\\"response\\\\\": \\\\\"[{\\\\\"code\\\\\":\\\\\"001\\\\\",\\\\\"name\\\\\":\\\\\"Qu\\\\u1eadn Ba \\\\u0110\\\\u00ecnh\\\\\",\\\\\"unit\\\\\":\\\\\"Qu\\\\u1eadn\\\\\",\\\\\"province_code\\\\\":\\\\\"01\\\\\",\\\\\"province_name\\\\\":\\\\\"Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\",\\\\\"full_name\\\\\":\\\\\"Qu\\\\u1eadn Ba \\\\u0110\\\\u00ecnh, Th\\\\u00e0nh ph\\\\u1ed1 H\\\\u00e0 N\\\\u1ed9i\\\\\\\\\"},{\\\\\"code\\\\\":\\\\\"002\\\\\",\\\\\"\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-111\n; provenance.tools: ['get_all_cities_in_vietnam_for_viet_nam_administrative_divisions']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_all_cities_in_vietnam_for_viet_nam_administrative_divisions', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 453,
+          "mean_banned": 8954.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-out_of_domain.jsonl-36": {
+      "G0": {
+        "id": "tbs-out_of_domain.jsonl-36",
+        "arm": "G0",
+        "latency_s": 11.0,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "tbs-out_of_domain.jsonl-36",
+        "arm": "G1",
+        "latency_s": 19.27,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 250,
+          "mean_banned": 17335.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-out_of_domain.jsonl-36",
+        "arm": "G2",
+        "latency_s": 17.61,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 250,
+          "mean_banned": 18307.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-out_of_domain.jsonl-37": {
+      "G0": {
+        "id": "tbs-out_of_domain.jsonl-37",
+        "arm": "G0",
+        "latency_s": 10.98,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "tbs-out_of_domain.jsonl-37",
+        "arm": "G1",
+        "latency_s": 19.16,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 250,
+          "mean_banned": 17335.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-out_of_domain.jsonl-37",
+        "arm": "G2",
+        "latency_s": 17.66,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 250,
+          "mean_banned": 18307.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-out_of_domain.jsonl-38": {
+      "G0": {
+        "id": "tbs-out_of_domain.jsonl-38",
+        "arm": "G0",
+        "latency_s": 10.92,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "tbs-out_of_domain.jsonl-38",
+        "arm": "G1",
+        "latency_s": 19.31,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 250,
+          "mean_banned": 17335.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-out_of_domain.jsonl-38",
+        "arm": "G2",
+        "latency_s": 17.69,
+        "text": "; TaskIR v0.1  module=i_want_to_surprise_my_friends_with_perso\n; task: \\nI want to surprise my friends with personalized invitations for my birthday party. Can you help me create custom QR codes with their names and a link to the party details? The link is 'https://www.partydetails.com/'. It would be great if each QR code color could be customized based on their favorite colors. Thank you!\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-435\n; provenance.tools: ['simple_qr_code_for_custom_qr_code_with_logo_v2']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'simple_qr_code_for_custom_qr_code_with_logo_v2', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, name=\"John Doe\", link=\"https://www.partydetails.com/\", color=\"#FF0000\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.667,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 250,
+          "mean_banned": 18307.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-out_of_domain.jsonl-80": {
+      "G0": {
+        "id": "tbs-out_of_domain.jsonl-80",
+        "arm": "G0",
+        "latency_s": 9.58,
+        "text": "; TaskIR v0.1  module=i_m_developing_a_game_and_i_need_a_tool_t\n; task: \\nI'm developing a game and I need a tool that can convert a username to a UUID for player identification. Additionally, I would like to calculate the KD (kill death ratio) for each player. Can you recommend a tool that provides these functionalities?\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-234\n; provenance.tools: ['kd_calculator_for_teamriverbubbles_random_utilities']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'kd_calculator_for_teamriverbubbles_random_utilities', 'skill': 'CALCULATE', 'mapping_kind': 'heuristic', 'matched_rule': 'calculat|math|comput|evaluate|arithmetic', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = CALCULATE(kd=1.5)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "tbs-out_of_domain.jsonl-80",
+        "arm": "G1",
+        "latency_s": 16.39,
+        "text": "; TaskIR v0.1  module=i_m_developing_a_game_and_i_need_a_tool_t\n; task: \\nI'm developing a game and I need a tool that can convert a username to a UUID for player identification. Additionally, I would like to calculate the KD (kill death ratio) for each player. Can you recommend a tool that provides these functionalities?\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-234\n; provenance.tools: ['kd_calculator_for_teamriverbubbles_random_utilities']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'kd_calculator_for_teamriverbubbles_random_utilities', 'skill': 'CALCULATE', 'mapping_kind': 'heuristic', 'matched_rule': 'calculat|math|comput|evaluate|arithmetic', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = CALCULATE(kd=1.5)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 219,
+          "mean_banned": 19499.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-out_of_domain.jsonl-80",
+        "arm": "G2",
+        "latency_s": 15.42,
+        "text": "; TaskIR v0.1  module=i_m_developing_a_game_and_i_need_a_tool_t\n; task: \\nI'm developing a game and I need a tool that can convert a username to a UUID for player identification. Additionally, I would like to calculate the KD (kill death ratio) for each player. Can you recommend a tool that provides these functionalities?\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-234\n; provenance.tools: ['kd_calculator_for_teamriverbubbles_random_utilities']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'kd_calculator_for_teamriverbubbles_random_utilities', 'skill': 'CALCULATE', 'mapping_kind': 'heuristic', 'matched_rule': 'calculat|math|comput|evaluate|arithmetic', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = CALCULATE(kd=1.5)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 219,
+          "mean_banned": 20050.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 48,
+          "fsm_violation": null
+        }
+      }
+    },
+    "tbs-out_of_domain.jsonl-223": {
+      "G0": {
+        "id": "tbs-out_of_domain.jsonl-223",
+        "arm": "G0",
+        "latency_s": 9.76,
+        "text": "; TaskIR v0.1  module=i_am_developing_a_chatbot_for_my_company\n; task: \\nI am developing a chatbot for my company and we want to filter out any profanity in the user input. Can you suggest an API that can check if a text contains profanity? Additionally, it would be great if the API can provide suggestions to replace the offensive words with appropriate alternatives.\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-234\n; provenance.tools: ['check_if_text_contains_profanity_for_purgomalum']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'check_if_text_contains_profanity_for_purgomalum', 'skill': 'SEND', 'mapping_kind': 'heuristic', 'matched_rule': 'sms|text|message|notify', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEND(@task, channel=\"sms\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "tbs-out_of_domain.jsonl-223",
+        "arm": "G1",
+        "latency_s": 17.46,
+        "text": "; TaskIR v0.1  module=i_am_developing_a_chatbot_for_my_company\n; task: \\nI am developing a chatbot for my company and we want to filter out any profanity in the user input. Can you suggest an API that can check if a text contains profanity? Additionally, it would be great if the API can provide suggestions to replace the offensive words with appropriate alternatives.\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-234\n; provenance.tools: ['check_if_text_contains_profanity_for_purgomalum']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'check_if_text_contains_profanity_for_purgomalum', 'skill': 'SEND', 'mapping_kind': 'heuristic', 'matched_rule': 'sms|text|message|notify', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEND(@task, channel=\"sms\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 223,
+          "mean_banned": 16904.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "tbs-out_of_domain.jsonl-223",
+        "arm": "G2",
+        "latency_s": 15.78,
+        "text": "; TaskIR v0.1  module=i_am_developing_a_chatbot_for_my_company\n; task: \\nI am developing a chatbot for my company and we want to filter out any profanity in the user input. Can you suggest an API that can check if a text contains profanity? Additionally, it would be great if the API can provide suggestions to replace the offensive words with appropriate alternatives.\\nBegin!\\n\n; provenance.source: toolbench\n; provenance.task_id: tbs-in_domain.jsonl-234\n; provenance.tools: ['check_if_text_contains_profanity_for_purgomalum']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'check_if_text_contains_profanity_for_purgomalum', 'skill': 'SEND', 'mapping_kind': 'heuristic', 'matched_rule': 'sms|text|message|notify', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEND(@task, channel=\"sms\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 223,
+          "mean_banned": 17994.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-54": {
+      "G0": {
+        "id": "xlam-54",
+        "arm": "G0",
+        "latency_s": 9.83,
+        "text": "; TaskIR v0.1  module=get_the_following_list_of_tiktok_user_987\n; input: username:str\n; output: result:Union[None, List[User]]\n; provenance.source: toolbench\n; provenance.task_id: xlam-50111\n; provenance.tools: ['get_user_following_list', 'get_user_following_list']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_user_following_list', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_user_following_list', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @username: Str\n\n%c0 = FETCH(@username)\n%c1 = FETCH(%c0, count=150)\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.167,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-54",
+        "arm": "G1",
+        "latency_s": 20.06,
+        "text": "; TaskIR v0.1  module=get_the_following_list_of_tiktok_user_987\n; input: username:str\n; output: result:Union[None, List[User]]\n; provenance.source: toolbench\n; provenance.task_id: xlam-50111\n; provenance.tools: ['get_user_following_list', 'get_user_following_list']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_user_following_list', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_user_following_list', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @username: Str\n\n%c0 = FETCH(@username)\n%c1 = FETCH(%c0, count=150)\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.167,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 226,
+          "mean_banned": 23233.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-54",
+        "arm": "G2",
+        "latency_s": 17.53,
+        "text": "; TaskIR v0.1  module=get_the_following_list_of_tiktok_user_987\n; input: username:str\n; output: result:Union[None, List[User]]\n; provenance.source: toolbench\n; provenance.task_id: xlam-50111\n; provenance.tools: ['get_user_following_list', 'get_user_following_list']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_user_following_list', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_user_following_list', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @username: Str\n\n%c0 = FETCH(@username)\n%c1 = FETCH(%c0, count=150)\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.167,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 226,
+          "mean_banned": 25210.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-198": {
+      "G0": {
+        "id": "xlam-198",
+        "arm": "G0",
+        "latency_s": 7.08,
+        "text": "; TaskIR v0.1  module=what_is_the_email_address_of_emily_davis_w\n; input: first_name:str, last_name:str, company:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-32457\n; provenance.tools: ['emailfinder']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'emailfinder', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'email|mail', 'confidence': 0.95}]\ninputs: @first_name:str, @last_name:str, @company:str\n\n%c0 = SEARCH(@first_name, @last_name, @company)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": "Issue(code='ARITY', severity='error', msg='SEARCH expects <= 2 inputs, got 3', node='%c0'); Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@first_name: str) incompatible with SEARCH sign"
+        }
+      },
+      "G1": {
+        "id": "xlam-198",
+        "arm": "G1",
+        "latency_s": 18.39,
+        "text": "; TaskIR v0.1  module=what_is_the_email_address_of_emily_davis_w\n; input: first_name:str, last_name:str, company:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-32457\n; provenance.tools: ['emailfinder']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'emailfinder', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'email|mail', 'confidence': 0.95}]\ninputs: @first_name:str, @last_name:str, @company:str\n\n%c0 = SEARCH(@first_name, @last_name, @company)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": "Issue(code='ARITY', severity='error', msg='SEARCH expects <= 2 inputs, got 3', node='%c0'); Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@first_name: str) incompatible with SEARCH sign"
+        },
+        "constraint_stats": {
+          "steps": 162,
+          "mean_banned": 35749.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-198",
+        "arm": "G2",
+        "latency_s": 17.34,
+        "text": "; TaskIR v0.1  module=what_is_the_email_address_of_emily_davis_w\n; input: first_name:str, last_name:str, company:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-32457\n; provenance.tools: ['emailfinder']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'emailfinder', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'email|mail', 'confidence': 0.95}]\ninputs: @first_name:str, @last_name:str, @company:str\n\n%c0 = SEARCH(@first_name, @last_name, domain=\"web\", company=\"Apple\")  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.25,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@first_name: str) incompatible with SEARCH signature (Str)', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 167,
+          "mean_banned": 38851.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 9,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-203": {
+      "G0": {
+        "id": "xlam-203",
+        "arm": "G0",
+        "latency_s": 11.02,
+        "text": "; TaskIR v0.1  module=fetch_the_recipe_with_id_r101_from_the_gha\n; input: is_id:str, r_id:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-53476\n; provenance.tools: ['get_recipe_by_id', 'get_recipe_by_id']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_recipe_by_id', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'get_recipe_by_id', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: is_id:str, r_id:str\n\n%c0 = SEARCH(is_id, domain=\"product\", is_id=is_id)  -> List[Product]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"product\", is_id=r_id)  -> List[Product]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": "Issue(code='STRUCT', severity='error', msg=\"bad input name 'is_id' (must be '@name')\", node=None); Issue(code='STRUCT', severity='error', msg=\"bad input name 'r_id' (must be '@name')\", node=None); Iss"
+        }
+      },
+      "G1": {
+        "id": "xlam-203",
+        "arm": "G1",
+        "latency_s": 28.15,
+        "text": "; TaskIR v0.1  module=fetch_the_recipe_with_id_r101_from_the_gha\n; input: is_id:str, r_id:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-53476\n; provenance.tools: ['get_recipe_by_id', 'get_recipe_by_id']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_recipe_by_id', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'get_recipe_by_id', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @is_id:str, @r_id:str\n\n%c0 = SEARCH(@is_id, domain=\"product\", is_id=\"R101\")  -> List[Product]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"product\", is_id=\"R202\")  -> List[Product]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@is_id: str) incompatible with SEARCH signature (Str)', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 261,
+          "mean_banned": 34139.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-203",
+        "arm": "G2",
+        "latency_s": 27.75,
+        "text": "; TaskIR v0.1  module=fetch_the_recipe_with_id_r101_from_the_gha\n; input: is_id:str, r_id:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-53476\n; provenance.tools: ['get_recipe_by_id', 'get_recipe_by_id']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_recipe_by_id', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'get_recipe_by_id', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @is_id:str, @r_id:str\n\n%c0 = SEARCH(@is_id, domain=\"product\", is_id=\"R101\")  -> List[Product]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"product\", is_id=\"R202\")  -> List[Product]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@is_id: str) incompatible with SEARCH signature (Str)', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 261,
+          "mean_banned": 36920.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 9,
+          "type_pref_fallbacks": 9,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-205": {
+      "G0": {
+        "id": "xlam-205",
+        "arm": "G0",
+        "latency_s": 10.62,
+        "text": "; TaskIR v0.1  module=can_you_find_the_details_of_the_beer_5432\n; input: is_id:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-26789\n; provenance.tools: ['get_beers_by_single_country', 'v1_recipe']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_beers_by_single_country', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'v1_recipe', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, is_id=\"54321\")\n%c1 = SEARCH(%c0, domain=\"product\", is_id=\"low carb meals\", limit=10, offset=10)  -> List[Product]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.2,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-205",
+        "arm": "G1",
+        "latency_s": 24.11,
+        "text": "; TaskIR v0.1  module=can_you_find_the_details_of_the_beer_5432\n; input: is_id:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-26789\n; provenance.tools: ['get_beers_by_single_country', 'v1_recipe']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_beers_by_single_country', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'v1_recipe', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, is_id=\"54321\")\n%c1 = SEARCH(%c0, domain=\"product\", is_id=\"low carb meals\", limit=10, offset=10)  -> List[Product]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.2,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 244,
+          "mean_banned": 29284.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-205",
+        "arm": "G2",
+        "latency_s": 22.78,
+        "text": "; TaskIR v0.1  module=can_you_find_the_details_of_the_beer_5432\n; input: is_id:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-26789\n; provenance.tools: ['get_beers_by_single_country', 'v1_recipe']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_beers_by_single_country', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'v1_recipe', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, is_id=\"54321\")\n%c1 = SEARCH(%c0, domain=\"product\", is_id=\"low carb meals\", limit=10, offset=10)  -> List[Product]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.2,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 244,
+          "mean_banned": 31117.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-227": {
+      "G0": {
+        "id": "xlam-227",
+        "arm": "G0",
+        "latency_s": 4.71,
+        "text": "; TaskIR v0.1  module=can_you_provide_analytics_for_the_main_ac\n; input: is_id:int, is_subaccount_id:int, is_start_date:str, is_end_date:str\n; output: str\n;%0 = FETCH(is_id, is_subaccount_id, is_start_date=\"2022-01-01\", is_end_date=\"2022-12-31\")\n%1 = EXTRACT(%0, fields=[\"result\"])\nreturn %1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": "Issue(code='UNDEFINED_REF', severity='error', msg=\"input '%0' is never defined\", node='%1')"
+        }
+      },
+      "G1": {
+        "id": "xlam-227",
+        "arm": "G1",
+        "latency_s": 9.64,
+        "text": "; TaskIR v0.1  module=can_you_provide_analytics_for_the_main_ac\n; input: is_id:int, is_subaccount_id:int, is_start_date:str, is_end_date:str\n; output: str\n;%0 = FETCH(is_id, is_subaccount_id, is_start_date=\"2022-01-01\", is_end_date=\"2022-12-31\")\n%1 = EXTRACT(%0, fields=[\"result\"])\nreturn %1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": "Issue(code='UNDEFINED_REF', severity='error', msg=\"input '%0' is never defined\", node='%1')"
+        },
+        "constraint_stats": {
+          "steps": 108,
+          "mean_banned": 22974.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-227",
+        "arm": "G2",
+        "latency_s": 7.08,
+        "text": "; TaskIR v0.1  module=can_you_provide_analytics_for_the_main_ac\n; input: is_id:int, is_subaccount_id:int, is_start_date:str, is_end_date:str\n; output: str\n;%0 = FETCH(is_id, is_subaccount_id, is_start_date=\"2022-01-01\", is_end_date=\"2022-12-31\")\n%1 = EXTRACT(%0, fields=[\"result\"])\nreturn %1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": "Issue(code='UNDEFINED_REF', severity='error', msg=\"input '%0' is never defined\", node='%1')"
+        },
+        "constraint_stats": {
+          "steps": 108,
+          "mean_banned": 13585.0,
+          "forced_steps": 0,
+          "deadlocks": [
+            "step=98 state=operand buf='%'",
+            "step=99 state=operand buf='%0'",
+            "step=100 state=operand buf='%0'",
+            "step=101 state=operand buf='%0fields'",
+            "step=102 state=operand buf='%0fields'",
+            "step=103 state=operand buf='%0fieldsresult'",
+            "step=104 state=operand buf='%0fieldsresult'",
+            "step=105 state=operand buf='%0fieldsresultreturn'",
+            "step=106 state=operand buf='%0fieldsresultreturn'",
+            "step=107 state=operand buf='%0fieldsresultreturn1'",
+            "step=108 state=operand buf='%0fieldsresultreturn1'"
+          ],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 9,
+          "fsm_violation": "state=operand char=',' after 99 tokens"
+        }
+      }
+    },
+    "xlam-283": {
+      "G0": {
+        "id": "xlam-283",
+        "arm": "G0",
+        "latency_s": 6.51,
+        "text": "; TaskIR v0.1  module=what_is_the_category_of_a_product_called\n; input: title:str, price:int, optiona\n; provenance.source: toolbench\n; provenance.task_id: xlam-24576\n; provenance.tools: ['product_categorization']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'product_categorization', 'skill': 'CLASSIFY', 'mapping_kind': 'exact', 'matched_rule': 'classif|categor|label', 'confidence': 0.95}]\ninputs: @title:str, @price:int\n\n%c0 = CLASSIFY(@title, @price)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": "Issue(code='ARITY', severity='error', msg='CLASSIFY expects <= 1 inputs, got 2', node='%c0')"
+        }
+      },
+      "G1": {
+        "id": "xlam-283",
+        "arm": "G1",
+        "latency_s": 13.89,
+        "text": "; TaskIR v0.1  module=what_is_the_category_of_a_product_called\n; input: title:str, price:int, optiona\n; provenance.source: toolbench\n; provenance.task_id: xlam-24576\n; provenance.tools: ['product_categorization']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'product_categorization', 'skill': 'CLASSIFY', 'mapping_kind': 'exact', 'matched_rule': 'classif|categor|label', 'confidence': 0.95}]\ninputs: @title:str, @price:int\n\n%c0 = CLASSIFY(@title, @price)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": "Issue(code='ARITY', severity='error', msg='CLASSIFY expects <= 1 inputs, got 2', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 150,
+          "mean_banned": 28560.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-283",
+        "arm": "G2",
+        "latency_s": 12.61,
+        "text": "; TaskIR v0.1  module=what_is_the_category_of_a_product_called\n; input: title:str, price:int, optiona\n; provenance.source: toolbench\n; provenance.task_id: xlam-24576\n; provenance.tools: ['product_categorization']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'product_categorization', 'skill': 'CLASSIFY', 'mapping_kind': 'exact', 'matched_rule': 'classif|categor|label', 'confidence': 0.95}]\ninputs: @title:str, @price:int\n\n%c0 = CLASSIFY(@title, price=@price)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 151,
+          "mean_banned": 31566.0,
+          "forced_steps": 2,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-344": {
+      "G0": {
+        "id": "xlam-344",
+        "arm": "G0",
+        "latency_s": 7.52,
+        "text": "; TaskIR v0.1  module=find_12_yellow_icons_about_travel_starti\n; input: q:str, start:int, limit:int\n; output: List[Web]\n; provenance.source: toolbench\n; provenance.task_id: xlam-34786\n; provenance.tools: ['search']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: q:str, start:int, limit:int\n\n%c0 = SEARCH(query=\"travel\", q=\"travel\", limit=12, color=\"FFD700\", offset=start)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.375,
+          "error": "Issue(code='STRUCT', severity='error', msg=\"bad input name 'q' (must be '@name')\", node=None); Issue(code='STRUCT', severity='error', msg=\"bad input name 'start' (must be '@name')\", node=None); Issue("
+        }
+      },
+      "G1": {
+        "id": "xlam-344",
+        "arm": "G1",
+        "latency_s": 18.57,
+        "text": "; TaskIR v0.1  module=find_12_yellow_icons_about_travel_starti\n; input: q:str, start:int, limit:int\n; output: List[Web]\n; provenance.source: toolbench\n; provenance.task_id: xlam-34786\n; provenance.tools: ['search']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"travel\", limit=12, color=\"FFD700\", offset=14)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.571,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 174,
+          "mean_banned": 34472.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-344",
+        "arm": "G2",
+        "latency_s": 16.82,
+        "text": "; TaskIR v0.1  module=find_12_yellow_icons_about_travel_starti\n; input: q:str, start:int, limit:int\n; output: List[Web]\n; provenance.source: toolbench\n; provenance.task_id: xlam-34786\n; provenance.tools: ['search']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"travel\", limit=12, color=\"FFD700\", offset=14)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.571,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 174,
+          "mean_banned": 35869.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-363": {
+      "G0": {
+        "id": "xlam-363",
+        "arm": "G0",
+        "latency_s": 7.86,
+        "text": "; TaskIR v0.1  module=what_are_the_financial_updates_for_the_com\n; task: What are the financial updates for the company '135792468' since the start of 2022?\n; provenance.source: toolbench\n; provenance.task_id: xlam-11111\n; provenance.tools: ['companies_id_events']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'companies_id_events', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'calendar|event|meeting|appointment|schedule', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = EXEC_ACTION(action=\"create_event\", is_id=\"135792468\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-363",
+        "arm": "G1",
+        "latency_s": 14.83,
+        "text": "; TaskIR v0.1  module=what_are_the_financial_updates_for_the_com\n; task: What are the financial updates for the company '135792468' since the start of 2022?\n; provenance.source: toolbench\n; provenance.task_id: xlam-11111\n; provenance.tools: ['companies_id_events']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'companies_id_events', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'calendar|event|meeting|appointment|schedule', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = EXEC_ACTION(action=\"create_event\", is_id=\"135792468\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 180,
+          "mean_banned": 22288.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-363",
+        "arm": "G2",
+        "latency_s": 13.51,
+        "text": "; TaskIR v0.1  module=what_are_the_financial_updates_for_the_com\n; task: What are the financial updates for the company '135792468' since the start of 2022?\n; provenance.source: toolbench\n; provenance.task_id: xlam-11111\n; provenance.tools: ['companies_id_events']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'companies_id_events', 'skill': 'EXEC_ACTION', 'mapping_kind': 'exact', 'matched_rule': 'calendar|event|meeting|appointment|schedule', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = EXEC_ACTION(action=\"create_event\", is_id=\"135792468\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 180,
+          "mean_banned": 22958.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-375": {
+      "G0": {
+        "id": "xlam-375",
+        "arm": "G0",
+        "latency_s": 9.25,
+        "text": "; TaskIR v0.1  module=provide_a_96_hour_air_quality_forecast_for\n; input: place_id:str, lat:int, optiona, lon:int, optiona, units:str, optiona\n; output: result:Union[None, List[Dict[str, Any]]]\n; provenance.source: toolbench\n; provenance.task_id: xlam-32457\n; provenance.tools: ['air_quality_forecast']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'air_quality_forecast', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'weather|forecast', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"weather\", query=\"Los Angeles\", place_id=\"USCA09876\", lat=34, lon=-118, units=\"i\")  -> List[Weather]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.429,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-375",
+        "arm": "G1",
+        "latency_s": 21.63,
+        "text": "; TaskIR v0.1  module=provide_a_96_hour_air_quality_forecast_for\n; input: place_id:str, lat:int, optiona, lon:int, optiona, units:str, optiona\n; output: result:Union[None, List[Dict[str, Any]]]\n; provenance.source: toolbench\n; provenance.task_id: xlam-32457\n; provenance.tools: ['air_quality_forecast']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'air_quality_forecast', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'weather|forecast', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"weather\", query=\"Los Angeles\", place_id=\"USCA09876\", lat=34, lon=-118, units=\"i\")  -> List[Weather]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.429,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 212,
+          "mean_banned": 30326.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-375",
+        "arm": "G2",
+        "latency_s": 19.94,
+        "text": "; TaskIR v0.1  module=provide_a_96_hour_air_quality_forecast_for\n; input: place_id:str, lat:int, optiona, lon:int, optiona, units:str, optiona\n; output: result:Union[None, List[Dict[str, Any]]]\n; provenance.source: toolbench\n; provenance.task_id: xlam-32457\n; provenance.tools: ['air_quality_forecast']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'air_quality_forecast', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'weather|forecast', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"weather\", query=\"Los Angeles\", place_id=\"USCA09876\", lat=34, lon=-118, units=\"i\")  -> List[Weather]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.429,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 212,
+          "mean_banned": 31473.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-494": {
+      "G0": {
+        "id": "xlam-494",
+        "arm": "G0",
+        "latency_s": 14.24,
+        "text": "; TaskIR v0.1  module=provide_the_draw_results_for_powerball_in\n; input: date:str, region:str, game:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-45768\n; provenance.tools: ['get_draw_result', 'get_draw_result', 'get_draw_result']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, date=\"2023-01-01\", region=\"Australia\", game=\"Powerball\")\n%c1 = FETCH(%c0, date=\"2023-02-01\", region=\"Australia\", game=\"Powerball\")\n%c2 = FETCH(%c1, date=\"2023-03-01\", region=\"Australia\", game=\"Powerball\")\n\nreturn %c2\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-494",
+        "arm": "G1",
+        "latency_s": 25.64,
+        "text": "; TaskIR v0.1  module=provide_the_draw_results_for_powerball_in\n; input: date:str, region:str, game:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-45768\n; provenance.tools: ['get_draw_result', 'get_draw_result', 'get_draw_result']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, date=\"2023-01-01\", region=\"Australia\", game=\"Powerball\")\n%c1 = FETCH(%c0, date=\"2023-02-01\", region=\"Australia\", game=\"Powerball\")\n%c2 = FETCH(%c1, date=\"2023-03-01\", region=\"Australia\", game=\"Powerball\")\n\nreturn %c2\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 324,
+          "mean_banned": 22136.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-494",
+        "arm": "G2",
+        "latency_s": 26.14,
+        "text": "; TaskIR v0.1  module=provide_the_draw_results_for_powerball_in\n; input: date:str, region:str, game:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-45768\n; provenance.tools: ['get_draw_result', 'get_draw_result', 'get_draw_result']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_draw_result', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, date=\"2023-01-01\", region=\"Australia\", game=\"Powerball\")\n%c1 = FETCH(%c0, date=\"2023-02-01\", region=\"Australia\", game=\"Powerball\")\n%c2 = FETCH(%c1, date=\"2023-03-01\", region=\"Australia\", game=\"Powerball\")\n\nreturn %c2\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 324,
+          "mean_banned": 24152.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-603": {
+      "G0": {
+        "id": "xlam-603",
+        "arm": "G0",
+        "latency_s": 16.05,
+        "text": "; TaskIR v0.1  module=please_search_for_locations_using_the_follo\n; task: Please search for locations using the following queries: '48.8567,2.3508', '10001', and 'SW1'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-19111\n; provenance.tools: ['search_autocomplete_api', 'search_autocomplete_api', 'search_autocomplete_api']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"48.8567,2.3508\")  -> List[Web]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"web\", query=\"10001\")  -> List[Web]\n%b2 = EXTRACT(%c1, fields=[\"result\"])\n%c2 = SEARCH(%b2, domain=\"web\", query=\"SW1\")  -> List[Web]\n\nreturn %c2\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.8,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-603",
+        "arm": "G1",
+        "latency_s": 34.64,
+        "text": "; TaskIR v0.1  module=please_search_for_locations_using_the_follo\n; task: Please search for locations using the following queries: '48.8567,2.3508', '10001', and 'SW1'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-19111\n; provenance.tools: ['search_autocomplete_api', 'search_autocomplete_api', 'search_autocomplete_api']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"48.8567,2.3508\")  -> List[Web]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"web\", query=\"10001\")  -> List[Web]\n%b2 = EXTRACT(%c1, fields=[\"result\"])\n%c2 = SEARCH(%b2, domain=\"web\", query=\"SW1\")  -> List[Web]\n\nreturn %c2\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.8,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 368,
+          "mean_banned": 30307.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-603",
+        "arm": "G2",
+        "latency_s": 38.75,
+        "text": "; TaskIR v0.1  module=please_search_for_locations_using_the_follo\n; task: Please search for locations using the following queries: '48.8567,2.3508', '10001', and 'SW1'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-19111\n; provenance.tools: ['search_autocomplete_api', 'search_autocomplete_api', 'search_autocomplete_api']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}, {'tool': 'search_autocomplete_api', 'skill': 'SEARCH', 'mapping_kind': 'exact', 'matched_rule': 'restaurant|food|recipe', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"48.8567,2.3508\")  -> List[Web]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"web\", query=\"10001\")  -> List[Web]\n%b2 = EXTRACT(%c1, fields=[\"result\"])\n%c2 = SEARCH(%b2, domain=\"web\", query=\"SW1\")  -> List[Web]\n\nreturn %c2\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.8,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 368,
+          "mean_banned": 33186.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 18,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-669": {
+      "G0": {
+        "id": "xlam-669",
+        "arm": "G0",
+        "latency_s": 10.12,
+        "text": "; TaskIR v0.1  module=fetch_the_profiles_of_followers_for_foodi\n; task: Fetch the profiles of followers for 'foodie_explorer' and 'nature_photographer'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-34567\n; provenance.tools: ['get_followers_by_username', 'get_followers_by_username']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_followers_by_username', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_followers_by_username', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, username=\"foodie_explorer\")\n%c1 = FETCH(%c0, username=\"nature_photographer\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-669",
+        "arm": "G1",
+        "latency_s": 19.73,
+        "text": "; TaskIR v0.1  module=fetch_the_profiles_of_followers_for_foodi\n; task: Fetch the profiles of followers for 'foodie_explorer' and 'nature_photographer'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-34567\n; provenance.tools: ['get_followers_by_username', 'get_followers_by_username']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_followers_by_username', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_followers_by_username', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, username=\"foodie_explorer\")\n%c1 = FETCH(%c0, username=\"nature_photographer\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 233,
+          "mean_banned": 20844.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-669",
+        "arm": "G2",
+        "latency_s": 18.4,
+        "text": "; TaskIR v0.1  module=fetch_the_profiles_of_followers_for_foodi\n; task: Fetch the profiles of followers for 'foodie_explorer' and 'nature_photographer'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-34567\n; provenance.tools: ['get_followers_by_username', 'get_followers_by_username']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_followers_by_username', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_followers_by_username', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, username=\"foodie_explorer\")\n%c1 = FETCH(%c0, username=\"nature_photographer\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 233,
+          "mean_banned": 22764.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-748": {
+      "G0": {
+        "id": "xlam-748",
+        "arm": "G0",
+        "latency_s": 10.29,
+        "text": "; TaskIR v0.1  module=interpret_the_obd2_codes_p0505_and_p1135_fo\n; input: obd2_code:str, obd2_code:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-46789\n; provenance.tools: ['obd2_code', 'obd2_code']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'obd2_code', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}, {'tool': 'obd2_code', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, obd2_code=\"P0505\")\n%c1 = CODEGEN(%c0, obd2_code=\"P1135\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-748",
+        "arm": "G1",
+        "latency_s": 20.19,
+        "text": "; TaskIR v0.1  module=interpret_the_obd2_codes_p0505_and_p1135_fo\n; input: obd2_code:str, obd2_code:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-46789\n; provenance.tools: ['obd2_code', 'obd2_code']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'obd2_code', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}, {'tool': 'obd2_code', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, obd2_code=\"P0505\")\n%c1 = CODEGEN(%c0, obd2_code=\"P1135\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 236,
+          "mean_banned": 24887.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-748",
+        "arm": "G2",
+        "latency_s": 19.27,
+        "text": "; TaskIR v0.1  module=interpret_the_obd2_codes_p0505_and_p1135_fo\n; input: obd2_code:str, obd2_code:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-46789\n; provenance.tools: ['obd2_code', 'obd2_code']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'obd2_code', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}, {'tool': 'obd2_code', 'skill': 'CODEGEN', 'mapping_kind': 'exact', 'matched_rule': 'code|program|script', 'confidence': 0.95}]\ninputs: @task: Str\n\n%c0 = CODEGEN(@task, obd2_code=\"P0505\")\n%c1 = CODEGEN(%c0, obd2_code=\"P1135\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 236,
+          "mean_banned": 26782.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-757": {
+      "G0": {
+        "id": "xlam-757",
+        "arm": "G0",
+        "latency_s": 10.34,
+        "text": "; TaskIR v0.1  module=i_need_the_geographical_coordinates_for_th\n; task: I need the geographical coordinates for the IP addresses 1.1.1.1 and 2.2.2.2.\n; provenance.source: toolbench\n; provenance.task_id: xlam-34567\n; provenance.tools: ['get_ip_location', 'get_ip_location']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_ip_location', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_ip_location', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, ip=\"1.1.1.1\")\n%c1 = FETCH(%c0, ip=\"2.2.2.2\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-757",
+        "arm": "G1",
+        "latency_s": 19.89,
+        "text": "; TaskIR v0.1  module=i_need_the_geographical_coordinates_for_th\n; task: I need the geographical coordinates for the IP addresses 1.1.1.1 and 2.2.2.2.\n; provenance.source: toolbench\n; provenance.task_id: xlam-34567\n; provenance.tools: ['get_ip_location', 'get_ip_location']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_ip_location', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_ip_location', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, ip=\"1.1.1.1\")\n%c1 = FETCH(%c0, ip=\"2.2.2.2\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 237,
+          "mean_banned": 20519.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-757",
+        "arm": "G2",
+        "latency_s": 18.47,
+        "text": "; TaskIR v0.1  module=i_need_the_geographical_coordinates_for_th\n; task: I need the geographical coordinates for the IP addresses 1.1.1.1 and 2.2.2.2.\n; provenance.source: toolbench\n; provenance.task_id: xlam-34567\n; provenance.tools: ['get_ip_location', 'get_ip_location']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_ip_location', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}, {'tool': 'get_ip_location', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, ip=\"1.1.1.1\")\n%c1 = FETCH(%c0, ip=\"2.2.2.2\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 237,
+          "mean_banned": 22407.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-768": {
+      "G0": {
+        "id": "xlam-768",
+        "arm": "G0",
+        "latency_s": 7.28,
+        "text": "; TaskIR v0.1  module=list_the_countries_in_asia_starting_from_t\n; task: List the countries in Asia starting from the 11th record.\n; provenance.source: toolbench\n; provenance.task_id: xlam-23456\n; provenance.tools: ['search_countries_by_continent']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_countries_by_continent', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"Asia\", skip=10)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.2,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-768",
+        "arm": "G1",
+        "latency_s": 17.47,
+        "text": "; TaskIR v0.1  module=list_the_countries_in_asia_starting_from_t\n; task: List the countries in Asia starting from the 11th record.\n; provenance.source: toolbench\n; provenance.task_id: xlam-23456\n; provenance.tools: ['search_countries_by_continent']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_countries_by_continent', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"Asia\", skip=10)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.2,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 167,
+          "mean_banned": 30592.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-768",
+        "arm": "G2",
+        "latency_s": 15.58,
+        "text": "; TaskIR v0.1  module=list_the_countries_in_asia_starting_from_t\n; task: List the countries in Asia starting from the 11th record.\n; provenance.source: toolbench\n; provenance.task_id: xlam-23456\n; provenance.tools: ['search_countries_by_continent']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_countries_by_continent', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEARCH(@task, domain=\"web\", query=\"Asia\", skip=10)  -> List[Web]\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.2,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 167,
+          "mean_banned": 32047.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-884": {
+      "G0": {
+        "id": "xlam-884",
+        "arm": "G0",
+        "latency_s": 7.4,
+        "text": "; TaskIR v0.1  module=what_are_the_zip_codes_for_major_cities_in\n; input: region:str, optiona, page:str, optiona, country:str, optiona\n; output: list[Str]\n; provenance.source: toolbench\n; provenance.task_id: xlam-23845\n; provenance.tools: ['get_info_by_city']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_info_by_city', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, country=\"US\", state=\"TX\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-884",
+        "arm": "G1",
+        "latency_s": 14.71,
+        "text": "; TaskIR v0.1  module=what_are_the_zip_codes_for_major_cities_in\n; input: region:str, optiona, page:str, optiona, country:str, optiona\n; output: list[Str]\n; provenance.source: toolbench\n; provenance.task_id: xlam-23845\n; provenance.tools: ['get_info_by_city']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_info_by_city', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, country=\"US\", state=\"TX\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 170,
+          "mean_banned": 24101.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-884",
+        "arm": "G2",
+        "latency_s": 13.13,
+        "text": "; TaskIR v0.1  module=what_are_the_zip_codes_for_major_cities_in\n; input: region:str, optiona, page:str, optiona, country:str, optiona\n; output: list[Str]\n; provenance.source: toolbench\n; provenance.task_id: xlam-23845\n; provenance.tools: ['get_info_by_city']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_info_by_city', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = FETCH(@task, country=\"US\", state=\"TX\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 170,
+          "mean_banned": 25531.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-899": {
+      "G0": {
+        "id": "xlam-899",
+        "arm": "G0",
+        "latency_s": 10.47,
+        "text": "; TaskIR v0.1  module=are_there_any_active_pageants_in_canada_o\n; input: pageant_contest:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-23456\n; provenance.tools: ['search_country', 'search_country']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_country', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}, {'tool': 'search_country', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @pageant_contest:str\n\n%c0 = SEARCH(@pageant_contest, domain=\"web\", query=\"Canada\")  -> List[Web]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"web\", query=\"Japan\")  -> List[Web]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.556,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@pageant_contest: str) incompatible with SEARCH signature (Str)', node='%c0')"
+        }
+      },
+      "G1": {
+        "id": "xlam-899",
+        "arm": "G1",
+        "latency_s": 27.91,
+        "text": "; TaskIR v0.1  module=are_there_any_active_pageants_in_canada_o\n; input: pageant_contest:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-23456\n; provenance.tools: ['search_country', 'search_country']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_country', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}, {'tool': 'search_country', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @pageant_contest:str\n\n%c0 = SEARCH(@pageant_contest, domain=\"web\", query=\"Canada\")  -> List[Web]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"web\", query=\"Japan\")  -> List[Web]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.556,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@pageant_contest: str) incompatible with SEARCH signature (Str)', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 241,
+          "mean_banned": 35423.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-899",
+        "arm": "G2",
+        "latency_s": 25.86,
+        "text": "; TaskIR v0.1  module=are_there_any_active_pageants_in_canada_o\n; input: pageant_contest:str\n; output: str\n; provenance.source: toolbench\n; provenance.task_id: xlam-23456\n; provenance.tools: ['search_country', 'search_country']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'search_country', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}, {'tool': 'search_country', 'skill': 'SEARCH', 'mapping_kind': 'heuristic', 'matched_rule': 'search|find|lookup', 'confidence': 0.7}]\ninputs: @pageant_contest:str\n\n%c0 = SEARCH(@pageant_contest, domain=\"web\", query=\"Canada\")  -> List[Web]\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = SEARCH(%b1, domain=\"web\", query=\"Japan\")  -> List[Web]\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.556,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@pageant_contest: str) incompatible with SEARCH signature (Str)', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 241,
+          "mean_banned": 39111.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 9,
+          "type_pref_fallbacks": 9,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-978": {
+      "G0": {
+        "id": "xlam-978",
+        "arm": "G0",
+        "latency_s": 2.27,
+        "text": "; TaskIR v0.1  module=get_a_sentence_fragment_about_a_mathematica\n; input: number:str\n; output: result:Str\n;\nnumber: \"55\"\n\n%c0 = CALCULATE(number)\nreturn %c0\n",
+        "judge": {
+          "parse_ok": false,
+          "valid": false,
+          "opseq_match": null,
+          "param_key_acc": null,
+          "error": "TaskIRSyntaxError: line 5: cannot parse node line: 'number: \"55\"'"
+        }
+      },
+      "G1": {
+        "id": "xlam-978",
+        "arm": "G1",
+        "latency_s": 4.96,
+        "text": "; TaskIR v0.1  module=get_a_sentence_fragment_about_a_mathematica\n; input: number:str\n; output: result:Str\n;\n%0 = CALCULATE(number=\"55\")\nreturn %0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 48,
+          "mean_banned": 46772.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-978",
+        "arm": "G2",
+        "latency_s": 4.4,
+        "text": "; TaskIR v0.1  module=get_a_sentence_fragment_about_a_mathematica\n; input: number:str\n; output: result:Str\n;\n%0 = CALCULATE(number=\"55\")\nreturn %0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 48,
+          "mean_banned": 48461.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 30,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-1070": {
+      "G0": {
+        "id": "xlam-1070",
+        "arm": "G0",
+        "latency_s": 11.48,
+        "text": "; TaskIR v0.1  module=retrieve_the_channel_points_context_for_th\n; task: Retrieve the channel points context for the Twitch channel 'Shroud'. Additionally, fetch posts from the 'Gaming' category on 9gag after a certain point indicated by 'post_after_20230101'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-45678\n; provenance.tools: ['get_channel_points_context', 'get_posts_from_page']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_channel_points_context', 'skill': 'SEND', 'mapping_kind': 'heuristic', 'matched_rule': 'sms|text|message|notify', 'confidence': 0.7}, {'tool': 'get_posts_from_page', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEND(@task, channel=\"sms\")\n%c1 = FETCH(%c0, after=\"post_after_20230101\", category=\"Gaming\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        }
+      },
+      "G1": {
+        "id": "xlam-1070",
+        "arm": "G1",
+        "latency_s": 21.76,
+        "text": "; TaskIR v0.1  module=retrieve_the_channel_points_context_for_th\n; task: Retrieve the channel points context for the Twitch channel 'Shroud'. Additionally, fetch posts from the 'Gaming' category on 9gag after a certain point indicated by 'post_after_20230101'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-45678\n; provenance.tools: ['get_channel_points_context', 'get_posts_from_page']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_channel_points_context', 'skill': 'SEND', 'mapping_kind': 'heuristic', 'matched_rule': 'sms|text|message|notify', 'confidence': 0.7}, {'tool': 'get_posts_from_page', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEND(@task, channel=\"sms\")\n%c1 = FETCH(%c0, after=\"post_after_20230101\", category=\"Gaming\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 263,
+          "mean_banned": 19275.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-1070",
+        "arm": "G2",
+        "latency_s": 20.19,
+        "text": "; TaskIR v0.1  module=retrieve_the_channel_points_context_for_th\n; task: Retrieve the channel points context for the Twitch channel 'Shroud'. Additionally, fetch posts from the 'Gaming' category on 9gag after a certain point indicated by 'post_after_20230101'.\n; provenance.source: toolbench\n; provenance.task_id: xlam-45678\n; provenance.tools: ['get_channel_points_context', 'get_posts_from_page']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'get_channel_points_context', 'skill': 'SEND', 'mapping_kind': 'heuristic', 'matched_rule': 'sms|text|message|notify', 'confidence': 0.7}, {'tool': 'get_posts_from_page', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @task: Str\n\n%c0 = SEND(@task, channel=\"sms\")\n%c1 = FETCH(%c0, after=\"post_after_20230101\", category=\"Gaming\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": true,
+          "param_key_acc": 1.0,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 263,
+          "mean_banned": 20977.0,
+          "forced_steps": 0,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-1090": {
+      "G0": {
+        "id": "xlam-1090",
+        "arm": "G0",
+        "latency_s": 5.46,
+        "text": "; TaskIR v0.1  module=find_reviews_for_product_rm22022854841767\n; input: product_id:str=\"rm2202285484176751\"\n; output: result:bool\ninputs: product_id:str\n\n%c0 = CLASSIFY(product_id)\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = FETCH(%b1, goods_spu=\"rm2202285484176751\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": "Issue(code='STRUCT', severity='error', msg=\"bad input name 'product_id' (must be '@name')\", node=None); Issue(code='UNDEFINED_REF', severity='error', msg=\"input 'product_id' is never defined\", node='%"
+        }
+      },
+      "G1": {
+        "id": "xlam-1090",
+        "arm": "G1",
+        "latency_s": 17.14,
+        "text": "; TaskIR v0.1  module=find_reviews_for_product_rm22022854841767\n; input: product_id:str=\"rm2202285484176751\"\n; output: result:bool\ninputs: @product_id:str\n\n%c0 = CLASSIFY(@product_id, category=\"product\")\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = FETCH(%b1, goods_spu=\"rm2202285484176751\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 131,
+          "mean_banned": 46196.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-1090",
+        "arm": "G2",
+        "latency_s": 15.0,
+        "text": "; TaskIR v0.1  module=find_reviews_for_product_rm22022854841767\n; input: product_id:str=\"rm2202285484176751\"\n; output: result:bool\ninputs: @product_id:str\n\n%c0 = CLASSIFY(@product_id, category=\"product\")\n%b1 = EXTRACT(%c0, fields=[\"result\"])\n%c1 = FETCH(%b1, goods_spu=\"rm2202285484176751\")\n\nreturn %c1\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": true,
+          "opseq_match": false,
+          "param_key_acc": null,
+          "error": null
+        },
+        "constraint_stats": {
+          "steps": 131,
+          "mean_banned": 51749.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 9,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      }
+    },
+    "xlam-1107": {
+      "G0": {
+        "id": "xlam-1107",
+        "arm": "G0",
+        "latency_s": 6.29,
+        "text": "; TaskIR v0.1  module=what_manga_are_available_on_page_5_with_g\n; input: page:int, genres:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-23476\n; provenance.tools: ['fetch_manga']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'fetch_manga', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: page:int, genres:str\n\n%c0 = FETCH(page, genres)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": "Issue(code='STRUCT', severity='error', msg=\"bad input name 'page' (must be '@name')\", node=None); Issue(code='STRUCT', severity='error', msg=\"bad input name 'genres' (must be '@name')\", node=None); Is"
+        }
+      },
+      "G1": {
+        "id": "xlam-1107",
+        "arm": "G1",
+        "latency_s": 14.39,
+        "text": "; TaskIR v0.1  module=what_manga_are_available_on_page_5_with_g\n; input: page:int, genres:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-23476\n; provenance.tools: ['fetch_manga']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'fetch_manga', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @page: int, @genres: str\n\n%c0 = FETCH(@page, @genres)\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.0,
+          "error": "Issue(code='ARITY', severity='error', msg='FETCH expects <= 1 inputs, got 2', node='%c0'); Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@page: int) incompatible with FETCH signature (S"
+        },
+        "constraint_stats": {
+          "steps": 150,
+          "mean_banned": 28574.0,
+          "forced_steps": 1,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 0,
+          "fsm_violation": null
+        }
+      },
+      "G2": {
+        "id": "xlam-1107",
+        "arm": "G2",
+        "latency_s": 13.12,
+        "text": "; TaskIR v0.1  module=what_manga_are_available_on_page_5_with_g\n; input: page:int, genres:str\n; provenance.source: toolbench\n; provenance.task_id: xlam-23476\n; provenance.tools: ['fetch_manga']\n; provenance.view: plan\n; provenance.lowering: [{'tool': 'fetch_manga', 'skill': 'FETCH', 'mapping_kind': 'heuristic', 'matched_rule': 'fetch|download|get_|http|url', 'confidence': 0.7}]\ninputs: @page: int, @genres: str\n\n%c0 = FETCH(@page, genres=\"Horror,Thriller\")\n\nreturn %c0\n",
+        "judge": {
+          "parse_ok": true,
+          "valid": false,
+          "opseq_match": true,
+          "param_key_acc": 0.5,
+          "error": "Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@page: int) incompatible with FETCH signature (Str)', node='%c0')"
+        },
+        "constraint_stats": {
+          "steps": 155,
+          "mean_banned": 29131.0,
+          "forced_steps": 3,
+          "deadlocks": [],
+          "dup_forced_extensions": 0,
+          "type_pref_applied": 0,
+          "type_pref_fallbacks": 9,
+          "fsm_violation": null
+        }
+      }
+    }
+  }
+}
