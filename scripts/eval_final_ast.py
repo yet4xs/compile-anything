@@ -11,6 +11,7 @@ for _n in ('Sequence', 'Mapping', 'MutableMapping', 'Callable', 'Iterable'):
     if not hasattr(collections, _n):
         setattr(collections, _n, getattr(collections.abc, _n))
 
+import torch
 from bfcl_eval.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl_eval.constants.enums import Language
 
@@ -110,7 +111,6 @@ def run_inference(model, tok, data, batch=8):
 
 
 def main():
-    import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import PeftModel
 
