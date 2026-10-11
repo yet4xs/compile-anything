@@ -1,0 +1,66 @@
+{
+  "phase": "7C-2",
+  "title": "Large-scale typed SSA online decoding evaluation",
+  "frozen_code_commit": "3b3977c",
+  "baseline_commit": "8e84561",
+  "frozen_at": "2026-10-09",
+  "attestation": {
+    "rules_frozen_before_confirmation_run": true,
+    "retrained_composer": false,
+    "dev30_used_for_tuning": "the 30 development samples from 7C-1 (all tuning of COMMENT_CAP, EOS gate, cache keys, allowed-char sets happened there)",
+    "g3_type_list_source": "ISA signatures (src/isa/registry.py) + input-type literals observed across data/compiler_corpus_v4 + spec scalars; frozen in code at 3b3977c"
+  },
+  "arms": {
+    "G0": "level 0 - unconstrained greedy baseline",
+    "G1": "level 1 - grammar FSM + EOS gate + comment cap (COMMENT_CAP=800)",
+    "G2a": "level 2 - G1 + defined-before-use + arity cap + duplicate-def forced extension (max 8)",
+    "G2": "level 3 - G2a + Skill-ISA type preference (identical behavior to 7C-1 G2; level constant refactor only)",
+    "G3": "level 4 - G2 + canonical input-type literal trie (name normalization only; no semantic-compatibility claim)"
+  },
+  "canonical_input_types_g3": [
+    "Any", "Bool", "Date", "Dict", "Entity", "Float", "Int", "Json",
+    "Str", "Table",
+    "List[Any]", "List[Bool]", "List[Date]", "List[Dict]", "List[Entity]",
+    "List[Float]", "List[Int]", "List[Json]", "List[Str]", "List[Table]"
+  ],
+  "fsm_parameters": {
+    "comment_cap_chars": 800,
+    "dup_extension_max": 8,
+    "deadlock_policy": "return UNMASKED scores (best-effort; every event logged and reported as a rate)",
+    "eos_policy": "legal only with >=1 node and a completed return reference (trailing newline not required)"
+  },
+  "decoding": {
+    "base_model": "weights/Qwen2.5-3B-Instruct",
+    "adapters": "runs/phase6b/composer_C2_{s42,s43,s44}/final",
+    "strategy": "greedy (do_sample=False), max_new_tokens=512, prompt max_length=2048, batch=1 (all arms)",
+    "prompt": "SYSTEM_PROMPT from src/compiler/prompt_format.py + task + gold capability blocks (identical to 7C-0.1/7C-1)"
+  },
+  "datasets": {
+    "development_30": "first 30 gold-bearing tasks in data/phase6b_resolver/common_eval_tasks.jsonl (13 tbs + 17 xlam); includes ALL 30 tbs tasks in the matched set",
+    "confirmation_150": "data/phase7/confirmation_ids.json - stratified by source x ref-opseq-depth, random.seed(20261009), drawn from the 964 remaining tasks",
+    "confirmation_limitation": "the 964-task pool is entirely xlam; all tbs tasks were consumed by dev-30, so the confirmation set cannot cover the tbs distribution. tbs evidence remains dev-30-only.",
+    "error_stratification_note": "error-type stratification is not computable a priori on unrun samples; approximated by source (which carried the dev-30 error profile)"
+  },
+  "metrics": {
+    "primary": "Valid AND OpSeq (E2E); invalid programs score 0",
+    "secondary": ["Parse Rate", "Validator Pass", "Skill F1 E2E (multiset over policy-op-filtered ops)", "EXEC_ACTION Recall E2E (count-limited)", "Param-key Jaccard E2E (fixed full-set denominator; conditional variant reported separately; pairing over filtered node sequence)"],
+    "safety": ["deadlock rate", "FSM violation rate", "forced token decisions", "dup forced extensions", "type-pref applications/fallbacks"],
+    "efficiency": ["generated tokens", "P50/P95 latency"],
+    "statistics": ["paired bootstrap 95% CI (10k resamples)", "exact McNemar", "contrasts: G1-G0, G2a-G1, G2-G2a, G3-G2"]
+  },
+  "reporting_policy": {
+    "dev30": "development results (tuned on)",
+    "confirmation_150": "held-out confirmation (primary evidence)",
+    "all_994": "descriptive only, never described as untouched",
+    "note": "all-994 merge deferred until confirmation shows no severe degradation (advisor Task 5 gate)"
+  },
+  "tests": [
+    "tests/test_online_constrained_decoder.py (24 tests, CPU)",
+    "tests/test_token_mask_real_tokenizer.py (5 tests, requires weights/)"
+  ],
+  "outputs": [
+    "results/phase7/online_large_runs.jsonl (checkpointed per seed/id/arm)",
+    "results/phase7/online_constrained_large.json (aggregates + paired stats)",
+    "docs/phase7/results-online-constrained-large.md"
+  ]
+}
