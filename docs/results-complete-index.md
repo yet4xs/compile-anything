@@ -186,3 +186,5 @@
 | Phase 6B | `docs/phase6/results-phase6b1.md`~`results-6b3-external.md` | `results/phase6b/` |
 | BFCL Track A | `docs/results-bfcl-track-a.md` | `results/bfcl_track/` |
 | AgentBoard | `docs/results-agentboard-first-test.md` | `results/agentboard/` |
+| Phase 7B 修复 | `docs/phase7/`（局部修复负结果：全量重生成占优） | `results/phase7/` |
+| Phase 7C-0.1 约束生成 v2 | `docs/phase7/results-constrained-generation-v2.md`（D1 无损 72/72；D2 弱种子 +3.3pp；v1 全臂 13.3% 系解析器 bug，作废） | `results/phase7/constrained_generation_v2.json`, `tests/test_constrained_decoder.py` |

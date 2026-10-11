@@ -1,17 +1,20 @@
-"""SSA-Constrained TaskIR Generation — prevents invalid programs at decode time.
+"""[DEPRECATED — Phase 7C-0.1] Use src/compiler/constrained_assembly.py instead.
+
+This v1 module parsed model output with a custom regex instead of the official
+src/ir/parser.py::parse_text(), which corrupted valid programs (D1 was NOT
+lossless) and rejected legal numeric SSA ids like %1. Its "decode time"
+framing was also inaccurate: constraints were applied AFTER a full free-form
+completion, i.e. post-hoc constrained assembly, not token-level constrained
+decoding.
+
+Retained for history; do not import in new code.
+---
+SSA-Constrained TaskIR Generation — prevents invalid programs at decode time.
 
 Three constraint levels:
   Level 1 (Grammar): TaskIR text format, SSA ID format, return structure
   Level 2 (Typed SSA): def-before-use, Skill ISA operand types/arity, no duplicate IDs
   Level 3 (Control/Effect): after/guard/retry static legality
-
-Implementation approach: operation-level structured generation.
-The model generates the next Skill ISA operation + parameters;
-the constraint engine validates and assembles the node.
-
-This differs from token-level constrained decoding (PICARD, SynCode):
-we operate at the semantic level (which operation to apply next),
-not at the token level (which tokens are allowed).
 """
 from __future__ import annotations
 import re, json
