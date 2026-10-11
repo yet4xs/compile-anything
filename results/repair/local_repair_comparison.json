@@ -1,0 +1,584 @@
+{
+  "n_samples": 28,
+  "R0": {
+    "l1": 1,
+    "l2": 0,
+    "tokens": 0,
+    "details": [
+      {
+        "id": "xlam-32067",
+        "l1": false,
+        "fixes": 2
+      },
+      {
+        "id": "xlam-18011",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-46283",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-24985",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-17443",
+        "l1": false,
+        "fixes": 1
+      },
+      {
+        "id": "xlam-50242",
+        "l1": false,
+        "fixes": 1
+      },
+      {
+        "id": "xlam-14570",
+        "l1": false,
+        "fixes": 1
+      },
+      {
+        "id": "xlam-33667",
+        "l1": false,
+        "fixes": 3
+      },
+      {
+        "id": "xlam-2538",
+        "l1": false,
+        "fixes": 3
+      },
+      {
+        "id": "xlam-28534",
+        "l1": false,
+        "fixes": 1
+      },
+      {
+        "id": "xlam-16888",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-1107",
+        "l1": false,
+        "fixes": 3
+      },
+      {
+        "id": "xlam-20833",
+        "l1": false,
+        "fixes": 1
+      },
+      {
+        "id": "xlam-1555",
+        "l1": false,
+        "fixes": 3
+      },
+      {
+        "id": "xlam-37844",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-4946",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-22058",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-54328",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-20235",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-53429",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-12974",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-11831",
+        "l1": true,
+        "fixes": 3
+      },
+      {
+        "id": "xlam-28114",
+        "l1": false,
+        "fixes": 2
+      },
+      {
+        "id": "xlam-37838",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-43920",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-8763",
+        "l1": false,
+        "fixes": 1
+      },
+      {
+        "id": "xlam-26494",
+        "l1": false,
+        "fixes": 0
+      },
+      {
+        "id": "xlam-50185",
+        "l1": false,
+        "fixes": 0
+      }
+    ]
+  },
+  "R1": {
+    "l1": 28,
+    "l2": 26,
+    "avg_tokens": 223.07142857142858,
+    "details": [
+      {
+        "id": "xlam-32067",
+        "l1": false,
+        "l2": false,
+        "tokens": 303,
+        "latency_ms": 13711.85278892517
+      },
+      {
+        "id": "xlam-18011",
+        "l1": false,
+        "l2": false,
+        "tokens": 251,
+        "latency_ms": 10974.430322647095
+      },
+      {
+        "id": "xlam-46283",
+        "l1": false,
+        "l2": false,
+        "tokens": 253,
+        "latency_ms": 11038.69915008545
+      },
+      {
+        "id": "xlam-24985",
+        "l1": false,
+        "l2": false,
+        "tokens": 166,
+        "latency_ms": 7209.36918258667
+      },
+      {
+        "id": "xlam-17443",
+        "l1": false,
+        "l2": false,
+        "tokens": 278,
+        "latency_ms": 12104.702234268188
+      },
+      {
+        "id": "xlam-50242",
+        "l1": false,
+        "l2": false,
+        "tokens": 294,
+        "latency_ms": 12768.021821975708
+      },
+      {
+        "id": "xlam-14570",
+        "l1": false,
+        "l2": false,
+        "tokens": 202,
+        "latency_ms": 8765.052318572998
+      },
+      {
+        "id": "xlam-33667",
+        "l1": false,
+        "l2": false,
+        "tokens": 302,
+        "latency_ms": 13158.211946487427
+      },
+      {
+        "id": "xlam-2538",
+        "l1": false,
+        "l2": false,
+        "tokens": 158,
+        "latency_ms": 6859.807729721069
+      },
+      {
+        "id": "xlam-28534",
+        "l1": false,
+        "l2": false,
+        "tokens": 155,
+        "latency_ms": 6713.033437728882
+      },
+      {
+        "id": "xlam-16888",
+        "l1": false,
+        "l2": false,
+        "tokens": 151,
+        "latency_ms": 6569.101572036743
+      },
+      {
+        "id": "xlam-1107",
+        "l1": false,
+        "l2": false,
+        "tokens": 166,
+        "latency_ms": 7203.59468460083
+      },
+      {
+        "id": "xlam-20833",
+        "l1": false,
+        "l2": false,
+        "tokens": 311,
+        "latency_ms": 13474.639177322388
+      },
+      {
+        "id": "xlam-1555",
+        "l1": false,
+        "l2": false,
+        "tokens": 168,
+        "latency_ms": 7335.62707901001
+      },
+      {
+        "id": "xlam-37844",
+        "l1": false,
+        "l2": false,
+        "tokens": 162,
+        "latency_ms": 7055.56058883667
+      },
+      {
+        "id": "xlam-4946",
+        "l1": false,
+        "l2": false,
+        "tokens": 270,
+        "latency_ms": 11699.347257614136
+      },
+      {
+        "id": "xlam-22058",
+        "l1": false,
+        "l2": false,
+        "tokens": 333,
+        "latency_ms": 14448.938608169556
+      },
+      {
+        "id": "xlam-54328",
+        "l1": false,
+        "l2": false,
+        "tokens": 292,
+        "latency_ms": 12680.965423583984
+      },
+      {
+        "id": "xlam-20235",
+        "l1": false,
+        "l2": false,
+        "tokens": 245,
+        "latency_ms": 10693.408012390137
+      },
+      {
+        "id": "xlam-53429",
+        "l1": false,
+        "l2": false,
+        "tokens": 165,
+        "latency_ms": 7157.904624938965
+      },
+      {
+        "id": "xlam-12974",
+        "l1": false,
+        "l2": false,
+        "tokens": 158,
+        "latency_ms": 6838.4435176849365
+      },
+      {
+        "id": "xlam-11831",
+        "l1": false,
+        "l2": false,
+        "tokens": 255,
+        "latency_ms": 11102.073907852173
+      },
+      {
+        "id": "xlam-28114",
+        "l1": false,
+        "l2": false,
+        "tokens": 163,
+        "latency_ms": 7172.722816467285
+      },
+      {
+        "id": "xlam-37838",
+        "l1": false,
+        "l2": false,
+        "tokens": 255,
+        "latency_ms": 11104.057788848877
+      },
+      {
+        "id": "xlam-43920",
+        "l1": false,
+        "l2": false,
+        "tokens": 154,
+        "latency_ms": 6678.373336791992
+      },
+      {
+        "id": "xlam-8763",
+        "l1": false,
+        "l2": false,
+        "tokens": 247,
+        "latency_ms": 10758.3589553833
+      },
+      {
+        "id": "xlam-26494",
+        "l1": false,
+        "l2": false,
+        "tokens": 235,
+        "latency_ms": 10196.788787841797
+      },
+      {
+        "id": "xlam-50185",
+        "l1": false,
+        "l2": false,
+        "tokens": 154,
+        "latency_ms": 6688.211917877197
+      }
+    ]
+  },
+  "R2": {
+    "l1": 0,
+    "l2": 0,
+    "avg_tokens": 1054.7142857142858,
+    "details": [
+      {
+        "id": "xlam-32067",
+        "l1": false,
+        "l2": false,
+        "tokens": 1334,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-18011",
+        "l1": false,
+        "l2": false,
+        "tokens": 1076,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-46283",
+        "l1": false,
+        "l2": false,
+        "tokens": 1350,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-24985",
+        "l1": false,
+        "l2": false,
+        "tokens": 950,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-17443",
+        "l1": false,
+        "l2": false,
+        "tokens": 1098,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-50242",
+        "l1": false,
+        "l2": false,
+        "tokens": 1138,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-14570",
+        "l1": false,
+        "l2": false,
+        "tokens": 1084,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-33667",
+        "l1": false,
+        "l2": false,
+        "tokens": 1266,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-2538",
+        "l1": false,
+        "l2": false,
+        "tokens": 1046,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-28534",
+        "l1": false,
+        "l2": false,
+        "tokens": 982,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-16888",
+        "l1": false,
+        "l2": false,
+        "tokens": 868,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-1107",
+        "l1": false,
+        "l2": false,
+        "tokens": 1030,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-20833",
+        "l1": false,
+        "l2": false,
+        "tokens": 1202,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-1555",
+        "l1": false,
+        "l2": false,
+        "tokens": 1006,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-37844",
+        "l1": false,
+        "l2": false,
+        "tokens": 1012,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-4946",
+        "l1": false,
+        "l2": false,
+        "tokens": 1330,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-22058",
+        "l1": false,
+        "l2": false,
+        "tokens": 1110,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-54328",
+        "l1": false,
+        "l2": false,
+        "tokens": 1138,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-20235",
+        "l1": false,
+        "l2": false,
+        "tokens": 1042,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-53429",
+        "l1": false,
+        "l2": false,
+        "tokens": 868,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-12974",
+        "l1": false,
+        "l2": false,
+        "tokens": 978,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-11831",
+        "l1": false,
+        "l2": false,
+        "tokens": 1056,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-28114",
+        "l1": false,
+        "l2": false,
+        "tokens": 998,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-37838",
+        "l1": false,
+        "l2": false,
+        "tokens": 948,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-43920",
+        "l1": false,
+        "l2": false,
+        "tokens": 884,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-8763",
+        "l1": false,
+        "l2": false,
+        "tokens": 1020,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-26494",
+        "l1": false,
+        "l2": false,
+        "tokens": 834,
+        "changed": [],
+        "attempts": 2
+      },
+      {
+        "id": "xlam-50185",
+        "l1": false,
+        "l2": false,
+        "tokens": 884,
+        "changed": [],
+        "attempts": 2
+      }
+    ]
+  }
+}
