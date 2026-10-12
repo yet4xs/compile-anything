@@ -56,20 +56,38 @@
 - **约束相对开销:1.8× → 1.38×**(G0 基线 9.35s);吞吐 13.1 tok/s(G0 ~24 tok/s)
 - 剩余开销主要在每步 `argmax().item()` 的 GPU 同步与 Python 逐步调度;进一步压缩需向量化批内解码,超出本轮范围
 
-## Task 4 — 跨来源验证(τ³,运行中)
+## Task 4 — 跨来源验证(τ³,完成)
 
-设计:τ³(约束器开发中从未使用)× 两协议 × G0/G1/G2:
-- **Protocol A(oracle capabilities)**:能力块 = 该 case 的 gold 参考动作工具(canonicalizer 标注)
-- **Protocol B(learned)**:完整冻结模块化链(canonicalizer→resolver→composer,同 6B-3,无任务级 gold)
-- 指标:Parse / Valid / EXEC_ACTION 输出率 / EXEC_ACTION 参考召回(与 6B-3 的 60.23% 基线同口径)
-- 抽样:100 任务按域分层(airline/banking/retail/telecom),seed=20261012
+设计:τ³(**约束器开发中从未使用**)× 两协议 × G0/G1/G2;100 任务按域分层(airline/banking/retail/telecom,seed=20261012);Composer 冻结 s42,batch=1 贪心 + 优化后在线解码器。
 
-{{CROSS_SOURCE_RESULTS}}
+### 结果(Valid%,n=100)
+
+| 协议 | G0 | G1 | G2 | 转移 |
+|------|-----|-----|-----|------|
+| A oracle(gold 参考工具) | 90.0 | 90.0 | **94.0** | G1: fixed 2 / **broken 2**;G2: fixed 6 / broken 2 |
+| B learned(完整冻结模块化链,无 gold) | 94.0 | **96.0** | **96.0** | G1: 2/0;G2: 2/0 |
+
+### 发现
+
+1. **跨来源无退化 + 净提升**:learned 全管线 94→96%,oracle 90→94%(G2)。方向与确认集一致。
+2. **Typed SSA 的独立增益在跨来源复现**:τ³-A 上 G2−G1 = +4pp(净),叠加确认集的 +1.6pp(7/0,聚类 CI [0.44,3.11])——两个来源方向一致。
+3. **诚实记录:G1 在 τ³ oracle 协议上出现 2 个 BROKEN**(此前所有实验为零)——纯文法门控在长指令 τ³ 任务上有小的破坏模式;G2 的 SSA 约束抵消了它(净 +4)。这是"文法约束不是免费午餐"的首次直接证据,强化了 Typed SSA 的互补性论证。
+4. **剩余失败模式**:`no nodes found` 6 例(字符串内 runaway——注释有 800 字符上限,字符串没有)、未闭合括号 1、悬空 return 1、UNDEFINED_REF 1。下一个杠杆是字符串/值域 runaway 防护,按 advisor 指示不追求 100%。
+5. **EA 指标错配(如实说明)**:τ³ gold 工具(`get_user_details` 等)被 canonicalizer 与规则 lifter 一致标为语义技能(FETCH 等),Composer 相应生成 FETCH 节点——EXEC_ACTION 率/召回在 oracle 协议下 ≈0 是指标口径问题,不是行为错误;6B-3 的 60.23% 出自 learned 选择更多工具的协议,不可直接对比。
+
+### Task 6 裁决(按预冻结四条)
+
+| 标准 | 证据 | 判定 |
+|------|------|------|
+| 1. G1 明显提升 E2E | 确认集 +5.3pp(Holm 校正后 p=4.8e-07);τ³-B +2pp(2/0);**τ³-A 净 0(2 fixed/2 broken)** | ✓(主证据稳固;oracle-τ³ 有小破坏模式) |
+| 2. G2 相对 G1 可重复独立收益 | 确认集 +1.6pp(7/0);τ³-A +4pp(净) | ✓(两来源方向一致) |
+| 3. learned 全管线无严重退化 | 94→96%,零破坏 | ✓ |
+| 4. 延迟可接受/已优化 | 1.8×→1.38×(字节一致) | ✓ |
+
+**结论:四条全部满足,支持把 Typed SSA online constraint propagation 写为算法贡献(第二层),但效应量如实标注为 modest;系统层发现(不重训练的弱种子恢复 + 被测种子离散降低)仍是第三层最强证据。** τ³-A 上 G1 的 2 例破坏与字符串 runaway 是已识别的后续工作。
 
 ## 论文定位(按 advisor 分层)
 
 1. **系统架构层**:TaskIR + Skill ISA + Validator + Runtime
-2. **方法层**:动态 SSA/操作数/类型约束进入在线生成——初步证据优于纯文法,幅度较小(本文件 Task 2 口径)
-3. **实验发现层(最强)**:不重训练,在线编译器约束改善弱种子 E2E 并缩小被测种子间离散;跨来源验证见 Task 4
-
-Task 6 裁决(跨来源结果出来后):若 G1 明显提升、G2 相对 G1 可重复、learned 管线无严重退化、延迟可接受 → Typed SSA 升级算法贡献;否则定位为可靠性增强模块,核心创新转向可靠性/成本感知的联合编译优化。
+2. **方法层**:动态 SSA/操作数/类型约束进入在线生成——两个来源(xLAM 确认集 + τ³ 跨来源)方向一致的独立增益,幅度 modest;纯文法在跨来源 oracle 上有小的破坏模式,SSA 约束抵消
+3. **实验发现层(最强)**:不重训练,在线编译器约束改善弱种子 E2E(+18pp)并缩小被测种子间离散(std 14.3→6.5);全管线 learned 96% valid;开销 1.38× 可优化

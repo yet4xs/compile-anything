@@ -188,5 +188,6 @@
 | AgentBoard | `docs/results-agentboard-first-test.md` | `results/agentboard/` |
 | Phase 7B 修复 | `docs/phase7/`（局部修复负结果：全量重生成占优） | `results/phase7/` |
 | Phase 7C-0.1 约束生成 v2 | `docs/phase7/results-constrained-generation-v2.md`（D1 无损 72/72；D2 弱种子 +3.3pp；v1 全臂 13.3% 系解析器 bug，作废） | `results/phase7/constrained_generation_v2.json`, `tests/test_constrained_decoder.py` |
+| Phase 7C-2.1 证据强化 | docs/phase7/paper-evidence-hardening.md（聚类统计+Holm校正；快速路径1.8×→1.38×字节一致；τ³跨来源A/B协议：G2独立+4pp复现、learned全管线96%、G1在oracle-τ³有2例破坏被G2抵消） | results/phase7/clustered_statistics.json, fast_mask_verification.json, online_cross_source.json |
 | Phase 7C-2 大样本验证 | docs/phase7/results-online-constrained-large.md（确认集150×3种子：E2E 82.9→89.8，种子方差减半 30.7→14.7pp，零破坏；G1主效应24/0 p<0.0001，Typed SSA独立+1.6pp 7/0；G3规范化=负结果） | results/phase7/online_constrained_large.json, online_large_runs.jsonl, experiments/phase7/online_decoder_manifest.json |
 | Phase 7C-1 在线约束解码 | `docs/phase7/results-online-constrained.md`（s43: valid 60→80(G1)→83.3%(G2)，parse 100%，BROKEN=0，参数精度反升；对照事后装配 63.3%） | `results/phase7/online_constrained.json`, `src/compiler/online_constrained_decoder.py`, `tests/test_online_constrained_decoder.py` |
