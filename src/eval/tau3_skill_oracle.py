@@ -151,3 +151,44 @@ def semantic_match(pred_skill: str, pred_params: dict,
         return True  # generic match if no action names to compare
 
     return False
+
+
+# =====================================================================
+# Phase 8A Task 2: verified semantic oracle accessors
+# =====================================================================
+
+def get_tool_oracle(domain: str, tool_name: str) -> dict:
+    """Hand-verified oracle entry for an agent-pool tool, merged with the
+    AST registry facts (params/schema/evidence line). Unknown mappings
+    return confidence='unknown' and are NEVER auto-counted as correct."""
+    from src.eval.tau3_semantic_oracle_data import TAU3_SEMANTIC_ORACLE
+    entry = dict(TAU3_SEMANTIC_ORACLE.get((domain, tool_name), {}))
+    entry.setdefault("semantic_skill", None)
+    entry.setdefault("effect_class", None)
+    entry.setdefault("policy_guarded", None)
+    entry.setdefault("evidence", "no entry")
+    entry.setdefault("confidence", "unknown")
+    from src.eval.tau3_semantic_oracle_data import TAU3_SEMANTIC_ORACLE
+    entry["agent_callable"] = (domain, tool_name) in TAU3_SEMANTIC_ORACLE
+    return entry
+
+
+def oracle_semantic_plan(domain: str, ref_action_names: list) -> list:
+    """Lower reference actions to the VERIFIED semantic plan.
+
+    Uses only hand-verified/heuristic oracle entries; tools outside the
+    agent pool (e.g. user-side) are marked so the scorer can cap the task
+    as partially infeasible instead of scoring the model against
+    uncallable tools."""
+    from src.eval.tau3_semantic_oracle_data import TAU3_SEMANTIC_ORACLE
+    plan = []
+    for name in ref_action_names:
+        o = get_tool_oracle(domain, name)
+        plan.append({
+            "tool": name,
+            "semantic_skill": o["semantic_skill"],
+            "effect_class": o["effect_class"],
+            "confidence": o["confidence"],
+            "agent_callable": (domain, name) in TAU3_SEMANTIC_ORACLE,
+        })
+    return plan

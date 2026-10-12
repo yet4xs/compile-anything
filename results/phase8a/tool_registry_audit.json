@@ -1,0 +1,3534 @@
+{
+  "domains": {
+    "airline": {
+      "total": 14,
+      "runtime_pool": 14,
+      "by_type": {
+        "write": 6,
+        "generic": 2,
+        "read": 6
+      },
+      "mutating": 6,
+      "discoverable": 0,
+      "missing_description": 0,
+      "params_total": 36,
+      "params_missing_doc": 0,
+      "tools": [
+        {
+          "name": "book_reservation",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Book a reservation.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user to book the reservation such as 'sara_doe_496'`.",
+              "optional": false
+            },
+            {
+              "name": "origin",
+              "type": "str",
+              "doc": "The IATA code for the origin city such as 'SFO'.",
+              "optional": false
+            },
+            {
+              "name": "destination",
+              "type": "str",
+              "doc": "The IATA code for the destination city such as 'JFK'.",
+              "optional": false
+            },
+            {
+              "name": "flight_type",
+              "type": "FlightType",
+              "doc": "The type of flight such as 'one_way' or 'round_trip'.",
+              "optional": false
+            },
+            {
+              "name": "cabin",
+              "type": "CabinClass",
+              "doc": "The cabin class such as 'basic_economy', 'economy', or 'business'.",
+              "optional": false
+            },
+            {
+              "name": "flights",
+              "type": "List[FlightInfo | dict]",
+              "doc": "An array of objects containing details about each piece of flight.",
+              "optional": false
+            },
+            {
+              "name": "passengers",
+              "type": "List[Passenger | dict]",
+              "doc": "An array of objects containing details about each passenger.",
+              "optional": false
+            },
+            {
+              "name": "payment_methods",
+              "type": "List[Payment | dict]",
+              "doc": "An array of objects containing details about each payment method.",
+              "optional": false
+            },
+            {
+              "name": "total_baggages",
+              "type": "int",
+              "doc": "The total number of baggage items to book the reservation.",
+              "optional": false
+            },
+            {
+              "name": "nonfree_baggages",
+              "type": "int",
+              "doc": "The number of non-free baggage items to book the reservation.",
+              "optional": false
+            },
+            {
+              "name": "insurance",
+              "type": "Insurance",
+              "doc": "Whether the reservation has insurance.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:187",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "calculate",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Calculate the result of a mathematical expression.",
+          "params": [
+            {
+              "name": "expression",
+              "type": "str",
+              "doc": "The mathematical expression to calculate, such as '2 + 2'. The expression can contain numbers, operators (+, -, *, /), parentheses, and spaces.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:321",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "cancel_reservation",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Cancel the whole reservation.",
+          "params": [
+            {
+              "name": "reservation_id",
+              "type": "str",
+              "doc": "The reservation ID, such as 'ZFA04Y'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:339",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_flight_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the status of a flight.",
+          "params": [
+            {
+              "name": "flight_number",
+              "type": "str",
+              "doc": "The flight number.",
+              "optional": false
+            },
+            {
+              "name": "date",
+              "type": "str",
+              "doc": "The date of the flight.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:721",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_reservation_details",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the details of a reservation.",
+          "params": [
+            {
+              "name": "reservation_id",
+              "type": "str",
+              "doc": "The reservation ID, such as '8JX2WO'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:371",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_user_details",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the details of a user, including their reservations.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user ID, such as 'sara_doe_496'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:387",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "list_all_airports",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Returns a list of all available airports.",
+          "params": [],
+          "evidence": "AST:tools.py:403",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "search_direct_flight",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Search for direct flights between two cities on a specific date.",
+          "params": [
+            {
+              "name": "origin",
+              "type": "str",
+              "doc": "The origin city airport in three letters, such as 'JFK'.",
+              "optional": false
+            },
+            {
+              "name": "destination",
+              "type": "str",
+              "doc": "The destination city airport in three letters, such as 'LAX'.",
+              "optional": false
+            },
+            {
+              "name": "date",
+              "type": "str",
+              "doc": "The date of the flight in the format 'YYYY-MM-DD', such as '2024-01-01'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:433",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "search_onestop_flight",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Search for one-stop flights between two cities on a specific date.",
+          "params": [
+            {
+              "name": "origin",
+              "type": "str",
+              "doc": "The origin city airport in three letters, such as 'JFK'.",
+              "optional": false
+            },
+            {
+              "name": "destination",
+              "type": "str",
+              "doc": "The destination city airport in three letters, such as 'LAX'.",
+              "optional": false
+            },
+            {
+              "name": "date",
+              "type": "str",
+              "doc": "The date of the flight in the format 'YYYY-MM-DD', such as '2024-05-01'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:452",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "send_certificate",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Send a certificate to a user. Be careful!",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user to book the reservation, such as 'sara_doe_496'.",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "int",
+              "doc": "The amount of the certificate to send.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:488",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "transfer_to_human_agents",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Transfer the user to a human agent, with a summary of the user's issue. Only transfer if -  the user explicitly asks for a human agent -  given the policy and the available tools, you cannot solve the user's issue.",
+          "params": [
+            {
+              "name": "summary",
+              "type": "str",
+              "doc": "A summary of the user's issue.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:532",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "update_reservation_baggages",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Update the baggage information of a reservation.",
+          "params": [
+            {
+              "name": "reservation_id",
+              "type": "str",
+              "doc": "The reservation ID, such as 'ZFA04Y'",
+              "optional": false
+            },
+            {
+              "name": "total_baggages",
+              "type": "int",
+              "doc": "The updated total number of baggage items included in the reservation.",
+              "optional": false
+            },
+            {
+              "name": "nonfree_baggages",
+              "type": "int",
+              "doc": "The updated number of non-free baggage items included in the reservation.",
+              "optional": false
+            },
+            {
+              "name": "payment_id",
+              "type": "str",
+              "doc": "The payment id stored in user profile, such as 'credit_card_7815826', 'gift_card_7815826', 'certificate_7815826'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:548",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "update_reservation_flights",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Update the flight information of a reservation.",
+          "params": [
+            {
+              "name": "reservation_id",
+              "type": "str",
+              "doc": "The reservation ID, such as 'ZFA04Y'.",
+              "optional": false
+            },
+            {
+              "name": "cabin",
+              "type": "CabinClass",
+              "doc": "The cabin class of the reservation",
+              "optional": false
+            },
+            {
+              "name": "flights",
+              "type": "List[FlightInfo | dict]",
+              "doc": "An array of objects containing details about each piece of flight in the ENTIRE new reservation. Even if the a flight segment is not changed, it should still be included in the array.",
+              "optional": false
+            },
+            {
+              "name": "payment_id",
+              "type": "str",
+              "doc": "The payment id stored in user profile, such as 'credit_card_7815826', 'gift_card_7815826', 'certificate_7815826'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:592",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "update_reservation_passengers",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Update the passenger information of a reservation.",
+          "params": [
+            {
+              "name": "reservation_id",
+              "type": "str",
+              "doc": "The reservation ID, such as 'ZFA04Y'.",
+              "optional": false
+            },
+            {
+              "name": "passengers",
+              "type": "List[Passenger | dict]",
+              "doc": "An array of objects containing details about each passenger.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:693",
+          "source_file": "tools.py",
+          "side": "agent"
+        }
+      ]
+    },
+    "banking_knowledge": {
+      "total": 72,
+      "runtime_pool": 24,
+      "by_type": {
+        "read": 23,
+        "write": 43,
+        "generic": 6
+      },
+      "mutating": 44,
+      "discoverable": 48,
+      "missing_description": 0,
+      "params_total": 183,
+      "params_missing_doc": 0,
+      "tools": [
+        {
+          "name": "KB_search",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Search the knowledge base for relevant documents.",
+          "params": [
+            {
+              "name": "query",
+              "type": "str",
+              "doc": "The search query to find relevant documents",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:retrieval_mixins.py:23",
+          "source_file": "retrieval_mixins.py",
+          "side": "agent"
+        },
+        {
+          "name": "activate_debit_card_8291",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Activate a NEW debit card for a customer. Use ONLY for first-time cards on a checking account (issue_reason = 'new_account' or 'first_card'). For replacement or reissued cards, use the appropriate variant.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to activate",
+              "optional": false
+            },
+            {
+              "name": "last_4_digits",
+              "type": "str",
+              "doc": "Last 4 digits of the card number (for verification)",
+              "optional": false
+            },
+            {
+              "name": "expiration_date",
+              "type": "str",
+              "doc": "Card expiration date in MM/YY format",
+              "optional": false
+            },
+            {
+              "name": "cvv",
+              "type": "str",
+              "doc": "3-digit CVV from the back of the card",
+              "optional": false
+            },
+            {
+              "name": "pin",
+              "type": "str",
+              "doc": "4-digit PIN chosen by the customer",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3264",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "activate_debit_card_8292",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Activate a REPLACEMENT debit card. Use ONLY for cards replacing lost, stolen, or fraud-suspected cards (issue_reason = 'lost', 'stolen', or 'fraud'). For new or reissued cards, use the appropriate variant.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to activate",
+              "optional": false
+            },
+            {
+              "name": "last_4_digits",
+              "type": "str",
+              "doc": "Last 4 digits of the card number (for verification)",
+              "optional": false
+            },
+            {
+              "name": "expiration_date",
+              "type": "str",
+              "doc": "Card expiration date in MM/YY format",
+              "optional": false
+            },
+            {
+              "name": "cvv",
+              "type": "str",
+              "doc": "3-digit CVV from the back of the card",
+              "optional": false
+            },
+            {
+              "name": "pin",
+              "type": "str",
+              "doc": "4-digit PIN chosen by the customer",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3335",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "activate_debit_card_8293",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Activate a REISSUED debit card. Use ONLY for cards reissued due to expiration, damage, design upgrade, or bank-initiated replacement (issue_reason = 'expired', 'damaged', 'upgrade', or 'bank_reissue'). For new or replacement cards, use the appropriate variant.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to activate",
+              "optional": false
+            },
+            {
+              "name": "last_4_digits",
+              "type": "str",
+              "doc": "Last 4 digits of the card number (for verification)",
+              "optional": false
+            },
+            {
+              "name": "expiration_date",
+              "type": "str",
+              "doc": "Card expiration date in MM/YY format",
+              "optional": false
+            },
+            {
+              "name": "cvv",
+              "type": "str",
+              "doc": "3-digit CVV from the back of the card",
+              "optional": false
+            },
+            {
+              "name": "pin",
+              "type": "str",
+              "doc": "4-digit PIN chosen by the customer",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3418",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "apply_checking_account_credit_5829",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Apply a credit to a customer's checking account.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The checking account ID to credit",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "float",
+              "doc": "The positive dollar amount to credit (must be greater than 0)",
+              "optional": false
+            },
+            {
+              "name": "credit_type",
+              "type": "str",
+              "doc": "The type of credit: 'rebate_credit' for missing rebates, 'fee_refund' for incorrect fee charges",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2695",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "apply_credit_card_account_flag_6147",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Apply a flag to a customer's credit card account. Flags can include annual fee waivers, promotional APR rates, rewards bonuses, or other account-level modifiers. Each flag has an effective date and expiration date.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to apply the flag to",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "flag_type",
+              "type": "str",
+              "doc": "Type of flag to apply. Must be one of: 'annual_fee_waived', 'promotional_apr', 'rewards_bonus', 'other'",
+              "optional": false
+            },
+            {
+              "name": "expiration_date",
+              "type": "str",
+              "doc": "Date when the flag expires (MM/DD/YYYY format)",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "Reason for applying this flag. Must be one of: 'retention_offer', 'loyalty_benefit', 'promotional', 'error_correction', 'other'",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1730",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "apply_for_credit_card",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Apply for a credit card.",
+          "params": [
+            {
+              "name": "card_type",
+              "type": "str",
+              "doc": "Type of credit card",
+              "optional": false
+            },
+            {
+              "name": "customer_name",
+              "type": "str",
+              "doc": "Full legal name",
+              "optional": false
+            },
+            {
+              "name": "annual_income",
+              "type": "float",
+              "doc": "Annual income in USD",
+              "optional": false
+            },
+            {
+              "name": "rho_bank_subscription",
+              "type": "bool",
+              "doc": "Whether user has Rho-Bank+ subscription",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:4325",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "apply_savings_account_credit_6831",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Apply a credit to a customer's savings account for interest corrections, fee refunds, or goodwill adjustments.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The savings account ID to credit",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "float",
+              "doc": "The positive dollar amount to credit (must be greater than 0)",
+              "optional": false
+            },
+            {
+              "name": "credit_type",
+              "type": "str",
+              "doc": "The type of credit: 'interest_correction' for APY/interest calculation errors, 'fee_refund' for incorrect fee charges, 'goodwill_credit' for customer service gestures",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2774",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "apply_statement_credit_8472",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Apply a statement credit to a customer's credit card account.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to apply the credit to",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "float",
+              "doc": "The credit amount in dollars (e.g., 25.00 for a $25 credit)",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "Reason for the statement credit. Must be one of: 'goodwill_adjustment', 'promotional_credit', 'annual_fee_reversal', 'late_fee_reversal', 'interest_charge_reversal', 'dispute_resolution', 'price_match', 'retention_offer', 'error_correction', 'other'",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1643",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "approve_credit_limit_increase_5847",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Approve and apply a credit limit increase for a customer's credit card.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "new_credit_limit",
+              "type": "int",
+              "doc": "The new total credit limit in dollars (e.g., 7500 for $7,500)",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2138",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "call_discoverable_agent_tool",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Call an agent discoverable tool that you have previously unlocked. Use this after unlocking a tool with `unlock_discoverable_agent_tool`. The knowledge base will tell you which tool to use and what arguments to provide.",
+          "params": [
+            {
+              "name": "agent_tool_name",
+              "type": "str",
+              "doc": "The name of the agent discoverable tool to call",
+              "optional": false
+            },
+            {
+              "name": "arguments",
+              "type": "str",
+              "doc": "JSON string of arguments for the tool (e.g., '{\"user_id\": \"abc123\"}')",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:632",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "call_discoverable_user_tool",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Call a tool that was given to you by the agent. Use this when the agent has instructed you to perform an action using a discoverable tool. The agent will have told you the tool name and arguments. This simulates you performing the action in the real world (e.g., opening a webpage, navigating to a section, clicking a button).",
+          "params": [
+            {
+              "name": "discoverable_tool_name",
+              "type": "str",
+              "doc": "The name of the discoverable tool to call (e.g., \"open_webpage\")",
+              "optional": false
+            },
+            {
+              "name": "arguments",
+              "type": "str",
+              "doc": "JSON string of arguments for the tool (e.g., '{\"url\": \"https://example.com\"}')",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:4432",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "change_debit_card_pin_6285",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Change a debit card PIN when the customer knows their current PIN.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to change PIN for",
+              "optional": false
+            },
+            {
+              "name": "current_pin",
+              "type": "str",
+              "doc": "The customer's current 4-digit PIN",
+              "optional": false
+            },
+            {
+              "name": "new_pin",
+              "type": "str",
+              "doc": "The new 4-digit PIN chosen by the customer",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3805",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "change_user_email",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Change the email address for a user.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user whose email should be changed",
+              "optional": false
+            },
+            {
+              "name": "new_email",
+              "type": "str",
+              "doc": "The new email address to set for the user",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:413",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "clear_debit_card_fraud_alert_4892",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Clear a fraud alert or velocity block on a debit card.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to clear the alert/block for",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "Reason for clearing: 'customer_verified' (for fraud alerts after customer verification) or 'velocity_clear' (for velocity blocks after identity verification)",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3671",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "close_bank_account_7392",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Close a customer's bank account (checking or savings).",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The ID of the bank account to close",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "The reason for closing the account",
+              "optional": true
+            },
+            {
+              "name": "waive_early_closure_fee",
+              "type": "bool",
+              "doc": "Whether to waive early closure fees",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:2473",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "close_credit_card_account_7834",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Close a customer's credit card account permanently.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to close",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1828",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "close_debit_card_4721",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Close or cancel a debit card permanently.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to close",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "Reason for closing: lost, stolen, fraud_suspected, damaged, no_longer_needed, or account_closing",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3503",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "deny_credit_limit_increase_5848",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Deny a credit limit increase request for a customer's credit card.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "denial_reason",
+              "type": "str",
+              "doc": "The reason for denying the request. Must be one of: 'insufficient_account_age', 'cooldown_period_active', 'pending_disputes', 'pending_replacement_card', 'past_due_balance', 'high_utilization', 'insufficient_payment_history', 'requested_amount_exceeds_limit', 'other'",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2269",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "deposit_check_3847",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Deposit a check into a checking or savings account. The user takes a photo of the check and submits it through their mobile banking app.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The bank account ID to deposit the check into",
+              "optional": false
+            },
+            {
+              "name": "check_amount",
+              "type": "float",
+              "doc": "The amount of the check in USD",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:4248",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "emergency_credit_bureau_incident_transfer_1114",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Emergency escalation tool for the 11/14 credit bureau reporting incident. Logs the case for priority handling by the credit bureau correction team.",
+          "params": [],
+          "evidence": "AST:tools.py:774",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "example_agent_tool_0000",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "An example agent discoverable tool placeholder.",
+          "params": [],
+          "evidence": "AST:tools.py:702",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "file_credit_card_transaction_dispute_4829",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "File a formal dispute for a credit card transaction.",
+          "params": [
+            {
+              "name": "transaction_id",
+              "type": "str",
+              "doc": "The unique identifier for the transaction being disputed",
+              "optional": false
+            },
+            {
+              "name": "card_action",
+              "type": "str",
+              "doc": "Flag indicating the card's status. Must be one of: 'keep_active' (card remains active, dispute only), 'cancel_and_reissue' (card is being cancelled and replaced). This is for record-keeping only and does NOT order a replacement card.",
+              "optional": false
+            },
+            {
+              "name": "card_last_4_digits",
+              "type": "str",
+              "doc": "Last 4 digits of the credit card number",
+              "optional": false
+            },
+            {
+              "name": "full_name",
+              "type": "str",
+              "doc": "Full legal name of the cardholder",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "phone",
+              "type": "str",
+              "doc": "Contact phone number",
+              "optional": false
+            },
+            {
+              "name": "email",
+              "type": "str",
+              "doc": "Contact email address",
+              "optional": false
+            },
+            {
+              "name": "address",
+              "type": "str",
+              "doc": "Contact mailing address",
+              "optional": false
+            },
+            {
+              "name": "contacted_merchant",
+              "type": "bool",
+              "doc": "Whether the user attempted to resolve the issue with the merchant first",
+              "optional": false
+            },
+            {
+              "name": "purchase_date",
+              "type": "str",
+              "doc": "Date when the purchase was made, format MM/DD/YYYY",
+              "optional": false
+            },
+            {
+              "name": "issue_noticed_date",
+              "type": "str",
+              "doc": "Date when the user noticed the issue, format MM/DD/YYYY",
+              "optional": false
+            },
+            {
+              "name": "dispute_reason",
+              "type": "str",
+              "doc": "Reason for the dispute. Must be one of: 'unauthorized_fraudulent_charge', 'duplicate_charge', 'incorrect_amount', 'goods_services_not_received', 'goods_services_not_as_described', 'canceled_subscription_still_charging', 'refund_never_processed'",
+              "optional": false
+            },
+            {
+              "name": "resolution_requested",
+              "type": "str",
+              "doc": "Resolution being requested. Must be one of: 'full_refund', 'partial_refund'",
+              "optional": false
+            },
+            {
+              "name": "eligible_for_provisional_credit",
+              "type": "bool",
+              "doc": "Whether the user is eligible for provisional credit",
+              "optional": false
+            },
+            {
+              "name": "partial_refund_amount",
+              "type": "Optional[float]",
+              "doc": "Amount requested for partial refund (required only if resolution_requested is 'partial_refund')",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:787",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "file_debit_card_transaction_dispute_6281",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "File a formal dispute for a debit card transaction under Regulation E. Debit card disputes affect actual bank funds and have different liability rules based on reporting timing.",
+          "params": [
+            {
+              "name": "transaction_id",
+              "type": "str",
+              "doc": "The unique identifier for the transaction being disputed",
+              "optional": false
+            },
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The checking account ID linked to the debit card",
+              "optional": false
+            },
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "dispute_category",
+              "type": "str",
+              "doc": "Category of the dispute. Must be one of: 'unauthorized_transaction', 'atm_cash_discrepancy', 'atm_deposit_not_credited', 'duplicate_charge', 'incorrect_amount', 'goods_services_not_received', 'recurring_charge_after_cancellation', 'card_present_fraud', 'card_not_present_fraud'",
+              "optional": false
+            },
+            {
+              "name": "transaction_date",
+              "type": "str",
+              "doc": "Date when the transaction occurred, format MM/DD/YYYY",
+              "optional": false
+            },
+            {
+              "name": "discovery_date",
+              "type": "str",
+              "doc": "Date when the user first noticed the issue, format MM/DD/YYYY",
+              "optional": false
+            },
+            {
+              "name": "disputed_amount",
+              "type": "float",
+              "doc": "The dollar amount being disputed",
+              "optional": false
+            },
+            {
+              "name": "transaction_type",
+              "type": "str",
+              "doc": "Type of transaction. Must be one of: 'pin_purchase', 'signature_purchase', 'online_purchase', 'atm_withdrawal', 'atm_deposit', 'recurring_payment', 'person_to_person'",
+              "optional": false
+            },
+            {
+              "name": "card_in_possession",
+              "type": "bool",
+              "doc": "Whether the customer still has their physical debit card in their possession",
+              "optional": false
+            },
+            {
+              "name": "pin_compromised",
+              "type": "str",
+              "doc": "Whether the customer's PIN may have been compromised. Must be one of: 'yes_shared', 'yes_observed', 'no', 'unknown'",
+              "optional": false
+            },
+            {
+              "name": "contacted_merchant",
+              "type": "bool",
+              "doc": "Whether the user attempted to resolve the issue with the merchant first",
+              "optional": false
+            },
+            {
+              "name": "police_report_filed",
+              "type": "bool",
+              "doc": "Whether a police report has been filed (recommended for fraud over $500)",
+              "optional": false
+            },
+            {
+              "name": "written_statement_provided",
+              "type": "bool",
+              "doc": "Whether the customer has provided a written statement describing what happened (required for Reg E provisional credit)",
+              "optional": false
+            },
+            {
+              "name": "provisional_credit_eligible",
+              "type": "bool",
+              "doc": "Whether the user is eligible for provisional credit based on Debit Card Provisional Credit Guidelines",
+              "optional": false
+            },
+            {
+              "name": "customer_max_liability_amount",
+              "type": "float",
+              "doc": "The maximum dollar amount the customer could be liable for based on Regulation E reporting timing rules and the disputed amount. Use -1 for unlimited liability.",
+              "optional": false
+            },
+            {
+              "name": "card_action",
+              "type": "str",
+              "doc": "Action to take on the card. Must be one of: 'keep_active', 'freeze_pending_investigation', 'close_and_reissue'",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:916",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "freeze_debit_card_3892",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Temporarily freeze a debit card. The card can be unfrozen later.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to freeze",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3578",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_all_user_accounts_by_user_id_3847",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve all accounts (checking, savings, credit cards) for a customer.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier in the system",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2580",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_atm_deposit_images_8473",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve ATM deposit envelope/check images for a specific ATM deposit transaction.",
+          "params": [
+            {
+              "name": "transaction_id",
+              "type": "str",
+              "doc": "The transaction ID of the ATM deposit to retrieve images for",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1200",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_bank_account_transactions_9173",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve the transaction history for a bank account.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The bank account ID to retrieve transactions for",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2934",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_card_last_4_digits",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Look up the last 4 digits of a credit card number.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to look up (e.g., 'cc_76ad9cc60e_gold')",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:4207",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_closure_reason_history_8293",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve the closure reason history for a specific credit card account.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to check for previous closure attempts",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1603",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_credit_card_accounts_by_user",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get all credit card accounts for a user. Returns information about each credit card account including card type, date opened, current balance, and reward points.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user to look up credit card accounts for",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:456",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_credit_card_transactions_by_user",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get all credit card transactions for a user.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user to look up transactions for",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:445",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_credit_limit_increase_history_4829",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve the credit limit increase request history for a specific credit card account. Returns all previous CLI requests including dates, amounts, and statuses.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to check for CLI history",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2036",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_current_time",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the current time. Use this to get the current timestamp for logging verification records.",
+          "params": [],
+          "evidence": "AST:tools.py:375",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_debit_cards_by_account_id_7823",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve all debit cards associated with a checking account. Returns card details including status, issue reason, and expiration date.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The checking account ID to retrieve debit cards for",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3862",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_debit_dispute_status_7483",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve a user's debit card dispute history from the debit_card_disputes table. Returns all debit card disputes filed by the user, including dispute IDs, categories, amounts, statuses, and provisional credit information.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1164",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_payment_history_6183",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve payment history for a credit card account.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to check payment history for",
+              "optional": false
+            },
+            {
+              "name": "months",
+              "type": "int",
+              "doc": "Number of months of payment history to retrieve",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2078",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_pending_replacement_orders_5765",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Check if a credit card account has any pending replacement card orders.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to check for pending replacement orders",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1511",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_referral_link",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Generate a referral link for a specific credit card to share with friends or family.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system (the referrer)",
+              "optional": false
+            },
+            {
+              "name": "card_name",
+              "type": "str",
+              "doc": "The name of the credit card to create a referral for (e.g., 'Gold Rewards Card')",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:4166",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_referrals_by_user",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get all referrals made by a user.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user (referrer) to look up referrals for",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:434",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_user_dispute_history_7291",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Retrieve a user's credit card transaction dispute history from the transaction_disputes table. Returns all credit card transaction disputes filed by the user, including dispute IDs, transaction IDs, dispute reasons, statuses, and submission dates.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1475",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_user_information_by_email",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the information (date of birth, email, phone number, address) for a user by their email.",
+          "params": [
+            {
+              "name": "email",
+              "type": "str",
+              "doc": "The email of the user",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:404",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_user_information_by_id",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the information (date of birth, email, phone number, address) for a user by their user id.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The ID of the user",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:384",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_user_information_by_name",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the information (date of birth, email, phone number, address) for a user by their name. Case Sensitive.",
+          "params": [
+            {
+              "name": "customer_name",
+              "type": "str",
+              "doc": "The name of the user",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:393",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "give_discoverable_user_tool",
+          "tool_type": "generic",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Pass a tool to the user so they can execute it themselves. Use this when the knowledge base indicates that the user should perform an action themselves (e.g., \"to do X, have the user call tool_name(args)\"). The user will then be able to call `call_discoverable_tool` with the same tool name and arguments to simulate executing the action.",
+          "params": [
+            {
+              "name": "discoverable_tool_name",
+              "type": "str",
+              "doc": "The name of the discoverable tool (e.g., \"open_webpage\", \"navigate_to_section\")",
+              "optional": false
+            },
+            {
+              "name": "arguments",
+              "type": "str",
+              "doc": "JSON string of arguments for the tool (e.g., '{\"url\": \"https://example.com\"}')",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:521",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "grep",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Search for a regex pattern in all knowledge base documents. Returns documents ranked by number of matches, with full content.",
+          "params": [
+            {
+              "name": "pattern",
+              "type": "str",
+              "doc": "The regex pattern to search for (e.g., 'credit.*card', 'fee|charge')",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:retrieval_mixins.py:71",
+          "source_file": "retrieval_mixins.py",
+          "side": "agent"
+        },
+        {
+          "name": "initial_transfer_to_human_agent_0218",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Initiate a transfer request to a human agent. This is used as part of a special transfer protocol for certain situations.",
+          "params": [],
+          "evidence": "AST:tools.py:748",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "initial_transfer_to_human_agent_1822",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": true,
+          "description": "Initiate a transfer request to a human agent. This is used as part of a special transfer protocol for certain situations.",
+          "params": [],
+          "evidence": "AST:tools.py:761",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "list_discoverable_agent_tools",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "List all agent discoverable tools that you have called. Use this to see what specialized tools you have used.",
+          "params": [],
+          "evidence": "AST:tools.py:679",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "list_discoverable_user_tools",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "List all tools that have been given to you by the agent. Use this to see what actions the agent has instructed you to perform.",
+          "params": [],
+          "evidence": "AST:tools.py:4482",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "log_credit_card_closure_reason_4521",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Log the reason why a customer wants to close their credit card account.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID the customer wants to close",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "closure_reason",
+              "type": "str",
+              "doc": "Reason for closure. Must be one of: 'annual_fee', 'not_using_card', 'found_better_card', 'unhappy_with_rewards', 'simplifying_finances', 'negative_experience', 'other'",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1551",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "log_verification",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Log a verification record after successfully verifying a user's identity. Call this tool after you have verified a user by confirming 2 out of 4 identity fields (date of birth, email, phone number, address). This creates an audit record of the verification.",
+          "params": [
+            {
+              "name": "name",
+              "type": "str",
+              "doc": "The verified user's full name",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The verified user's ID",
+              "optional": false
+            },
+            {
+              "name": "address",
+              "type": "str",
+              "doc": "The verified user's address",
+              "optional": false
+            },
+            {
+              "name": "email",
+              "type": "str",
+              "doc": "The verified user's email",
+              "optional": false
+            },
+            {
+              "name": "phone_number",
+              "type": "str",
+              "doc": "The verified user's phone number",
+              "optional": false
+            },
+            {
+              "name": "date_of_birth",
+              "type": "str",
+              "doc": "The verified user's date of birth (MM/DD/YYYY format)",
+              "optional": false
+            },
+            {
+              "name": "time_verified",
+              "type": "str",
+              "doc": "The timestamp of the verification (e.g., \"2025-11-14 03:40:00 EST\")",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:470",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "open_bank_account_4821",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Open a new bank account for a customer.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "account_type",
+              "type": "str",
+              "doc": "Type of account to open. Must be one of: 'checking' (personal checking), 'savings' (personal savings), 'business_checking', 'business_savings'",
+              "optional": false
+            },
+            {
+              "name": "account_class",
+              "type": "str",
+              "doc": "The full official account class name",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2338",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "order_debit_card_5739",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Order a new debit card for a customer's checking account.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The checking account ID to link the debit card to",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier",
+              "optional": false
+            },
+            {
+              "name": "delivery_option",
+              "type": "str",
+              "doc": "Shipping speed: STANDARD, EXPEDITED, or RUSH",
+              "optional": false
+            },
+            {
+              "name": "delivery_fee",
+              "type": "float",
+              "doc": "Fee to charge for delivery in dollars",
+              "optional": false
+            },
+            {
+              "name": "card_design",
+              "type": "str",
+              "doc": "Card design: CLASSIC, PREMIUM, or CUSTOM",
+              "optional": false
+            },
+            {
+              "name": "design_fee",
+              "type": "float",
+              "doc": "Fee to charge for card design in dollars",
+              "optional": false
+            },
+            {
+              "name": "shipping_address",
+              "type": "str",
+              "doc": "Full shipping address for card delivery",
+              "optional": false
+            },
+            {
+              "name": "excess_replacement_fee",
+              "type": "Optional[float]",
+              "doc": "Fee for exceeding replacement limit, if applicable",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:2974",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "order_replacement_credit_card_7291",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Order a replacement credit card for a customer. The old card will be automatically cancelled when the replacement is ordered.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID for the card being replaced",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "shipping_address",
+              "type": "str",
+              "doc": "Full shipping address where the new card should be sent",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "Reason for replacement. Must be one of: 'fraud_suspected', 'lost', 'stolen', 'damaged', 'expired', 'other'",
+              "optional": false
+            },
+            {
+              "name": "expedited_shipping",
+              "type": "bool",
+              "doc": "Whether to use expedited shipping (2-3 business days instead of 7-10)",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:1372",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "pay_credit_card_from_checking_9182",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Pay off a credit card balance using funds from the customer's Rho-Bank checking account. This deducts the specified amount from the checking account and reduces the credit card balance by the same amount.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "checking_account_id",
+              "type": "str",
+              "doc": "The ID of the Rho-Bank checking account to debit funds from",
+              "optional": false
+            },
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The ID of the credit card account to apply the payment to",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "float",
+              "doc": "The payment amount in dollars. Must be a positive number.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1878",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "request_human_agent_transfer",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Request to be transferred to a human agent for assistance. Use this when you want to speak with a real human agent instead of the automated system. Each request will be logged and processed.",
+          "params": [],
+          "evidence": "AST:tools.py:4498",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "request_temporary_debit_card_limit_increase_8374",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Request a temporary 24-hour increase to a debit card's daily ATM or purchase limit.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to increase limits for",
+              "optional": false
+            },
+            {
+              "name": "limit_type",
+              "type": "str",
+              "doc": "Type of limit to increase: 'atm' for daily ATM withdrawal limit, 'purchase' for daily purchase limit",
+              "optional": false
+            },
+            {
+              "name": "new_limit",
+              "type": "int",
+              "doc": "The requested new temporary limit amount in dollars",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3912",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "reset_debit_card_pin_6284",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Reset a debit card PIN when the customer has forgotten it.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to reset PIN for",
+              "optional": false
+            },
+            {
+              "name": "last_4_digits",
+              "type": "str",
+              "doc": "Last 4 digits of the card number (for verification)",
+              "optional": false
+            },
+            {
+              "name": "new_pin",
+              "type": "str",
+              "doc": "The new 4-digit PIN chosen by the customer",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3745",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "rewrite_context",
+          "tool_type": "write",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Replace your working context with a new summary or condensed version. Use this after searching to summarize findings, extract key points, or condense information for easier reference later in the conversation.",
+          "params": [
+            {
+              "name": "new_context",
+              "type": "str",
+              "doc": "The summarized or rewritten context to store",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:retrieval_mixins.py:140",
+          "source_file": "retrieval_mixins.py",
+          "side": "agent"
+        },
+        {
+          "name": "set_debit_card_recurring_block_7382",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Block or unblock all recurring payments on a debit card. When blocked, all recurring/subscription charges will be declined. One-time purchases are not affected.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to update",
+              "optional": false
+            },
+            {
+              "name": "block_recurring",
+              "type": "bool",
+              "doc": "True to block all recurring payments, False to unblock/allow recurring payments",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1119",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "shell",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Execute a shell command in the knowledge base directory. Use standard Unix utilities to explore and search the knowledge base files. Common commands: ls, cat, grep, head, tail, find, wc, awk, sed, etc.",
+          "params": [
+            {
+              "name": "command",
+              "type": "str",
+              "doc": "The shell command to execute (e.g., \"ls -la\", \"grep -r 'credit card' .\", \"cat INDEX.txt\")",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:retrieval_mixins.py:108",
+          "source_file": "retrieval_mixins.py",
+          "side": "agent"
+        },
+        {
+          "name": "submit_cash_back_dispute_0589",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Submit a cash back dispute for a specific transaction.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "transaction_id",
+              "type": "str",
+              "doc": "The unique identifier for the transaction with incorrect cash back",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:4106",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "submit_credit_limit_increase_request_7392",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Submit a credit limit increase request for a customer's credit card.",
+          "params": [
+            {
+              "name": "credit_card_account_id",
+              "type": "str",
+              "doc": "The credit card account ID to request increase for",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier in the system",
+              "optional": false
+            },
+            {
+              "name": "requested_increase_amount",
+              "type": "int",
+              "doc": "The dollar amount by which to increase the credit limit (e.g., 2500 for $2,500)",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:1970",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "submit_interest_discrepancy_report_7294",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Submit a report for interest calculation discrepancies to the backend team for investigation. Use this when the interest credited to a customer's account does not match expected APY calculations.",
+          "params": [
+            {
+              "name": "account_id",
+              "type": "str",
+              "doc": "The savings account ID with the discrepancy",
+              "optional": false
+            },
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The customer's unique identifier",
+              "optional": false
+            },
+            {
+              "name": "expected_apy",
+              "type": "float",
+              "doc": "The APY percentage the customer should have received (e.g., 2.775 for 2.775%)",
+              "optional": false
+            },
+            {
+              "name": "actual_apy",
+              "type": "float",
+              "doc": "The APY percentage that was actually applied (e.g., 2.5 for 2.5%)",
+              "optional": false
+            },
+            {
+              "name": "amount_difference",
+              "type": "float",
+              "doc": "The dollar amount difference between expected and actual interest credited",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2855",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "submit_referral",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Submit a referral request to refer someone to open an account.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "Your user ID (the referrer)",
+              "optional": false
+            },
+            {
+              "name": "account_type",
+              "type": "str",
+              "doc": "The type of account you are referring someone to open",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:4382",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "submit_transaction",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Submit a credit card transaction.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "Your user ID",
+              "optional": false
+            },
+            {
+              "name": "credit_card_type",
+              "type": "str",
+              "doc": "Type of credit card used (e.g., \"Bronze Rewards Card\", \"Gold Rewards Card\")",
+              "optional": false
+            },
+            {
+              "name": "merchant_name",
+              "type": "str",
+              "doc": "Name of the merchant where the purchase was made",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "float",
+              "doc": "Transaction amount in USD (e.g., 127.43)",
+              "optional": false
+            },
+            {
+              "name": "category",
+              "type": "str",
+              "doc": "Transaction category (e.g., \"Groceries\", \"Dining\", \"Travel\", \"Software\", \"Entertainment\", \"Utilities\", \"Shopping\")",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:4602",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "transfer_funds_between_bank_accounts_7291",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Transfer funds from one bank account to another.",
+          "params": [
+            {
+              "name": "source_account_id",
+              "type": "str",
+              "doc": "The account ID to transfer funds from",
+              "optional": false
+            },
+            {
+              "name": "destination_account_id",
+              "type": "str",
+              "doc": "The account ID to transfer funds to",
+              "optional": false
+            },
+            {
+              "name": "amount",
+              "type": "float",
+              "doc": "The amount to transfer in USD",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:2626",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "transfer_to_human_agents",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Transfer the user to a human agent. The proper transfer reason enum can be found in the knowledge base: search it before calling this tool to select the proper applicable reason.",
+          "params": [
+            {
+              "name": "summary",
+              "type": "str",
+              "doc": "A summary of the user's issue and what was attempted before transfer.",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "TransferReasonLiteral",
+              "doc": "The specific reason code for the transfer.",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:355",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "unfreeze_debit_card_3893",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Unfreeze a previously frozen debit card.",
+          "params": [
+            {
+              "name": "card_id",
+              "type": "str",
+              "doc": "The debit card ID to unfreeze",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:3624",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "unlock_discoverable_agent_tool",
+          "tool_type": "generic",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Unlock an agent discoverable tool that was found in the knowledge base. Use this when the knowledge base indicates that you have access to a specialized internal tool. The knowledge base will tell you the tool name to unlock. After unlocking, you can use the tool by calling `call_discoverable_agent_tool` with the tool name and required arguments.",
+          "params": [
+            {
+              "name": "agent_tool_name",
+              "type": "str",
+              "doc": "The name of the agent discoverable tool to unlock",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:591",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "update_transaction_rewards_3847",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": true,
+          "description": "Update the rewards_earned field on a credit card transaction.",
+          "params": [
+            {
+              "name": "transaction_id",
+              "type": "str",
+              "doc": "The unique identifier for the transaction to update",
+              "optional": false
+            },
+            {
+              "name": "new_rewards_earned",
+              "type": "str",
+              "doc": "The corrected rewards value (e.g., '6300 points')",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:711",
+          "source_file": "tools.py",
+          "side": "agent"
+        }
+      ]
+    },
+    "retail": {
+      "total": 16,
+      "runtime_pool": 16,
+      "by_type": {
+        "generic": 2,
+        "write": 7,
+        "read": 7
+      },
+      "mutating": 7,
+      "discoverable": 0,
+      "missing_description": 0,
+      "params_total": 39,
+      "params_missing_doc": 0,
+      "tools": [
+        {
+          "name": "calculate",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Calculate the result of a mathematical expression.",
+          "params": [
+            {
+              "name": "expression",
+              "type": "str",
+              "doc": "The mathematical expression to calculate, such as '2 + 2'. The expression can contain numbers, operators (+, -, *, /), parentheses, and spaces.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:141",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "cancel_pending_order",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Cancel a pending order. If the order is already processed or delivered, it cannot be cancelled. The agent needs to explain the cancellation detail and ask for explicit user confirmation (yes/no) to proceed. If the user confirms, the order status will be changed to 'cancelled' and the payment will be refunded. The refund will be added to the user's gift card balance immediately if the payment was made using a gift card, otherwise the refund would take 5-7 business days to process. The function returns the order details after the cancellation.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "The reason for cancellation, which should be either 'no longer needed' or 'ordered by mistake'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:159",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "exchange_delivered_order_items",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Exchange items in a delivered order to new items of the same product type. For a delivered order, return or exchange can be only done once by the agent. The agent needs to explain the exchange detail and ask for explicit user confirmation (yes/no) to proceed.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            },
+            {
+              "name": "item_ids",
+              "type": "List[str]",
+              "doc": "The item ids to be exchanged, each such as '1008292230'. There could be duplicate items in the list.",
+              "optional": false
+            },
+            {
+              "name": "new_item_ids",
+              "type": "List[str]",
+              "doc": "The item ids to be exchanged for, each such as '1008292230'.",
+              "optional": false
+            },
+            {
+              "name": "payment_method_id",
+              "type": "str",
+              "doc": "The payment method id to pay or receive refund for the item price difference,",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:208",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "find_user_id_by_email",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Find user id by email. If the user is not found, the function will return an error message.",
+          "params": [
+            {
+              "name": "email",
+              "type": "str",
+              "doc": "The email of the user, such as 'something@example.com'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:315",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "find_user_id_by_name_zip",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Find user id by first name, last name, and zip code. If the user is not found, the function will return an error message. By default, find user id by email, and only call this function if the user is not found by email or cannot remember email.",
+          "params": [
+            {
+              "name": "first_name",
+              "type": "str",
+              "doc": "The first name of the customer, such as 'John'.",
+              "optional": false
+            },
+            {
+              "name": "last_name",
+              "type": "str",
+              "doc": "The last name of the customer, such as 'Doe'.",
+              "optional": false
+            },
+            {
+              "name": "zip",
+              "type": "str",
+              "doc": "The zip code of the customer, such as '12345'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:287",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_item_details",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the inventory details of an item.",
+          "params": [
+            {
+              "name": "item_id",
+              "type": "str",
+              "doc": "The item id, such as '6086499569'. Be careful the item id is different from the product id.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:365",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_order_details",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the status and details of an order.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:333",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_product_details",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the inventory details of a product.",
+          "params": [
+            {
+              "name": "product_id",
+              "type": "str",
+              "doc": "The product id, such as '6086499569'. Be careful the product id is different from the item id.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:349",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_user_details",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Get the details of a user, including their orders.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user id, such as 'sara_doe_496'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:381",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "list_all_product_types",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "List the name and product id of all product types. Each product type has a variety of different items with unique item ids and options. There are only 50 product types in the store.",
+          "params": [],
+          "evidence": "AST:tools_original.py:397",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "modify_pending_order_address",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Modify the shipping address of a pending order. The agent needs to explain the modification detail and ask for explicit user confirmation (yes/no) to proceed.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            },
+            {
+              "name": "address1",
+              "type": "str",
+              "doc": "The first line of the address, such as '123 Main St'.",
+              "optional": false
+            },
+            {
+              "name": "address2",
+              "type": "str",
+              "doc": "The second line of the address, such as 'Apt 1' or ''.",
+              "optional": false
+            },
+            {
+              "name": "city",
+              "type": "str",
+              "doc": "The city, such as 'San Francisco'.",
+              "optional": false
+            },
+            {
+              "name": "state",
+              "type": "str",
+              "doc": "The state, such as 'CA'.",
+              "optional": false
+            },
+            {
+              "name": "country",
+              "type": "str",
+              "doc": "The country, such as 'USA'.",
+              "optional": false
+            },
+            {
+              "name": "zip",
+              "type": "str",
+              "doc": "The zip code, such as '12345'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:411",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "modify_pending_order_items",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Modify items in a pending order to new items of the same product type. For a pending order, this function can only be called once. The agent needs to explain the exchange detail and ask for explicit user confirmation (yes/no) to proceed.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            },
+            {
+              "name": "item_ids",
+              "type": "List[str]",
+              "doc": "The item ids to be modified, each such as '1008292230'. There could be duplicate items in the list.",
+              "optional": false
+            },
+            {
+              "name": "new_item_ids",
+              "type": "List[str]",
+              "doc": "The item ids to be modified for, each such as '1008292230'. There could be duplicate items in the list. Each new item id should match the item id in the same position and be of the same product.",
+              "optional": false
+            },
+            {
+              "name": "payment_method_id",
+              "type": "str",
+              "doc": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'. These can be looked up from the user or order details.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:455",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "modify_pending_order_payment",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Modify the payment method of a pending order. The agent needs to explain the modification detail and ask for explicit user confirmation (yes/no) to proceed.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            },
+            {
+              "name": "payment_method_id",
+              "type": "str",
+              "doc": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'. These can be looked up from the user or order details.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:545",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "modify_user_address",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Modify the default address of a user. The agent needs to explain the modification detail and ask for explicit user confirmation (yes/no) to proceed.",
+          "params": [
+            {
+              "name": "user_id",
+              "type": "str",
+              "doc": "The user id, such as 'sara_doe_496'.",
+              "optional": false
+            },
+            {
+              "name": "address1",
+              "type": "str",
+              "doc": "The first line of the address, such as '123 Main St'.",
+              "optional": false
+            },
+            {
+              "name": "address2",
+              "type": "str",
+              "doc": "The second line of the address, such as 'Apt 1' or ''.",
+              "optional": false
+            },
+            {
+              "name": "city",
+              "type": "str",
+              "doc": "The city, such as 'San Francisco'.",
+              "optional": false
+            },
+            {
+              "name": "state",
+              "type": "str",
+              "doc": "The state, such as 'CA'.",
+              "optional": false
+            },
+            {
+              "name": "country",
+              "type": "str",
+              "doc": "The country, such as 'USA'.",
+              "optional": false
+            },
+            {
+              "name": "zip",
+              "type": "str",
+              "doc": "The zip code, such as '12345'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:625",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "return_delivered_order_items",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Return some items of a delivered order. The order status will be changed to 'return requested'. The agent needs to explain the return detail and ask for explicit user confirmation (yes/no) to proceed. The user will receive follow-up email for how and where to return the item.",
+          "params": [
+            {
+              "name": "order_id",
+              "type": "str",
+              "doc": "The order id, such as '#W0000000'. Be careful there is a '#' symbol at the beginning of the order id.",
+              "optional": false
+            },
+            {
+              "name": "item_ids",
+              "type": "List[str]",
+              "doc": "The item ids to be returned, each such as '1008292230'. There could be duplicate items in the list.",
+              "optional": false
+            },
+            {
+              "name": "payment_method_id",
+              "type": "str",
+              "doc": "The payment method id to pay or receive refund for the item price difference, such as 'gift_card_0000000' or 'credit_card_0000000'.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:664",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        },
+        {
+          "name": "transfer_to_human_agents",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Transfer the user to a human agent, with a summary of the user's issue. Only transfer if -  the user explicitly asks for a human agent -  given the policy and the available tools, you cannot solve the user's issue.",
+          "params": [
+            {
+              "name": "summary",
+              "type": "str",
+              "doc": "A summary of the user's issue.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools_original.py:732",
+          "source_file": "tools_original.py",
+          "side": "agent"
+        }
+      ]
+    },
+    "telecom": {
+      "total": 43,
+      "runtime_pool": 13,
+      "by_type": {
+        "read": 21,
+        "write": 21,
+        "generic": 1
+      },
+      "mutating": 21,
+      "discoverable": 0,
+      "missing_description": 0,
+      "params_total": 30,
+      "params_missing_doc": 4,
+      "tools": [
+        {
+          "name": "can_send_mms",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks if the default messaging app can send MMS messages.",
+          "params": [],
+          "evidence": "AST:user_tools.py:906",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_apn_settings",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks the technical APN settings your phone uses to connect to your carrier's mobile data network. Shows current APN name and MMSC URL for picture messaging.",
+          "params": [],
+          "evidence": "AST:user_tools.py:577",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_app_permissions",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks what permissions a specific app currently has. Shows if the app has access to features like storage, camera, location, etc.",
+          "params": [
+            {
+              "name": "app_name",
+              "type": "str",
+              "doc": "",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:user_tools.py:836",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_app_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks detailed information about a specific app. Shows its permissions and background data usage settings.",
+          "params": [
+            {
+              "name": "app_name",
+              "type": "str",
+              "doc": "",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:user_tools.py:805",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_data_restriction_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks if your phone has any data-limiting features active. Shows if Data Saver mode is on.",
+          "params": [],
+          "evidence": "AST:user_tools.py:530",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_installed_apps",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Returns the name of all installed apps on the phone.",
+          "params": [],
+          "evidence": "AST:user_tools.py:795",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_network_mode_preference",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Shows the current network mode preference.",
+          "params": [],
+          "evidence": "AST:user_tools.py:180",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_network_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks your phone's connection status to cellular networks and Wi-Fi. Shows airplane mode status, signal strength, network type, whether mobile data is enabled, and whether data roaming is enabled.",
+          "params": [],
+          "evidence": "AST:user_tools.py:143",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_payment_request",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks if the agent has sent you a payment request.",
+          "params": [],
+          "evidence": "AST:user_tools.py:1055",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_sim_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks if your SIM card is working correctly and displays its current status. Shows if the SIM is active, missing, or locked with a PIN or PUK code.",
+          "params": [],
+          "evidence": "AST:user_tools.py:418",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_status_bar",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Shows what icons are currently visible in your phone's status bar (the area at the top of the screen). Displays network signal strength, mobile data status (enabled, disabled, data saver), Wi-Fi status, and battery level.",
+          "params": [],
+          "evidence": "AST:user_tools.py:77",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_vpn_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks if you're using a VPN (Virtual Private Network) connection. Shows if a VPN is active, connected, and displays any available connection details.",
+          "params": [],
+          "evidence": "AST:user_tools.py:719",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_wifi_calling_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks if Wi-Fi Calling is enabled on your device. This feature allows you to make and receive calls over a Wi-Fi network instead of using the cellular network.",
+          "params": [],
+          "evidence": "AST:user_tools.py:676",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "check_wifi_status",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Checks your Wi-Fi connection status. Shows if Wi-Fi is turned on, which network you're connected to (if any), and the signal strength.",
+          "params": [],
+          "evidence": "AST:user_tools.py:631",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "connect_vpn",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Connects to your VPN (Virtual Private Network).",
+          "params": [],
+          "evidence": "AST:user_tools.py:746",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "disable_roaming",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Disables international roaming on a line.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the line.",
+              "optional": false
+            },
+            {
+              "name": "line_id",
+              "type": "str",
+              "doc": "ID of the line to disable roaming for.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:566",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "disconnect_vpn",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Disconnects any active VPN (Virtual Private Network) connection. Stops routing your internet traffic through a VPN server, which might affect connection speed or access to content.",
+          "params": [],
+          "evidence": "AST:user_tools.py:769",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "enable_roaming",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Enables international roaming on a line.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the line.",
+              "optional": false
+            },
+            {
+              "name": "line_id",
+              "type": "str",
+              "doc": "ID of the line to enable roaming for.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:540",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_bills_for_customer",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Retrieves a list of the customer's bills, most recent first.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer.",
+              "optional": false
+            },
+            {
+              "name": "limit",
+              "type": "int",
+              "doc": "Maximum number of bills to return.",
+              "optional": true
+            }
+          ],
+          "evidence": "AST:tools.py:335",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_customer_by_id",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Retrieves a customer directly by their unique ID.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "The unique identifier of the customer.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:73",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_customer_by_name",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Searches for customers by name and DOB. May return multiple matches if names are similar, DOB helps disambiguate.",
+          "params": [
+            {
+              "name": "full_name",
+              "type": "str",
+              "doc": "The full name of the customer.",
+              "optional": false
+            },
+            {
+              "name": "dob",
+              "type": "str",
+              "doc": "Date of birth for verification, in the format YYYY-MM-DD.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:90",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_customer_by_phone",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Finds a customer by their primary contact or line phone number.",
+          "params": [
+            {
+              "name": "phone_number",
+              "type": "str",
+              "doc": "The phone number to search for.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:49",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_data_usage",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Retrieves current billing cycle data usage for a line, including data refueling amount, data limit, and cycle end date.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the line.",
+              "optional": false
+            },
+            {
+              "name": "line_id",
+              "type": "str",
+              "doc": "ID of the line to check usage for.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:485",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "get_details_by_id",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Retrieves the details for a given ID. The ID must be a valid ID for a Customer, Line, Device, Bill, or Plan.",
+          "params": [
+            {
+              "name": "id",
+              "type": "str",
+              "doc": "The ID of the object to retrieve.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:234",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "grant_app_permission",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Gives a specific permission to an app (like access to storage, camera, or location). Required for some app functions to work properly.",
+          "params": [
+            {
+              "name": "app_name",
+              "type": "str",
+              "doc": "The name of the app to grant the permission to.",
+              "optional": false
+            },
+            {
+              "name": "permission",
+              "type": "str",
+              "doc": "The permission to grant, should be lowercase.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:user_tools.py:861",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "make_payment",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Makes a payment for the bill that the agent has sent you.",
+          "params": [],
+          "evidence": "AST:user_tools.py:1073",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "reboot_device",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Restarts your phone completely. This can help resolve many temporary software glitches by refreshing all running services and connections.",
+          "params": [],
+          "evidence": "AST:user_tools.py:942",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "refuel_data",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Refuels data for a specific line, adding to the customer's bill. Checks: Line status must be Active, Customer owns the line. Logic: Adds data to the line and charges customer based on the plan's refueling rate.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the line.",
+              "optional": false
+            },
+            {
+              "name": "line_id",
+              "type": "str",
+              "doc": "ID of the line to refuel data for.",
+              "optional": false
+            },
+            {
+              "name": "gb_amount",
+              "type": "float",
+              "doc": "Amount of data to add in gigabytes.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:608",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "reseat_sim_card",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Simulates removing and reinserting your SIM card. This can help resolve recognition issues.",
+          "params": [],
+          "evidence": "AST:user_tools.py:436",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "reset_apn_settings",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Resets your APN settings to the default settings.",
+          "params": [],
+          "evidence": "AST:user_tools.py:605",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "resume_line",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Resumes a suspended line. Checks: Line status must be Suspended or Pending Activation. Logic: Sets line status to Active, clears suspension_start_date.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the line.",
+              "optional": false
+            },
+            {
+              "name": "line_id",
+              "type": "str",
+              "doc": "ID of the line to resume.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:298",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "run_speed_test",
+          "tool_type": "read",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Measures your current internet connection speed (download speed). Provides information about connection quality and what activities it can support.",
+          "params": [],
+          "evidence": "AST:user_tools.py:247",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "send_payment_request",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Sends a payment request to the customer for a specific bill. Checks: - Customer exists - Bill exists and belongs to the customer - No other bills are already awaiting payment for this customer Logic: Sets bill status to AWAITING_PAYMENT and notifies customer. Warning: This method does not check if the bill is already PAID. Always check the bill status before calling this method.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the bill.",
+              "optional": false
+            },
+            {
+              "name": "bill_id",
+              "type": "str",
+              "doc": "ID of the bill to send payment request for.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:361",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "set_apn_settings",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Sets the APN settings for the phone.",
+          "params": [
+            {
+              "name": "apn_settings",
+              "type": "Union[APNSettings, dict]",
+              "doc": "",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:user_tools.py:591",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "set_network_mode_preference",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Changes the type of cellular network your phone prefers to connect to (e.g., 5G, LTE/4G, 3G). Higher-speed networks (LTE/5G) provide faster data but may use more battery.",
+          "params": [
+            {
+              "name": "mode",
+              "type": "Union[NetworkModePreference, str]",
+              "doc": "",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:user_tools.py:189",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "suspend_line",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Suspends a specific line (max 6 months). Checks: Line status must be Active. Logic: Sets line status to Suspended, records suspension_start_date.",
+          "params": [
+            {
+              "name": "customer_id",
+              "type": "str",
+              "doc": "ID of the customer who owns the line.",
+              "optional": false
+            },
+            {
+              "name": "line_id",
+              "type": "str",
+              "doc": "ID of the line to suspend.",
+              "optional": false
+            },
+            {
+              "name": "reason",
+              "type": "str",
+              "doc": "Reason for suspension.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:262",
+          "source_file": "tools.py",
+          "side": "agent"
+        },
+        {
+          "name": "toggle_airplane_mode",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Toggles Airplane Mode ON or OFF. When ON, it disconnects all wireless communications including cellular, Wi-Fi, and Bluetooth. Returns the new state of airplane_mode.",
+          "params": [],
+          "evidence": "AST:user_tools.py:367",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "toggle_data",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Toggles your phone's mobile data connection ON or OFF. Controls whether your phone can use cellular data for internet access when Wi-Fi is unavailable. Returns the new data connection status.",
+          "params": [],
+          "evidence": "AST:user_tools.py:472",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "toggle_data_saver_mode",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Toggles Data Saver mode ON or OFF. When ON, it reduces data usage, which may affect data speed. Returns the new data saver mode status.",
+          "params": [],
+          "evidence": "AST:user_tools.py:547",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "toggle_roaming",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Toggles Data Roaming ON or OFF. When ON, your phone can use data networks in areas outside your carrier's coverage. Returns the new data roaming status.",
+          "params": [],
+          "evidence": "AST:user_tools.py:500",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "toggle_wifi",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Toggles your phone's Wi-Fi radio ON or OFF. Controls whether your phone can discover and connect to wireless networks for internet access. Returns the new Wi-Fi status.",
+          "params": [],
+          "evidence": "AST:user_tools.py:651",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "toggle_wifi_calling",
+          "tool_type": "write",
+          "mutates_state": true,
+          "discoverable": false,
+          "description": "Toggles Wi-Fi Calling ON or OFF. This feature allows you to make and receive calls over Wi-Fi instead of the cellular network, which can help in areas with weak cellular signal. Returns the new Wi-Fi Calling status.",
+          "params": [],
+          "evidence": "AST:user_tools.py:691",
+          "source_file": "user_tools.py",
+          "side": "user"
+        },
+        {
+          "name": "transfer_to_human_agents",
+          "tool_type": "generic",
+          "mutates_state": false,
+          "discoverable": false,
+          "description": "Transfer the user to a human agent, with a summary of the user's issue. Only transfer if -  the user explicitly asks for a human agent -  given the policy and the available tools, you cannot solve the user's issue.",
+          "params": [
+            {
+              "name": "summary",
+              "type": "str",
+              "doc": "A summary of the user's issue.",
+              "optional": false
+            }
+          ],
+          "evidence": "AST:tools.py:592",
+          "source_file": "tools.py",
+          "side": "agent"
+        }
+      ]
+    }
+  },
+  "ref_coverage": {
+    "n_ref_action_names": 50,
+    "in_runtime_pool": 38,
+    "discoverable_only": [
+      "disconnect_vpn",
+      "grant_app_permission",
+      "make_payment",
+      "reboot_device",
+      "reseat_sim_card",
+      "reset_apn_settings",
+      "set_network_mode_preference",
+      "toggle_airplane_mode",
+      "toggle_data",
+      "toggle_data_saver_mode",
+      "toggle_roaming",
+      "toggle_wifi_calling"
+    ],
+    "missing_from_registry": [],
+    "user_side_only": [
+      "disconnect_vpn",
+      "grant_app_permission",
+      "make_payment",
+      "reboot_device",
+      "reseat_sim_card",
+      "reset_apn_settings",
+      "set_network_mode_preference",
+      "toggle_airplane_mode",
+      "toggle_data",
+      "toggle_data_saver_mode",
+      "toggle_roaming",
+      "toggle_wifi_calling"
+    ]
+  }
+}
