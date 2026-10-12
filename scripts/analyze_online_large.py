@@ -9,7 +9,7 @@ Writes results/phase7/online_constrained_large.json.
 import json, math, os, sys, random
 from collections import defaultdict
 
-ROOT = "/ccfa-2026/compile-anything"
+ROOT = "/ccfa2026/compile-anything"
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
@@ -175,6 +175,62 @@ def main():
                       f"p={v['mcnemar_p']}")
             set_summary[seed] = arm_rows
         out["per_set"][st] = set_summary
+
+    # ---------------- pooled across seeds (confirmation) ----------------
+    print(f"\n{'='*70}\nPOOLED across seeds: confirmation\n{'='*70}")
+    pooled = {}
+    for arm in ARMS:
+        rows = [r for r in recs if r["set"] == "confirmation" and r["arm"] == arm]
+        if not rows:
+            continue
+        js = [r["judge"] for r in rows]
+        per_seed_e2e = []
+        for seed in seeds:
+            sjs = [r["judge"] for r in rows if r["seed"] == seed]
+            if sjs:
+                per_seed_e2e.append(100 * sum(j["e2e"] for j in sjs) / len(sjs))
+        m = sum(per_seed_e2e) / len(per_seed_e2e)
+        sd = (sum((x - m) ** 2 for x in per_seed_e2e) / len(per_seed_e2e)) ** 0.5
+        pooled[arm] = {
+            "n": len(rows),
+            "e2e_mean": round(m, 1), "e2e_std_across_seeds": round(sd, 1),
+            "e2e_worst_seed": round(min(per_seed_e2e), 1),
+            "e2e_best_seed": round(max(per_seed_e2e), 1),
+            "seed_spread_pp": round(max(per_seed_e2e) - min(per_seed_e2e), 1),
+            "skill_f1": mean([j["skill_f1_e2e"] for j in js]),
+            "param_key_e2e": mean([j["param_key_e2e"] for j in js]),
+        }
+        p = pooled[arm]
+        print(f"{arm}: E2E {p['e2e_mean']}±{p['e2e_std_across_seeds']} "
+              f"(worst {p['e2e_worst_seed']}, best {p['e2e_best_seed']}, "
+              f"spread {p['seed_spread_pp']}pp) SkillF1={p['skill_f1']} "
+              f"Param={p['param_key_e2e']}")
+    out["pooled_confirmation"] = pooled
+
+    print("\npooled paired contrasts (all seeds combined):")
+    pooled_pairs = {}
+    for A, B in CONTRASTS:
+        b_cnt = c_cnt = 0
+        ra_keys = {(r["seed"], r["id"]) for r in recs
+                   if r["set"] == "confirmation" and r["arm"] == A}
+        rb_map = {(r["seed"], r["id"]): r["judge"]["e2e"] for r in recs
+                  if r["set"] == "confirmation" and r["arm"] == B}
+        for k in ra_keys:
+            if k in rb_map:
+                va = next(r["judge"]["e2e"] for r in recs
+                          if r["set"] == "confirmation" and r["arm"] == A
+                          and (r["seed"], r["id"]) == k)
+                vb = rb_map[k]
+                if va and not vb:
+                    b_cnt += 1
+                elif vb and not va:
+                    c_cnt += 1
+        pooled_pairs[f"{A}-{B}"] = {
+            "wins": b_cnt, "losses": c_cnt,
+            "mcnemar_p": mcnemar_exact(b_cnt, c_cnt)}
+        print(f"  {A}-{B}: w/l={b_cnt}/{c_cnt} "
+              f"p={pooled_pairs[f'{A}-{B}']['mcnemar_p']}")
+    out["pooled_confirmation_paired"] = pooled_pairs
 
     with open(OUT, "w") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)

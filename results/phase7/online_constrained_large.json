@@ -1,0 +1,644 @@
+{
+  "records": 2400,
+  "seeds": [
+    "s42",
+    "s43",
+    "s44"
+  ],
+  "sets": [
+    "confirmation",
+    "dev30"
+  ],
+  "per_set": {
+    "confirmation": {
+      "s42": {
+        "G0": {
+          "n": 150,
+          "parse_pct": 98.0,
+          "valid_pct": 98.0,
+          "e2e_pct": 93.3,
+          "skill_f1_e2e": 0.9624,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5356,
+          "param_key_cond": 0.5739,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0,
+          "tokens_mean": 224.3267,
+          "latency_p50": 9.35,
+          "latency_p95": 14.46
+        },
+        "G1": {
+          "n": 150,
+          "parse_pct": 98.0,
+          "valid_pct": 98.0,
+          "e2e_pct": 93.3,
+          "skill_f1_e2e": 0.9624,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5356,
+          "param_key_cond": 0.5739,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.01,
+          "tokens_mean": 224.3267,
+          "latency_p50": 18.72,
+          "latency_p95": 31.16
+        },
+        "G2a": {
+          "n": 150,
+          "parse_pct": 98.0,
+          "valid_pct": 98.0,
+          "e2e_pct": 93.3,
+          "skill_f1_e2e": 0.9624,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5356,
+          "param_key_cond": 0.5739,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.01,
+          "tokens_mean": 224.3267,
+          "latency_p50": 17.13,
+          "latency_p95": 31.06
+        },
+        "G2": {
+          "n": 150,
+          "parse_pct": 98.0,
+          "valid_pct": 98.0,
+          "e2e_pct": 93.3,
+          "skill_f1_e2e": 0.9624,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5356,
+          "param_key_cond": 0.5739,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.01,
+          "tokens_mean": 224.3267,
+          "latency_p50": 17.25,
+          "latency_p95": 31.2
+        },
+        "G3": {
+          "n": 150,
+          "parse_pct": 98.0,
+          "valid_pct": 98.0,
+          "e2e_pct": 93.3,
+          "skill_f1_e2e": 0.9624,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5356,
+          "param_key_cond": 0.5739,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.01,
+          "tokens_mean": 224.3267,
+          "latency_p50": 16.84,
+          "latency_p95": 30.77
+        },
+        "transitions": {
+          "fixed": {
+            "G1>G0": 0,
+            "G2a>G1": 0,
+            "G2>G2a": 0,
+            "G3>G2": 0
+          },
+          "broken": {
+            "G1>G0": 0,
+            "G2a>G1": 0,
+            "G2>G2a": 0,
+            "G3>G2": 0
+          }
+        },
+        "paired_e2e": {
+          "G1-G0": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          },
+          "G2a-G1": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          },
+          "G2-G2a": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          },
+          "G3-G2": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          }
+        }
+      },
+      "s43": {
+        "G0": {
+          "n": 150,
+          "parse_pct": 98.7,
+          "valid_pct": 64.7,
+          "e2e_pct": 62.7,
+          "skill_f1_e2e": 0.6378,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.2986,
+          "param_key_cond": 0.4765,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0,
+          "tokens_mean": 208.5867,
+          "latency_p50": 8.99,
+          "latency_p95": 14.14
+        },
+        "G1": {
+          "n": 150,
+          "parse_pct": 98.7,
+          "valid_pct": 79.3,
+          "e2e_pct": 77.3,
+          "skill_f1_e2e": 0.7844,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.3497,
+          "param_key_cond": 0.4522,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.36,
+          "tokens_mean": 212.5333,
+          "latency_p50": 18.63,
+          "latency_p95": 30.21
+        },
+        "G2a": {
+          "n": 150,
+          "parse_pct": 97.3,
+          "valid_pct": 80.7,
+          "e2e_pct": 78.7,
+          "skill_f1_e2e": 0.7978,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.3533,
+          "param_key_cond": 0.4491,
+          "deadlock_pct": 0.7,
+          "violation_pct": 0.7,
+          "forced_mean": 0.49,
+          "tokens_mean": 216.48,
+          "latency_p50": 17.55,
+          "latency_p95": 32.48
+        },
+        "G2": {
+          "n": 150,
+          "parse_pct": 97.3,
+          "valid_pct": 82.7,
+          "e2e_pct": 80.7,
+          "skill_f1_e2e": 0.8178,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.367,
+          "param_key_cond": 0.4549,
+          "deadlock_pct": 1.3,
+          "violation_pct": 0.7,
+          "forced_mean": 0.51,
+          "tokens_mean": 216.4067,
+          "latency_p50": 17.29,
+          "latency_p95": 32.45
+        },
+        "G3": {
+          "n": 150,
+          "parse_pct": 98.0,
+          "valid_pct": 83.3,
+          "e2e_pct": 81.3,
+          "skill_f1_e2e": 0.8244,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.3737,
+          "param_key_cond": 0.4594,
+          "deadlock_pct": 14.7,
+          "violation_pct": 0.7,
+          "forced_mean": 0.49,
+          "tokens_mean": 214.0933,
+          "latency_p50": 16.63,
+          "latency_p95": 31.24
+        },
+        "transitions": {
+          "fixed": {
+            "G1>G0": 22,
+            "G2a>G1": 2,
+            "G2>G2a": 3,
+            "G3>G2": 1
+          },
+          "broken": {
+            "G1>G0": 0,
+            "G2a>G1": 0,
+            "G2>G2a": 0,
+            "G3>G2": 0
+          }
+        },
+        "paired_e2e": {
+          "G1-G0": {
+            "e2e_diff_pp": 14.7,
+            "ci95": [
+              9.33,
+              20.669999999999998
+            ],
+            "wins": 22,
+            "losses": 0,
+            "mcnemar_p": 0.0
+          },
+          "G2a-G1": {
+            "e2e_diff_pp": 1.3,
+            "ci95": [
+              0.0,
+              3.3300000000000005
+            ],
+            "wins": 2,
+            "losses": 0,
+            "mcnemar_p": 0.5
+          },
+          "G2-G2a": {
+            "e2e_diff_pp": 2.0,
+            "ci95": [
+              0.0,
+              4.67
+            ],
+            "wins": 3,
+            "losses": 0,
+            "mcnemar_p": 0.25
+          },
+          "G3-G2": {
+            "e2e_diff_pp": 0.7,
+            "ci95": [
+              0.0,
+              2.0
+            ],
+            "wins": 1,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          }
+        }
+      },
+      "s44": {
+        "G0": {
+          "n": 150,
+          "parse_pct": 97.3,
+          "valid_pct": 95.3,
+          "e2e_pct": 92.7,
+          "skill_f1_e2e": 0.9422,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5502,
+          "param_key_cond": 0.5938,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0,
+          "tokens_mean": 222.1667,
+          "latency_p50": 9.53,
+          "latency_p95": 14.03
+        },
+        "G1": {
+          "n": 150,
+          "parse_pct": 98.7,
+          "valid_pct": 96.7,
+          "e2e_pct": 94.0,
+          "skill_f1_e2e": 0.9556,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5552,
+          "param_key_cond": 0.5907,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.03,
+          "tokens_mean": 222.0,
+          "latency_p50": 18.93,
+          "latency_p95": 31.86
+        },
+        "G2a": {
+          "n": 150,
+          "parse_pct": 98.7,
+          "valid_pct": 96.7,
+          "e2e_pct": 94.0,
+          "skill_f1_e2e": 0.9556,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5552,
+          "param_key_cond": 0.5907,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.03,
+          "tokens_mean": 222.0,
+          "latency_p50": 17.29,
+          "latency_p95": 31.08
+        },
+        "G2": {
+          "n": 150,
+          "parse_pct": 98.7,
+          "valid_pct": 98.0,
+          "e2e_pct": 95.3,
+          "skill_f1_e2e": 0.9689,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5645,
+          "param_key_cond": 0.5921,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.05,
+          "tokens_mean": 221.9667,
+          "latency_p50": 17.34,
+          "latency_p95": 31.09
+        },
+        "G3": {
+          "n": 150,
+          "parse_pct": 98.7,
+          "valid_pct": 98.0,
+          "e2e_pct": 95.3,
+          "skill_f1_e2e": 0.9689,
+          "exec_recall_e2e": 0.8571,
+          "param_key_e2e": 0.5645,
+          "param_key_cond": 0.5921,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0.05,
+          "tokens_mean": 221.9667,
+          "latency_p50": 17.02,
+          "latency_p95": 30.77
+        },
+        "transitions": {
+          "fixed": {
+            "G1>G0": 2,
+            "G2a>G1": 0,
+            "G2>G2a": 2,
+            "G3>G2": 0
+          },
+          "broken": {
+            "G1>G0": 0,
+            "G2a>G1": 0,
+            "G2>G2a": 0,
+            "G3>G2": 0
+          }
+        },
+        "paired_e2e": {
+          "G1-G0": {
+            "e2e_diff_pp": 1.3,
+            "ci95": [
+              0.0,
+              3.3300000000000005
+            ],
+            "wins": 2,
+            "losses": 0,
+            "mcnemar_p": 0.5
+          },
+          "G2a-G1": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          },
+          "G2-G2a": {
+            "e2e_diff_pp": 1.3,
+            "ci95": [
+              0.0,
+              3.3300000000000005
+            ],
+            "wins": 2,
+            "losses": 0,
+            "mcnemar_p": 0.5
+          },
+          "G3-G2": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          }
+        }
+      }
+    },
+    "dev30": {
+      "s43": {
+        "G0": {
+          "n": 30,
+          "parse_pct": 86.7,
+          "valid_pct": 60.0,
+          "e2e_pct": 53.3,
+          "skill_f1_e2e": 0.5778,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.2887,
+          "param_key_cond": 0.5414,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0,
+          "tokens_mean": null,
+          "latency_p50": 10.29,
+          "latency_p95": 22.61
+        },
+        "G1": {
+          "n": 30,
+          "parse_pct": 100.0,
+          "valid_pct": 80.0,
+          "e2e_pct": 70.0,
+          "skill_f1_e2e": 0.7778,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.4022,
+          "param_key_cond": 0.5746,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0,
+          "tokens_mean": null,
+          "latency_p50": 19.73,
+          "latency_p95": 30.05
+        },
+        "G2a": {
+          "n": 30,
+          "parse_pct": 100.0,
+          "valid_pct": 83.3,
+          "e2e_pct": 73.3,
+          "skill_f1_e2e": 0.8111,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.4189,
+          "param_key_cond": 0.5712,
+          "deadlock_pct": 3.3,
+          "violation_pct": 3.3,
+          "forced_mean": 0.43,
+          "tokens_mean": 238.3333,
+          "latency_p50": 17.53,
+          "latency_p95": 28.06
+        },
+        "G2": {
+          "n": 30,
+          "parse_pct": 100.0,
+          "valid_pct": 83.3,
+          "e2e_pct": 73.3,
+          "skill_f1_e2e": 0.8111,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.4189,
+          "param_key_cond": 0.5712,
+          "deadlock_pct": 0.0,
+          "violation_pct": 0.0,
+          "forced_mean": 0,
+          "tokens_mean": null,
+          "latency_p50": 17.69,
+          "latency_p95": 28.38
+        },
+        "G3": {
+          "n": 30,
+          "parse_pct": 100.0,
+          "valid_pct": 83.3,
+          "e2e_pct": 73.3,
+          "skill_f1_e2e": 0.8111,
+          "exec_recall_e2e": 1.0,
+          "param_key_e2e": 0.4189,
+          "param_key_cond": 0.5712,
+          "deadlock_pct": 23.3,
+          "violation_pct": 3.3,
+          "forced_mean": 0.43,
+          "tokens_mean": 238.3333,
+          "latency_p50": 17.28,
+          "latency_p95": 27.51
+        },
+        "transitions": {
+          "fixed": {
+            "G1>G0": 5,
+            "G2a>G1": 1,
+            "G2>G2a": 0,
+            "G3>G2": 0
+          },
+          "broken": {
+            "G1>G0": 0,
+            "G2a>G1": 0,
+            "G2>G2a": 0,
+            "G3>G2": 0
+          }
+        },
+        "paired_e2e": {
+          "G1-G0": {
+            "e2e_diff_pp": 16.7,
+            "ci95": [
+              6.67,
+              30.0
+            ],
+            "wins": 5,
+            "losses": 0,
+            "mcnemar_p": 0.0625
+          },
+          "G2a-G1": {
+            "e2e_diff_pp": 3.3,
+            "ci95": [
+              0.0,
+              10.0
+            ],
+            "wins": 1,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          },
+          "G2-G2a": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          },
+          "G3-G2": {
+            "e2e_diff_pp": 0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "wins": 0,
+            "losses": 0,
+            "mcnemar_p": 1.0
+          }
+        }
+      }
+    }
+  },
+  "pooled_confirmation": {
+    "G0": {
+      "n": 450,
+      "e2e_mean": 82.9,
+      "e2e_std_across_seeds": 14.3,
+      "e2e_worst_seed": 62.7,
+      "e2e_best_seed": 93.3,
+      "seed_spread_pp": 30.7,
+      "skill_f1": 0.8475,
+      "param_key_e2e": 0.4615
+    },
+    "G1": {
+      "n": 450,
+      "e2e_mean": 88.2,
+      "e2e_std_across_seeds": 7.7,
+      "e2e_worst_seed": 77.3,
+      "e2e_best_seed": 94.0,
+      "seed_spread_pp": 16.7,
+      "skill_f1": 0.9008,
+      "param_key_e2e": 0.4802
+    },
+    "G2a": {
+      "n": 450,
+      "e2e_mean": 88.7,
+      "e2e_std_across_seeds": 7.1,
+      "e2e_worst_seed": 78.7,
+      "e2e_best_seed": 94.0,
+      "seed_spread_pp": 15.3,
+      "skill_f1": 0.9052,
+      "param_key_e2e": 0.4814
+    },
+    "G2": {
+      "n": 450,
+      "e2e_mean": 89.8,
+      "e2e_std_across_seeds": 6.5,
+      "e2e_worst_seed": 80.7,
+      "e2e_best_seed": 95.3,
+      "seed_spread_pp": 14.7,
+      "skill_f1": 0.9163,
+      "param_key_e2e": 0.489
+    },
+    "G3": {
+      "n": 450,
+      "e2e_mean": 90.0,
+      "e2e_std_across_seeds": 6.2,
+      "e2e_worst_seed": 81.3,
+      "e2e_best_seed": 95.3,
+      "seed_spread_pp": 14.0,
+      "skill_f1": 0.9186,
+      "param_key_e2e": 0.4913
+    }
+  },
+  "pooled_confirmation_paired": {
+    "G1-G0": {
+      "wins": 24,
+      "losses": 0,
+      "mcnemar_p": 0.0
+    },
+    "G2a-G1": {
+      "wins": 2,
+      "losses": 0,
+      "mcnemar_p": 0.5
+    },
+    "G2-G2a": {
+      "wins": 5,
+      "losses": 0,
+      "mcnemar_p": 0.0625
+    },
+    "G3-G2": {
+      "wins": 1,
+      "losses": 0,
+      "mcnemar_p": 1.0
+    }
+  }
+}
