@@ -188,6 +188,7 @@
 | AgentBoard | `docs/results-agentboard-first-test.md` | `results/agentboard/` |
 | Phase 7B 修复 | `docs/phase7/`（局部修复负结果：全量重生成占优） | `results/phase7/` |
 | Phase 7C-0.1 约束生成 v2 | `docs/phase7/results-constrained-generation-v2.md`（D1 无损 72/72；D2 弱种子 +3.3pp；v1 全臂 13.3% 系解析器 bug，作废） | `results/phase7/constrained_generation_v2.json`, `tests/test_constrained_decoder.py` |
+| Phase 8A.1+8B-0 分层规划可行性 | docs/phase8b/hierarchical-planning-feasibility.md（评测修正后: P1 oracle骨架→降级=71.7%精确序列; P2 零训练base骨架=55%valid/F1×3.6, 深任务收益最大(7+步 0→0.208); P3/P4提示工程崩至8-12%; Task9五条全过=GO 8B-1） | results/phase8b/hierarchical_planning_feasibility.json, results/phase8a/semantic_layers_corrected.json |
 | Phase 8A 语义正确性 | docs/phase8a/semantic-correctness-report.md（平衡集120任务：A学习管线 Valid 42.5%但语义序列匹配1.7%；归因主导=Composer欠规划86/120；B条件揭示标签-规划分布耦合；D上界 bindability=1.0/argAcc=0.85；G1约束提升计划完整性ordRec 0.18→0.41但不产生语义正确） | results/phase8a/*, tests/test_tau3_semantic_grounding.py |
 | Phase 7C-2.1 证据强化 | docs/phase7/paper-evidence-hardening.md（聚类统计+Holm校正；快速路径1.8×→1.38×字节一致；τ³跨来源A/B协议：G2独立+4pp复现、learned全管线96%、G1在oracle-τ³有2例破坏被G2抵消） | results/phase7/clustered_statistics.json, fast_mask_verification.json, online_cross_source.json |
 | Phase 7C-2 大样本验证 | docs/phase7/results-online-constrained-large.md（确认集150×3种子：E2E 82.9→89.8，种子方差减半 30.7→14.7pp，零破坏；G1主效应24/0 p<0.0001，Typed SSA独立+1.6pp 7/0；G3规范化=负结果） | results/phase7/online_constrained_large.json, online_large_runs.jsonl, experiments/phase7/online_decoder_manifest.json |
