@@ -197,6 +197,7 @@ class TaskIRGenFSM:
         self._last_node_inputs: List[str] = []
         self._cur_operand_choices: Optional[List[str]] = None
         self._operand_is_arg: bool = True
+        self._trie_cache: Dict = {}          # choices tuple -> Trie
 
     # ---------- snapshot (for cheap what-if simulation) ----------
     # NOTE: must copy the mutable containers — feed() appends to them during
@@ -290,7 +291,14 @@ class TaskIRGenFSM:
     def _operand_choices_trie(self) -> Optional[Trie]:
         if self._cur_operand_choices is None:
             return None
-        return Trie.from_words(sorted(self._cur_operand_choices))
+        choices = tuple(self._cur_operand_choices)
+        t = self._trie_cache.get(choices)
+        if t is None:
+            t = Trie.from_words(sorted(self._cur_operand_choices))
+            if len(self._trie_cache) > 256:
+                self._trie_cache.clear()
+            self._trie_cache[choices] = t
+        return t
 
     # ---------- lexer ----------
 
@@ -808,7 +816,13 @@ class TaskIRGenFSM:
                 choices = (self._cur_operand_choices
                            if self._cur_operand_choices is not None
                            else self._ref_choices(None))
-                trie = Trie.from_words(sorted(choices))
+                key = tuple(choices)
+                trie = self._trie_cache.get(key)
+                if trie is None:
+                    trie = Trie.from_words(sorted(choices))
+                    if len(self._trie_cache) > 256:
+                        self._trie_cache.clear()
+                    self._trie_cache[key] = trie
                 node = trie.node_for(self.buf)
                 if node is None and self.buf not in self.defined:
                     return {"kind": "chars", "set": set()}
@@ -880,20 +894,13 @@ class TokenMask:
                 texts[tid] = ""
         return texts
 
-    def allowed_ids(self, fsm: TaskIRGenFSM) -> List[int]:
-        """Legal non-special token ids for the current FSM state.
-
-        EOS legality is the caller's concern (processor adds real eos ids
-        when fsm.eos_ok()); a sentinel like -1 must never enter this list —
-        it would become a negative tensor index and un-ban an arbitrary
-        vocab slot.
-        """
+    def state_key(self, fsm: TaskIRGenFSM):
+        """Cache key covering EVERYTHING _token_ok depends on: the resume
+        stack (string/list exit context), keyword candidates, and — at
+        G2+ — the dynamic SSA sets. A stale entry here leaks bans across
+        contexts (observed: '"])\n' banned inside lists because a param-
+        value string computed the key first)."""
         spec = fsm.allowed()
-        # cache key must cover EVERYTHING _token_ok depends on: the resume
-        # stack (string/list exit context), keyword candidates, and — at
-        # G2+ — the dynamic SSA sets. A stale entry here leaks bans across
-        # contexts (observed: '"])\n' banned inside lists because a param-
-        # value string computed the key first).
         key = (fsm.state, fsm.buf, tuple(fsm.resume),
                tuple(fsm.kw_candidates), spec["kind"],
                tuple(sorted(spec.get("set", []))),
@@ -903,6 +910,19 @@ class TokenMask:
                     fsm.operand_count, fsm._operand_is_arg,
                     tuple(fsm._cur_operand_choices or []),
                     fsm.dup_ext_attempts)
+        return key, spec
+
+    def allowed_ids(self, fsm: TaskIRGenFSM, key=None, spec=None) -> List[int]:
+        """Legal non-special token ids for the current FSM state.
+
+        EOS legality is the caller's concern (processor adds real eos ids
+        when fsm.eos_ok()); a sentinel like -1 must never enter this list —
+        it would become a negative tensor index and un-ban an arbitrary
+        vocab slot. key/spec may be passed in to avoid recomputing them
+        when the caller already built the state key this step.
+        """
+        if key is None or spec is None:
+            key, spec = self.state_key(fsm)
         if key in self._cache:
             return list(self._cache[key])
         allowed = self._compute(fsm, spec)
@@ -981,6 +1001,57 @@ class ConstrainedLogitsProcessor:
                             else [eos_token_ids]))
         self.prompt_len: Optional[int] = None
         self.gen_fed = 0
+        # ---- Task 5 fast paths (semantics unchanged) ----
+        # materialized masks are cached per (fsm state key, eos_ok): the
+        # index tensor is REUSED while the key is unchanged (free regions:
+        # comment/string bodies hold the same state for many steps), and
+        # free regions mask the small BANNED complement instead of
+        # scattering the ~149k allowed ids. Both produce byte-identical
+        # logits.
+        import numpy as _np
+        self._np = _np
+        self._all_ids = None            # arange(vocab), lazily sized
+        self._mask_cache: Dict = {}     # (key, eos) -> (mode, idx_tensor)
+        self._allowed_cache: Dict = {}  # (key, eos) -> frozenset
+        self._cache_order: List = []
+        self._cache_cap = 8192
+
+    def _materialize(self, scores, key, spec, eos_ok):
+        """(mode, idx_tensor, allowed_frozenset) for the current key, or
+        None when the legal set is empty (deadlock)."""
+        ck = (key, eos_ok)
+        cached = self._mask_cache.get(ck)
+        if cached is not None:
+            return cached[0], cached[1], self._allowed_cache[ck]
+        allowed = set(self.mask.allowed_ids(self.fsm, key=key, spec=spec))
+        if eos_ok:
+            allowed |= self.eos_ids
+        if not allowed:
+            return None                 # deadlock (caller logs)
+        n_vocab = scores.shape[-1]
+        if self._all_ids is None or len(self._all_ids) != n_vocab:
+            self._all_ids = self._np.arange(n_vocab, dtype=self._np.int64)
+        if len(allowed) * 2 > n_vocab:
+            banned = self._np.setdiff1d(
+                self._all_ids,
+                self._np.fromiter(allowed, dtype=self._np.int64,
+                                  count=len(allowed)))
+            idx = torch.as_tensor(banned, device=scores.device,
+                                  dtype=torch.long)
+            mode = "banned"
+        else:
+            idx = torch.tensor(sorted(allowed), device=scores.device,
+                               dtype=torch.long)
+            mode = "allowed"
+        allowed_fz = frozenset(allowed)
+        if len(self._cache_order) >= self._cache_cap:
+            old = self._cache_order.pop(0)
+            self._mask_cache.pop(old, None)
+            self._allowed_cache.pop(old, None)
+        self._mask_cache[ck] = (mode, idx)
+        self._allowed_cache[ck] = allowed_fz
+        self._cache_order.append(ck)
+        return mode, idx, allowed_fz
 
     def __call__(self, input_ids, scores):
         assert scores.shape[0] == 1, "online constraints require batch=1"
@@ -1000,22 +1071,15 @@ class ConstrainedLogitsProcessor:
                     self.stats.fsm_violation = (
                         f"state={self.fsm.state} char={c!r} after "
                         f"{self.gen_fed} tokens")
-        # 2) compute legal token set (EOS added separately — never a sentinel)
-        allowed = set(self.mask.allowed_ids(self.fsm))
-        # ban every special token except EOS-when-legal
-        for e in self.eos_ids:
-            if self.fsm.eos_ok():
-                allowed.add(e)
-        # 3) bookkeeping + mask
+        # 2) materialize the mask for the current state (cached per key)
         self.stats.steps += 1
+        key, spec = self.mask.state_key(self.fsm)
+        eos_ok = self.fsm.eos_ok()
+        mat = self._materialize(scores, key, spec, eos_ok)
         top1 = int(torch.argmax(scores[0]).item())
         n_vocab = scores.shape[-1]
-        if allowed:
-            keep = torch.full((n_vocab,), float("-inf"),
-                              dtype=scores.dtype, device=scores.device)
-            idx = torch.tensor(sorted(allowed), device=scores.device,
-                               dtype=torch.long)
-            keep[idx] = scores[0][idx]
+        if mat is not None:
+            mode, idx, allowed = mat
             self.stats.banned_counts.append(n_vocab - len(allowed))
             if top1 not in allowed:
                 self.stats.forced_steps += 1
@@ -1027,7 +1091,13 @@ class ConstrainedLogitsProcessor:
                                  if 0 <= top1 < len(self.mask.token_texts)
                                  else f"id{top1}")})
             out = scores.clone()
-            out[0] = keep
+            if mode == "allowed":
+                keep = torch.full((n_vocab,), float("-inf"),
+                                  dtype=scores.dtype, device=scores.device)
+                keep[idx] = scores[0][idx]
+                out[0] = keep
+            else:                       # banned complement
+                out[0][idx] = float("-inf")
             return out
         # deadlock fallback: leave scores untouched, log
         self.stats.deadlocks.append(

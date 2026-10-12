@@ -1,0 +1,26 @@
+{
+  "seed": "s43",
+  "n": 12,
+  "report": {
+    "G1": {
+      "n_checked": 12,
+      "byte_identical": 12,
+      "new_latency_p50": 14.63,
+      "new_latency_p95": 28.14,
+      "old_latency_p50": 16.04,
+      "old_latency_p95": 30.21,
+      "new_tokens_per_s_mean": 11.6,
+      "speedup_p50": 1.1
+    },
+    "G2": {
+      "n_checked": 12,
+      "byte_identical": 12,
+      "new_latency_p50": 12.95,
+      "new_latency_p95": 27.06,
+      "old_latency_p50": 14.28,
+      "old_latency_p95": 29.52,
+      "new_tokens_per_s_mean": 13.1,
+      "speedup_p50": 1.1
+    }
+  }
+}
