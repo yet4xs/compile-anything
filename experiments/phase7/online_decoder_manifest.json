@@ -18,10 +18,26 @@
     "G3": "level 4 - G2 + canonical input-type literal trie (name normalization only; no semantic-compatibility claim)"
   },
   "canonical_input_types_g3": [
-    "Any", "Bool", "Date", "Dict", "Entity", "Float", "Int", "Json",
-    "Str", "Table",
-    "List[Any]", "List[Bool]", "List[Date]", "List[Dict]", "List[Entity]",
-    "List[Float]", "List[Int]", "List[Json]", "List[Str]", "List[Table]"
+    "Any",
+    "Bool",
+    "Date",
+    "Dict",
+    "Entity",
+    "Float",
+    "Int",
+    "Json",
+    "Str",
+    "Table",
+    "List[Any]",
+    "List[Bool]",
+    "List[Date]",
+    "List[Dict]",
+    "List[Entity]",
+    "List[Float]",
+    "List[Int]",
+    "List[Json]",
+    "List[Str]",
+    "List[Table]"
   ],
   "fsm_parameters": {
     "comment_cap_chars": 800,
@@ -37,22 +53,44 @@
   },
   "datasets": {
     "development_30": "first 30 gold-bearing tasks in data/phase6b_resolver/common_eval_tasks.jsonl (13 tbs + 17 xlam); includes ALL 30 tbs tasks in the matched set",
-    "confirmation_150": "data/phase7/confirmation_ids.json - stratified by source x ref-opseq-depth, random.seed(20261009), drawn from the 964 remaining tasks",
+    "confirmation_150": "data/phase7/confirmation_ids.json - held-out-from-decoder-development, ORACLE-CAPABILITY-CONDITIONED (gold capability blocks supplied; Composer isolated): stratified by source x ref-opseq-depth, random.seed(20261009), drawn from the 964 remaining xlam-only tasks",
     "confirmation_limitation": "the 964-task pool is entirely xlam; all tbs tasks were consumed by dev-30, so the confirmation set cannot cover the tbs distribution. tbs evidence remains dev-30-only.",
-    "error_stratification_note": "error-type stratification is not computable a priori on unrun samples; approximated by source (which carried the dev-30 error profile)"
+    "error_stratification_note": "error-type stratification is not computable a priori on unrun samples; approximated by source (which carried the dev-30 error profile)",
+    "claim_scope": "results establish: with oracle-selected capabilities, online constraints improve TaskIR Composer structural and op-sequence accuracy. NOT claimed: cross-domain generalization, full-pipeline (Canonicalizer->Resolver->Composer) accuracy, or task execution success"
   },
   "metrics": {
     "primary": "Valid AND OpSeq (E2E); invalid programs score 0",
-    "secondary": ["Parse Rate", "Validator Pass", "Skill F1 E2E (multiset over policy-op-filtered ops)", "EXEC_ACTION Recall E2E (count-limited)", "Param-key Jaccard E2E (fixed full-set denominator; conditional variant reported separately; pairing over filtered node sequence)"],
-    "safety": ["deadlock rate", "FSM violation rate", "forced token decisions", "dup forced extensions", "type-pref applications/fallbacks"],
-    "efficiency": ["generated tokens", "P50/P95 latency"],
-    "statistics": ["paired bootstrap 95% CI (10k resamples)", "exact McNemar", "contrasts: G1-G0, G2a-G1, G2-G2a, G3-G2"]
+    "secondary": [
+      "Parse Rate",
+      "Validator Pass",
+      "Skill F1 E2E (multiset over policy-op-filtered ops)",
+      "EXEC_ACTION Recall E2E (count-limited)",
+      "Param-key Jaccard E2E (fixed full-set denominator; conditional variant reported separately; pairing over filtered node sequence)"
+    ],
+    "safety": [
+      "deadlock rate",
+      "FSM violation rate",
+      "forced token decisions",
+      "dup forced extensions",
+      "type-pref applications/fallbacks"
+    ],
+    "efficiency": [
+      "generated tokens",
+      "P50/P95 latency"
+    ],
+    "statistics": [
+      "paired bootstrap 95% CI (10k resamples)",
+      "exact McNemar",
+      "contrasts: G1-G0, G2a-G1, G2-G2a, G3-G2"
+    ]
   },
   "reporting_policy": {
     "dev30": "development results (tuned on)",
     "confirmation_150": "held-out confirmation (primary evidence)",
     "all_994": "descriptive only, never described as untouched",
-    "note": "all-994 merge deferred until confirmation shows no severe degradation (advisor Task 5 gate)"
+    "note": "all-994 merge deferred until confirmation shows no severe degradation (advisor Task 5 gate)",
+    "statistical_caveats": "3 training seeds only: report as 'reduced dispersion across the three tested seeds', not universal variance-halving; cross-seed records share the same 150 tasks -> task-clustered bootstrap in results/phase7/clustered_statistics.json; Holm-adjusted p-values for the pre-registered contrasts; G2-G1 is a post-hoc composite",
+    "latency_wording": "strong seeds show ZERO ACCURACY REGRESSION, not zero runtime overhead - the mask is computed every step (1.8x P50); optimization is Task 5 of 7C-2.1"
   },
   "tests": [
     "tests/test_online_constrained_decoder.py (24 tests, CPU)",

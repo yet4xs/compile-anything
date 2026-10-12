@@ -1,0 +1,198 @@
+{
+  "n_tasks": 150,
+  "seeds": [
+    "s42",
+    "s43",
+    "s44"
+  ],
+  "note": "cluster bootstrap resamples task ids and keeps all seeds of each resampled task (cross-seed correlation preserved); Holm adjustment applied over the four pre-registered contrasts only",
+  "contrasts": {
+    "G1-G0": {
+      "preregistered": true,
+      "role": "pre-registered in manifest",
+      "per_seed": {
+        "s42": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        },
+        "s43": {
+          "wins": 22,
+          "losses": 0,
+          "mcnemar_p": 4.76837158203125e-07
+        },
+        "s44": {
+          "wins": 2,
+          "losses": 0,
+          "mcnemar_p": 0.5
+        }
+      },
+      "pooled": {
+        "wins": 24,
+        "losses": 0,
+        "mcnemar_p": 1.1920928955078125e-07
+      },
+      "cluster_bootstrap_mean_pp": 5.33,
+      "cluster_bootstrap_ci95_pp": [
+        3.56,
+        7.33
+      ],
+      "n_pairs_per_seed": 150,
+      "holm_p": 4.76837158203125e-07
+    },
+    "G2a-G1": {
+      "preregistered": true,
+      "role": "pre-registered in manifest",
+      "per_seed": {
+        "s42": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        },
+        "s43": {
+          "wins": 2,
+          "losses": 0,
+          "mcnemar_p": 0.5
+        },
+        "s44": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        }
+      },
+      "pooled": {
+        "wins": 2,
+        "losses": 0,
+        "mcnemar_p": 0.5
+      },
+      "cluster_bootstrap_mean_pp": 0.44,
+      "cluster_bootstrap_ci95_pp": [
+        0.0,
+        1.11
+      ],
+      "n_pairs_per_seed": 150,
+      "holm_p": 1.0
+    },
+    "G2-G2a": {
+      "preregistered": true,
+      "role": "pre-registered in manifest",
+      "per_seed": {
+        "s42": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        },
+        "s43": {
+          "wins": 3,
+          "losses": 0,
+          "mcnemar_p": 0.25
+        },
+        "s44": {
+          "wins": 2,
+          "losses": 0,
+          "mcnemar_p": 0.5
+        }
+      },
+      "pooled": {
+        "wins": 5,
+        "losses": 0,
+        "mcnemar_p": 0.0625
+      },
+      "cluster_bootstrap_mean_pp": 1.11,
+      "cluster_bootstrap_ci95_pp": [
+        0.0,
+        2.67
+      ],
+      "n_pairs_per_seed": 150,
+      "holm_p": 0.1875
+    },
+    "G3-G2": {
+      "preregistered": true,
+      "role": "pre-registered in manifest",
+      "per_seed": {
+        "s42": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        },
+        "s43": {
+          "wins": 1,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        },
+        "s44": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        }
+      },
+      "pooled": {
+        "wins": 1,
+        "losses": 0,
+        "mcnemar_p": 1.0
+      },
+      "cluster_bootstrap_mean_pp": 0.22,
+      "cluster_bootstrap_ci95_pp": [
+        0.0,
+        0.67
+      ],
+      "n_pairs_per_seed": 150,
+      "holm_p": 1.0
+    },
+    "G2-G1": {
+      "preregistered": false,
+      "role": "POST-HOC composite of G2a-G1 + G2-G2a",
+      "per_seed": {
+        "s42": {
+          "wins": 0,
+          "losses": 0,
+          "mcnemar_p": 1.0
+        },
+        "s43": {
+          "wins": 5,
+          "losses": 0,
+          "mcnemar_p": 0.0625
+        },
+        "s44": {
+          "wins": 2,
+          "losses": 0,
+          "mcnemar_p": 0.5
+        }
+      },
+      "pooled": {
+        "wins": 7,
+        "losses": 0,
+        "mcnemar_p": 0.015625
+      },
+      "cluster_bootstrap_mean_pp": 1.56,
+      "cluster_bootstrap_ci95_pp": [
+        0.44,
+        3.11
+      ],
+      "n_pairs_per_seed": 150
+    }
+  },
+  "zero_regression_audit": {
+    "definition": "for each constrained arm X vs G0, over all (seed, task) with both records: pairs counted, regressions = G0 correct AND X incorrect",
+    "per_arm": {
+      "G1_vs_G0": {
+        "pairs": 450,
+        "regressions": 0
+      },
+      "G2a_vs_G0": {
+        "pairs": 450,
+        "regressions": 0
+      },
+      "G2_vs_G0": {
+        "pairs": 450,
+        "regressions": 0
+      },
+      "G3_vs_G0": {
+        "pairs": 450,
+        "regressions": 0
+      }
+    },
+    "total_pairs": 1800,
+    "total_regressions": 0
+  }
+}
