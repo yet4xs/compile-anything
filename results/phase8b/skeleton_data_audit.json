@@ -1,0 +1,99 @@
+{
+  "per_split": {
+    "train": {
+      "n": 17702,
+      "depth_hist_capped8": {
+        "1": 9753,
+        "2": 5988,
+        "3": 1284,
+        "4": 460,
+        "5": 138,
+        "6": 54,
+        "7": 10,
+        "8": 15
+      },
+      "dag_shapes": {
+        "linear_chain": 5516,
+        "single": 9753,
+        "independent_branches": 2433
+      },
+      "evidence": {
+        "derived": 16649,
+        "synthetic": 1053
+      },
+      "chain": {
+        "ok": 15047,
+        "taskir_validator": 2655
+      },
+      "lowering_success_pct": 85.0,
+      "mean_ref_op_count": 1.62,
+      "mean_critical_path": 1.48,
+      "sft_ready": 15047
+    },
+    "dev": {
+      "n": 1972,
+      "depth_hist_capped8": {
+        "1": 1215,
+        "2": 623,
+        "3": 115,
+        "4": 12,
+        "5": 2,
+        "8": 5
+      },
+      "dag_shapes": {
+        "single": 1215,
+        "independent_branches": 307,
+        "linear_chain": 450
+      },
+      "evidence": {
+        "derived": 1972
+      },
+      "chain": {
+        "ok": 1807,
+        "taskir_validator": 165
+      },
+      "lowering_success_pct": 91.63,
+      "mean_ref_op_count": 1.48,
+      "mean_critical_path": 1.32,
+      "sft_ready": 1807
+    },
+    "test": {
+      "n": 2226,
+      "depth_hist_capped8": {
+        "1": 1257,
+        "2": 791,
+        "3": 132,
+        "4": 29,
+        "5": 12,
+        "6": 3,
+        "8": 2
+      },
+      "dag_shapes": {
+        "single": 1257,
+        "independent_branches": 339,
+        "linear_chain": 630
+      },
+      "evidence": {
+        "derived": 2226
+      },
+      "chain": {
+        "ok": 2176,
+        "taskir_validator": 50
+      },
+      "lowering_success_pct": 97.75,
+      "mean_ref_op_count": 1.57,
+      "mean_critical_path": 1.41,
+      "sft_ready": 2176
+    }
+  },
+  "near_duplicates": {
+    "test_checked": 300,
+    "jaccard>0.8_vs_train": 5
+  },
+  "family_isolation": {
+    "overlap_train_dev": [],
+    "overlap_train_test": [],
+    "overlap_dev_test": []
+  },
+  "tau3_ids_present": 0
+}

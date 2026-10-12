@@ -184,6 +184,17 @@ def evaluate_sample_v2(domain: str, pred_text: str,
         act = _norm(n.params.get("action", ""))
         if act and act not in pred_bound:
             pred_bound[act] = n
+    # unified binding contract: semantic-skill nodes carry identity via
+    # hints(tool=...) — they count as bound for NON-MUTATING tools only
+    # (mutations must use EXEC_ACTION action=...)
+    for n in (mod.program.nodes if mod else []):
+        hint_tool = _norm((n.hints or {}).get("tool", ""))
+        if (hint_tool and hint_tool not in pred_bound
+                and n.op != "EXEC_ACTION"):
+            o = get_tool_oracle(domain, hint_tool)
+            if o["effect_class"] in ("read_only", "communication",
+                                     "agent_internal"):
+                pred_bound[hint_tool] = n
     bound_ok = set()
     for tool, n in pred_bound.items():
         schema = tool_schemas.get(tool)
@@ -191,7 +202,11 @@ def evaluate_sample_v2(domain: str, pred_text: str,
             continue                      # not in the runtime registry
         required = [pp["name"] for pp in schema.get("params", [])
                     if not pp.get("optional")]
-        if all(k in n.params for k in required):
+        params = ({k: v for k, v in n.params.items()}
+                  if n.op == "EXEC_ACTION" else dict(n.hints or {}))
+        # required params may live in node params (EXEC_ACTION) or in
+        # hints-carried skeleton arguments (semantic nodes)
+        if all(k in n.params or k in (n.hints or {}) for k in required):
             bound_ok.add(tool)
     ref_set = set(scorable_tools)
     b_f1, b_p, b_r = _f1(len(bound_ok & ref_set),

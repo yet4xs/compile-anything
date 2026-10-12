@@ -1,0 +1,913 @@
+{
+  "n": 120,
+  "overall_success_pct": 73.3,
+  "failure_categories": {
+    "ok": 88,
+    "taskir_validator": 2,
+    "user_side_ref": 30
+  },
+  "success_within_expressiveness_pct": 97.8,
+  "n_within_expressiveness": 90,
+  "success_complete_params_pct": 97.8,
+  "n_complete_params": 90,
+  "success_no_user_side_pct": 97.8,
+  "n_no_user_side": 90,
+  "per_task": [
+    {
+      "case_id": "airline-45",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-18",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-40",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-32",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-13",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-9",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-49",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-43",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-6",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-15",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-11",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-3",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-27",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-24",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-12",
+      "domain": "airline",
+      "category": "taskir_validator",
+      "detail": "validator: [Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@task: Str) incompatible with CALCULATE signatu"
+    },
+    {
+      "case_id": "airline-29",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-2",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-23",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-38",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-16",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-41",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-37",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-21",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-48",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-39",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-19",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-20",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-33",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-25",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "airline-8",
+      "domain": "airline",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_023",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_073",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_070",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_096",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_072",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_018",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_101",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_014",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_098",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_010",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_051",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_038",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_004",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_097",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_095",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_046",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_062",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_056",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_002",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_008",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_027",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_015",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_043",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_058",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_080",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_061",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_100",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_093",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_047",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "banking_knowledge-task_082",
+      "domain": "banking_knowledge",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-3",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-71",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-36",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-103",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-19",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-89",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-11",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-22",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-72",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-64",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-83",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-9",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-68",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-111",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-12",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-15",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-88",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-75",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-23",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-55",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-87",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-43",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-51",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-86",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-25",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-39",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-8",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-44",
+      "domain": "retail",
+      "category": "taskir_validator",
+      "detail": "validator: [Issue(code='TYPE_MISMATCH', severity='error', msg='input #1 (@task: Str) incompatible with CALCULATE signatu"
+    },
+    {
+      "case_id": "retail-66",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "retail-32",
+      "domain": "retail",
+      "category": "ok",
+      "detail": null
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_wifi_calling|break_app_sms_permission|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_wifi_calling",
+        "grant_app_permission",
+        "toggle_data"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|break_apn_mms_setting|break_app_both_permissions|data_mode_off|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_data",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mobile_data_issue]airplane_mode_on|bad_vpn|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "disconnect_vpn",
+        "toggle_data_saver_mode",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|break_apn_mms_setting|data_mode_off|data_usage_exceeded[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "reset_apn_settings",
+        "reboot_device",
+        "toggle_data"
+      ]
+    },
+    {
+      "case_id": "telecom-[mobile_data_issue]airplane_mode_on|bad_network_preference|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "toggle_data_saver_mode"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|break_app_storage_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "grant_app_permission",
+        "toggle_data"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_wifi_calling|break_apn_mms_setting|break_app_sms_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_wifi_calling",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "toggle_data",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|break_apn_mms_setting|break_app_storage_permission|data_usage_exceeded|unseat_sim_card[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "reseat_sim_card"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]break_apn_mms_setting|break_app_sms_permission|unseat_sim_card[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "reseat_sim_card"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "toggle_wifi_calling",
+        "grant_app_permission",
+        "grant_app_permission",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|break_app_sms_permission|data_usage_exceeded[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]break_app_both_permissions|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_data"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "grant_app_permission",
+        "toggle_data",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_app_storage_permission|data_mode_off|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "grant_app_permission",
+        "toggle_data",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_wifi_calling|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "toggle_wifi_calling",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]break_app_storage_permission|data_mode_off|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "grant_app_permission",
+        "toggle_data",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_both_permissions|data_usage_exceeded[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "toggle_wifi_calling",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "grant_app_permission"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "toggle_wifi_calling",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "toggle_data",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_both_permissions|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "toggle_wifi_calling",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|break_app_both_permissions|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_data",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|break_apn_mms_setting|break_app_sms_permission|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_on[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "reseat_sim_card"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|data_mode_off|unseat_sim_card[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "toggle_wifi_calling",
+        "toggle_data",
+        "reseat_sim_card"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_mode_off[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "toggle_wifi_calling",
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_data"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]break_app_sms_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "grant_app_permission",
+        "toggle_data",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "set_network_mode_preference",
+        "reset_apn_settings",
+        "reboot_device",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|break_apn_mms_setting|break_app_both_permissions|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "reset_apn_settings",
+        "reboot_device",
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_data"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_wifi_calling",
+        "grant_app_permission",
+        "grant_app_permission",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|break_app_both_permissions|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "grant_app_permission",
+        "grant_app_permission",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mms_issue]airplane_mode_on|break_app_storage_permission|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "toggle_airplane_mode",
+        "grant_app_permission",
+        "reseat_sim_card",
+        "toggle_roaming"
+      ]
+    },
+    {
+      "case_id": "telecom-[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+      "domain": "telecom",
+      "category": "user_side_ref",
+      "detail": [
+        "set_network_mode_preference",
+        "toggle_roaming"
+      ]
+    }
+  ]
+}

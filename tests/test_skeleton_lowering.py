@@ -4,7 +4,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.compiler.plan_skeleton import skeleton_from_dict, validate_skeleton
+from src.compiler.plan_skeleton import (skeleton_from_dict,
+                                        validate_skeleton, hard_errors)
 from src.compiler.skeleton_lowering import lower_skeleton
 from src.ir.parser import parse_text
 from src.validator.validator import validate
@@ -42,7 +43,7 @@ GOOD = {
 
 def test_valid_skeleton_lowering_passes_validator():
     sk = skeleton_from_dict(GOOD)
-    errs = validate_skeleton(sk, "airline", SCHEMAS)
+    errs = hard_errors(validate_skeleton(sk, "airline", SCHEMAS))
     assert not errs, errs
     out = lower_skeleton(sk, "airline", SCHEMAS)
     assert out["errors"] == [] and out["unresolved"] == []
@@ -88,8 +89,9 @@ def test_read_tool_with_exec_action_identity_is_allowed():
         {"id": "p0", "capability_id": "get_user_details",
          "skill": "EXEC_ACTION", "depends_on": [],
          "arguments": {"user_id": "u1"}}]}
-    errs = validate_skeleton(skeleton_from_dict(sk), "airline", SCHEMAS)
-    assert not errs
+    errs = hard_errors(validate_skeleton(skeleton_from_dict(sk),
+                                         "airline", SCHEMAS))
+    assert not errs  # warning-only (identity kept, mismatch flagged)
 
 
 def test_dependency_cycle_rejected():
