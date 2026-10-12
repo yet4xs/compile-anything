@@ -1,0 +1,474 @@
+{
+  "summary": {
+    "A_G0": {
+      "n": 120,
+      "valid%": 42.5,
+      "L1_f1": 0.0042,
+      "L2_exact_f1": 0.0576,
+      "L2_seq%": 1.7,
+      "L3_ordRec": 0.1781,
+      "L3_argAcc": null,
+      "L4_effect": 0.1519,
+      "L4_bind": 0.2796,
+      "steps_pred/ref": [
+        0.9167,
+        3.3083
+      ]
+    },
+    "A_G1": {
+      "n": 120,
+      "valid%": 50.0,
+      "L1_f1": 0.0407,
+      "L2_exact_f1": 0.0934,
+      "L2_seq%": 0.8,
+      "L3_ordRec": 0.4115,
+      "L3_argAcc": null,
+      "L4_effect": 0.4225,
+      "L4_bind": 0.5278,
+      "steps_pred/ref": [
+        2.7167,
+        3.3083
+      ]
+    },
+    "A_G2": {
+      "n": 120,
+      "valid%": 51.7,
+      "L1_f1": 0.0407,
+      "L2_exact_f1": 0.0934,
+      "L2_seq%": 0.8,
+      "L3_ordRec": 0.4115,
+      "L3_argAcc": null,
+      "L4_effect": 0.4225,
+      "L4_bind": 0.5278,
+      "steps_pred/ref": [
+        2.7167,
+        3.3083
+      ]
+    },
+    "B_G0": {
+      "n": 120,
+      "valid%": 15.0,
+      "L1_f1": 0.0,
+      "L2_exact_f1": 0.0649,
+      "L2_seq%": 6.7,
+      "L3_ordRec": 0.493,
+      "L3_argAcc": null,
+      "L4_effect": 0.2675,
+      "L4_bind": 0.4939,
+      "steps_pred/ref": [
+        0.35,
+        3.3083
+      ]
+    },
+    "C_G0": {
+      "n": 120,
+      "valid%": 40.8,
+      "L1_f1": 0.0048,
+      "L2_exact_f1": 0.3438,
+      "L2_seq%": 29.2,
+      "L3_ordRec": 0.8155,
+      "L3_argAcc": null,
+      "L4_effect": 0.5133,
+      "L4_bind": 0.4394,
+      "steps_pred/ref": [
+        0.6833,
+        3.3083
+      ]
+    },
+    "D_refplan": {
+      "n": 120,
+      "valid%": 96.7,
+      "L1_f1": 0.5956,
+      "L2_exact_f1": 0.737,
+      "L2_seq%": 39.2,
+      "L3_ordRec": 0.9417,
+      "L3_argAcc": 0.8496,
+      "L4_effect": 1.0,
+      "L4_bind": 1.0,
+      "steps_pred/ref": [
+        5.5833,
+        3.3083
+      ]
+    }
+  },
+  "by_domain": {
+    "A_G0": {
+      "airline": {
+        "n": 30,
+        "valid%": 50.0,
+        "parse%": 50.0,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.1468,
+        "L2_seq%": 3.3,
+        "L3_ordRec": 0.4,
+        "L3_argAcc": null,
+        "L4_effect": 0.2667,
+        "L4_bind": 0.6,
+        "steps_pred/ref": [
+          0.9667,
+          1.8667
+        ],
+        "steps_ref_raw": 2.83
+      },
+      "banking_knowledge": {
+        "n": 30,
+        "valid%": 6.7,
+        "parse%": 6.7,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.0,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.0,
+        "L3_argAcc": null,
+        "L4_effect": 0.0,
+        "L4_bind": 0.0,
+        "steps_pred/ref": [
+          0.1333,
+          6.5
+        ],
+        "steps_ref_raw": 8.3
+      },
+      "retail": {
+        "n": 30,
+        "valid%": 23.3,
+        "parse%": 23.3,
+        "L1_f1": 0.0167,
+        "L2_exact_f1": 0.0837,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.4405,
+        "L3_argAcc": null,
+        "L4_effect": 0.4048,
+        "L4_bind": 0.5119,
+        "steps_pred/ref": [
+          0.7667,
+          3.8667
+        ],
+        "steps_ref_raw": 5.33
+      },
+      "telecom": {
+        "n": 30,
+        "valid%": 90.0,
+        "parse%": 90.0,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.0,
+        "L2_seq%": 3.3,
+        "L3_ordRec": 0.0,
+        "L3_argAcc": null,
+        "L4_effect": 0.0,
+        "L4_bind": 0.0,
+        "steps_pred/ref": [
+          1.8,
+          1.0
+        ],
+        "steps_ref_raw": 5.87
+      }
+    },
+    "A_G1": {
+      "airline": {
+        "n": 30,
+        "valid%": 50.0,
+        "parse%": 53.3,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.1564,
+        "L2_seq%": 3.3,
+        "L3_ordRec": 0.3906,
+        "L3_argAcc": null,
+        "L4_effect": 0.2656,
+        "L4_bind": 0.5938,
+        "steps_pred/ref": [
+          1.0333,
+          1.8667
+        ],
+        "steps_ref_raw": 2.83
+      },
+      "banking_knowledge": {
+        "n": 30,
+        "valid%": 26.7,
+        "parse%": 36.7,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.0,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.0,
+        "L3_argAcc": null,
+        "L4_effect": 0.0,
+        "L4_bind": 0.0,
+        "steps_pred/ref": [
+          0.9333,
+          6.5
+        ],
+        "steps_ref_raw": 8.3
+      },
+      "retail": {
+        "n": 30,
+        "valid%": 23.3,
+        "parse%": 23.3,
+        "L1_f1": 0.0167,
+        "L2_exact_f1": 0.0837,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.4405,
+        "L3_argAcc": null,
+        "L4_effect": 0.4048,
+        "L4_bind": 0.5119,
+        "steps_pred/ref": [
+          0.7667,
+          3.8667
+        ],
+        "steps_ref_raw": 5.33
+      },
+      "telecom": {
+        "n": 30,
+        "valid%": 100.0,
+        "parse%": 100.0,
+        "L1_f1": 0.1461,
+        "L2_exact_f1": 0.1333,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.7391,
+        "L3_argAcc": null,
+        "L4_effect": 0.7391,
+        "L4_bind": 0.7391,
+        "steps_pred/ref": [
+          8.1333,
+          1.0
+        ],
+        "steps_ref_raw": 5.87
+      }
+    },
+    "A_G2": {
+      "airline": {
+        "n": 30,
+        "valid%": 53.3,
+        "parse%": 53.3,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.1564,
+        "L2_seq%": 3.3,
+        "L3_ordRec": 0.3906,
+        "L3_argAcc": null,
+        "L4_effect": 0.2656,
+        "L4_bind": 0.5938,
+        "steps_pred/ref": [
+          1.0333,
+          1.8667
+        ],
+        "steps_ref_raw": 2.83
+      },
+      "banking_knowledge": {
+        "n": 30,
+        "valid%": 30.0,
+        "parse%": 36.7,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.0,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.0,
+        "L3_argAcc": null,
+        "L4_effect": 0.0,
+        "L4_bind": 0.0,
+        "steps_pred/ref": [
+          0.9333,
+          6.5
+        ],
+        "steps_ref_raw": 8.3
+      },
+      "retail": {
+        "n": 30,
+        "valid%": 23.3,
+        "parse%": 23.3,
+        "L1_f1": 0.0167,
+        "L2_exact_f1": 0.0837,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.4405,
+        "L3_argAcc": null,
+        "L4_effect": 0.4048,
+        "L4_bind": 0.5119,
+        "steps_pred/ref": [
+          0.7667,
+          3.8667
+        ],
+        "steps_ref_raw": 5.33
+      },
+      "telecom": {
+        "n": 30,
+        "valid%": 100.0,
+        "parse%": 100.0,
+        "L1_f1": 0.1461,
+        "L2_exact_f1": 0.1333,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 0.7391,
+        "L3_argAcc": null,
+        "L4_effect": 0.7391,
+        "L4_bind": 0.7391,
+        "steps_pred/ref": [
+          8.1333,
+          1.0
+        ],
+        "steps_ref_raw": 5.87
+      }
+    },
+    "C_G0": {
+      "airline": {
+        "n": 30,
+        "valid%": 76.7,
+        "parse%": 76.7,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.7397,
+        "L2_seq%": 63.3,
+        "L3_ordRec": 0.9312,
+        "L3_argAcc": null,
+        "L4_effect": 0.5906,
+        "L4_bind": 0.5471,
+        "steps_pred/ref": [
+          1.1333,
+          1.8667
+        ],
+        "steps_ref_raw": 2.83
+      },
+      "banking_knowledge": {
+        "n": 30,
+        "valid%": 10.0,
+        "parse%": 10.0,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.1,
+        "L2_seq%": 10.0,
+        "L3_ordRec": 1.0,
+        "L3_argAcc": null,
+        "L4_effect": 0.6667,
+        "L4_bind": 0.0,
+        "steps_pred/ref": [
+          0.1,
+          6.5
+        ],
+        "steps_ref_raw": 8.3
+      },
+      "retail": {
+        "n": 30,
+        "valid%": 50.0,
+        "parse%": 50.0,
+        "L1_f1": 0.019,
+        "L2_exact_f1": 0.4464,
+        "L2_seq%": 30.0,
+        "L3_ordRec": 0.8361,
+        "L3_argAcc": null,
+        "L4_effect": 0.4667,
+        "L4_bind": 0.45,
+        "steps_pred/ref": [
+          1.2,
+          3.8667
+        ],
+        "steps_ref_raw": 5.33
+      },
+      "telecom": {
+        "n": 30,
+        "valid%": 26.7,
+        "parse%": 26.7,
+        "L1_f1": 0.0,
+        "L2_exact_f1": 0.0889,
+        "L2_seq%": 13.3,
+        "L3_ordRec": 1.0,
+        "L3_argAcc": null,
+        "L4_effect": 0.0,
+        "L4_bind": 0.0,
+        "steps_pred/ref": [
+          0.3,
+          1.0
+        ],
+        "steps_ref_raw": 5.87
+      }
+    },
+    "D_refplan": {
+      "airline": {
+        "n": 30,
+        "valid%": 90.0,
+        "parse%": 100.0,
+        "L1_f1": 0.5111,
+        "L2_exact_f1": 0.8884,
+        "L2_seq%": 66.7,
+        "L3_ordRec": 1.0,
+        "L3_argAcc": 0.9246,
+        "L4_effect": 1.0,
+        "L4_bind": 1.0,
+        "steps_pred/ref": [
+          2.8333,
+          1.8667
+        ],
+        "steps_ref_raw": 2.83
+      },
+      "banking_knowledge": {
+        "n": 30,
+        "valid%": 100.0,
+        "parse%": 100.0,
+        "L1_f1": 0.9867,
+        "L2_exact_f1": 0.91,
+        "L2_seq%": 53.3,
+        "L3_ordRec": 1.0,
+        "L3_argAcc": 0.6109,
+        "L4_effect": 1.0,
+        "L4_bind": 1.0,
+        "steps_pred/ref": [
+          8.3,
+          6.5
+        ],
+        "steps_ref_raw": 8.3
+      },
+      "retail": {
+        "n": 30,
+        "valid%": 96.7,
+        "parse%": 100.0,
+        "L1_f1": 0.6048,
+        "L2_exact_f1": 0.883,
+        "L2_seq%": 36.7,
+        "L3_ordRec": 1.0,
+        "L3_argAcc": 0.9309,
+        "L4_effect": 1.0,
+        "L4_bind": 1.0,
+        "steps_pred/ref": [
+          5.3333,
+          3.8667
+        ],
+        "steps_ref_raw": 5.33
+      },
+      "telecom": {
+        "n": 30,
+        "valid%": 100.0,
+        "parse%": 100.0,
+        "L1_f1": 0.2798,
+        "L2_exact_f1": 0.2664,
+        "L2_seq%": 0.0,
+        "L3_ordRec": 1.0,
+        "L3_argAcc": 1.0,
+        "L4_effect": 1.0,
+        "L4_bind": 1.0,
+        "steps_pred/ref": [
+          5.8667,
+          1.0
+        ],
+        "steps_ref_raw": 5.87
+      }
+    }
+  },
+  "attribution": {
+    "counts": {
+      "validator_only_error": 50,
+      "resolver_error": 33,
+      "tool_binding_error": 34,
+      "composer_planning_error": 86,
+      "binding_upper_bound_gap": 74,
+      "canonicalizer_error": 1
+    },
+    "n_tasks": 120,
+    "n_flagged": 120,
+    "n_multi_cause": 101
+  },
+  "g_semantic_transitions": {
+    "A_G1": {
+      "semantic_fixed": 0,
+      "semantic_broken": 0
+    },
+    "A_G2": {
+      "semantic_fixed": 0,
+      "semantic_broken": 0
+    }
+  },
+  "caveats": [
+    "D_refplan is built from RAW traces (one node per action) and is over-long vs the normalized reference: its L2/seq are LOWER bounds; its binding metrics (argAcc/bindability/effect) are the upper-bound signal",
+    "ordered_recall scores 0 for parsed-but-empty programs (not excluded)",
+    "attribution keeps multi-cause overlaps; B-condition valid-collapse (15%) reflects composer training-distribution coupling, so the canonicalizer branch rarely fires solo"
+  ]
+}

@@ -48,6 +48,59 @@ results/phase8a/exploratory_rescore.json(规范化参考后):
 
 {{FULL_RUN_RESULTS}}
 
+## Task 4/5 全量结果(120 任务,域平衡 30×4,排除 7C-2.1 重叠;规范化参考;空计划记 0)
+
+| 条件 | Valid% | L1 工具 F1 | L2 exact F1 | L2 序列% | L3 ordRec | L4 effect | L4 bind | 步数 pred/ref |
+|------|--------|-----------|-------------|---------|-----------|-----------|---------|---------------|
+| A 全学习 G0 | 42.5 | 0.004 | 0.058 | 1.7 | 0.18 | 0.15 | 0.28 | 0.92 / 3.31 |
+| A + G1 | 50.0 | 0.041 | 0.093 | 0.8 | **0.41** | **0.42** | **0.53** | **2.72** / 3.31 |
+| A + G2 | 51.7 | 0.041 | 0.093 | 0.8 | 0.41 | 0.42 | 0.53 | 2.72 / 3.31 |
+| B Canonicalizer Oracle | **15.0** | 0.0 | 0.065 | 6.7 | 0.49 | 0.27 | 0.49 | 0.35 / 3.31 |
+| C Gold 工具集 | 40.8 | 0.005 | **0.344** | **29.2** | **0.82** | 0.51 | 0.44 | 0.68 / 3.31 |
+| D 参考计划上界 | 96.7 | 0.60 | 0.74* | 39.2* | 0.94 | **1.00** | **1.00** | 5.58 / 3.31 |
+
+*D 按原始轨迹逐动作构造、相对规范化参考偏长,其 L2/seq 是**下界**;绑定指标(argAcc 0.85 / bindability 1.0 / effect 1.0)才是上界信号。
+
+### 归因(多因保留,120 任务中 101 个多因)
+
+| 错误类型 | 计数 | 说明 |
+|----------|------|------|
+| **Composer 规划错误** | **86** | 主导:欠规划(0.9 步 vs 需 3.3;给对工具仍只 0.7 步)|
+| 绑定上界缺口 | 74 | 参考计划自身也无法完美对齐规范化参考(含 oracle 未知/用户侧引用)|
+| Validator-only 错误 | 50 | 合法但语义错误 |
+| 工具绑定错误 | 34 | 语义对但 IR 不携带工具身份(L1≈0;D 证明通道本身可用)|
+| Resolver 错误 | 33 | 选择集不对 |
+| Canonicalizer 单独错误 | 1 | 但见下——B 条件的意外发现 |
+
+### 三个关键发现
+
+1. **B 条件(Canonicalizer Oracle)使 Valid 从 42.5% 崩到 15%**:给 Composer "正确"的 EXEC_ACTION 标签反而灾难性变差——Composer 的训练分布与 Canonicalizer 的标签分布**耦合**。不能通过只修标签修语义;标签与规划必须联合解决。
+2. **G1/G2 约束提升部分语义指标但不产生完全正确**:ordRec 0.18→0.41、effect 0.15→0.42、步数 ×3(EOS 门控阻止过早收尾),但 semantic_fixed=0——约束改善计划完整性,正确性仍需语义能力。
+3. **C 条件(给对工具集)语义大幅恢复**(L2 ×6、序列匹配 1.7→29.2%)但规划深度仍不足(0.68 步)——**欠规划是最大单点瓶颈**。
+
+## Go/No-Go 裁决(Task 7 三问)
+
+1. **静态合法 ≠ 语义正确**:平衡任务集上 A 条件 Valid 42.5%,其中语义序列匹配仅 1.7%;50/120 任务"合法但错误"。
+2. **最大语义损失 = Composer 规划深度**(86/120),且与 Canonicalizer 标签分布耦合(B 崩溃证据);Resolver 次之(33);绑定通道在 IR 层可用(D:bindability 1.0、argAcc 0.85),缺的是让模型**表达**工具身份。
+3. **G2 相对 G1 在 L2-L4 无额外语义增益**(此集上完全相同);G1 相对 G0 提升部分语义指标(计划完整性)但不产生语义正确的程序。
+
+**下一阶段方向(按预冻结规则)**:主要问题是操作序列过短 → **优先研究分层图规划与多步生成**(例如:计划草稿-展开两阶段、迭代式节点扩展、CapabilityIR→ISA 的工具身份保留);禁止在明确瓶颈前直接联合训练/RL——本阶段证据表明单纯联合训练会撞上分布耦合问题。
+
+## 交付物清单
+
+```
+src/eval/taskir_semantic_eval.py        五层评测器
+src/eval/tau3_tool_registry.py          AST 运行时注册表
+src/eval/tau3_semantic_oracle_data.py   67 工具人工核验 oracle(25 变异全 verified)
+src/eval/tau3_skill_oracle.py           oracle 访问器(扩展)
+scripts/audit_tau3_tool_registry.py     注册表审计
+scripts/eval_phase8a_semantics.py       四条件评测
+scripts/rescore_phase8a.py / fixup_phase8a_tables.py  规范化重评
+tests/test_tau3_semantic_grounding.py   12 项回归(全过)
+results/phase8a/{tool_registry_audit, semantic_layers, error_attribution,
+                 semantic_details_rescored.jsonl, exploratory_rescore}.json
+```
+
 ## 核心结论(初步,待全量 120 任务确认)
 
 1. **回答 Go/No-Go 问题 1**:τ³ 静态 90-96% 合法率中,语义正确率(此样本)≈ 1-4%——"合法但错误"是常态而非个例

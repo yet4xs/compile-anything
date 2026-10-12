@@ -1,0 +1,533 @@
+{
+  "counts": {
+    "validator_only_error": 50,
+    "resolver_error": 33,
+    "tool_binding_error": 34,
+    "composer_planning_error": 86,
+    "binding_upper_bound_gap": 74,
+    "canonicalizer_error": 1
+  },
+  "n_tasks": 120,
+  "n_flagged": 120,
+  "n_multi_cause": 101,
+  "task_flags": {
+    "airline-11": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-12": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-13": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-15": [
+      "composer_planning_error"
+    ],
+    "airline-16": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-18": [
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-19": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-2": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-20": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-21": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-23": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-24": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-25": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-27": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-29": [
+      "composer_planning_error"
+    ],
+    "airline-3": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-32": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-33": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-37": [
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-38": [
+      "composer_planning_error"
+    ],
+    "airline-39": [
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-40": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-41": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-43": [
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "airline-45": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-48": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-49": [
+      "validator_only_error",
+      "composer_planning_error"
+    ],
+    "airline-6": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "airline-8": [
+      "composer_planning_error"
+    ],
+    "airline-9": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "banking_knowledge-task_002": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "banking_knowledge-task_004": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "banking_knowledge-task_008": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "banking_knowledge-task_010": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_014": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_015": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_018": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_023": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_027": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_038": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_043": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_046": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_047": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_051": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_056": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_058": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_061": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_062": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_070": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_072": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_073": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_080": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_082": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_093": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_095": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_096": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_097": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "banking_knowledge-task_098": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_100": [
+      "composer_planning_error"
+    ],
+    "banking_knowledge-task_101": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-103": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-11": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-111": [
+      "composer_planning_error"
+    ],
+    "retail-12": [
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-15": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-19": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-22": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-23": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-25": [
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-3": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-32": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-36": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "retail-39": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-43": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-44": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-51": [
+      "validator_only_error",
+      "composer_planning_error"
+    ],
+    "retail-55": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-64": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-66": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-68": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-71": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "retail-72": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "retail-75": [
+      "composer_planning_error"
+    ],
+    "retail-8": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-83": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "retail-86": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "retail-87": [
+      "validator_only_error",
+      "canonicalizer_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "retail-88": [
+      "resolver_error",
+      "tool_binding_error"
+    ],
+    "retail-89": [
+      "validator_only_error",
+      "composer_planning_error"
+    ],
+    "retail-9": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|break_app_both_permissions|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|break_app_sms_permission|data_usage_exceeded[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_network_preference|break_app_storage_permission|data_mode_off|user_abroad_roaming_enabled_off[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|bad_wifi_calling|user_abroad_roaming_enabled_off[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|break_apn_mms_setting|break_app_both_permissions|data_mode_off|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|break_apn_mms_setting|break_app_both_permissions|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:None]": [
+      "validator_only_error",
+      "resolver_error",
+      "tool_binding_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|break_apn_mms_setting|break_app_sms_permission|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_on[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|break_app_both_permissions|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]airplane_mode_on|break_app_storage_permission|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_both_permissions|data_usage_exceeded[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_both_permissions|user_abroad_roaming_disabled_off[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_mode_off[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|bad_wifi_calling|data_mode_off|unseat_sim_card[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|break_apn_mms_setting|break_app_storage_permission|data_usage_exceeded|unseat_sim_card[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|break_apn_mms_setting|data_mode_off|data_usage_exceeded[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_network_preference|break_app_storage_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:Easy]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_wifi_calling|break_apn_mms_setting|break_app_sms_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]bad_wifi_calling|break_app_sms_permission|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]break_apn_mms_setting|break_app_sms_permission|unseat_sim_card[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]break_app_both_permissions|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:Hard]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]break_app_sms_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mms_issue]break_app_storage_permission|data_mode_off|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:None]": [
+      "validator_only_error",
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mobile_data_issue]airplane_mode_on|bad_network_preference|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mobile_data_issue]airplane_mode_on|bad_vpn|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ],
+    "telecom-[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]": [
+      "composer_planning_error",
+      "binding_upper_bound_gap"
+    ]
+  }
+}
