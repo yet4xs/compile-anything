@@ -719,6 +719,11 @@ class TaskIRGenFSM:
         if st == self.S_INPUT_NAME:
             return {"kind": "chars", "set": ID_CHARS | {":"}}
         if st == self.S_INPUT_COLON:
+            if self.level >= 4:
+                # G3 applies from the FIRST type character (this state
+                # holds it before S_INPUT_TYPE takes over)
+                node = _TYPE_TRIE.node_for("")
+                return {"kind": "chars", "set": set(node.next_chars())}
             return {"kind": "chars", "set": TYPE_CHARS | {" "}}
         if st == self.S_INPUT_TYPE:
             if self.level >= 4:

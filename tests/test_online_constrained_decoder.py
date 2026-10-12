@@ -346,22 +346,6 @@ def test_processor_feeds_generated_tokens():
     assert proc.fsm.buf == "%"
 
 
-if __name__ == "__main__":
-    import traceback
-    failed = 0
-    for name, fn in sorted(globals().items()):
-        if name.startswith("test_") and callable(fn):
-            try:
-                fn()
-                print(f"PASS {name}")
-            except Exception:
-                failed += 1
-                print(f"FAIL {name}")
-                traceback.print_exc()
-    print(f"\n{'ALL TESTS PASSED' if not failed else f'{failed} FAILED'}")
-    sys.exit(1 if failed else 0)
-
-
 # =================================================================
 # Phase 7C-2 regressions: arm isolation, G3 type trie, EOS sentinel
 # =================================================================
@@ -399,10 +383,16 @@ def test_g3_type_trie_normalizes_names():
         fsm.feed(c)
     spec = fsm.allowed()
     assert "\n" in spec["set"] and "," in spec["set"]
-    # feed stays permissive (FSM losslessness): lowercase text still feeds
+    # feed stays permissive (FSM losslessness): lowercase type text feeds
+    # fine — the G3 restriction lives only in allowed()/the mask layer
     fsm2 = TaskIRGenFSM(level=4)
-    for c in "inputs: @task: str\n":
-        assert fsm2.feed(c) is not False or True   # never raises
+    for c in "inputs: @task: str":
+        assert fsm2.feed(c) is True
+    # ...but the mask bans continuing a non-canonical literal: 'str' is
+    # off-trie, so nothing is emittable until a terminator, and only
+    # canonical prefixes were allowed in the first place ('s' was banned)
+    assert "s" not in fsm2.allowed()["set"]
+    assert fsm2.feed("\n")                       # permissive feed accepts
     # int -> 'I' forced (name normalization); honest: does not claim
     # semantic compatibility for a genuinely wrong type
     fsm3 = TaskIRGenFSM(level=4)
@@ -435,3 +425,24 @@ def test_allowed_ids_never_contains_negative():
     _walk(fsm2, GOOD)
     ids2 = m.allowed_ids(fsm2)
     assert all(i >= 0 for i in ids2)
+
+
+if __name__ == "__main__":
+    # NOTE: this runner must stay at the END of the file — tests defined
+    # after a mid-file __main__ block would silently never run (found in
+    # review; use pytest to double-check the count).
+    import traceback
+    failed = 0
+    tests = [(n, f) for n, f in sorted(globals().items())
+             if n.startswith("test_") and callable(f)]
+    for name, fn in tests:
+        try:
+            fn()
+            print(f"PASS {name}")
+        except Exception:
+            failed += 1
+            print(f"FAIL {name}")
+            traceback.print_exc()
+    print(f"\n{len(tests)} tests: "
+          f"{'ALL PASSED' if not failed else f'{failed} FAILED'}")
+    sys.exit(1 if failed else 0)
