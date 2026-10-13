@@ -1,0 +1,17 @@
+{
+  "v": 4,
+  "base": "v3 + deep_chains",
+  "train": 15480,
+  "dev": 236,
+  "test": 202,
+  "test_samefamily": 1132,
+  "test_deep": 99,
+  "depth": {
+    "1": 9098,
+    "2-3": 5079,
+    "4-6": 1099,
+    "7+": 204
+  },
+  "chains_strict_pass": "100%",
+  "synthetic_chains": 571
+}
