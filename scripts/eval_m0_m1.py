@@ -165,10 +165,16 @@ def gen(model, tok, sys_p, user):
 
 
 def main(splits=("dev_sft", "test_sft", "test_samefamily"), limit=0):
-    rows_by_split = {k: [json.loads(l) for l in
-                         open(f"data/semantic_skeleton_v3/{k}.jsonl",
-                              encoding="utf-8") if l.strip()]
-                     for k in splits}
+    rows_by_split = {}
+    import random as _rnd
+    for k in splits:
+        rows = [json.loads(l) for l in
+                open(f"data/semantic_skeleton_v3/{k}.jsonl",
+                     encoding="utf-8") if l.strip()]
+        if k == "test_samefamily" and len(rows) > 300:
+            _rnd.Random(7).shuffle(rows)
+            rows = rows[:300]     # budget: same-family evidence slice
+        rows_by_split[k] = rows
     tok = AutoTokenizer.from_pretrained(
         "weights/Qwen2.5-3B-Instruct", trust_remote_code=True)
     if tok.pad_token is None:

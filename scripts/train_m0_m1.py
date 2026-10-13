@@ -87,7 +87,7 @@ class SFTData(Dataset):
         ids = (p_ids + t_ids)[-self.max_len:]
         labels = ([-100] * len(p_ids) + t_ids)[-self.max_len:]
         return {"input_ids": ids, "labels": labels,
-                "attn": [1] * len(ids)}
+                "attention_mask": [1] * len(ids)}
 
 
 def collate(batch, pad_id):
@@ -97,7 +97,7 @@ def collate(batch, pad_id):
         n = mx - len(b["input_ids"])
         ii.append(b["input_ids"] + [pad_id] * n)
         ll.append(b["labels"] + [-100] * n)
-        aa.append(b["attn"] + [0] * n)
+        aa.append(b["attention_mask"] + [0] * n)
     return {"input_ids": torch.tensor(ii),
             "labels": torch.tensor(ll),
             "attention_mask": torch.tensor(aa)}
@@ -164,7 +164,7 @@ def main():
     model.print_trainable_parameters()
 
     eff_batch = 16
-    per_dev = 2
+    per_dev = 1
     accum = eff_batch // per_dev
     steps_per_epoch = math.ceil(len(rows_sel) / eff_batch)
     # matched budget: BOTH models run the SAME max_steps, defined by the
@@ -184,12 +184,12 @@ def main():
         + ("_smoke" if args.smoke else "")
     targs = TrainingArguments(
         output_dir=out_dir, per_device_train_batch_size=per_dev,
-        gradient_accumulation_steps=accum, num_train_epochs=None,
+        gradient_accumulation_steps=accum, num_train_epochs=1.0,
         max_steps=max_steps, learning_rate=2e-4,
         lr_scheduler_type="cosine", warmup_ratio=0.03,
         logging_steps=10, save_strategy="no", bf16=True,
         optim="paged_adamw_32bit", report_to=[], seed=args.seed,
-        dataloader_shuffle=True, max_grad_norm=1.0)
+        max_grad_norm=1.0)
     ds = SFTData(rows_sel, tok, sys_sel)
     trainer = Trainer(
         model=model, args=targs, train_dataset=ds,
