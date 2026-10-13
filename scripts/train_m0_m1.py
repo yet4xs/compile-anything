@@ -19,7 +19,7 @@ from torch.utils.data import Dataset
 from src.compiler.plan_skeleton import skeleton_from_dict
 from src.compiler.skeleton_lowering import lower_skeleton
 
-DATA = "data/semantic_skeleton_v3/train_sft.jsonl"
+DATA = "data/semantic_skeleton_v4/train_sft.jsonl"
 
 SYS_M0 = ("You are a task compiler. Given a natural-language task and "
           "the available capabilities, emit a complete TaskIR program. "
