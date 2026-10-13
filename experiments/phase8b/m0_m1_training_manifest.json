@@ -1,0 +1,29 @@
+{
+  "phase": "8B-1B",
+  "baseline_commit": "f6e1b4a",
+  "data": "data/semantic_skeleton_v3 (train_sft 14,909; SHA256 in data manifest)",
+  "models": {
+    "M0": "NL + CapabilityIR -> TaskIR (target = deterministic strict lowering of the record's skeleton)",
+    "M1": "NL + CapabilityIR -> Skeleton JSON -> deterministic lowering"
+  },
+  "paired_inputs": {
+    "same_task_ids": true,
+    "same_capabilityir": true,
+    "m0_target_from_m1_skeleton": true
+  },
+  "budget": {
+    "policy": "identical optimizer steps; max_steps set by M0's 2-epoch plan, M1 runs the same steps (effective epochs ~1.78)",
+    "max_steps": null,
+    "epochs_reference": 2.0
+  },
+  "training": {
+    "base": "Qwen2.5-3B-Instruct",
+    "method": "QLoRA nf4 double-quant, bf16 compute",
+    "lora": {"r": 16, "alpha": 32, "dropout": 0.05,
+             "targets": ["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"]},
+    "optimizer": "paged_adamw_32bit, lr 2e-4 cosine, warmup 3%, eff.batch 16, seq 2048",
+    "seed": 42
+  },
+  "evaluation": "frozen evaluator on dev_sft/test_sft (unseen-family) + test_samefamily; grouped by depth 1/2-3/4-6/7+ and mutation presence; tau3-unused = external final only",
+  "m2": "not trained this phase"
+}
