@@ -1,0 +1,116 @@
+{
+  "source": "results/phase8b/m0_m1_comparison.json",
+  "note": "task-level paired deltas; bootstrap resamples delta_i, not a single arm's rate",
+  "splits": {
+    "dev_sft": {
+      "n_paired": 236,
+      "exact_joint": {
+        "M0_pct": 22.9,
+        "M1_pct": 22.0,
+        "delta_pp": -0.85,
+        "ci95_pp": [
+          -3.39,
+          1.27
+        ],
+        "mcnemar_p": 0.72656,
+        "mcnemar_holm_p": 1.0
+      },
+      "plan_f1": {
+        "delta_mean": 0.64,
+        "ci95": [
+          -0.85,
+          2.33
+        ]
+      },
+      "fourfold": {
+        "both_correct": 49,
+        "both_wrong": 179,
+        "m1_only": 3,
+        "m0_only": 5
+      },
+      "denominators": {
+        "exact_joint": "all paired task ids in split",
+        "fixed": "M1 correct AND M0 wrong",
+        "broken": "M0 correct AND M1 wrong"
+      }
+    },
+    "test_samefamily": {
+      "n_paired": 300,
+      "exact_joint": {
+        "M0_pct": 72.3,
+        "M1_pct": 71.7,
+        "delta_pp": -0.67,
+        "ci95_pp": [
+          -2.67,
+          1.33
+        ],
+        "mcnemar_p": 0.75391,
+        "mcnemar_holm_p": 1.0
+      },
+      "plan_f1": {
+        "delta_mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "fourfold": {
+        "both_correct": 211,
+        "both_wrong": 79,
+        "m1_only": 4,
+        "m0_only": 6
+      },
+      "denominators": {
+        "exact_joint": "all paired task ids in split",
+        "fixed": "M1 correct AND M0 wrong",
+        "broken": "M0 correct AND M1 wrong"
+      }
+    },
+    "test_sft": {
+      "n_paired": 202,
+      "exact_joint": {
+        "M0_pct": 27.7,
+        "M1_pct": 23.3,
+        "delta_pp": -4.46,
+        "ci95_pp": [
+          -8.42,
+          -0.5
+        ],
+        "mcnemar_p": 0.04904,
+        "mcnemar_holm_p": 0.14712
+      },
+      "plan_f1": {
+        "delta_mean": 3.8,
+        "ci95": [
+          2.18,
+          5.54
+        ]
+      },
+      "fourfold": {
+        "both_correct": 43,
+        "both_wrong": 142,
+        "m1_only": 4,
+        "m0_only": 13
+      },
+      "denominators": {
+        "exact_joint": "all paired task ids in split",
+        "fixed": "M1 correct AND M0 wrong",
+        "broken": "M0 correct AND M1 wrong"
+      }
+    }
+  },
+  "multiple_comparison": {
+    "family": "3 split-level exact-joint McNemar tests",
+    "adjustment": "Holm-Bonferroni",
+    "raw_p": {
+      "dev_sft": 0.72656,
+      "test_samefamily": 0.75391,
+      "test_sft": 0.04904
+    },
+    "holm_p": {
+      "dev_sft": 1.0,
+      "test_samefamily": 1.0,
+      "test_sft": 0.14712
+    }
+  }
+}
