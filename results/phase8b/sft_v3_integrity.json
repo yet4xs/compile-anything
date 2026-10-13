@@ -1,0 +1,63 @@
+{
+  "splits": {
+    "dev": 354,
+    "test": 329,
+    "test_samefamily": 1132,
+    "train": 20382
+  },
+  "tiers": {
+    "dev": {
+      "n": 354,
+      "tiers": {
+        "registry_pass": 350,
+        "schema_pass": 350,
+        "strict_pass": 348,
+        "fail_strict_lowering": 2,
+        "fail_structural_or_registry": 4
+      },
+      "strict_pass_pct": 98.31
+    },
+    "test": {
+      "n": 329,
+      "tiers": {
+        "registry_pass": 329,
+        "schema_pass": 329,
+        "strict_pass": 324,
+        "fail_strict_lowering": 5
+      },
+      "strict_pass_pct": 98.48
+    },
+    "test_samefamily": {
+      "n": 1132,
+      "tiers": {
+        "registry_pass": 1132,
+        "schema_pass": 1132,
+        "strict_pass": 1132
+      },
+      "strict_pass_pct": 100.0
+    },
+    "train": {
+      "n": 20382,
+      "tiers": {
+        "registry_pass": 20379,
+        "schema_pass": 20379,
+        "strict_pass": 18434,
+        "fail_strict_lowering": 1945,
+        "fail_structural_or_registry": 3
+      },
+      "strict_pass_pct": 90.44
+    }
+  },
+  "leakage": {
+    "lineage_cross_split_components": 0,
+    "tool_overlap_pairs": {
+      "dev|test": 0,
+      "dev|test_samefamily": 0,
+      "dev|train": 0,
+      "test|test_samefamily": 0,
+      "test|train": 0,
+      "test_samefamily|train": 276
+    },
+    "cross_split_near_dup_j>0.8": 0
+  }
+}

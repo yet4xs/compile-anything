@@ -72,10 +72,12 @@ def test_synthetic_preserves_subgraph_data_deps():
     for n in r["target_skeleton"]["nodes"]:
         for d in n["depends_on"]:
             assert pos[d] < pos[n["id"]]       # preserved, earlier
-    # order_on edges must be exactly at subtask boundaries: nodes with
-    # order_on have empty depends_on inherited structure preserved
+    # order_on edges sit ONLY at subtask boundaries: the first node of a
+    # later subtask carries the inter-subtask order edge and has NO
+    # intra-subtask data deps (it is the subgraph's first node)
     for n in r["target_skeleton"]["nodes"]:
-        assert not (n["order_on"] and n["depends_on"]) or True
+        if n["order_on"]:
+            assert not n["depends_on"],                 f"boundary node {n['id']} mixes data+order deps"
 
 
 def test_registry_only_from_available_capabilities():
@@ -162,3 +164,46 @@ if __name__ == "__main__":
                 traceback.print_exc()
     print("ALL PASSED" if not failed else f"{failed} FAILED")
     sys.exit(1 if failed else 0)
+
+
+def test_read_then_modify_dataflow_preserved():
+    """Advisor regression: get_order -> modify_order where the mutation
+    CONSUMES the read's result. Lowered TaskIR must carry the value edge
+    (%p0 as an operand), not an ordering-only edge."""
+    sk = skeleton_from_dict({"task_id": "t", "nodes": [
+        {"id": "p0", "capability_id": "get_order_details",
+         "skill": "FETCH", "depends_on": [], "arguments": {"order_id": "O1"}},
+        {"id": "p1", "capability_id": "modify_pending_order_items",
+         "skill": "EXEC_ACTION", "depends_on": ["p0"],
+         "arguments": {"order_id": "O1", "item_ids": "x"}},
+    ]})
+    reg = {"get_order_details": {"params": [
+        {"name": "order_id", "optional": False}]},
+        "modify_pending_order_items": {"params": None}}
+    low = lower_skeleton(sk, None, reg, strict=True)
+    assert low["taskir"] is not None, low["errors"]
+    from src.ir.parser import parse_text as pt
+    mod = pt(low["taskir"])
+    mut = [n for n in mod.program.nodes if n.op == "EXEC_ACTION"][0]
+    # the read's SSA id flows into the mutation as an OPERAND
+    read_ssa = "%p0"
+    assert read_ssa in mut.inputs, \
+        f"data edge lost: mutation inputs={mut.inputs}"
+    # and the ordering annotation does NOT replace the data edge
+    assert not mut.after or read_ssa not in mut.after
+
+
+def test_unexpressible_data_dependency_rejected():
+    """If a binding cannot be expressed (here: a FETCH-class consumer
+    whose slot is type-incompatible AND strict), compilation fails with
+    an explicit error - never a silent order-only rewrite."""
+    sk = skeleton_from_dict({"task_id": "t", "nodes": [
+        {"id": "p0", "capability_id": "search_x", "skill": "SEARCH",
+         "depends_on": [], "arguments": {}},
+        {"id": "p1", "capability_id": "fetch_str", "skill": "FETCH",
+         "depends_on": ["p0"], "arguments": {}},
+    ]})
+    reg = {"search_x": {"params": None}, "fetch_str": {"params": None}}
+    low = lower_skeleton(sk, None, reg, strict=True)
+    assert low["taskir"] is None
+    assert any("semantic_loss" in str(e) for e in low["errors"])

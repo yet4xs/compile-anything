@@ -1,0 +1,72 @@
+{
+  "v": 3,
+  "tiers_real": {
+    "schema_unknown": 1034,
+    "semantic_loss": 4847,
+    "strict_verified": 15890,
+    "schema_explicit_empty": 51,
+    "ambiguous": 7832
+  },
+  "synthetic_ok": 656,
+  "synthetic_rejected": {
+    "['unresolved": 744
+  },
+  "tau3_used": false,
+  "splits": {
+    "train": 20382,
+    "dev": 354,
+    "test": 329,
+    "test_samefamily": 1132
+  },
+  "sha256": {
+    "train": "4bbdf276b6457cdb8c096dfa8df1cb7d30b1023b06aef4fb046a55e8027819b6",
+    "dev": "2d6d1a4b340b123d67fd941378d2cb526617298b478d222298d3bb23fb35b0e0",
+    "test": "a800178ca2c283eb70888348b378719c1b0d8778b1832100b0d8cc5626deea65",
+    "test_samefamily": "745f55035ed0508f40417e103e8e6fd2430285991f505bb087be9668d8aacde5"
+  },
+  "non_isolatable_components_forced_train": [
+    "searchzodiacbysign",
+    "get_dna_sequence",
+    "find_peak_element",
+    "get_range",
+    "realtime_weather_api"
+  ],
+  "depth": {
+    "train": {
+      "1": 11436,
+      "2-3": 8430,
+      "4-6": 496,
+      "7+": 22
+    },
+    "dev": {
+      "1": 255,
+      "2-3": 96,
+      "4-6": 3
+    },
+    "test": {
+      "1": 280,
+      "2-3": 57
+    },
+    "test_samefamily": {
+      "2-3": 202,
+      "1": 930,
+      "4-6": 7,
+      "7+": 2
+    }
+  },
+  "synthetic": {
+    "train": 656,
+    "dev": 0,
+    "test": 0,
+    "test_samefamily": 0
+  },
+  "near_dup": {
+    "pairs_found": 23,
+    "dropped": 19,
+    "channels": [
+      "8gram_df<=25",
+      "prefix12"
+    ],
+    "df_cap": 25
+  }
+}

@@ -99,9 +99,24 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
         parts = []
         afters = [ssa_of[d] for d in order_deps]
         if n.skill == "EXEC_ACTION":
+            # DATA dependencies are OPERANDS: actual value passing
+            # (EXEC_ACTION is variadic-Any). Dropping them or demoting
+            # them to ordering would silently erase dataflow.
+            data_operands = [ssa_of[d] for d in data_deps]
+            spec = get_skill_spec("EXEC_ACTION")
+            if data_operands and spec and spec.max_inputs is not None                     and len(data_operands) > spec.max_inputs:
+                return {"taskir": None, "unresolved": unresolved,
+                        "errors": [f"unresolved_data_dependency: {n.id} "
+                                   f"needs {len(data_operands)} data "
+                                   f"operands, EXEC_ACTION expresses "
+                                   f"{spec.max_inputs}"],
+                        "coerced_ordering_deps": [],
+                        "warnings": warnings}
             parts.append(f"action={n.capability_id}")
+            parts.extend(data_operands)
             for k, v in args.items():
                 parts.append(f"{k}={_fmt_value(v)}")
+            # ORDER deps + conservative EFFECT serialization
             if n.effect_class not in NON_STATE and last_mutating:
                 afters.append(last_mutating)
             if n.effect_class not in NON_STATE:

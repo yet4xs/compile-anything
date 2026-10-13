@@ -23,8 +23,8 @@ from src.compiler.plan_skeleton import (skeleton_from_dict,
                                         validate_skeleton, hard_errors)
 from src.compiler.skeleton_lowering import lower_skeleton
 
-D = "data/semantic_skeleton_v2"
-OUT = "results/phase8b/skeleton_integrity_v2.json"
+D = "data/semantic_skeleton_v3"
+OUT = "results/phase8b/sft_v3_integrity.json"
 
 
 def grams(text, k=8):
@@ -54,7 +54,7 @@ def main():
             reg = r.get("capability_registry") or {}
             schemas = {}
             for t, meta in reg.items():
-                if meta.get("schema_known"):
+                if meta.get("schema") == "props":
                     schemas[t] = {"params": [
                         {"name": x, "optional": False}
                         for x in meta.get("required", [])]}
@@ -82,9 +82,9 @@ def main():
             # schema check
             missing_params = []
             for n in sk.nodes:
-                req = reg.get(n.capability_id, {}).get("required") or []
-                if reg.get(n.capability_id, {}).get("schema_known"):
-                    missing_params += [x for x in req
+                meta = reg.get(n.capability_id, {})
+                if meta.get("schema") == "props":
+                    missing_params += [x for x in meta.get("required") or []
                                        if x not in n.arguments]
             if missing_params:
                 tiers["fail_schema"] += 1
