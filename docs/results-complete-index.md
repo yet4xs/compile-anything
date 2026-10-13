@@ -188,6 +188,7 @@
 | AgentBoard | `docs/results-agentboard-first-test.md` | `results/agentboard/` |
 | Phase 7B 修复 | `docs/phase7/`（局部修复负结果：全量重生成占优） | `results/phase7/` |
 | Phase 7C-0.1 约束生成 v2 | `docs/phase7/results-constrained-generation-v2.md`（D1 无损 72/72；D2 弱种子 +3.3pp；v1 全臂 13.3% 系解析器 bug，作废） | `results/phase7/constrained_generation_v2.json`, `tests/test_constrained_decoder.py` |
+| Phase 8B-1A.1 语义完整性门 | docs/phase8b/skeleton-data-integrity-v2.md（六处修复全落地+测试;严格分级 strict_verified 15.9k;全量泄漏三层清零(组件0/家族0/近重复0,清除124);诚实报告巨型分量→samefamily测试切片;深度仍以1-3步为主） | data/semantic_skeleton_v2/, results/phase8b/skeleton_integrity_v2.json |
 | Phase 8B-1A 骨架监督语料 | docs/phase8b/skeleton-data-design.md（P1失败归因:30用户侧+2运行时未知,覆盖内97.8%;语料21.8k+1.2k合成,家族隔离,链路验证85-98%,SFT-ready 15k;M0/M1/M2协议冻结） | data/semantic_skeleton/, results/phase8b/skeleton_data_audit.json |
 | Phase 8A.1+8B-0 分层规划可行性 | docs/phase8b/hierarchical-planning-feasibility.md（评测修正后: P1 oracle骨架→降级=71.7%精确序列; P2 零训练base骨架=55%valid/F1×3.6, 深任务收益最大(7+步 0→0.208); P3/P4提示工程崩至8-12%; Task9五条全过=GO 8B-1） | results/phase8b/hierarchical_planning_feasibility.json, results/phase8a/semantic_layers_corrected.json |
 | Phase 8A 语义正确性 | docs/phase8a/semantic-correctness-report.md（平衡集120任务：A学习管线 Valid 42.5%但语义序列匹配1.7%；归因主导=Composer欠规划86/120；B条件揭示标签-规划分布耦合；D上界 bindability=1.0/argAcc=0.85；G1约束提升计划完整性ordRec 0.18→0.41但不产生语义正确） | results/phase8a/*, tests/test_tau3_semantic_grounding.py |

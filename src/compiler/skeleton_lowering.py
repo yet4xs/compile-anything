@@ -50,9 +50,15 @@ def _operand_slot_type(skill: str) -> str:
 
 def lower_skeleton(sk: PlanSkeleton, domain: str,
                    registry_schemas: Dict[str, dict],
-                   task_input: str = "@task") -> dict:
+                   task_input: str = "@task", strict: bool = False) -> dict:
     """Returns {"taskir", "unresolved", "errors", "coerced_ordering_deps",
-    "warnings"}; taskir is None on any blocking failure."""
+    "warnings"}; taskir is None on any blocking failure.
+
+    strict=True (8B-1A.1): type-incompatible data dependencies FAIL the
+    compilation (semantic_loss) instead of being coerced to ordering with
+    a @task operand; required-schema params must come from the registry
+    (params=None marks schema_unknown and skips param checks). The
+    non-strict mode remains available for diagnostics only."""
     all_errs = validate_skeleton(sk, domain, registry_schemas)
     warnings = [e for e in all_errs if e.startswith("warning:")]
     errs = hard_errors(all_errs)
@@ -67,13 +73,22 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
              f"inputs: {task_input}: Str", ""]
     ssa_of = {}
     tool_of = {}
+    # per-node output type derived from the SKELETON's declared skill
+    # (registry-independent; oracle refinement only when available)
+    skill_out = {}
+    for n in sk.nodes:
+        spec = get_skill_spec(n.skill) if n.skill else None
+        try:
+            skill_out[n.id] = normalize(str(spec.output_type([])))                 if spec else "Any"
+        except Exception:
+            skill_out[n.id] = "Any"
     last_mutating = None
     for i, n in enumerate(sk.nodes):
         sid = f"%p{i}"
         ssa_of[n.id] = sid
         tool_of[n.id] = n.capability_id
         schema = registry_schemas.get(n.capability_id, {})
-        required = [p["name"] for p in schema.get("params", [])
+        required = [p["name"] for p in (schema.get("params") or [])
                     if not p.get("optional")]
         args = dict(n.arguments)
         for req in required:
@@ -102,14 +117,31 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
             want = _operand_slot_type(n.skill)
             used_dep = None
             for d in data_deps:
-                got = _dep_output_type(domain, tool_of[d])
+                got = skill_out.get(d, "Any")
+                if got == "Any" and domain:
+                    got = _dep_output_type(domain, tool_of[d])
                 if used_dep is None and is_compatible(want, got):
                     operand = ssa_of[d]
                     used_dep = ssa_of[d]
+                elif strict:
+                    return {"taskir": None, "unresolved": unresolved,
+                            "errors": [f"semantic_loss: type-incompatible "
+                                       f"data dep {n.id}->{d} "
+                                       f"(want {want}, got {got})"],
+                            "coerced_ordering_deps": [],
+                            "warnings": warnings}
                 else:
                     coerced.append({"node": n.id, "dep": d,
                                     "want": want, "got": got})
                     afters.append(ssa_of[d])
+            if strict and used_dep is None and want not in ("Any", "Str"):
+                # no compatible producer: the value must come from the
+                # runtime/conversation, which the plan cannot supply
+                return {"taskir": None, "unresolved": unresolved,
+                        "errors": [f"unresolved: runtime input required "
+                                   f"for {n.id} slot type {want}"],
+                        "coerced_ordering_deps": [],
+                        "warnings": warnings}
             parts.append(operand)
             for k, v in args.items():
                 parts.append(f"{k}={_fmt_value(v)}")

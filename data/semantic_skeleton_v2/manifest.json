@@ -1,0 +1,31 @@
+{
+  "v": 2,
+  "tiers": {
+    "schema_unknown": 1108,
+    "semantic_loss": 4847,
+    "strict_verified": 15867,
+    "ambiguous": 7832
+  },
+  "splits": {
+    "train": 19933,
+    "dev": 285,
+    "test": 379,
+    "test_samefamily": 1154
+  },
+  "components_total": 945,
+  "non_isolatable_components_forced_train": [
+    "searchzodiacbysign",
+    "find_peak_element",
+    "get_dna_sequence",
+    "get_range",
+    "realtime_weather_api"
+  ],
+  "isolation_claim": "strict unseen-family for dev/test ONLY IF non_isolatable list is empty; otherwise dev/test families unseen, train contains large shared components (reported)",
+  "synthetic_count": 1000,
+  "test_samefamily": {
+    "n": 1155,
+    "claim": "SAME-FAMILY held-out tasks from the giant tool component (exact-dup removed vs train); NOT an unseen-family claim. Primary unseen-family test = strict dev/test splits + tau3-unused external pool."
+  },
+  "tau3_used": false,
+  "near_dup_purged": 124
+}
