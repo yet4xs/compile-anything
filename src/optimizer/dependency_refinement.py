@@ -162,7 +162,7 @@ def refine_dependencies(module: Module,
                 # Don't add this input back
             elif not consumed and not both_safe:
                 # UNSAFE: at least one endpoint has observable effects.
-                # Record but do NOT remove.
+                # Record certificate but KEEP the edge.
                 certificates.append(RewriteCertificate(
                     edge_from=src, edge_to=node.id,
                     edge_kind="DATA_OPERAND",
@@ -170,31 +170,17 @@ def refine_dependencies(module: Module,
                             "effects (mutation/communication/unknown)",
                     producer_consumed=False,
                     effect_risk="UNSAFE_effect_ordering"))
-                # Keep the input (safe default)
+                new_inputs.append(inp)  # MUST keep UNSAFE edges
             else:
                 new_inputs.append(inp)
         node.inputs = new_inputs
 
-        # Check after() edges — same safety rules as positional operands
-        new_after = []
-        for a in (node.after or []):
-            src = a  # after references are direct SSA ids
-            consumed = _has_real_value_consumption(node, src, ext_chain)
-            both_safe = node_effects.get(node.id, False) and \
-                         node_effects.get(src, True)
-
-            if not consumed and both_safe:
-                certificates.append(RewriteCertificate(
-                    edge_from=src, edge_to=node.id,
-                    edge_kind="ORDER",
-                    reason="both endpoints read_only; order constraint "
-                            "has no observable effect",
-                    producer_consumed=False,
-                    effect_risk="none"))
-                removed += 1
-            else:
-                new_after.append(a)
-        node.after = new_after
+        # Check after() edges — explicit ORDER constraints are ALWAYS kept.
+        # Users (or the planner) explicitly requested this ordering; even
+        # between read_only nodes, removing a user-specified ORDER changes
+        # the program's semantics. No automatic removal.
+        # (All after() edges are preserved as-is.)
+        pass  # node.after is never modified
 
     # Validate refined module
     try:
