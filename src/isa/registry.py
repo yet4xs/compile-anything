@@ -163,6 +163,12 @@ REGISTRY: Dict[str, SkillSpec] = {s.name: s for s in [
 
 # -- control instructions (IR-level; see taskir-spec.md §4.3) ----------------
 CONTROL_OPS: Dict[str, SkillSpec] = {s.name: s for s in [
+    SkillSpec(name="EXTRACT_FIELD", cls="control",
+              desc="v0.2 intrinsic: extract a named field from an upstream "
+                   "node's structured result (params.field); no side effect",
+              input_types=["Any"], min_inputs=1, max_inputs=1,
+              output_rule="FIXED:Any", resource_class="runtime",
+              cost=Cost(0.001, flops=0.0)),
     SkillSpec(name="VERIFY", cls="control",
               desc="produce Bool verdict on inputs (params.check)",
               input_types=["Any"], min_inputs=1, max_inputs=None,

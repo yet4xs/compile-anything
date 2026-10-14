@@ -132,6 +132,47 @@ def validate(mod: Module) -> Report:
                 rep.err("UNDEFINED_REF", f"input {ref!r} is never defined", n.id)
             elif list(defined).index(ref) >= list(defined).index(n.id):
                 rep.err("USE_BEFORE_DEF", f"input {ref!r} used before defined", n.id)
+
+        # v0.2: param_refs — SSA def-use for named runtime parameters
+        for pk, ref in n.param_refs.items():
+            if pk in n.params:
+                rep.err("PARAM_CONFLICT",
+                        f"param {pk!r} has both literal and SSA ref", n.id)
+            if ref in globals_declared:
+                continue
+            if ref not in defined:
+                rep.err("UNDEFINED_REF",
+                        f"param_ref {pk}={ref!r} is never defined", n.id)
+            elif list(defined).index(ref) >= list(defined).index(n.id):
+                rep.err("USE_BEFORE_DEF",
+                        f"param_ref {pk}={ref!r} used before defined", n.id)
+
+        # v0.2: EXTRACT_FIELD validation
+        if n.op == "EXTRACT_FIELD":
+            field_name = n.params.get("field")
+            if not field_name or not isinstance(field_name, str):
+                rep.err("STRUCT", "EXTRACT_FIELD requires field= param", n.id)
+            if len(n.inputs) != 1:
+                rep.err("ARITY", "EXTRACT_FIELD takes exactly 1 input", n.id)
+            # field existence check deferred to runtime (needs output_schema);
+            # static check: input must be defined
+            if n.inputs and n.inputs[0] in defined:
+                producer = defined[n.inputs[0]]
+                # if producer has hints with output_fields, check
+                fields = (producer.hints or {}).get("output_fields")
+                if isinstance(fields, dict) and field_name in fields:
+                    inferred_field_type = fields[field_name]
+                else:
+                    inferred_field_type = "Any"
+                rep.inferred_types[n.id] = inferred_field_type
+                if n.output_type and not ty.is_compatible(
+                        inferred_field_type, ty.normalize(n.output_type)):
+                    rep.err("TYPE_MISMATCH",
+                            f"EXTRACT_FIELD field type {inferred_field_type} "
+                            f"incompatible with declared {n.output_type}", n.id)
+            else:
+                rep.inferred_types[n.id] = "Any"
+
         for ref in n.after:
             if ref not in defined and ref not in globals_declared:
                 rep.err("UNDEFINED_REF", f"after {ref!r} is never defined", n.id)

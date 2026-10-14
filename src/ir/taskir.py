@@ -36,6 +36,8 @@ class Node:
     op: str
     inputs: List[str] = field(default_factory=list)
     params: Dict[str, Any] = field(default_factory=dict)
+    # v0.2: named parameter → SSA reference (runtime value binding)
+    param_refs: Dict[str, str] = field(default_factory=dict)
     after: List[str] = field(default_factory=list)
     guard: Optional[Guard] = None
     retry: Optional[Retry] = None
@@ -179,6 +181,9 @@ def to_text(m: Module) -> str:
             ann += f"  -> {n.output_type}"
         if n.after:
             ann += f"  after({', '.join(n.after)})"
+        if n.param_refs:
+            ann += "  bind(" + ", ".join(
+                f"{k}={v}" for k, v in n.param_refs.items()) + ")"
         if n.guard:
             ann += f"  guard({n.guard.cond} == {str(n.guard.expect).lower()})"
         if n.retry:

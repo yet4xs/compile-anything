@@ -187,6 +187,14 @@ def parse_text(text: str) -> Module:
         if tm:
             node.output_type = tm.group(1)
 
+        # v0.2: bind(key=%ssa_ref, ...) — named parameter SSA references
+        bm = re.search(r"bind\(([^)]+)\)", trailing)
+        if bm:
+            for item in _split_top(bm.group(1)):
+                if "=" in item:
+                    k, _, v = item.partition("=")
+                    node.param_refs[k.strip()] = v.strip()
+
         for kind, body in _ANN_RE.findall(trailing):
             if kind == "guard":
                 cond, _, expect = body.partition("==")
