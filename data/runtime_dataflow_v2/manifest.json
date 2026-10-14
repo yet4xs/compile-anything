@@ -1,0 +1,39 @@
+{
+  "total_generated": 275,
+  "total_unique": 204,
+  "splits": {
+    "train": 134,
+    "dev": 26,
+    "test": 44
+  },
+  "held_out_topologies": [
+    "fan_out_in",
+    "repeated_tool"
+  ],
+  "topology_stats": {
+    "linear_3": 35,
+    "linear_4": 30,
+    "linear_5": 25,
+    "linear_6": 20,
+    "fork": 25,
+    "join": 25,
+    "shop_3": 25,
+    "shop_4": 20,
+    "read_mutate": 25,
+    "fan_out_in": 25,
+    "repeated_tool": 20
+  },
+  "failures": {},
+  "literal_unobservable_count": 0,
+  "literal_issues": [],
+  "dag_audit": {
+    "total": 275,
+    "data_preserved_and_no_extra_order": 275,
+    "extra_order_only": 0,
+    "data_lost": 0
+  },
+  "effect_serialization_note": "read_only tools are NOT serialized by default; effect-based ordering only for mutating tools",
+  "typed_schemas": "Str/Int/Float/Bool preserved through all layers",
+  "distractor_pool": "3 per task, signature-similar",
+  "seed": 20261021
+}

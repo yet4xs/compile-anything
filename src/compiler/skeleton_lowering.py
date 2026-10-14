@@ -89,6 +89,12 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
         ssa_of[n.id] = sid
         tool_of[n.id] = n.capability_id
         schema = registry_schemas.get(n.capability_id, {})
+        # effect_class: prefer registry; fall back to skeleton node value;
+        # NEVER None (None causes spurious serialization of read-only tools)
+        if not n.effect_class:
+            n.effect_class = schema.get("effect_class", "read_only")
+        if not n.effect_class:
+            n.effect_class = "read_only"
         required = [p["name"] for p in (schema.get("params") or [])
                     if not p.get("optional")]
         args = dict(n.arguments)
