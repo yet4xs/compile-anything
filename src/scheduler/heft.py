@@ -76,16 +76,19 @@ class DataflowDAG:
         return order
 
     def critical_path_length(self) -> float:
-        """Longest weighted path through the DAG."""
+        """Longest weighted path INCLUDING end-node compute cost."""
         topo = self.topological_order()
+        if not topo:
+            return 0.0
         dist = {n: 0.0 for n in self.nodes}
         for n in topo:
             node_cost = self.nodes[n].compute_cost
+            dist[n] += node_cost  # include this node's own cost
             for succ in self.successors(n):
                 edge_cost = next(
                     (e.transfer_cost for e in self.edges
                      if e.src == n and e.dst == succ), 0.0)
-                new_dist = dist[n] + node_cost + edge_cost
+                new_dist = dist[n] + edge_cost
                 dist[succ] = max(dist[succ], new_dist)
         return max(dist.values()) if dist else 0.0
 
@@ -198,9 +201,23 @@ def dag_from_taskir(taskir_text: str,
             ext_chain[n.id] = n.inputs[0]
 
     for n in mod.program.nodes:
+        # DATA_VALUE from positional inputs (EXTRACT_FIELD's %producer refs)
         for inp in n.inputs:
             if inp in dag.nodes:
                 dag.add_edge(DAGEdge(inp, n.id, "DATA_VALUE"))
+        # DATA_VALUE from param_refs (bind() edges — CRITICAL, was missing)
+        for pk, ref in n.param_refs.items():
+            if ref in dag.nodes:
+                dag.add_edge(DAGEdge(ref, n.id, "DATA_VALUE"))
+            else:
+                # Resolve through EXTRACT_FIELD chain
+                r = ref
+                while r in ext_chain:
+                    producer = ext_chain[r]
+                    if producer in dag.nodes:
+                        dag.add_edge(DAGEdge(producer, n.id, "DATA_VALUE"))
+                    r = producer
+        # ORDER from after()
         for a in (n.after or []):
             if a in dag.nodes:
                 dag.add_edge(DAGEdge(a, n.id, "ORDER"))

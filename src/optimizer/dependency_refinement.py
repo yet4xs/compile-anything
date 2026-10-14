@@ -40,20 +40,13 @@ class RefinementResult:
     unchanged: bool = True
 
 
-def _has_value_consumption(consumer: Node, producer_id: str,
-                            ext_chain: Dict[str, str]) -> bool:
-    """Check if consumer actually uses a value from producer (directly or
-    through EXTRACT_FIELD intermediaries)."""
-    # Check param_refs (resolved through EXTRACT_FIELD)
+def _has_real_value_consumption(consumer: Node, producer_id: str,
+                                 ext_chain: Dict[str, str]) -> bool:
+    """Check if consumer uses a value from producer through NAMED binding
+    (param_refs only). Positional inputs are NOT counted here because we're
+    deciding whether to remove them — counting them would be tautological."""
     for ref in consumer.param_refs.values():
         r = ref
-        while r in ext_chain:
-            r = ext_chain[r]
-        if r == producer_id:
-            return True
-    # Check positional inputs
-    for inp in consumer.inputs:
-        r = inp
         while r in ext_chain:
             r = ext_chain[r]
         if r == producer_id:
@@ -136,7 +129,7 @@ def refine_dependencies(module: Module,
             while src in ext_chain:
                 src = ext_chain[src]
 
-            consumed = _has_value_consumption(node, src, ext_chain)
+            consumed = _has_real_value_consumption(node, src, ext_chain)
             both_ro = node_effects.get(node.id, False) and \
                        node_effects.get(src, True)
             params_satisfied = _all_params_bound(node, cap_registry,
@@ -165,7 +158,7 @@ def refine_dependencies(module: Module,
         new_after = []
         for a in (node.after or []):
             src = a  # after references are direct SSA ids
-            consumed = _has_value_consumption(node, src, ext_chain)
+            consumed = _has_real_value_consumption(node, src, ext_chain)
             both_ro = node_effects.get(node.id, False) and \
                        node_effects.get(src, True)
 

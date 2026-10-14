@@ -69,8 +69,10 @@ def main():
         cap_reg = {}
         for tid in rec["capability_registry"]:
             meta = rec["capability_registry"][tid]
-            cap_reg[tid] = {"effect_class": meta.get("effect_class",
-                                                      "read_only")}
+            cap_reg[tid] = {
+                "input_schema": meta.get("input_schema", {}),
+                "output_schema": meta.get("output_schema", {}),
+                "effect_class": meta.get("effect_class", "read_only")}
 
         # 1. Original DAG analysis
         orig_dag = dag_from_taskir(original_taskir)
