@@ -30,6 +30,12 @@ from src.runtime.mock_capability_registry import (
 OUT = "data/runtime_dataflow_v2"
 SEED = 20261021
 
+import hashlib as _hl
+def dhash(s):
+    """Deterministic hash: same input → same output across runs."""
+    return int(_hl.md5(str(s).encode()).hexdigest()[:8], 16)
+
+
 # ── Tool definitions with FULL typed schemas ──
 
 TOOLS = {
@@ -39,7 +45,7 @@ TOOLS = {
         "effect": "read_only",
         "exec": lambda p: {"user_id": f"U_{p['name']}",
                            "email": f"{p['name']}@test.com",
-                           "age": (hash(p['name']) % 40) + 20},
+                           "age": (dhash(p['name']) % 40) + 20},
     },
     "get_account": {
         "input_schema": {"user_id": "Str"},
@@ -47,7 +53,7 @@ TOOLS = {
                            "currency": "Str"},
         "effect": "read_only",
         "exec": lambda p: {"account_id": f"AC_{p['user_id']}",
-                           "balance": float((hash(p['user_id']) % 9000) + 100),
+                           "balance": float((dhash(p['user_id']) % 9000) + 100),
                            "currency": "USD"},
     },
     "get_transactions": {
@@ -55,7 +61,7 @@ TOOLS = {
         "output_schema": {"latest_tx_id": "Str", "tx_count": "Int"},
         "effect": "read_only",
         "exec": lambda p: {"latest_tx_id": f"TX_{p['account_id']}",
-                           "tx_count": (hash(p['account_id']) % 15) + 1},
+                           "tx_count": (dhash(p['account_id']) % 15) + 1},
     },
     "get_tx_status": {
         "input_schema": {"tx_id": "Str"},
@@ -67,7 +73,7 @@ TOOLS = {
         "input_schema": {"user_id": "Str"},
         "output_schema": {"score": "Int", "rating": "Str"},
         "effect": "read_only",
-        "exec": lambda p: {"score": (hash(p['user_id']) % 250) + 550,
+        "exec": lambda p: {"score": (dhash(p['user_id']) % 250) + 550,
                            "rating": "good"},
     },
     "update_balance": {
@@ -94,17 +100,17 @@ TOOLS = {
         "input_schema": {"query": "Str"},
         "output_schema": {"top_product_id": "Str", "result_count": "Int"},
         "effect": "read_only",
-        "exec": lambda p: {"top_product_id": f"PR_{hash(p['query']) % 99}",
-                           "result_count": (hash(p['query']) % 30) + 1},
+        "exec": lambda p: {"top_product_id": f"PR_{dhash(p['query']) % 99}",
+                           "result_count": (dhash(p['query']) % 30) + 1},
     },
     "get_product_details": {
         "input_schema": {"product_id": "Str"},
         "output_schema": {"price": "Float", "sku": "Str",
                            "in_stock": "Bool"},
         "effect": "read_only",
-        "exec": lambda p: {"price": float((hash(p['product_id']) % 400) + 10),
+        "exec": lambda p: {"price": float((dhash(p['product_id']) % 400) + 10),
                            "sku": f"SKU_{p['product_id']}",
-                           "in_stock": hash(p['product_id']) % 2 == 0},
+                           "in_stock": dhash(p['product_id']) % 2 == 0},
     },
     "place_order": {
         "input_schema": {"product_id": "Str", "sku": "Str",

@@ -1,0 +1,16 @@
+{
+  "schema_type_preserved": true,
+  "train_count": 134,
+  "test_count": 44,
+  "held_out_topologies": [
+    "fan_out_in",
+    "repeated_tool"
+  ],
+  "topology_isolation": true,
+  "literal_observable": true,
+  "literal_issue_count": 0,
+  "distractor_pool": true,
+  "deterministic_hash": true,
+  "oracle_strict_pass": "44/44",
+  "PREFLIGHT": "PASS"
+}

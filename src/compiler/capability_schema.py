@@ -56,11 +56,12 @@ def normalize_registry(raw: Dict[str, Any]) -> Dict[str, Dict]:
             if schema_kind == "props" or (props and req):
                 input_schema = {k: props.get(k, "Any") for k in req}
             elif entry.get("params"):
-                # lowering format: [{"name": ..., "optional": False}]
+                # lowering format: [{"name": ..., "optional": ...,
+                #                    "type": "Str" | ...}]
                 input_schema = {}
                 for p in entry["params"]:
                     if not p.get("optional"):
-                        input_schema[p["name"]] = "Any"
+                        input_schema[p["name"]] = p.get("type", "Any")
             else:
                 input_schema = None  # unknown
 
