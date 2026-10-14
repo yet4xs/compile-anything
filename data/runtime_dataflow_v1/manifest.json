@@ -1,0 +1,36 @@
+{
+  "total_generated": 195,
+  "total_unique": 97,
+  "splits": {
+    "train": 71,
+    "dev": 13,
+    "test": 13
+  },
+  "topology_stats": {
+    "linear_3": 30,
+    "linear_4": 25,
+    "linear_5": 20,
+    "linear_6": 15,
+    "fork": 20,
+    "join": 20,
+    "shop_chain": 25,
+    "read_mutate": 20,
+    "fan_out_in": 20
+  },
+  "failures": {},
+  "failure_details": [],
+  "tools_used": [
+    "approve_loan",
+    "get_account",
+    "get_credit_score",
+    "get_product_details",
+    "get_transactions",
+    "get_tx_status",
+    "lookup_user",
+    "place_order",
+    "search_products",
+    "send_alert",
+    "update_balance"
+  ],
+  "seed": 20261020
+}
