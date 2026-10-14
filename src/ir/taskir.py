@@ -72,7 +72,7 @@ def _opt_retry(r: Optional[Retry]) -> Any:
 
 
 def _node_to_dict(n: Node) -> Dict[str, Any]:
-    return {
+    d = {
         "id": n.id,
         "op": n.op,
         "inputs": list(n.inputs),
@@ -83,6 +83,10 @@ def _node_to_dict(n: Node) -> Dict[str, Any]:
         "output_type": n.output_type,
         "hints": dict(n.hints),
     }
+    # v0.2: preserve runtime parameter SSA references
+    if n.param_refs:
+        d["param_refs"] = dict(n.param_refs)
+    return d
 
 
 def module_to_dict(m: Module) -> Dict[str, Any]:
@@ -117,6 +121,7 @@ def _node_from_dict(d: Dict[str, Any]) -> Node:
         op=d["op"],
         inputs=list(d.get("inputs") or []),
         params=dict(d.get("params") or {}),
+        param_refs=dict(d.get("param_refs") or {}),
         after=list(d.get("after") or []),
         guard=_parse_guard(d.get("guard")),
         retry=_parse_retry(d.get("retry")),

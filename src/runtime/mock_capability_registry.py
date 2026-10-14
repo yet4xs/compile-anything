@@ -29,6 +29,31 @@ class MockCapability:
     call_count: int = 0                   # track repeated executions
 
 
+def _check_type(value: Any, expected: str) -> Optional[str]:
+    """Return error message if value doesn't match expected type, else None."""
+    if expected in ("Any", "Unknown"):
+        return None
+    e = expected.strip()
+    if e.startswith("List[") or e.startswith("Dict[") or e == "Json":
+        if not isinstance(value, (list, dict)):
+            return f"expected {e}, got {type(value).__name__}"
+        return None
+    mapping = {
+        "Str": str, "Int": int, "Float": (int, float),
+        "Bool": bool, "Table": dict, "Date": str,
+    }
+    py_type = mapping.get(e)
+    if py_type is None:
+        return None  # unknown type name — don't enforce
+    if isinstance(value, bool) and py_type is int:
+        return None  # bool is int subclass; allow
+    if not isinstance(value, py_type):
+        type_name = (py_type.__name__ if hasattr(py_type, '__name__')
+                     else str(py_type))
+        return f"expected {e}({type_name}), got {type(value).__name__}"
+    return None
+
+
 class MockCapabilityRegistry:
     """Injectable registry of mock tools for runtime testing."""
 
@@ -61,17 +86,29 @@ class MockCapabilityRegistry:
         if cap is None:
             raise RuntimeError(f"Unknown capability: {capability_id}")
         cap.call_count += 1
-        # validate input params
+        # validate input params: existence + type
         for k, expected_type in cap.input_schema.items():
             if k not in params:
                 raise RuntimeError(
                     f"{capability_id}: missing required param {k!r}")
+            val = params[k]
+            type_err = _check_type(val, expected_type)
+            if type_err:
+                raise RuntimeError(
+                    f"{capability_id}: param {k!r} type error: {type_err} "
+                    f"(expected {expected_type}, got {type(val).__name__})")
         result = cap.mock_executor(params)
-        # validate output schema
-        for field_name in cap.output_schema:
+        # validate output schema: existence + type
+        for field_name, field_type in cap.output_schema.items():
             if field_name not in result:
                 raise RuntimeError(
                     f"{capability_id}: output missing field {field_name!r}")
+            type_err = _check_type(result[field_name], field_type)
+            if type_err:
+                raise RuntimeError(
+                    f"{capability_id}: output field {field_name!r} type "
+                    f"error: {type_err} (expected {field_type}, "
+                    f"got {type(result[field_name]).__name__})")
         return result
 
     @property
@@ -112,6 +149,15 @@ class DataflowRuntime:
 
         try:
             for node in module.program.nodes:
+                # v0.2 safety: fail-closed on guard/retry until fully supported
+                if node.guard is not None:
+                    raise RuntimeError(
+                        f"{node.id}: guard not yet supported in "
+                        f"DataflowRuntime (fail-closed)")
+                if node.retry is not None:
+                    raise RuntimeError(
+                        f"{node.id}: retry not yet supported in "
+                        f"DataflowRuntime (fail-closed)")
                 t0 = time.time()
                 step = ExecutionStep(
                     node_id=node.id, op=node.op,
@@ -136,7 +182,10 @@ class DataflowRuntime:
                                 f"{src_id} output {list(src_val.keys())}")
                         value = src_val[field_name]
                     else:
-                        value = src_val  # scalar passthrough
+                        raise RuntimeError(
+                            f"{node.id}: EXTRACT_FIELD source {src_id} "
+                            f"returned non-dict {type(src_val).__name__}; "
+                            f"cannot extract field {field_name!r}")
                     results[node.id] = value
                     step.input_params = {"field": field_name, "src": src_id}
                     step.output = value

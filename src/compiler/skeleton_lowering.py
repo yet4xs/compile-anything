@@ -83,6 +83,7 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
         except Exception:
             skill_out[n.id] = "Any"
     last_mutating = None
+    field_ssa: Dict[tuple, str] = {}  # (producer_id, field) → EXTRACT_FIELD SSA
     for i, n in enumerate(sk.nodes):
         sid = f"%p{i}"
         ssa_of[n.id] = sid
@@ -94,6 +95,29 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
         for req in required:
             if req not in args:
                 unresolved.append({"node": n.id, "missing_param": req})
+        # v0.2: separate literal args from runtime_refs
+        param_refs = {}
+        literal_args = {}
+        for k, v in args.items():
+            if isinstance(v, dict) and v.get("kind") == "runtime_ref":
+                producer = v.get("producer", "")
+                field_name = v.get("field", "")
+                if producer not in ssa_of:
+                    return {"taskir": None, "unresolved": unresolved,
+                            "errors": [f"runtime_ref {k}: producer "
+                                       f"{producer!r} not yet defined"],
+                            "coerced_ordering_deps": [],
+                            "warnings": warnings}
+                key = (producer, field_name)
+                if key not in field_ssa:
+                    ext_id = f"%ext{len(field_ssa)}"
+                    lines.append(f'{ext_id} = EXTRACT_FIELD('
+                                 f'{ssa_of[producer]}, '
+                                 f'field="{field_name}")')
+                    field_ssa[key] = ext_id
+                param_refs[k] = field_ssa[key]
+            else:
+                literal_args[k] = v
         data_deps = [d for d in n.depends_on if d in ssa_of]
         order_deps = [d for d in n.order_on if d in ssa_of]
         parts = []
@@ -114,7 +138,7 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
                         "warnings": warnings}
             parts.append(f"action={n.capability_id}")
             parts.extend(data_operands)
-            for k, v in args.items():
+            for k, v in literal_args.items():
                 parts.append(f"{k}={_fmt_value(v)}")
             # ORDER deps + conservative EFFECT serialization
             if n.effect_class not in NON_STATE and last_mutating:
@@ -125,6 +149,10 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
                      f'effect="{n.effect_class}")')
             ann = ("  after(" + ", ".join(dict.fromkeys(afters)) + ")"
                    if afters else "") + f"  {hints}"
+            # v0.2: runtime parameter bindings
+            if param_refs:
+                ann += "  bind(" + ", ".join(
+                    f"{k}={v}" for k, v in param_refs.items()) + ")"
         else:
             # first type-compatible data dep becomes the operand;
             # incompatible deps are coerced to ORDERING (reported)

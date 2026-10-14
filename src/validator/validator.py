@@ -60,14 +60,28 @@ class Report:
 
 def _dep_edges(node: Node) -> List[str]:
     """References that create graph edges (data + control + guard).
-    Retry edges are temporal back-edges and are excluded from cycle checking."""
+    Retry edges are temporal back-edges and are excluded from cycle checking.
+    v0.2: param_refs are DATA edges (SSA def-use)."""
     edges = list(node.inputs) + list(node.after)
+    edges += [ref for ref in node.param_refs.values() if ref]
     if node.guard is not None:
         edges.append(node.guard.cond)
     return edges
 
 
-def validate(mod: Module) -> Report:
+def validate(mod: Module, capability_registry=None) -> Report:
+    """Validate a TaskIR module.
+
+    capability_registry (optional): dict mapping capability_id → {
+        "input_schema": {param: type, ...},
+        "output_schema": {field: type, ...},
+        "effect_class": str,
+    }. When provided, enables STRICT v0.2 typed validation:
+    EXTRACT_FIELD field existence + type inference from output_schema,
+    param_refs type checking against consumer input_schema.
+    When absent (legacy mode), these checks are skipped but the result
+    is NOT counted as strict typed-valid.
+    """
     rep = Report()
     prog = mod.program
 
@@ -147,31 +161,81 @@ def validate(mod: Module) -> Report:
                 rep.err("USE_BEFORE_DEF",
                         f"param_ref {pk}={ref!r} used before defined", n.id)
 
-        # v0.2: EXTRACT_FIELD validation
+        # v0.2: EXTRACT_FIELD validation (strict when capability_registry
+        # is provided; legacy hints-based check otherwise)
         if n.op == "EXTRACT_FIELD":
             field_name = n.params.get("field")
             if not field_name or not isinstance(field_name, str):
                 rep.err("STRUCT", "EXTRACT_FIELD requires field= param", n.id)
             if len(n.inputs) != 1:
                 rep.err("ARITY", "EXTRACT_FIELD takes exactly 1 input", n.id)
-            # field existence check deferred to runtime (needs output_schema);
-            # static check: input must be defined
             if n.inputs and n.inputs[0] in defined:
                 producer = defined[n.inputs[0]]
-                # if producer has hints with output_fields, check
-                fields = (producer.hints or {}).get("output_fields")
-                if isinstance(fields, dict) and field_name in fields:
-                    inferred_field_type = fields[field_name]
-                else:
-                    inferred_field_type = "Any"
-                rep.inferred_types[n.id] = inferred_field_type
+                field_type = None
+                # strict: look up producer's capability output_schema
+                if capability_registry:
+                    producer_tool = producer.params.get("action") or \
+                        (producer.hints or {}).get("tool")
+                    if producer_tool:
+                        cap = capability_registry.get(producer_tool)
+                        if cap and isinstance(cap.get("output_schema"), dict):
+                            os = cap["output_schema"]
+                            if field_name not in os:
+                                rep.err("FIELD_NOT_FOUND",
+                                        f"EXTRACT_FIELD {field_name!r} not in "
+                                        f"{producer_tool} output_schema "
+                                        f"{sorted(os.keys())}", n.id)
+                                field_type = "Any"
+                            else:
+                                field_type = os[field_name]
+                        else:
+                            rep.warn("SCHEMA_UNKNOWN",
+                                     f"no output_schema for {producer_tool!r}; "
+                                     f"field type = Any", n.id)
+                    else:
+                        rep.warn("SCHEMA_UNKNOWN",
+                                 f"producer {n.inputs[0]} has no tool binding; "
+                                 f"field type = Any", n.id)
+                # legacy fallback: producer hints
+                if field_type is None:
+                    fields = (producer.hints or {}).get("output_fields")
+                    if isinstance(fields, dict) and field_name in fields:
+                        field_type = fields[field_name]
+                    else:
+                        field_type = "Any"
+                # EXTRACT_FIELD inferred type must NOT be overridden by
+                # ISA defaults — set it once here and skip the generic
+                # output_type inference below
+                rep.inferred_types[n.id] = field_type
                 if n.output_type and not ty.is_compatible(
-                        inferred_field_type, ty.normalize(n.output_type)):
+                        field_type, ty.normalize(n.output_type)):
                     rep.err("TYPE_MISMATCH",
-                            f"EXTRACT_FIELD field type {inferred_field_type} "
+                            f"EXTRACT_FIELD field type {field_type} "
                             f"incompatible with declared {n.output_type}", n.id)
             else:
                 rep.inferred_types[n.id] = "Any"
+
+        # v0.2: param_refs type check against consumer input_schema
+        # (strict mode only — requires capability_registry)
+        if capability_registry and n.param_refs and n.op == "EXEC_ACTION":
+            tool_id = n.params.get("action")
+            cap = capability_registry.get(tool_id) if tool_id else None
+            if cap and isinstance(cap.get("input_schema"), dict):
+                ischema = cap["input_schema"]
+                for pk, ref in n.param_refs.items():
+                    if pk not in ischema:
+                        rep.err("PARAM_NOT_IN_SCHEMA",
+                                f"param_ref {pk!r} not in {tool_id} "
+                                f"input_schema {sorted(ischema.keys())}", n.id)
+                        continue
+                    expected = ischema[pk]
+                    ref_type = rep.inferred_types.get(ref)
+                    if ref_type and ref_type != "Any":
+                        if not ty.is_compatible(expected, ref_type):
+                            rep.err("TYPE_MISMATCH",
+                                    f"param_ref {pk}={ref} type {ref_type} "
+                                    f"incompatible with {tool_id} "
+                                    f"input_schema ({expected})", n.id)
 
         for ref in n.after:
             if ref not in defined and ref not in globals_declared:
@@ -208,6 +272,20 @@ def validate(mod: Module) -> Report:
                     rep.err("TYPE_MISMATCH",
                             f"input #{j+1} ({ref}: {actual}) incompatible with "
                             f"{n.op} signature ({declared})", n.id)
+        # EXTRACT_FIELD: inferred type already set above from output_schema;
+        # do NOT let ISA generic inference (FIXED:Any) override it
+        if n.op == "EXTRACT_FIELD" and n.id in rep.inferred_types:
+            # preserve the schema-derived type; only check declared compat
+            if n.output_type is not None:
+                declared = ty.normalize(n.output_type)
+                if not ty.is_compatible(rep.inferred_types[n.id], declared):
+                    rep.err("TYPE_MISMATCH",
+                            f"explicit output_type {declared!r} incompatible "
+                            f"with field type {rep.inferred_types[n.id]!r}",
+                            n.id)
+                    rep.inferred_types[n.id] = declared
+            continue
+
         inferred = spec.output_type(input_types) if len(input_types) == nn else "Any"
         if n.output_type is not None:
             declared = ty.normalize(n.output_type)
