@@ -1,0 +1,100 @@
+{
+  "summary": {
+    "distractor|M0-J": {
+      "n": 132,
+      "binding_exact%": 0.0,
+      "validator%": 4.5,
+      "strict_semantic%": 0.0
+    },
+    "oracle|M0-J": {
+      "n": 132,
+      "binding_exact%": 0.0,
+      "validator%": 3.0,
+      "strict_semantic%": 0.0
+    },
+    "distractor|M0-T": {
+      "n": 132,
+      "binding_exact%": 9.8,
+      "validator%": 25.0,
+      "strict_semantic%": 6.8
+    },
+    "oracle|M0-T": {
+      "n": 132,
+      "binding_exact%": 0.0,
+      "validator%": 52.3,
+      "strict_semantic%": 0.0
+    },
+    "distractor|M1": {
+      "n": 132,
+      "binding_exact%": 84.1,
+      "validator%": 84.1,
+      "strict_semantic%": 84.1
+    },
+    "oracle|M1": {
+      "n": 132,
+      "binding_exact%": 100.0,
+      "validator%": 100.0,
+      "strict_semantic%": 100.0
+    },
+    "oracle|paired|M1-vs-M0-J": {
+      "n": 132,
+      "diff_pp": 100.0,
+      "ci95": [
+        100.0,
+        100.0
+      ],
+      "fixed": 132,
+      "broken": 0
+    },
+    "oracle|paired|M0-J-vs-M0-T": {
+      "n": 132,
+      "diff_pp": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "fixed": 0,
+      "broken": 0
+    },
+    "oracle|paired|M1-vs-M0-T": {
+      "n": 132,
+      "diff_pp": 100.0,
+      "ci95": [
+        100.0,
+        100.0
+      ],
+      "fixed": 132,
+      "broken": 0
+    },
+    "distractor|paired|M1-vs-M0-J": {
+      "n": 132,
+      "diff_pp": 84.1,
+      "ci95": [
+        78.0,
+        90.2
+      ],
+      "fixed": 111,
+      "broken": 0
+    },
+    "distractor|paired|M0-J-vs-M0-T": {
+      "n": 132,
+      "diff_pp": -9.8,
+      "ci95": [
+        -15.2,
+        -5.3
+      ],
+      "fixed": 0,
+      "broken": 13
+    },
+    "distractor|paired|M1-vs-M0-T": {
+      "n": 132,
+      "diff_pp": 74.2,
+      "ci95": [
+        64.4,
+        82.6
+      ],
+      "fixed": 105,
+      "broken": 7
+    }
+  }
+}
