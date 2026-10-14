@@ -1,13 +1,19 @@
-"""Phase 8D-2A Task 3: Dependency semantic refinement pass.
+"""Phase 8D-2A.2: Effect-safe dependency refinement pass.
 
 Removes redundant DATA dependencies from neural-generated TaskIR while
-preserving observable semantics. A DATA edge is redundant if:
-1. The consumer doesn't actually use any field from the producer (no
-   param_ref or operand from the producer's output)
-2. The edge is not needed for EFFECT ordering (both nodes are read-only)
-3. Removing it doesn't change the topological execution semantics
+preserving observable semantics. An edge is SAFE to remove only when ALL:
+1. The consumer doesn't use any value from the producer (no param_ref)
+2. ALL required params are bound via named mechanisms (param_refs/literals)
+3. BOTH endpoints are pure read_only (no mutation, no communication,
+   no external side effect)
+4. No alternative ORDER/EFFECT constraint is needed
 
-Outputs a rewrite certificate for each removed edge.
+Communication (send_alert, notifications) is an OBSERVABLE SIDE EFFECT.
+Removing ordering constraints on communication can allow notifications
+to be sent BEFORE the actions they describe. This is a business logic
+error even if the program still validates.
+
+UNPROVEN edges (where safety cannot be established) are NOT removed.
 """
 from __future__ import annotations
 
@@ -54,21 +60,26 @@ def _has_real_value_consumption(consumer: Node, producer_id: str,
     return False
 
 
-def _is_read_only(node: Node, cap_registry: Optional[dict] = None) -> bool:
-    """Determine if a node has no side effects."""
-    # Check hints
+def _is_safe_to_reorder(node: Node, cap_registry: Optional[dict] = None) -> bool:
+    """True only for pure read_only nodes. Communication, mutation, and
+    unknown effects are all UNSAFE to reorder — they have observable
+    consequences whose ordering may carry business meaning."""
     eff = (node.hints or {}).get("effect", "")
-    if eff in ("read_only", "communication", "agent_internal"):
+    if eff == "read_only":
         return True
-    if eff and eff not in ("read_only",):
+    if eff and eff != "read_only":
         return False
     # Check registry if available
     tool = node.params.get("action") or (node.hints or {}).get("tool")
     if cap_registry and tool in cap_registry:
-        return cap_registry[tool].get("effect_class", "read_only") in (
-            "read_only", "communication", "agent_internal")
-    # Conservative: assume not read-only if unknown
+        return cap_registry[tool].get("effect_class", "read_only") == "read_only"
+    # Conservative: if unknown, NOT safe
     return False
+
+
+# Backward-compatible alias (but stricter than before)
+def _is_read_only(node: Node, cap_registry: Optional[dict] = None) -> bool:
+    return _is_safe_to_reorder(node, cap_registry)
 
 
 def _all_params_bound(node: Node, cap_registry: Optional[dict],
@@ -130,44 +141,54 @@ def refine_dependencies(module: Module,
                 src = ext_chain[src]
 
             consumed = _has_real_value_consumption(node, src, ext_chain)
-            both_ro = node_effects.get(node.id, False) and \
-                       node_effects.get(src, True)
+            both_safe = node_effects.get(node.id, False) and \
+                         node_effects.get(src, True)
             params_satisfied = _all_params_bound(node, cap_registry,
                                                    ext_chain)
 
-            if not consumed and (both_ro or params_satisfied):
-                eff = "none" if both_ro else "mutation_ordering"
-                reason = ("all required params bound via param_refs; "
-                          "positional operand is a structural artifact"
-                          if params_satisfied else
-                          "consumer does not consume producer value; "
-                          "both read-only")
+            # SAFE removal requires ALL THREE:
+            # 1. No value consumption (param_refs don't reference producer)
+            # 2. Both endpoints are pure read_only (no comm/mutation)
+            # 3. All required params bound via named mechanisms
+            if not consumed and both_safe and params_satisfied:
                 certificates.append(RewriteCertificate(
                     edge_from=src, edge_to=node.id,
                     edge_kind="DATA_OPERAND",
-                    reason=reason,
+                    reason="both endpoints read_only; no value consumption; "
+                            "all params bound via param_refs",
                     producer_consumed=False,
-                    effect_risk=eff))
+                    effect_risk="none"))
                 removed += 1
                 # Don't add this input back
+            elif not consumed and not both_safe:
+                # UNSAFE: at least one endpoint has observable effects.
+                # Record but do NOT remove.
+                certificates.append(RewriteCertificate(
+                    edge_from=src, edge_to=node.id,
+                    edge_kind="DATA_OPERAND",
+                    reason="CANDIDATE but UNSAFE: endpoint has observable "
+                            "effects (mutation/communication/unknown)",
+                    producer_consumed=False,
+                    effect_risk="UNSAFE_effect_ordering"))
+                # Keep the input (safe default)
             else:
                 new_inputs.append(inp)
         node.inputs = new_inputs
 
-        # Check after() edges
+        # Check after() edges — same safety rules as positional operands
         new_after = []
         for a in (node.after or []):
             src = a  # after references are direct SSA ids
             consumed = _has_real_value_consumption(node, src, ext_chain)
-            both_ro = node_effects.get(node.id, False) and \
-                       node_effects.get(src, True)
+            both_safe = node_effects.get(node.id, False) and \
+                         node_effects.get(src, True)
 
-            if not consumed and both_ro:
+            if not consumed and both_safe:
                 certificates.append(RewriteCertificate(
                     edge_from=src, edge_to=node.id,
                     edge_kind="ORDER",
-                    reason="explicit order constraint on read-only "
-                            "pair with no value consumption",
+                    reason="both endpoints read_only; order constraint "
+                            "has no observable effect",
                     producer_consumed=False,
                     effect_risk="none"))
                 removed += 1
