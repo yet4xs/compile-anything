@@ -204,7 +204,21 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
                 "draft": text}
     try:
         mod = parse_text(text)
-        rep = validate(mod)
+        # strict mode: pass the capability registry for typed validation
+        from src.compiler.capability_schema import normalize_registry
+        norm_reg = normalize_registry(registry_schemas)
+        v2_reg = {}
+        for t, entry in norm_reg.items():
+            if entry.get("input_schema") or entry.get("output_schema"):
+                v2_reg[t] = {
+                    "input_schema": entry.get("input_schema") or {},
+                    "output_schema": entry.get("output_schema") or {},
+                    "effect_class": entry.get("effect_class"),
+                }
+        if strict and v2_reg:
+            rep = validate(mod, capability_registry=v2_reg)
+        else:
+            rep = validate(mod)
         if not rep.valid:
             return {"taskir": None, "unresolved": [],
                     "errors": [f"validator: {rep.errors[:2]}"],

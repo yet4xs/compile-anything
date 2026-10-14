@@ -327,8 +327,8 @@ def test_skeleton_runtime_ref_generates_extract_field():
         arguments={
             "user_id": {"kind": "runtime_ref", "producer": "p0",
                         "field": "user_id"}}))
-    reg = {"lookup_user": {"params": [{"name": "name", "optional": False}]},
-           "get_account": {"params": [{"name": "user_id", "optional": False}]}}
+    reg = {"lookup_user": {"params": [{"name": "name", "optional": False}], "output_fields": {"user_id": "Str", "email": "Str"}},
+           "get_account": {"params": [{"name": "user_id", "optional": False}], "output_fields": {"account_id": "Str"}}}
     low = lower_skeleton(sk, None, reg, strict=True)
     assert low.get("taskir") is not None, low.get("errors")
     text = low["taskir"]
@@ -353,8 +353,8 @@ def test_skeleton_runtime_ref_executes():
         depends_on=["p0"],
         arguments={"user_id": {"kind": "runtime_ref", "producer": "p0",
                                 "field": "user_id"}}))
-    reg = {"lookup_user": {"params": [{"name": "name", "optional": False}]},
-           "get_account": {"params": [{"name": "user_id", "optional": False}]}}
+    reg = {"lookup_user": {"params": [{"name": "name", "optional": False}], "output_fields": {"user_id": "Str", "email": "Str"}},
+           "get_account": {"params": [{"name": "user_id", "optional": False}], "output_fields": {"account_id": "Str"}}}
     low = lower_skeleton(sk, None, reg, strict=True)
     assert low["taskir"]
     rt = DataflowRuntime(make_rt())
@@ -449,7 +449,7 @@ def test_multiple_runtime_refs_same_producer():
         arguments={
             "user_id": {"kind": "runtime_ref", "producer": "p0",
                         "field": "user_id"}}))
-    reg = {"lookup_user": {"params": [{"name": "name", "optional": False}]},
+    reg = {"lookup_user": {"params": [{"name": "name", "optional": False}], "output_fields": {"user_id": "Str", "email": "Str"}},
            "get_account": {"params": [{"name": "user_id",
                                        "optional": False}]}}
     low = lower_skeleton(sk, None, reg, strict=True)

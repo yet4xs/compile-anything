@@ -29,28 +29,45 @@ class MockCapability:
     call_count: int = 0                   # track repeated executions
 
 
-def _check_type(value: Any, expected: str) -> Optional[str]:
-    """Return error message if value doesn't match expected type, else None."""
+def _check_type(value: Any, expected: str, strict: bool = True) -> Optional[str]:
+    """Return error message if value doesn't match expected type, else None.
+    Bool is NOT accepted as Int/Float (Python quirk: bool ⊂ int)."""
     if expected in ("Any", "Unknown"):
         return None
     e = expected.strip()
-    if e.startswith("List[") or e.startswith("Dict[") or e == "Json":
-        if not isinstance(value, (list, dict)):
-            return f"expected {e}, got {type(value).__name__}"
+    # composite types
+    if e.startswith("List["):
+        if not isinstance(value, list):
+            return f"expected List, got {type(value).__name__}"
+        inner = e[5:-1] if e.endswith("]") else "Any"
+        for i, item in enumerate(value):
+            err = _check_type(item, inner, strict)
+            if err:
+                return f"List[{i}]: {err}"
         return None
-    mapping = {
-        "Str": str, "Int": int, "Float": (int, float),
-        "Bool": bool, "Table": dict, "Date": str,
-    }
+    if e.startswith("Dict[") or e in ("Dict", "Json", "Table"):
+        if not isinstance(value, dict):
+            return f"expected Dict, got {type(value).__name__}"
+        return None
+    # scalar types — bool checked FIRST to prevent bool-as-int acceptance
+    mapping = {"Str": str, "Int": int, "Float": float, "Bool": bool}
     py_type = mapping.get(e)
     if py_type is None:
-        return None  # unknown type name — don't enforce
-    if isinstance(value, bool) and py_type is int:
-        return None  # bool is int subclass; allow
+        if strict:
+            return f"unknown type {e!r} in strict mode"
+        return None
+    if e == "Bool":
+        if not isinstance(value, bool):
+            return f"expected Bool, got {type(value).__name__}"
+        return None
+    # for Int/Float: bool must NOT pass (isinstance(True, int) is True)
+    if isinstance(value, bool):
+        return f"expected {e}, got bool"
     if not isinstance(value, py_type):
-        type_name = (py_type.__name__ if hasattr(py_type, '__name__')
-                     else str(py_type))
-        return f"expected {e}({type_name}), got {type(value).__name__}"
+        # Float accepts int (common convention)
+        if e == "Float" and isinstance(value, int):
+            return None
+        return f"expected {e}, got {type(value).__name__}"
     return None
 
 
@@ -140,24 +157,54 @@ class DataflowRuntime:
     def __init__(self, registry: MockCapabilityRegistry):
         self.registry = registry
 
-    def execute(self, module: Module) -> ExecutionTrace:
+    def execute(self, module: Module, capability_registry=None) -> ExecutionTrace:
+        """Execute with PRE-EXECUTION safety checks (fail-closed).
+
+        All validation happens BEFORE any tool call, including mutating
+        operations. This prevents partial execution of programs that
+        would fail at a later node."""
         trace = ExecutionTrace()
-        results: Dict[str, Any] = {}       # SSA id -> value
+
+        # ── PRE-EXECUTION SAFETY CHECKS ──
+        # 1. Guard/Retry support check (fail-closed for ALL nodes upfront)
+        for node in module.program.nodes:
+            if node.guard is not None:
+                trace.error = (f"{node.id}: guard not supported in "
+                               f"DataflowRuntime (pre-execution fail-closed)")
+                return trace
+            if node.retry is not None:
+                trace.error = (f"{node.id}: retry not supported in "
+                               f"DataflowRuntime (pre-execution fail-closed)")
+                return trace
+
+        # 2. Tool identity check (every EXEC_ACTION must have known tool)
+        for node in module.program.nodes:
+            if node.op == "EXEC_ACTION":
+                tool_id = node.params.get("action")
+                if not tool_id:
+                    trace.error = (f"{node.id}: EXEC_ACTION missing "
+                                   f"action= param (no tool binding)")
+                    return trace
+                if self.registry.get(tool_id) is None:
+                    trace.error = (f"{node.id}: unknown tool {tool_id!r}")
+                    return trace
+
+        # 3. Strict validation if capability_registry provided
+        if capability_registry:
+            rep = validate(module, capability_registry=capability_registry)
+            if not rep.valid:
+                trace.error = (f"strict validation failed: "
+                               f"{[str(e) for e in rep.errors[:3]]}")
+                return trace
+
+        # ── EXECUTION (all checks passed) ──
+        results: Dict[str, Any] = {}
         # include program inputs
         for inp in module.program.inputs:
             results[inp["name"]] = inp.get("type", "Any")  # placeholder
 
         try:
             for node in module.program.nodes:
-                # v0.2 safety: fail-closed on guard/retry until fully supported
-                if node.guard is not None:
-                    raise RuntimeError(
-                        f"{node.id}: guard not yet supported in "
-                        f"DataflowRuntime (fail-closed)")
-                if node.retry is not None:
-                    raise RuntimeError(
-                        f"{node.id}: retry not yet supported in "
-                        f"DataflowRuntime (fail-closed)")
                 t0 = time.time()
                 step = ExecutionStep(
                     node_id=node.id, op=node.op,
@@ -246,12 +293,8 @@ class DataflowRuntime:
 
         return trace
 
-    def execute_text(self, taskir_text: str) -> ExecutionTrace:
-        """Parse + validate + execute."""
+    def execute_text(self, taskir_text: str,
+                     capability_registry=None) -> ExecutionTrace:
+        """Parse + validate + execute (with strict pre-execution checks)."""
         mod = parse_text(taskir_text)
-        rep = validate(mod)
-        if not rep.valid:
-            trace = ExecutionTrace()
-            trace.error = f"validation failed: {rep.errors[:3]}"
-            return trace
-        return self.execute(mod)
+        return self.execute(mod, capability_registry=capability_registry)
