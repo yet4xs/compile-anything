@@ -1,0 +1,1095 @@
+{
+  "summary": {
+    "fan_out_in": {
+      "n": 24,
+      "avg_edges_removed": 0.0,
+      "avg_cp_orig": 3.3,
+      "avg_cp_refined": 3.3,
+      "cp_improvement%": 0.0,
+      "avg_makespan_orig": 4.3,
+      "avg_makespan_refined": 4.3,
+      "avg_makespan_oracle": 4.3,
+      "makespan_improvement%": 0.0,
+      "avg_parallelism_orig": 3.0,
+      "avg_parallelism_refined": 3.0
+    },
+    "repeated_tool": {
+      "n": 20,
+      "avg_edges_removed": 0.0,
+      "avg_cp_orig": 1.1,
+      "avg_cp_refined": 1.1,
+      "cp_improvement%": 0.0,
+      "avg_makespan_orig": 2.1,
+      "avg_makespan_refined": 2.1,
+      "avg_makespan_oracle": 2.1,
+      "makespan_improvement%": 0.0,
+      "avg_parallelism_orig": 4.0,
+      "avg_parallelism_refined": 4.0
+    },
+    "OVERALL": {
+      "n": 44,
+      "total_edges_removed": 0,
+      "avg_edges_removed": 0.0,
+      "tasks_with_removals": 0,
+      "validation_all_pass": true
+    }
+  },
+  "details": [
+    {
+      "task_id": "v2_fan_out_in_000",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_001",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_002",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_003",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_004",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_005",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_006",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_007",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_008",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_009",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_010",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_011",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_012",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_013",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_014",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_015",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_016",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_017",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_018",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_019",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_020",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_022",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_023",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_fan_out_in_024",
+      "topology": "fan_out_in",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3,
+        "n_nodes": 7,
+        "n_edges": 9
+      },
+      "refined": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      },
+      "oracle": {
+        "cp": 3.3,
+        "parallelism": 3,
+        "makespan_2p": 4.3
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_000",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_001",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_002",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_003",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_004",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_005",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_006",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_007",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_008",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_009",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_010",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_011",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_012",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_013",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_014",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_015",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_016",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_017",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_018",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    },
+    {
+      "task_id": "v2_repeated_tool_019",
+      "topology": "repeated_tool",
+      "edges_removed": 0,
+      "certificates": [],
+      "validation_pass": true,
+      "original": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1,
+        "n_nodes": 6,
+        "n_edges": 4
+      },
+      "refined": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      },
+      "oracle": {
+        "cp": 1.1,
+        "parallelism": 4,
+        "makespan_2p": 2.1
+      }
+    }
+  ]
+}
