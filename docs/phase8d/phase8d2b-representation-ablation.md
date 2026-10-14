@@ -56,3 +56,45 @@ M1 的 Skeleton JSON 只需要:
 - 编译器负责: SSA 编号 + 类型检查 + 字段提取 + 结构验证(确定性保证)
 
 这支持 **Compile Anything** 的核心论文主张: 神经编译器的价值在于让神经网络在正确的抽象层工作,而编译器处理底层复杂性。
+
+---
+
+## Failure Taxonomy (Post-Review Addition)
+
+### M0-J (TaskIR JSON AST) Failure Breakdown (n=264)
+
+| Failure Mode | Count | % | Description |
+|-------------|-------|---|-------------|
+| **JSON syntax error** | **218** | **82.6%** | Model generates malformed JSON — deeply nested AST exceeds generation precision |
+| Missing param_refs | 26 | 9.8% | Model omits param_refs field entirely |
+| Binding wrong | 15 | 5.7% | Structure present but incorrect binding |
+| No JSON found | 4 | 1.5% | Output doesn't contain parseable JSON |
+| Missing EXTRACT_FIELD | 1 | 0.4% | No field extraction nodes |
+
+### M0-T (TaskIR Text) Failure Breakdown (n=264)
+
+| Failure Mode | Count | % | Description |
+|-------------|-------|---|-------------|
+| **Parse failure** | **126** | **47.7%** | TaskIR DSL syntax errors |
+| **Binding wrong** | **93** | **35.2%** | Parses but runtime binding incorrect |
+| Validator failure | 36 | 13.6% | Parses but fails semantic validation |
+| OK | 9 | 3.4% | Fully correct |
+
+### M1 (Skeleton) Distractor Failure Breakdown (n=132)
+
+| Failure Mode | Count | % | Description |
+|-------------|-------|---|-------------|
+| OK | 111 | 84.1% | Fully correct |
+| Parse failure | 21 | 15.9% | Skeleton JSON malformed or lowering fails |
+
+### Interpretation
+
+**M0-J fails on structural verbosity, not semantics.** The model generates syntactically invalid JSON in 82.6% of cases because the full TaskIR AST requires simultaneous generation of: SSA IDs, EXTRACT_FIELD intermediate nodes, param_refs dictionaries, output_type annotations, after lists — all within a deeply nested JSON structure.
+
+**M0-T fails on both syntax and semantics.** 47.7% can't even parse (DSL complexity). Of the 52.3% that parse, most have wrong runtime bindings (93/138=67%).
+
+**M1 avoids both failure modes.** The Skeleton JSON is flat and concise (tool name, arguments, runtime_ref{producer, field}). The compiler deterministically generates the complex TaskIR AST.
+
+### Paper-Ready Statement
+
+> Direct IR generation fails for format-dependent reasons: text generation fails on DSL syntax (48% parse failure) while JSON AST generation fails on structural verbosity (83% malformed JSON). In both cases, the model cannot express runtime dataflow bindings (0% binding exact). Semantic skeleton generation avoids both failure modes by operating at a higher abstraction level where the model only specifies intent, and the compiler deterministically constructs the runtime dataflow.
