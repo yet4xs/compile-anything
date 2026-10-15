@@ -1,0 +1,668 @@
+{
+  "domains": {
+    "airline": {
+      "total": 50,
+      "L0": 25,
+      "L1": 0,
+      "L2": 8,
+      "L3": 17,
+      "runtime_dep_count": 86,
+      "level3_tasks_sample": [
+        {
+          "task_id": "1",
+          "n_actions": 2,
+          "runtime_deps": [
+            {
+              "step": 1,
+              "param": "reservation_id",
+              "value": "Q69X3R",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "User tries to get agent to proceed with a cancellation that is not allowed by saying it has been app"
+        },
+        {
+          "task_id": "2",
+          "n_actions": 3,
+          "runtime_deps": [
+            {
+              "step": 1,
+              "param": "reservation_id",
+              "value": "SDZQKO",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details"
+              ]
+            },
+            {
+              "step": 2,
+              "param": "reservation_id",
+              "value": "4OG6T3",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details",
+                "get_reservation_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "Testing capacity of agent to handle change of topic + capacity to double check claims made by client"
+        },
+        {
+          "task_id": "4",
+          "n_actions": 6,
+          "runtime_deps": [
+            {
+              "step": 1,
+              "param": "reservation_id",
+              "value": "NM1VX1",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details"
+              ]
+            },
+            {
+              "step": 2,
+              "param": "reservation_id",
+              "value": "KC18K6",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details",
+                "get_reservation_details"
+              ]
+            },
+            {
+              "step": 3,
+              "param": "reservation_id",
+              "value": "S61CZX",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details",
+                "get_reservation_details",
+                "get_reservation_details"
+              ]
+            },
+            {
+              "step": 4,
+              "param": "reservation_id",
+              "value": "H8Q05L",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details",
+                "get_reservation_details",
+                "get_reservation_details",
+                "get_reservation_details"
+              ]
+            },
+            {
+              "step": 5,
+              "param": "reservation_id",
+              "value": "WUNA5K",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details",
+                "get_reservation_details",
+                "get_reservation_details",
+                "get_reservation_details",
+                "get_reservation_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "User tries to get compensation by lying about flight cancellation and cabin. If the agent refuses to"
+        },
+        {
+          "task_id": "7",
+          "n_actions": 5,
+          "runtime_deps": [
+            {
+              "step": 2,
+              "param": "flights",
+              "value": "[{'flight_number': 'HAT005', '",
+              "source": "runtime_dep",
+              "tool": "update_reservation_flights",
+              "prior_tools": [
+                "get_reservation_details",
+                "get_reservation_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "Testing introducing new user intent in the middle of the conversation. {'task_instructions': 'If the"
+        },
+        {
+          "task_id": "8",
+          "n_actions": 4,
+          "runtime_deps": [
+            {
+              "step": 1,
+              "param": "reservation_id",
+              "value": "WUNA5K",
+              "source": "runtime_dep",
+              "tool": "get_reservation_details",
+              "prior_tools": [
+                "get_user_details"
+              ]
+            },
+            {
+              "step": 3,
+              "param": "flights",
+              "value": "[{'flight_number': 'HAT271', '",
+              "source": "runtime_dep",
+              "tool": "book_reservation",
+              "prior_tools": [
+                "get_user_details",
+                "get_reservation_details",
+                "search_direct_flight"
+              ]
+            }
+          ],
+          "user_text_snippet": "Booking with extra passenger. {'task_instructions': \"You want to book the exact same flight as your "
+        }
+      ]
+    },
+    "banking_knowledge": {
+      "total": 97,
+      "L0": 11,
+      "L1": 0,
+      "L2": 86,
+      "L3": 0,
+      "runtime_dep_count": 0,
+      "level3_tasks_sample": []
+    },
+    "retail": {
+      "total": 114,
+      "L0": 22,
+      "L1": 0,
+      "L2": 32,
+      "L3": 60,
+      "runtime_dep_count": 236,
+      "level3_tasks_sample": [
+        {
+          "task_id": "0",
+          "n_actions": 5,
+          "runtime_deps": [
+            {
+              "step": 3,
+              "param": "product_id",
+              "value": "4896585277",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_order_details",
+                "get_product_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "{'task_instructions': 'You are detail-oriented and want to make sure everything is addressed in one "
+        },
+        {
+          "task_id": "1",
+          "n_actions": 5,
+          "runtime_deps": [
+            {
+              "step": 3,
+              "param": "product_id",
+              "value": "4896585277",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_order_details",
+                "get_product_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "{'task_instructions': 'You are detail-oriented and want to make sure everything is addressed in one "
+        },
+        {
+          "task_id": "2",
+          "n_actions": 11,
+          "runtime_deps": [
+            {
+              "step": 2,
+              "param": "product_id",
+              "value": "9523456873",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 3,
+              "param": "user_id",
+              "value": "yusuf_rossi_9620",
+              "source": "runtime_dep",
+              "tool": "get_user_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 5,
+              "param": "order_id",
+              "value": "#W9711842",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 6,
+              "param": "order_id",
+              "value": "#W4776164",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 7,
+              "param": "order_id",
+              "value": "#W6679257",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 8,
+              "param": "order_id",
+              "value": "#W2378156",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 9,
+              "param": "product_id",
+              "value": "9523456873",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 10,
+              "param": "order_id",
+              "value": "#W2378156",
+              "source": "runtime_dep",
+              "tool": "return_delivered_order_items",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_product_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "{'task_instructions': '.', 'domain': 'retail', 'reason_for_call': 'You want to know exactly how many"
+        },
+        {
+          "task_id": "3",
+          "n_actions": 12,
+          "runtime_deps": [
+            {
+              "step": 2,
+              "param": "product_id",
+              "value": "9523456873",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 3,
+              "param": "user_id",
+              "value": "yusuf_rossi_9620",
+              "source": "runtime_dep",
+              "tool": "get_user_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 5,
+              "param": "order_id",
+              "value": "#W9711842",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 6,
+              "param": "order_id",
+              "value": "#W4776164",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 7,
+              "param": "order_id",
+              "value": "#W6679257",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 8,
+              "param": "order_id",
+              "value": "#W2378156",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 9,
+              "param": "product_id",
+              "value": "9523456873",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 10,
+              "param": "user_id",
+              "value": "yusuf_rossi_9620",
+              "source": "runtime_dep",
+              "tool": "get_user_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 11,
+              "param": "order_id",
+              "value": "#W4776164",
+              "source": "runtime_dep",
+              "tool": "modify_pending_order_items",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_product_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "{'task_instructions': 'You are a private person that does not want to reveal much about yourself.', "
+        },
+        {
+          "task_id": "4",
+          "n_actions": 13,
+          "runtime_deps": [
+            {
+              "step": 2,
+              "param": "product_id",
+              "value": "9523456873",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 3,
+              "param": "user_id",
+              "value": "yusuf_rossi_9620",
+              "source": "runtime_dep",
+              "tool": "get_user_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 5,
+              "param": "order_id",
+              "value": "#W9711842",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 6,
+              "param": "order_id",
+              "value": "#W4776164",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 7,
+              "param": "order_id",
+              "value": "#W6679257",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 8,
+              "param": "order_id",
+              "value": "#W2378156",
+              "source": "runtime_dep",
+              "tool": "get_order_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 9,
+              "param": "product_id",
+              "value": "9523456873",
+              "source": "runtime_dep",
+              "tool": "get_product_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details"
+              ]
+            },
+            {
+              "step": 10,
+              "param": "user_id",
+              "value": "yusuf_rossi_9620",
+              "source": "runtime_dep",
+              "tool": "get_user_details",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 11,
+              "param": "order_id",
+              "value": "#W6247578",
+              "source": "runtime_dep",
+              "tool": "modify_pending_order_items",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_product_details"
+              ]
+            },
+            {
+              "step": 12,
+              "param": "order_id",
+              "value": "#W4776164",
+              "source": "runtime_dep",
+              "tool": "modify_pending_order_items",
+              "prior_tools": [
+                "find_user_id_by_name_zip",
+                "get_product_details",
+                "get_product_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_order_details",
+                "get_product_details"
+              ]
+            }
+          ],
+          "user_text_snippet": "{'task_instructions': 'You are a private person that does not want to reveal much about yourself.', "
+        }
+      ]
+    },
+    "telecom": {
+      "total": 2285,
+      "L0": 45,
+      "L1": 0,
+      "L2": 2240,
+      "L3": 0,
+      "runtime_dep_count": 0,
+      "level3_tasks_sample": []
+    }
+  },
+  "summary": {
+    "total_tasks": 2546,
+    "multi_step": 2443,
+    "level3_tasks": 77,
+    "runtime_dep_edges": 322
+  }
+}
