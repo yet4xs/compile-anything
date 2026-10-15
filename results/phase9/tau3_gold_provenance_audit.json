@@ -1,0 +1,1868 @@
+{
+  "total_tasks": 53,
+  "literal_observability": {
+    "ENV_STATE_OR_UNKNOWN": 245,
+    "runtime_ref": 233,
+    "USER_TEXT": 123
+  },
+  "runtime_dep_verification": {
+    "UNKNOWN": 165,
+    "VERIFIED": 68
+  },
+  "hidden_env_values": {
+    "tasks_with_hidden": 53,
+    "severity_distribution": {
+      "HIGH": 37,
+      "MEDIUM": 157,
+      "LOW": 51
+    }
+  },
+  "task_details": [
+    {
+      "task_id": "tau3_retail_99",
+      "n_nodes": 2,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 4,
+      "n_not_in_user_text": 7,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W4689314",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['5996159312']",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8363011723']",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_18",
+      "n_nodes": 5,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W2890441",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "4794339885",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8069050545']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_23",
+      "n_nodes": 12,
+      "n_runtime_deps": 12,
+      "n_verified_deps": 4,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 8,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 8,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W3561391",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p6",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "7765186836",
+          "tool": "get_product_details",
+          "step": 6
+        },
+        {
+          "node": "p7",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['3358616356']",
+          "tool": "exchange_delivered_order_items",
+          "step": 7
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_14",
+      "n_nodes": 6,
+      "n_runtime_deps": 5,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5490111",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['1421289881']",
+          "tool": "return_delivered_order_items",
+          "step": 4
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['5796612084']",
+          "tool": "return_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_107",
+      "n_nodes": 2,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 4,
+      "n_not_in_user_text": 7,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W1304208",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['1615379700']",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8106223139']",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_37",
+      "n_nodes": 4,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 0,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p3",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W9348897",
+          "tool": "modify_pending_order_items",
+          "step": 3
+        },
+        {
+          "node": "p3",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['6117189161', '7453605304', '3799046073",
+          "tool": "modify_pending_order_items",
+          "step": 3
+        },
+        {
+          "node": "p3",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['6700049080', '5320792178', '3234800602",
+          "tool": "modify_pending_order_items",
+          "step": 3
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_29",
+      "n_nodes": 6,
+      "n_runtime_deps": 5,
+      "n_verified_deps": 3,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 6,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W3792453",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "1968349452",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4293355847']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_13",
+      "n_nodes": 5,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5490111",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4579334072', '6117189161', '4947717507",
+          "tool": "return_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_65",
+      "n_nodes": 3,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 0,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 1,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5362037",
+          "tool": "get_order_details",
+          "step": 2
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_92",
+      "n_nodes": 2,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 3,
+      "n_not_in_user_text": 5,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W7553978",
+          "tool": "return_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4545791457', '3098764622', '1631806422",
+          "tool": "return_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "payment_method_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "credit_card_5902940",
+          "tool": "return_delivered_order_items",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_32",
+      "n_nodes": 5,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 9,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "ivan_rossi_8555",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "OWZ4XL",
+          "tool": "get_reservation_details",
+          "step": 1
+        },
+        {
+          "node": "p2",
+          "param": "origin",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "EWR",
+          "tool": "search_direct_flight",
+          "step": 2
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_62",
+      "n_nodes": 5,
+      "n_runtime_deps": 2,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5797164",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "4768869376",
+          "tool": "get_product_details",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_7",
+      "n_nodes": 6,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6390527",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8310926033",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8384507844']",
+          "tool": "exchange_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_41",
+      "n_nodes": 8,
+      "n_runtime_deps": 6,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 6,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "amelia_davis_8890",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8C8K4E",
+          "tool": "get_reservation_details",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_39",
+      "n_nodes": 11,
+      "n_runtime_deps": 9,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 9,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "amelia_davis_8890",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8C8K4E",
+          "tool": "get_reservation_details",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_9",
+      "n_nodes": 6,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6390527",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8310926033",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8384507844']",
+          "tool": "exchange_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_35",
+      "n_nodes": 7,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 5,
+      "issues": [
+        {
+          "node": "p3",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W9672333",
+          "tool": "get_order_details",
+          "step": 3
+        },
+        {
+          "node": "p4",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "4760268021",
+          "tool": "get_product_details",
+          "step": 4
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['6704763132']",
+          "tool": "return_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_30",
+      "n_nodes": 3,
+      "n_runtime_deps": 2,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 0,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 6,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "1N99U6",
+          "tool": "get_reservation_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "origin",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "LAS",
+          "tool": "search_direct_flight",
+          "step": 1
+        },
+        {
+          "node": "p1",
+          "param": "destination",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "IAH",
+          "tool": "search_direct_flight",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_5",
+      "n_nodes": 5,
+      "n_runtime_deps": 2,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6390527",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "6817146515",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8538875209']",
+          "tool": "return_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_53",
+      "n_nodes": 6,
+      "n_runtime_deps": 5,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W4689314",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['7758198585']",
+          "tool": "return_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_44",
+      "n_nodes": 19,
+      "n_runtime_deps": 28,
+      "n_verified_deps": 3,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 25,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 20,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "sophia_silva_7557",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "NM1VX1",
+          "tool": "get_reservation_details",
+          "step": 1
+        },
+        {
+          "node": "p6",
+          "param": "origin",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "MSP",
+          "tool": "search_direct_flight",
+          "step": 6
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_51",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8940227892",
+          "tool": "get_product_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['5996159312']",
+          "tool": "return_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_18",
+      "n_nodes": 5,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 4,
+      "n_hidden_env_high": 4,
+      "n_not_in_user_text": 16,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "JG7FMM",
+          "tool": "update_reservation_flights",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "cabin",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "economy",
+          "tool": "update_reservation_flights",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "flights",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "[{'flight_number': 'HAT028', 'date': '20",
+          "tool": "update_reservation_flights",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_27",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W3792453",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "7363354090",
+          "tool": "get_product_details",
+          "step": 4
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8118291112']",
+          "tool": "exchange_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_2",
+      "n_nodes": 11,
+      "n_runtime_deps": 9,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 7,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p1",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "6086499569",
+          "tool": "get_product_details",
+          "step": 1
+        },
+        {
+          "node": "p4",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6247578",
+          "tool": "get_order_details",
+          "step": 4
+        },
+        {
+          "node": "p10",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4602305039', '4202497723', '9408160950",
+          "tool": "return_delivered_order_items",
+          "step": 10
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_56",
+      "n_nodes": 7,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5838674",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "3821016478",
+          "tool": "get_product_details",
+          "step": 5
+        },
+        {
+          "node": "p6",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8302289002']",
+          "tool": "modify_pending_order_items",
+          "step": 6
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_43",
+      "n_nodes": 5,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 5,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W1588712",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "address1",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "943 Maple Drive",
+          "tool": "modify_user_address",
+          "step": 4
+        },
+        {
+          "node": "p4",
+          "param": "address2",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "Suite 356",
+          "tool": "modify_user_address",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_15",
+      "n_nodes": 7,
+      "n_runtime_deps": 5,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W9389413",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "7363354090",
+          "tool": "get_product_details",
+          "step": 5
+        },
+        {
+          "node": "p6",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['1615379700']",
+          "tool": "modify_pending_order_items",
+          "step": 6
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_19",
+      "n_nodes": 7,
+      "n_runtime_deps": 5,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W2890441",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "2747247837",
+          "tool": "get_product_details",
+          "step": 4
+        },
+        {
+          "node": "p6",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['2366567022']",
+          "tool": "return_delivered_order_items",
+          "step": 6
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_33",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 5,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6111398",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "address1",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "517 Lakeview Drive",
+          "tool": "modify_user_address",
+          "step": 5
+        },
+        {
+          "node": "p5",
+          "param": "address2",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "Suite 183",
+          "tool": "modify_user_address",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_100",
+      "n_nodes": 2,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 4,
+      "n_not_in_user_text": 6,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W3295833",
+          "tool": "modify_pending_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8926329222', '5312063289']",
+          "tool": "modify_pending_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['7160999700', '6956751343']",
+          "tool": "modify_pending_order_items",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_52",
+      "n_nodes": 5,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W4689314",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8940227892",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['5996159312']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_4",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 4,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "sophia_silva_7557",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "NM1VX1",
+          "tool": "get_reservation_details",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_7",
+      "n_nodes": 5,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 0,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 7,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "XEHM4B",
+          "tool": "get_reservation_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "59XX6W",
+          "tool": "get_reservation_details",
+          "step": 1
+        },
+        {
+          "node": "p2",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "XEHM4B",
+          "tool": "update_reservation_flights",
+          "step": 2
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_2",
+      "n_nodes": 3,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "noah_muller_9847",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "SDZQKO",
+          "tool": "get_reservation_details",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_25",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 1,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W3792453",
+          "tool": "get_order_details",
+          "step": 2
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_20",
+      "n_nodes": 10,
+      "n_runtime_deps": 8,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 6,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W4967593",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8310926033",
+          "tool": "get_product_details",
+          "step": 4
+        },
+        {
+          "node": "p8",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['2366567022', '1340995114', '9791469541",
+          "tool": "modify_pending_order_items",
+          "step": 8
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_0",
+      "n_nodes": 5,
+      "n_runtime_deps": 2,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "1656367028",
+          "tool": "get_product_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['1151293680', '4983901480']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        },
+        {
+          "node": "p4",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['7706410293', '7747408585']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_1",
+      "n_nodes": 5,
+      "n_runtime_deps": 2,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "1656367028",
+          "tool": "get_product_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4983901480']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        },
+        {
+          "node": "p4",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['7747408585']",
+          "tool": "exchange_delivered_order_items",
+          "step": 4
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_6",
+      "n_nodes": 6,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6390527",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8310926033",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8384507844']",
+          "tool": "exchange_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_58",
+      "n_nodes": 6,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5838674",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "4354588079",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['7441167885', '3478699712']",
+          "tool": "exchange_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_60",
+      "n_nodes": 4,
+      "n_runtime_deps": 2,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p1",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5061109",
+          "tool": "get_order_details",
+          "step": 1
+        },
+        {
+          "node": "p2",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "9924732112",
+          "tool": "get_product_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['3694871183']",
+          "tool": "modify_pending_order_items",
+          "step": 3
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_64",
+      "n_nodes": 8,
+      "n_runtime_deps": 7,
+      "n_verified_deps": 3,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 4,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 6,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W7464385",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "3377618313",
+          "tool": "get_product_details",
+          "step": 5
+        },
+        {
+          "node": "p6",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['1810466394']",
+          "tool": "exchange_delivered_order_items",
+          "step": 6
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_95",
+      "n_nodes": 2,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 4,
+      "n_not_in_user_text": 7,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W2905754",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['3478699712']",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "new_item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['9844888101']",
+          "tool": "exchange_delivered_order_items",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_11",
+      "n_nodes": 6,
+      "n_runtime_deps": 5,
+      "n_verified_deps": 2,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 3,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W5490111",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p4",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4579334072', '1421289881', '6117189161",
+          "tool": "return_delivered_order_items",
+          "step": 4
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['5796612084']",
+          "tool": "return_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_4",
+      "n_nodes": 13,
+      "n_runtime_deps": 12,
+      "n_verified_deps": 4,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 8,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 6,
+      "issues": [
+        {
+          "node": "p1",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "6086499569",
+          "tool": "get_product_details",
+          "step": 1
+        },
+        {
+          "node": "p4",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6247578",
+          "tool": "get_order_details",
+          "step": 4
+        },
+        {
+          "node": "p11",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['3799046073']",
+          "tool": "modify_pending_order_items",
+          "step": 11
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_91",
+      "n_nodes": 2,
+      "n_runtime_deps": 1,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 1,
+      "n_hidden_env_high": 3,
+      "n_not_in_user_text": 6,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W7553978",
+          "tool": "return_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['4545791457', '3098764622', '1631806422",
+          "tool": "return_delivered_order_items",
+          "step": 0
+        },
+        {
+          "node": "p0",
+          "param": "payment_method_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "credit_card_5902940",
+          "tool": "return_delivered_order_items",
+          "step": 0
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_8",
+      "n_nodes": 6,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6390527",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p3",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "8310926033",
+          "tool": "get_product_details",
+          "step": 3
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8384507844']",
+          "tool": "exchange_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_3",
+      "n_nodes": 12,
+      "n_runtime_deps": 10,
+      "n_verified_deps": 3,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 7,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 4,
+      "issues": [
+        {
+          "node": "p1",
+          "param": "product_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "6086499569",
+          "tool": "get_product_details",
+          "step": 1
+        },
+        {
+          "node": "p4",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W6247578",
+          "tool": "get_order_details",
+          "step": 4
+        },
+        {
+          "node": "p11",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['8349118980']",
+          "tool": "modify_pending_order_items",
+          "step": 11
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_37",
+      "n_nodes": 4,
+      "n_runtime_deps": 3,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 2,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 7,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "M20IZO",
+          "tool": "get_reservation_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "origin",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "JFK",
+          "tool": "search_direct_flight",
+          "step": 1
+        },
+        {
+          "node": "p1",
+          "param": "destination",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "ATL",
+          "tool": "search_direct_flight",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_43",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 4,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "mohamed_hernandez_5188",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "35V5SM",
+          "tool": "get_reservation_details",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_retail_48",
+      "n_nodes": 6,
+      "n_runtime_deps": 4,
+      "n_verified_deps": 1,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 3,
+      "n_hidden_env_high": 0,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p2",
+          "param": "order_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "#W1436802",
+          "tool": "get_order_details",
+          "step": 2
+        },
+        {
+          "node": "p5",
+          "param": "item_ids",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "['9534205511']",
+          "tool": "return_delivered_order_items",
+          "step": 5
+        }
+      ],
+      "refuted": []
+    },
+    {
+      "task_id": "tau3_airline_42",
+      "n_nodes": 10,
+      "n_runtime_deps": 8,
+      "n_verified_deps": 0,
+      "n_refuted_deps": 0,
+      "n_unknown_deps": 8,
+      "n_hidden_env_high": 1,
+      "n_not_in_user_text": 2,
+      "issues": [
+        {
+          "node": "p0",
+          "param": "user_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "sophia_martin_4574",
+          "tool": "get_user_details",
+          "step": 0
+        },
+        {
+          "node": "p1",
+          "param": "reservation_id",
+          "source": "NOT_IN_USER_TEXT",
+          "value": "MFRB94",
+          "tool": "get_reservation_details",
+          "step": 1
+        }
+      ],
+      "refuted": []
+    }
+  ],
+  "summary": {
+    "clean_tasks": 35,
+    "tasks_with_refuted": 0,
+    "recommendation": "Only clean tasks (no refuted deps, no HIGH hidden env) should be used for paper-level evaluation."
+  }
+}
