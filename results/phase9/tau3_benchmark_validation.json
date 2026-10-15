@@ -1,0 +1,8 @@
+{
+  "total": 53,
+  "lowering_pass": 53,
+  "validator_pass": 53,
+  "execution_pass": 53,
+  "binding_extracted": 25,
+  "failures": []
+}
