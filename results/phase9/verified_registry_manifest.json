@@ -1,0 +1,2675 @@
+{
+ "n_tools": 30,
+ "tools": {
+  "airline.book_reservation": {
+   "domain": "airline",
+   "input_schema": {
+    "user_id": "Str",
+    "origin": "Str",
+    "destination": "Str",
+    "flight_type": "Any",
+    "cabin": "Any",
+    "flights": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    },
+    "passengers": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    },
+    "payment_methods": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    },
+    "total_baggages": "Int",
+    "nonfree_baggages": "Int",
+    "insurance": "Any"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "reservation_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "origin": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "destination": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "flight_type": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "cabin": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "flights": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "flight_number": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "origin": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "destination": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "date": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "payment_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "created_at": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "total_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "nonfree_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "insurance": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.calculate": {
+   "domain": "airline",
+   "input_schema": {
+    "expression": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.cancel_reservation": {
+   "domain": "airline",
+   "input_schema": {
+    "reservation_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "reservation_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "origin": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "destination": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "flight_type": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "cabin": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "flights": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "flight_number": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "origin": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "destination": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "date": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "payment_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "created_at": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "total_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "nonfree_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "insurance": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.get_reservation_details": {
+   "domain": "airline",
+   "input_schema": {
+    "reservation_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "reservation_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "origin": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "destination": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "flight_type": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "cabin": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "flights": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "flight_number": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "origin": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "destination": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "date": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "payment_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "created_at": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "total_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "nonfree_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "insurance": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.get_user_details": {
+   "domain": "airline",
+   "input_schema": {
+    "user_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "name": {
+      "kind": "struct",
+      "fields": {
+       "first_name": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "last_name": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "email": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "dob": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "payment_methods": {
+      "kind": "dict",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "source": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "brand": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_four": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "saved_passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "membership": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "reservations": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.list_all_airports": {
+   "domain": "airline",
+   "input_schema": {},
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.search_direct_flight": {
+   "domain": "airline",
+   "input_schema": {
+    "origin": "Str",
+    "destination": "Str",
+    "date": "Str"
+   },
+   "output_schema": {
+    "kind": "list",
+    "elem": {
+     "kind": "struct",
+     "fields": {
+      "flight_number": {
+       "kind": "scalar",
+       "type": "Str"
+      },
+      "origin": {
+       "kind": "scalar",
+       "type": "Str"
+      },
+      "destination": {
+       "kind": "scalar",
+       "type": "Str"
+      },
+      "status": {
+       "kind": "scalar",
+       "type": "Any"
+      },
+      "scheduled_departure_time_est": {
+       "kind": "scalar",
+       "type": "Str"
+      },
+      "scheduled_arrival_time_est": {
+       "kind": "scalar",
+       "type": "Str"
+      },
+      "date": {
+       "kind": "scalar",
+       "type": "Str"
+      },
+      "available_seats": {
+       "kind": "dict",
+       "elem": {
+        "kind": "scalar",
+        "type": "Int"
+       }
+      },
+      "prices": {
+       "kind": "dict",
+       "elem": {
+        "kind": "scalar",
+        "type": "Int"
+       }
+      }
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.search_onestop_flight": {
+   "domain": "airline",
+   "input_schema": {
+    "origin": "Str",
+    "destination": "Str",
+    "date": "Str"
+   },
+   "output_schema": {
+    "kind": "list",
+    "elem": {
+     "kind": "scalar",
+     "type": "Any"
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.send_certificate": {
+   "domain": "airline",
+   "input_schema": {
+    "user_id": "Str",
+    "amount": "Int"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.transfer_to_human_agents": {
+   "domain": "airline",
+   "input_schema": {
+    "summary": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.update_reservation_baggages": {
+   "domain": "airline",
+   "input_schema": {
+    "reservation_id": "Str",
+    "total_baggages": "Int",
+    "nonfree_baggages": "Int",
+    "payment_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "reservation_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "origin": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "destination": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "flight_type": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "cabin": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "flights": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "flight_number": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "origin": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "destination": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "date": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "payment_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "created_at": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "total_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "nonfree_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "insurance": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.update_reservation_flights": {
+   "domain": "airline",
+   "input_schema": {
+    "reservation_id": "Str",
+    "cabin": "Any",
+    "flights": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    },
+    "payment_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "reservation_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "origin": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "destination": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "flight_type": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "cabin": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "flights": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "flight_number": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "origin": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "destination": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "date": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "payment_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "created_at": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "total_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "nonfree_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "insurance": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.update_reservation_passengers": {
+   "domain": "airline",
+   "input_schema": {
+    "reservation_id": "Str",
+    "passengers": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "reservation_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "origin": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "destination": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "flight_type": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "cabin": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "flights": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "flight_number": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "origin": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "destination": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "date": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "passengers": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "first_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "dob": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "payment_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Int"
+        }
+       }
+      }
+     },
+     "created_at": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "total_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "nonfree_baggages": {
+      "kind": "scalar",
+      "type": "Int"
+     },
+     "insurance": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "airline.get_flight_status": {
+   "domain": "airline",
+   "input_schema": {
+    "flight_number": "Str",
+    "date": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.calculate": {
+   "domain": "retail",
+   "input_schema": {
+    "expression": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.cancel_pending_order": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str",
+    "reason": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.exchange_delivered_order_items": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str",
+    "item_ids": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    },
+    "new_item_ids": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    },
+    "payment_method_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.find_user_id_by_name_zip": {
+   "domain": "retail",
+   "input_schema": {
+    "first_name": "Str",
+    "last_name": "Str",
+    "zip": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.find_user_id_by_email": {
+   "domain": "retail",
+   "input_schema": {
+    "email": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.get_order_details": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.get_product_details": {
+   "domain": "retail",
+   "input_schema": {
+    "product_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "name": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "product_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "variants": {
+      "kind": "dict",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "available": {
+         "kind": "scalar",
+         "type": "Bool"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        }
+       }
+      }
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.get_item_details": {
+   "domain": "retail",
+   "input_schema": {
+    "item_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "item_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "options": {
+      "kind": "dict",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "available": {
+      "kind": "scalar",
+      "type": "Bool"
+     },
+     "price": {
+      "kind": "scalar",
+      "type": "Float"
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.get_user_details": {
+   "domain": "retail",
+   "input_schema": {
+    "user_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "name": {
+      "kind": "struct",
+      "fields": {
+       "first_name": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "last_name": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "email": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "payment_methods": {
+      "kind": "dict",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "source": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "brand": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_four": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "orders": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     }
+    }
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.list_all_product_types": {
+   "domain": "retail",
+   "input_schema": {},
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.modify_pending_order_address": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str",
+    "address1": "Str",
+    "address2": "Str",
+    "city": "Str",
+    "state": "Str",
+    "country": "Str",
+    "zip": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.modify_pending_order_items": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str",
+    "item_ids": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    },
+    "new_item_ids": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    },
+    "payment_method_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.modify_pending_order_payment": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str",
+    "payment_method_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.modify_user_address": {
+   "domain": "retail",
+   "input_schema": {
+    "user_id": "Str",
+    "address1": "Str",
+    "address2": "Str",
+    "city": "Str",
+    "state": "Str",
+    "country": "Str",
+    "zip": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "name": {
+      "kind": "struct",
+      "fields": {
+       "first_name": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "last_name": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "email": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "payment_methods": {
+      "kind": "dict",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "source": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "brand": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "last_four": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "orders": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.return_delivered_order_items": {
+   "domain": "retail",
+   "input_schema": {
+    "order_id": "Str",
+    "item_ids": {
+     "kind": "list",
+     "elem": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    },
+    "payment_method_id": "Str"
+   },
+   "output_schema": {
+    "kind": "struct",
+    "fields": {
+     "order_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "user_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "address": {
+      "kind": "struct",
+      "fields": {
+       "address1": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "address2": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "city": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "country": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "state": {
+        "kind": "scalar",
+        "type": "Str"
+       },
+       "zip": {
+        "kind": "scalar",
+        "type": "Str"
+       }
+      }
+     },
+     "items": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "name": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "product_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "item_id": {
+         "kind": "scalar",
+         "type": "Str"
+        },
+        "price": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "options": {
+         "kind": "dict",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "status": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "fulfillments": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "tracking_id": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        },
+        "item_ids": {
+         "kind": "list",
+         "elem": {
+          "kind": "scalar",
+          "type": "Str"
+         }
+        }
+       }
+      }
+     },
+     "payment_history": {
+      "kind": "list",
+      "elem": {
+       "kind": "struct",
+       "fields": {
+        "transaction_type": {
+         "kind": "scalar",
+         "type": "Any"
+        },
+        "amount": {
+         "kind": "scalar",
+         "type": "Float"
+        },
+        "payment_method_id": {
+         "kind": "scalar",
+         "type": "Str"
+        }
+       }
+      }
+     },
+     "cancel_reason": {
+      "kind": "scalar",
+      "type": "Any"
+     },
+     "exchange_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_new_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "exchange_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     },
+     "exchange_price_difference": {
+      "kind": "scalar",
+      "type": "Float"
+     },
+     "return_items": {
+      "kind": "list",
+      "elem": {
+       "kind": "scalar",
+       "type": "Str"
+      }
+     },
+     "return_payment_method_id": {
+      "kind": "scalar",
+      "type": "Str"
+     }
+    }
+   },
+   "effect_class": "mutating",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  },
+  "retail.transfer_to_human_agents": {
+   "domain": "retail",
+   "input_schema": {
+    "summary": "Str"
+   },
+   "output_schema": {
+    "kind": "scalar_root"
+   },
+   "effect_class": "read_only",
+   "provenance": {
+    "input": "inspect(tool function signature)",
+    "output": "return annotation, pydantic-expanded",
+    "effect": "toolkit.tool_mutates_state (bool only)"
+   }
+  }
+ }
+}

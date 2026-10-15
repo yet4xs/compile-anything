@@ -64,7 +64,8 @@ def gold_bindings_from_program(program):
 
 
 def bijection(pred_calls, gold_calls):
-    """Greedy exact-signature bijection. Returns (pred_to_gold, unmatched)."""
+    """Greedy exact-signature bijection (kept as fallback). Returns
+    (pred_to_gold, unmatched)."""
     from collections import Counter
     gold_pool = Counter(_lit_signature(t, l) for t, l in gold_calls)
     p2g = {}
@@ -72,7 +73,6 @@ def bijection(pred_calls, gold_calls):
     for i, (t, lits) in enumerate(pred_calls):
         sig = _lit_signature(t, lits)
         if gold_pool.get(sig, 0) > 0:
-            # find a gold index with this signature
             for j, (gt, gl) in enumerate(gold_calls):
                 if _lit_signature(gt, gl) == sig and j not in p2g.values():
                     p2g[i] = j
@@ -81,6 +81,81 @@ def bijection(pred_calls, gold_calls):
         else:
             unmatched.append(i)
     return p2g, unmatched
+
+
+def _binding_score(p2g, pred_bindings, gold_bindings):
+    """Score a candidate mapping by one-to-one binding matches.
+    Each gold binding edge may be consumed at most once. Returns
+    (score, n_exact, n_equiv)."""
+    used = set()
+    n_exact = n_equiv = 0
+    for (cidx, param, pidx, ppath) in pred_bindings:
+        g = p2g.get(cidx)
+        pg = p2g.get(pidx)
+        if g is None or pg is None:
+            continue
+        for bi, (gc, prm, pr, pp) in enumerate(gold_bindings):
+            if bi in used or gc != g:
+                continue
+            if prm != param and not prm.startswith(param + "["):
+                continue
+            if pr == pg and pp == ppath:
+                used.add(bi); n_exact += 2; break
+            if pr == pg and _root_scalar_equiv(pp, ppath):
+                used.add(bi); n_equiv += 1; break
+    return n_exact + n_equiv, n_exact, n_equiv
+
+
+def best_bijection(pred_calls, pred_bindings, gold_calls, gold_bindings):
+    """Dependency-constrained bijection: among pred/gold call groups that
+    share the SAME literal signature (indistinguishable to greedy
+    matching), enumerate mappings and pick the one that maximizes
+    one-to-one binding matches. Falls back to greedy when a group is too
+    large to enumerate (flagged in the result)."""
+    from itertools import permutations
+    greedy, unmatched = bijection(pred_calls, gold_calls)
+    if not unmatched and len(greedy) == len(gold_calls):
+        # check whether any signature group has >1 member; if not, greedy
+        # is already the unique bijection
+        from collections import Counter
+        sigs = Counter(_lit_signature(t, l) for t, l in gold_calls)
+        if max(sigs.values(), default=0) <= 1:
+            return greedy, unmatched, "unique"
+
+    # group pred/gold indices by signature
+    from collections import defaultdict
+    pg = defaultdict(lambda: ([], []))
+    for i, (t, l) in enumerate(pred_calls):
+        pg[_lit_signature(t, l)][0].append(i)
+    for j, (t, l) in enumerate(gold_calls):
+        pg[_lit_signature(t, l)][1].append(j)
+
+    mapping, exhausted = {}, False
+    for sig, (pidxs, gidxs) in pg.items():
+        if not gidxs:
+            continue
+        if len(pidxs) == len(gidxs) == 1:
+            mapping[pidxs[0]] = gidxs[0]
+            continue
+        if len(pidxs) != len(gidxs) or len(gidxs) > 6:
+            exhausted = len(gidxs) > 6
+            # greedy fill for this group
+            for i, j in zip(pidxs, gidxs):
+                mapping[i] = j
+            continue
+        best, best_score = None, -1
+        for perm in permutations(gidxs):
+            cand = dict(mapping)
+            for i, j in zip(pidxs, perm):
+                cand[i] = j
+            s, _, _ = _binding_score(cand, pred_bindings, gold_bindings)
+            if s > best_score:
+                best, best_score = dict(cand), s
+        mapping = best
+
+    unmatched = [i for i in range(len(pred_calls)) if i not in mapping]
+    method = "backtracking" if not exhausted else "greedy_fallback_group>6"
+    return mapping, unmatched, method
 
 
 def _root_scalar_equiv(gold_path, pred_path):
@@ -103,28 +178,36 @@ def score_prediction(pred_calls, pred_bindings, gold_program):
                     if a["class"] not in ("LITERAL", "runtime_ref",
                                           "runtime_ref_multi"))
 
-    p2g, unmatched_calls = bijection(pred_calls, gcalls)
+    p2g, unmatched_calls, method = best_bijection(
+        pred_calls, pred_bindings, gcalls, gbindings)
 
     details = []
     n_exact = n_equiv = 0
+    used_gold_edges = set()
     for (cidx, param, pidx, ppath) in pred_bindings:
         g = p2g.get(cidx)
         producer_g = p2g.get(pidx)
-        matched, how = None, None
+        matched, how, edge = None, None, None
         if g is not None and producer_g is not None:
-            cands = [(pr, pp) for (gc, prm, pr, pp) in gbindings
-                     if gc == g and (prm == param or
-                                     prm.startswith(param + "["))]
-            for pr, pp in cands:
+            for bi, (gc, prm, pr, pp) in enumerate(gbindings):
+                if bi in used_gold_edges or gc != g:
+                    continue
+                if prm != param and not prm.startswith(param + "["):
+                    continue
                 if pr == producer_g and pp == ppath:
-                    matched, how = True, "EXACT"
+                    matched, how, edge = True, "EXACT", bi
                     break
             if matched is None:
-                for pr, pp in cands:
+                for bi, (gc, prm, pr, pp) in enumerate(gbindings):
+                    if bi in used_gold_edges or gc != g:
+                        continue
+                    if prm != param and not prm.startswith(param + "["):
+                        continue
                     if pr == producer_g and _root_scalar_equiv(pp, ppath):
-                        matched, how = True, "ROOT_SCALAR_EQUIV"
+                        matched, how, edge = True, "ROOT_SCALAR_EQUIV", bi
                         break
         if matched:
+            used_gold_edges.add(edge)
             if how == "EXACT":
                 n_exact += 1
             else:
@@ -137,16 +220,17 @@ def score_prediction(pred_calls, pred_bindings, gold_program):
 
     n_gold_b = len(gbindings)
     n_pred_b = len(pred_bindings)
-    strict = (not unmatched_calls
-              and len(p2g) == len(gcalls)
-              and unsourced == 0
-              and n_exact + n_equiv == n_gold_b
-              and n_exact + n_equiv == n_pred_b
-              and n_equiv == 0)
+    # three SEPARATE metrics — never merged:
+    value_match = (len(p2g) == len(gcalls) and not unmatched_calls
+                   and len(pred_calls) == len(gcalls))
+    exact_binding_match = (value_match and n_exact == n_gold_b
+                           and n_pred_b == n_gold_b)
+    strict = exact_binding_match and unsourced == 0
 
     return {
         "n_gold_calls": len(gcalls),
         "n_pred_calls": len(pred_calls),
+        "bijection_method": method,
         "calls_bijection_complete": len(p2g) == len(gcalls)
                                     and not unmatched_calls,
         "unmatched_pred_calls": unmatched_calls,
@@ -156,6 +240,9 @@ def score_prediction(pred_calls, pred_bindings, gold_program):
         "n_bindings_root_scalar_equiv": n_equiv,
         "gold_unsourced_params": unsourced,
         "gold_sourced_params": len(sourced_params),
+        # separated metrics
+        "value_match": value_match,
+        "exact_binding_match": exact_binding_match,
         "strict_binding_exact": strict,
         "details": details,
     }

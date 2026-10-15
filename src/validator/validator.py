@@ -14,6 +14,7 @@ from typing import Dict, List, Optional
 from ..ir.taskir import ID_RE, Module, Node
 from ..ir import types as ty
 from ..isa import registry
+from ..compiler.field_path import Field as PathField
 
 
 @dataclass
@@ -22,6 +23,50 @@ class Issue:
     severity: str            # "error" | "warning"
     msg: str
     node: Optional[str] = None
+
+
+def _check_typed_path(desc, steps):
+    """Navigate a typed descriptor by parsed path steps.
+
+    Returns (verdict, boundary_step, type):
+      verdict "static"  — fully checked; type is a printable type name
+      verdict "dynamic" — crossed an Any boundary at `boundary_step`;
+                          runtime must re-validate the remainder
+      verdict "refuted" — statically impossible (field/index mismatch)
+    """
+    cur = desc
+    for k, st in enumerate(steps):
+        kind = cur.get("kind")
+        if kind == "scalar":
+            if cur.get("type") == "Any":
+                return "dynamic", k, "Any"
+            return "refuted", k, None
+        if kind == "scalar_root":
+            # whole output is a bare value: only the empty path (or a
+            # nominal single name) is admissible; nesting is refuted
+            return "dynamic" if k == 0 else "refuted", k, "Any"
+        if isinstance(st, PathField):
+            if kind in ("struct", "dict"):
+                if kind == "struct":
+                    flds = cur.get("fields") or {}
+                    if st.name not in flds:
+                        return "refuted", k, None
+                    cur = flds[st.name]
+                else:  # dict: any key admissible statically
+                    cur = cur.get("elem", {"kind": "scalar", "type": "Any"})
+            else:
+                return "refuted", k, None
+        else:  # Index
+            if kind == "list":
+                cur = cur.get("elem", {"kind": "scalar", "type": "Any"})
+            else:
+                return "refuted", k, None
+    kind = cur.get("kind")
+    if kind == "scalar":
+        return "static", None, cur.get("type", "Any")
+    if kind == "scalar_root":
+        return "static", None, "Any"
+    return "static", None, kind
 
 
 @dataclass
@@ -165,29 +210,88 @@ def validate(mod: Module, capability_registry=None) -> Report:
         # is provided; legacy hints-based check otherwise)
         if n.op == "EXTRACT_FIELD":
             field_name = n.params.get("field")
-            if not field_name or not isinstance(field_name, str):
+            if field_name is None or not isinstance(field_name, str):
                 rep.err("STRUCT", "EXTRACT_FIELD requires field= param", n.id)
+            # field="" is the ROOT-SCALAR reference (the producer's entire
+            # output is the value, e.g. find_user_id_by_name_zip); it is
+            # legal only when the producer's schema is scalar_root
+            if field_name == "":
+                if capability_registry:
+                    producer = defined.get(n.inputs[0]) if n.inputs else None
+                    ptool = (producer.params.get("action")
+                             or (producer.hints or {}).get("tool")) if producer else None
+                    cap = capability_registry.get(ptool) if ptool else None
+                    out = (cap or {}).get("output_schema") or {}
+                    if out.get("kind") not in ("scalar_root", None):
+                        rep.err("FIELD_NOT_FOUND",
+                                f"EXTRACT_FIELD field=\"\" requires a "
+                                f"scalar_root producer, {ptool!r} is "
+                                f"{out.get('kind')}", n.id)
+                    else:
+                        rep.warn("DYNAMIC_CHECK_BOUNDARY",
+                                 "root-scalar reference: runtime re-checks "
+                                 "the whole-output value", n.id)
             if len(n.inputs) != 1:
                 rep.err("ARITY", "EXTRACT_FIELD takes exactly 1 input", n.id)
             if n.inputs and n.inputs[0] in defined:
                 producer = defined[n.inputs[0]]
                 field_type = None
+                if field_name == "":
+                    # root-scalar whole-output reference — handled and
+                    # type-checked by the STRUCT/root-scalar branch above
+                    field_type = "Any"
                 # strict: look up producer's capability output_schema
-                if capability_registry:
+                elif capability_registry:
                     producer_tool = producer.params.get("action") or \
                         (producer.hints or {}).get("tool")
                     if producer_tool:
                         cap = capability_registry.get(producer_tool)
                         if cap and isinstance(cap.get("output_schema"), dict):
-                            os = cap["output_schema"]
-                            if field_name not in os:
+                            os_ = cap["output_schema"]
+                            if "kind" in os_:
+                                # v0.3: typed descriptor schema
+                                # (verified_registry_manifest format).
+                                # Path syntax + static type navigation;
+                                # Any boundary is a warning, not an error.
+                                from src.compiler.field_path import (
+                                    parse_path, PathTypeError)
+                                try:
+                                    steps = parse_path(field_name)
+                                except PathTypeError as e:
+                                    rep.err("FIELD_PATH_SYNTAX",
+                                            f"EXTRACT_FIELD path "
+                                            f"{field_name!r}: {e}", n.id)
+                                    field_type = "Any"
+                                    steps = None
+                                if steps is not None:
+                                    ok, dyn, ftype = _check_typed_path(
+                                        os_, steps)
+                                    if ok == "static":
+                                        field_type = ftype
+                                    elif ok == "dynamic":
+                                        rep.warn("DYNAMIC_CHECK_BOUNDARY",
+                                                 f"EXTRACT_FIELD "
+                                                 f"{field_name!r} crosses "
+                                                 f"an Any boundary at step "
+                                                 f"{dyn}; runtime must "
+                                                 f"re-validate", n.id)
+                                        field_type = "Any"
+                                    else:
+                                        rep.err("FIELD_NOT_FOUND",
+                                                f"EXTRACT_FIELD "
+                                                f"{field_name!r} not "
+                                                f"derivable from "
+                                                f"{producer_tool} "
+                                                f"output {os_}", n.id)
+                                        field_type = "Any"
+                            elif field_name not in os_:
                                 rep.err("FIELD_NOT_FOUND",
                                         f"EXTRACT_FIELD {field_name!r} not in "
                                         f"{producer_tool} output_schema "
-                                        f"{sorted(os.keys())}", n.id)
+                                        f"{sorted(os_.keys())}", n.id)
                                 field_type = "Any"
                             else:
-                                field_type = os[field_name]
+                                field_type = os_[field_name]
                         else:
                             rep.warn("SCHEMA_UNKNOWN",
                                      f"no output_schema for {producer_tool!r}; "
@@ -255,7 +359,8 @@ def validate(mod: Module, capability_registry=None) -> Report:
         nn = len(n.inputs)
         if nn < spec.min_inputs:
             rep.err("ARITY", f"{n.op} expects >= {spec.min_inputs} inputs, got {nn}", n.id)
-        if spec.max_inputs is not None and nn > spec.max_inputs:
+        if (spec.max_inputs is not None and spec.max_inputs != "variadic"
+                and nn > spec.max_inputs):
             rep.err("ARITY", f"{n.op} expects <= {spec.max_inputs} inputs, got {nn}", n.id)
 
         # V4 types

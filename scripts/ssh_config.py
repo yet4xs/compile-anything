@@ -11,12 +11,11 @@ a previous credential leak made this mandatory):
   BITAHUB_KNOWN_HOSTS     path to known_hosts (default: ~/.ssh/known_hosts)
 
 Host key policy: the server address changes its host key across re-provisions
-of the same port. We therefore load known_hosts when present, and pin the
-FIRST key seen per (host, port) in a local fingerprint cache file
-(.ssh_known_fingerprints, untracked). A later mismatch aborts the
-connection — that is a MITM or a re-provisioned host, and either way needs
-an explicit human decision (delete the cached line to re-pin). This replaces
-AutoAddPolicy, which trusted every unknown key forever.
+of the same port. known_hosts is loaded when present; a key change always
+aborts. An unknown key is accepted ONLY when it matches
+BITAHUB_EXPECTED_FINGERPRINT (sha256 hex, obtained out-of-band) — plain
+TOFU auto-trust is disabled. Accepted keys are pinned in
+.ssh_known_fingerprints (untracked) and any later mismatch aborts.
 """
 import hashlib
 import os
@@ -55,21 +54,31 @@ def _pin(key):
 
 
 class PinnedKeyPolicy(paramiko.MissingHostKeyPolicy):
-    """Accept an unknown key only the first time; abort on any change."""
+    """No TOFU auto-trust. An unknown host key is accepted ONLY when it
+    matches BITAHUB_EXPECTED_FINGERPRINT (sha256 hex of the key blob,
+    obtained out-of-band from the provider console). Without it, the
+    first connection is refused with instructions. Once accepted (or
+    loaded from known_hosts), any later key change aborts the connection.
+    """
+
+    EXPECTED = os.environ.get("BITAHUB_EXPECTED_FINGERPRINT")
 
     def missing_host_key(self, client, hostname, key):
         h = hashlib.sha256(key.asbytes()).hexdigest()
-        tag = f"{HOST}:{PORT}:{h}"
-        if tag in _pinned():
-            return  # already trusted
-        if not _pinned():
-            _pin(key)  # first contact: pin and continue
-            return
+        if self.EXPECTED:
+            if h == self.EXPECTED.lower().replace("sha256:", ""):
+                _pin(key)
+                return
+            raise paramiko.SSHException(
+                f"host key for {HOST}:{PORT} does not match "
+                f"BITAHUB_EXPECTED_FINGERPRINT; refusing to connect.")
         raise paramiko.SSHException(
-            f"host key for {HOST}:{PORT} changed or is unknown "
-            f"(pinned fingerprints exist); refusing to connect. "
-            f"If the server was re-provisioned, remove the stale line "
-            f"in {_PIN_FILE}.")
+            f"unknown host key for {HOST}:{PORT} and no "
+            f"BITAHUB_EXPECTED_FINGERPRINT set. TOFU auto-trust is "
+            f"disabled. Get the server's key fingerprint from the "
+            f"provider console, export "
+            f"BITAHUB_EXPECTED_FINGERPRINT=sha256:<hex>, and retry. "
+            f"fingerprint seen: sha256:{h}")
 
 
 def connect(max_attempts=6):

@@ -169,6 +169,14 @@ CONTROL_OPS: Dict[str, SkillSpec] = {s.name: s for s in [
               input_types=["Any"], min_inputs=1, max_inputs=1,
               output_rule="FIXED:Any", resource_class="runtime",
               cost=Cost(0.001, flops=0.0)),
+    SkillSpec(name="MAKE_LIST", cls="control",
+              desc="v0.3 intrinsic: build a list value from element "
+                   "operands (SSA order preserved); no side effect. Used "
+                   "to bind list params whose elements come from "
+                   "different producers/paths (runtime_ref_multi)",
+              input_types=["Any"], min_inputs=1, max_inputs="variadic",
+              output_rule="FIXED:List[Any]", resource_class="runtime",
+              cost=Cost(0.001, flops=0.0)),
     SkillSpec(name="VERIFY", cls="control",
               desc="produce Bool verdict on inputs (params.check)",
               input_types=["Any"], min_inputs=1, max_inputs=None,

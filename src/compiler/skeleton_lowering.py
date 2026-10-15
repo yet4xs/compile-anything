@@ -105,7 +105,38 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
         param_refs = {}
         literal_args = {}
         for k, v in args.items():
-            if isinstance(v, dict) and v.get("kind") == "runtime_ref":
+            if isinstance(v, dict) and v.get("kind") == "runtime_ref_multi":
+                # v0.3: list param whose elements come from different
+                # producers/paths — one EXTRACT_FIELD per element, then a
+                # MAKE_LIST to build the value that gets bound.
+                elems = v.get("elements") or []
+                if not elems:
+                    return {"taskir": None, "unresolved": unresolved,
+                            "errors": [f"runtime_ref_multi {k}: empty"],
+                            "coerced_ordering_deps": [], "warnings": warnings}
+                ext_ids = []
+                for e in elems:
+                    producer = e.get("producer", "")
+                    field_name = e.get("field", "")
+                    if producer not in ssa_of:
+                        return {"taskir": None, "unresolved": unresolved,
+                                "errors": [f"runtime_ref_multi {k}: producer "
+                                           f"{producer!r} not yet defined"],
+                                "coerced_ordering_deps": [],
+                                "warnings": warnings}
+                    key = (producer, field_name)
+                    if key not in field_ssa:
+                        ext_id = f"%ext{len(field_ssa)}"
+                        lines.append(f'{ext_id} = EXTRACT_FIELD('
+                                     f'{ssa_of[producer]}, '
+                                     f'field="{field_name}")')
+                        field_ssa[key] = ext_id
+                    ext_ids.append(field_ssa[key])
+                list_id = f"%lst{len(field_ssa)}"
+                lines.append(f"{list_id} = MAKE_LIST(" +
+                             ", ".join(ext_ids) + ")")
+                param_refs[k] = list_id
+            elif isinstance(v, dict) and v.get("kind") == "runtime_ref":
                 producer = v.get("producer", "")
                 field_name = v.get("field", "")
                 if producer not in ssa_of:
