@@ -1,0 +1,1760 @@
+{
+ "summary": {
+  "total": 53,
+  "tiers": {
+   "DEGRADED": 21,
+   "VERIFIED": 26,
+   "EXCLUDED_NOT_EXECUTABLE": 6
+  },
+  "verified_task_ids": [
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_11",
+   "tau3_retail_13",
+   "tau3_retail_14",
+   "tau3_retail_15",
+   "tau3_retail_18",
+   "tau3_retail_19",
+   "tau3_retail_20",
+   "tau3_retail_23",
+   "tau3_retail_25",
+   "tau3_retail_27",
+   "tau3_retail_33",
+   "tau3_retail_43",
+   "tau3_retail_48",
+   "tau3_retail_5",
+   "tau3_retail_52",
+   "tau3_retail_53",
+   "tau3_retail_56",
+   "tau3_retail_58",
+   "tau3_retail_6",
+   "tau3_retail_62",
+   "tau3_retail_65",
+   "tau3_retail_7",
+   "tau3_retail_8",
+   "tau3_retail_9"
+  ],
+  "degraded_task_ids": [
+   "tau3_airline_18",
+   "tau3_airline_2",
+   "tau3_airline_30",
+   "tau3_airline_32",
+   "tau3_airline_37",
+   "tau3_airline_39",
+   "tau3_airline_4",
+   "tau3_airline_41",
+   "tau3_airline_42",
+   "tau3_airline_43",
+   "tau3_airline_44",
+   "tau3_airline_7",
+   "tau3_retail_100",
+   "tau3_retail_107",
+   "tau3_retail_29",
+   "tau3_retail_51",
+   "tau3_retail_60",
+   "tau3_retail_91",
+   "tau3_retail_92",
+   "tau3_retail_95",
+   "tau3_retail_99"
+  ],
+  "excluded_task_ids": [
+   "tau3_retail_2",
+   "tau3_retail_3",
+   "tau3_retail_35",
+   "tau3_retail_37",
+   "tau3_retail_4",
+   "tau3_retail_64"
+  ],
+  "strict_exact_deps_task_ids": [
+   "tau3_retail_5"
+  ],
+  "dep_totals": {
+   "total": 233,
+   "exact": 59,
+   "derivable": 212,
+   "mislabeled": 21
+  },
+  "verified_by_domain": {
+   "retail": 26
+  },
+  "verified_by_split": {
+   "train": 21,
+   "dev": 3,
+   "test": 2
+  },
+  "verified_dep_total": 99
+ },
+ "tasks": [
+  {
+   "task_id": "tau3_airline_18",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "18",
+   "n_nodes": 5,
+   "n_runtime_deps": 4,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 4,
+    "total": 4
+   },
+   "n_unanswerable_literals": 11,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "update_reservation_flights",
+     "values": [
+      "JG7FMM"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "cabin",
+     "tool": "update_reservation_flights",
+     "values": [
+      "economy"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "flights",
+     "tool": "update_reservation_flights",
+     "values": [
+      "{'flight_number': 'HAT028', 'date': '202",
+      "{'flight_number': 'HAT277', 'date': '202"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_id",
+     "tool": "update_reservation_flights",
+     "values": [
+      "credit_card_2929732"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "flights",
+     "tool": "update_reservation_flights",
+     "values": [
+      "{'flight_number': 'HAT080', 'date': '202",
+      "{'flight_number': 'HAT076', 'date': '202",
+      "{'flight_number': 'HAT255', 'date': '202",
+      "{'flight_number': 'HAT148', 'date': '202"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 4
+  },
+  {
+   "task_id": "tau3_airline_2",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "2",
+   "n_nodes": 3,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 1,
+    "mislabeled": 0,
+    "total": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "noah_muller_9847"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_30",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "30",
+   "n_nodes": 3,
+   "n_runtime_deps": 2,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 1,
+    "mislabeled": 1,
+    "total": 2
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "1N99U6"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_32",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "32",
+   "n_nodes": 5,
+   "n_runtime_deps": 4,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 2,
+    "mislabeled": 2,
+    "total": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "ivan_rossi_8555"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "split": "test",
+   "domain": "airline",
+   "source_task_id": "37",
+   "n_nodes": 4,
+   "n_runtime_deps": 3,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 2,
+    "mislabeled": 1,
+    "total": 3
+   },
+   "n_unanswerable_literals": 2,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "M20IZO"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p3",
+     "step": 3,
+     "param": "payment_id",
+     "tool": "update_reservation_flights",
+     "values": [
+      "credit_card_9074831"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_39",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "39",
+   "n_nodes": 11,
+   "n_runtime_deps": 9,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 9,
+    "mislabeled": 0,
+    "total": 9
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "amelia_davis_8890"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_4",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "4",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "sophia_silva_7557"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_41",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "41",
+   "n_nodes": 8,
+   "n_runtime_deps": 6,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 6,
+    "mislabeled": 0,
+    "total": 6
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "amelia_davis_8890"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "split": "test",
+   "domain": "airline",
+   "source_task_id": "42",
+   "n_nodes": 10,
+   "n_runtime_deps": 8,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 8,
+    "mislabeled": 0,
+    "total": 8
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "sophia_martin_4574"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "split": "test",
+   "domain": "airline",
+   "source_task_id": "43",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "mohamed_hernandez_5188"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_44",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "44",
+   "n_nodes": 19,
+   "n_runtime_deps": 28,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 5,
+    "derivable": 25,
+    "mislabeled": 3,
+    "total": 28
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "sophia_silva_7557"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_airline_7",
+   "split": "train",
+   "domain": "airline",
+   "source_task_id": "7",
+   "n_nodes": 5,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 3,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "XEHM4B"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "59XX6W"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p2",
+     "step": 2,
+     "param": "cabin",
+     "tool": "update_reservation_flights",
+     "values": [
+      "business"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 1
+  },
+  {
+   "task_id": "tau3_retail_0",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "0",
+   "n_nodes": 5,
+   "n_runtime_deps": 2,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 2,
+    "mislabeled": 0,
+    "total": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_1",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "1",
+   "n_nodes": 5,
+   "n_runtime_deps": 2,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 2,
+    "mislabeled": 0,
+    "total": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_100",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "100",
+   "n_nodes": 2,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 5,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "#W3295833"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "8926329222",
+      "5312063289"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "7160999700",
+      "6956751343"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "credit_card_3261838"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "5676696062"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 4
+  },
+  {
+   "task_id": "tau3_retail_107",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "107",
+   "n_nodes": 2,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 6,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "#W1304208"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "1615379700"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "8106223139"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "paypal_1679017"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "6245746168"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 4
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "11",
+   "n_nodes": 6,
+   "n_runtime_deps": 5,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 5,
+    "mislabeled": 0,
+    "total": 5
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_13",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "13",
+   "n_nodes": 5,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_14",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "14",
+   "n_nodes": 6,
+   "n_runtime_deps": 5,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 5,
+    "mislabeled": 0,
+    "total": 5
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_15",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "15",
+   "n_nodes": 7,
+   "n_runtime_deps": 5,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 5,
+    "mislabeled": 0,
+    "total": 5
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_18",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "18",
+   "n_nodes": 5,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_19",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "19",
+   "n_nodes": 7,
+   "n_runtime_deps": 5,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 5,
+    "mislabeled": 0,
+    "total": 5
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_2",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "2",
+   "n_nodes": 11,
+   "n_runtime_deps": 9,
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "oracle_executable": false,
+   "n_action_errors": 1,
+   "deps": {
+    "exact": 1,
+    "derivable": 8,
+    "mislabeled": 1,
+    "total": 9
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "6086499569"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_20",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "20",
+   "n_nodes": 10,
+   "n_runtime_deps": 8,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 8,
+    "mislabeled": 0,
+    "total": 8
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_23",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "23",
+   "n_nodes": 12,
+   "n_runtime_deps": 12,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 4,
+    "derivable": 12,
+    "mislabeled": 0,
+    "total": 12
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_25",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "25",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_27",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "27",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_29",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "29",
+   "n_nodes": 6,
+   "n_runtime_deps": 5,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 3,
+    "derivable": 5,
+    "mislabeled": 0,
+    "total": 5
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p5",
+     "step": 5,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "5753502325"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "split": "test",
+   "domain": "retail",
+   "source_task_id": "3",
+   "n_nodes": 12,
+   "n_runtime_deps": 10,
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "oracle_executable": false,
+   "n_action_errors": 1,
+   "deps": {
+    "exact": 1,
+    "derivable": 9,
+    "mislabeled": 1,
+    "total": 10
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "6086499569"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_33",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "33",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_35",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "35",
+   "n_nodes": 7,
+   "n_runtime_deps": 4,
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "oracle_executable": false,
+   "n_action_errors": 1,
+   "deps": {
+    "exact": 3,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p5",
+     "step": 5,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "6704763132"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_37",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "37",
+   "n_nodes": 4,
+   "n_runtime_deps": 1,
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "oracle_executable": false,
+   "n_action_errors": 1,
+   "deps": {
+    "exact": 0,
+    "derivable": 1,
+    "mislabeled": 0,
+    "total": 1
+   },
+   "n_unanswerable_literals": 2,
+   "unanswerable_examples": [
+    {
+     "node": "p3",
+     "step": 3,
+     "param": "item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "6117189161",
+      "7453605304",
+      "3799046073"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p3",
+     "step": 3,
+     "param": "new_item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "6700049080",
+      "5320792178",
+      "3234800602"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "4",
+   "n_nodes": 13,
+   "n_runtime_deps": 12,
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "oracle_executable": false,
+   "n_action_errors": 1,
+   "deps": {
+    "exact": 3,
+    "derivable": 11,
+    "mislabeled": 1,
+    "total": 12
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "6086499569"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_43",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "43",
+   "n_nodes": 5,
+   "n_runtime_deps": 1,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 1,
+    "mislabeled": 0,
+    "total": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "split": "test",
+   "domain": "retail",
+   "source_task_id": "48",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_5",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "5",
+   "n_nodes": 5,
+   "n_runtime_deps": 2,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 2,
+    "mislabeled": 0,
+    "total": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_51",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "51",
+   "n_nodes": 6,
+   "n_runtime_deps": 4,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p2",
+     "step": 2,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "8940227892"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_52",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "52",
+   "n_nodes": 5,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_53",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "53",
+   "n_nodes": 6,
+   "n_runtime_deps": 5,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 5,
+    "mislabeled": 0,
+    "total": 5
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_56",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "56",
+   "n_nodes": 7,
+   "n_runtime_deps": 4,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 4,
+    "mislabeled": 0,
+    "total": 4
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "58",
+   "n_nodes": 6,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 1,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "6",
+   "n_nodes": 6,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "60",
+   "n_nodes": 4,
+   "n_runtime_deps": 2,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 2,
+    "mislabeled": 0,
+    "total": 2
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "order_id",
+     "tool": "get_order_details",
+     "values": [
+      "#W5061109"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_62",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "62",
+   "n_nodes": 5,
+   "n_runtime_deps": 2,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 2,
+    "mislabeled": 0,
+    "total": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "64",
+   "n_nodes": 8,
+   "n_runtime_deps": 7,
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "oracle_executable": false,
+   "n_action_errors": 1,
+   "deps": {
+    "exact": 4,
+    "derivable": 7,
+    "mislabeled": 0,
+    "total": 7
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_65",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "65",
+   "n_nodes": 3,
+   "n_runtime_deps": 1,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 1,
+    "mislabeled": 0,
+    "total": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_7",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "7",
+   "n_nodes": 6,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "split": "test",
+   "domain": "retail",
+   "source_task_id": "8",
+   "n_nodes": 6,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_9",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "9",
+   "n_nodes": 6,
+   "n_runtime_deps": 3,
+   "tier": "VERIFIED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 2,
+    "derivable": 3,
+    "mislabeled": 0,
+    "total": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": [],
+   "static_audit_hidden_high": 0
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "split": "test",
+   "domain": "retail",
+   "source_task_id": "91",
+   "n_nodes": 2,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 5,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "#W7553978"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "4545791457",
+      "3098764622",
+      "1631806422"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "credit_card_5902940"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "9494281769"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "7609274509"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 3
+  },
+  {
+   "task_id": "tau3_retail_92",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "92",
+   "n_nodes": 2,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 4,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "#W7553978"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "4545791457",
+      "3098764622",
+      "1631806422"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "credit_card_5902940"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "9494281769"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 3
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "split": "dev",
+   "domain": "retail",
+   "source_task_id": "95",
+   "n_nodes": 2,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 5,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "#W2905754"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "3478699712"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "9844888101"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "credit_card_3677959"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "2216662955"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 4
+  },
+  {
+   "task_id": "tau3_retail_99",
+   "split": "train",
+   "domain": "retail",
+   "source_task_id": "99",
+   "n_nodes": 2,
+   "n_runtime_deps": 1,
+   "tier": "DEGRADED",
+   "oracle_executable": true,
+   "n_action_errors": 0,
+   "deps": {
+    "exact": 0,
+    "derivable": 0,
+    "mislabeled": 1,
+    "total": 1
+   },
+   "n_unanswerable_literals": 6,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "#W4689314"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "5996159312"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "8363011723"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "credit_card_3951670"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "7758198585",
+      "4068787148"
+     ],
+     "status": "UNANSWERABLE_LITERAL"
+    }
+   ],
+   "static_audit_hidden_high": 4
+  }
+ ]
+}

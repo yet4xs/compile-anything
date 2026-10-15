@@ -1,0 +1,918 @@
+{
+ "summary": {
+  "n_details": 42,
+  "all_tasks": {
+   "M0-T": {
+    "n": 14,
+    "stages": {
+     "WRONG_TOOL": 2,
+     "SYNTAX": 9,
+     "OTHER_INVALID": 2,
+     "NO_RUNTIME_BINDING": 1
+    }
+   },
+   "M0-J": {
+    "n": 14,
+    "stages": {
+     "SYNTAX": 12,
+     "OTHER_INVALID": 1,
+     "NO_RUNTIME_BINDING": 1
+    }
+   },
+   "M1": {
+    "n": 14,
+    "stages": {
+     "LOWERING": 2,
+     "FORWARD_REF": 3,
+     "UNREPRESENTABLE_NESTED_FIELD": 6,
+     "SKELETON_SCHEMA": 3
+    }
+   }
+  },
+  "verified_only": {
+   "M0-T": {
+    "n": 5,
+    "stages": {
+     "SYNTAX": 5
+    }
+   },
+   "M0-J": {
+    "n": 5,
+    "stages": {
+     "SYNTAX": 5
+    }
+   },
+   "M1": {
+    "n": 5,
+    "stages": {
+     "FORWARD_REF": 3,
+     "UNREPRESENTABLE_NESTED_FIELD": 2
+    }
+   }
+  },
+  "tier_distribution": {
+   "DEGRADED": 18,
+   "VERIFIED": 15,
+   "EXCLUDED_NOT_EXECUTABLE": 9
+  },
+  "verified_task_ids": [
+   "tau3_retail_11",
+   "tau3_retail_48",
+   "tau3_retail_58",
+   "tau3_retail_6",
+   "tau3_retail_8"
+  ]
+ },
+ "details": [
+  {
+   "task_id": "tau3_retail_91",
+   "arm": "M0-T",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 5,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 176,
+   "reported": {
+    "parse": true,
+    "validator": true,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "WRONG_TOOL",
+   "info": {
+    "gold_tools": [
+     "exchange_delivered_order_items",
+     "return_delivered_order_items"
+    ],
+    "pred_tools": [
+     "return_delivered_order_items"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "arm": "M0-T",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 458,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: line 19: bad return target '%p5, %p6'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "arm": "M0-T",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 268,
+   "reported": {
+    "parse": true,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "OTHER_INVALID",
+   "info": {
+    "validator_codes": [
+     "STRUCT"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "arm": "M0-T",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 2,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 189,
+   "reported": {
+    "parse": true,
+    "validator": true,
+    "binding_exact": false,
+    "tool_match": true,
+    "execution": false
+   },
+   "stage_failure": "NO_RUNTIME_BINDING",
+   "info": {
+    "n_ref_bindings": 3,
+    "n_pred_bindings": 0,
+    "n_correct": 0
+   }
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "arm": "M0-T",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 217,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: line 9: cannot parse node line: 'if %ext0 == \"canceled\":'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "arm": "M0-T",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 673,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: line 26: unbalanced parentheses in EXEC_ACTION node"
+   }
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "arm": "M0-T",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 220,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: line 6: cannot parse node line: '%ext:ext_user_id = EXTRACT_FIELD(%p0, field=\"user_id\")'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "arm": "M0-T",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 464,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: line 19: bad return target '%p5, %p6'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "arm": "M0-T",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: no nodes found"
+   }
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "arm": "M0-T",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: no nodes found"
+   }
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "arm": "M0-T",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: no nodes found"
+   }
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "arm": "M0-T",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 5,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 110,
+   "reported": {
+    "parse": true,
+    "validator": true,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "WRONG_TOOL",
+   "info": {
+    "gold_tools": [
+     "exchange_delivered_order_items"
+    ],
+    "pred_tools": [
+     "extract_field",
+     "lookup_entity"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "arm": "M0-T",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "TaskIR parse: line 10: cannot parse node line: 'RETURN_IF_FALSE(condition=%same_user, hint=\"EXEC_ACTION\", effect=\"state_transition_irreversible\", tool=\"swear\")'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "arm": "M0-T",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 270,
+   "reported": {
+    "parse": true,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "OTHER_INVALID",
+   "info": {
+    "validator_codes": [
+     "STRUCT"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "arm": "M0-J",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 5,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "arm": "M0-J",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 1988 (char 1987)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "arm": "M0-J",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "arm": "M0-J",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 2,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "arm": "M0-J",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 439,
+   "reported": {
+    "parse": true,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "OTHER_INVALID",
+   "info": {
+    "validator_codes": [
+     "TYPE_MISMATCH"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "arm": "M0-J",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 1923 (char 1922)"
+   }
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "arm": "M0-J",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 620,
+   "reported": {
+    "parse": true,
+    "validator": true,
+    "binding_exact": false,
+    "tool_match": true,
+    "execution": false
+   },
+   "stage_failure": "NO_RUNTIME_BINDING",
+   "info": {
+    "n_ref_bindings": 8,
+    "n_pred_bindings": 0,
+    "n_correct": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "arm": "M0-J",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 1970 (char 1969)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "arm": "M0-J",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "arm": "M0-J",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "arm": "M0-J",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "arm": "M0-J",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 5,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "arm": "M0-J",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 604,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting property name enclosed in double quotes: line 1 column 508 (char 507)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "arm": "M0-J",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": true,
+   "gen_tokens": 700,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SYNTAX",
+   "info": {
+    "error": "JSON AST parse: Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "arm": "M1",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 5,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 229,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "LOWERING",
+   "info": {
+    "lowering_errors": [
+     "unresolved x1"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "arm": "M1",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 282,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "FORWARD_REF",
+   "info": {
+    "lowering_errors": [
+     "runtime_ref order_id: producer 'p1' not yet defined"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "arm": "M1",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 262,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "UNREPRESENTABLE_NESTED_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'default_address' not in find_user_id_by_name_zip output_schema ['user_id']\", node='%ext0')]"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "arm": "M1",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 2,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 236,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "LOWERING",
+   "info": {
+    "lowering_errors": [
+     "unresolved x1"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "arm": "M1",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 132,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "UNREPRESENTABLE_NESTED_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'user_id' not in get_reservation_details output_schema ['cabin', 'flights', 'reservation_id', 'status']\", node='%ext0')]"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "arm": "M1",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 257,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "UNREPRESENTABLE_NESTED_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'default_address' not in find_user_id_by_name_zip output_schema ['user_id']\", node='%ext0')]"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "arm": "M1",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 249,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SKELETON_SCHEMA",
+   "info": {
+    "errors": [
+     "p2: capability 'reason_about_flights' not in runtime registry"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "arm": "M1",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 431,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "FORWARD_REF",
+   "info": {
+    "lowering_errors": [
+     "runtime_ref order_id: producer 'p1' not yet defined"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "arm": "M1",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 317,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "FORWARD_REF",
+   "info": {
+    "lowering_errors": [
+     "runtime_ref order_id: producer 'p1' not yet defined"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "arm": "M1",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 247,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "UNREPRESENTABLE_NESTED_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'order_id' not in get_product_details output_schema ['in_stock', 'price', 'product_id', 'sku']\", node='%ext0')]"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "arm": "M1",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 403,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SKELETON_SCHEMA",
+   "info": {
+    "errors": [
+     "p2: capability 'find_product_id_by_description' not in runtime registry",
+     "p3: capability 'find_product_id_by_description' not in runtime registry"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "arm": "M1",
+   "tier": "DEGRADED",
+   "task_gold_unanswerable_literals": 5,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 374,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "SKELETON_SCHEMA",
+   "info": {
+    "errors": [
+     "p1: capability '...' not in runtime registry",
+     "p2: capability '...' not in runtime registry"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "arm": "M1",
+   "tier": "VERIFIED",
+   "task_gold_unanswerable_literals": 0,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 513,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "UNREPRESENTABLE_NESTED_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'orders[0].order_id' not in get_user_details output_schema ['default_address', 'orders', 'user_id']\", node='%ext1'), Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'orders[1].order_id' not in get_user_details output_schema ['default_address', 'orders', 'user_id']\", node='%ext4')]"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "arm": "M1",
+   "tier": "EXCLUDED_NOT_EXECUTABLE",
+   "task_gold_unanswerable_literals": 1,
+   "truncated_at_token_cap": false,
+   "gen_tokens": 350,
+   "reported": {
+    "parse": false,
+    "validator": false,
+    "binding_exact": false,
+    "tool_match": false,
+    "execution": false
+   },
+   "stage_failure": "UNREPRESENTABLE_NESTED_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'orders[0].order_id' not in get_user_details output_schema ['default_address', 'orders', 'user_id']\", node='%ext1')]"
+    ]
+   }
+  }
+ ]
+}
