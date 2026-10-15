@@ -24,7 +24,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 TAU2_SRC = Path("D:/ccfa-2026/tau3-bench-src")
-OUT = REPO / "results" / "phase9" / "taskir_gold_execution_v2.json"
+OUT = Path(sys.argv[sys.argv.index("--out") + 1]) if "--out" in sys.argv     else REPO / "results" / "phase9" / "taskir_gold_execution_v2.json"
+GOLD_IN = Path(sys.argv[sys.argv.index("--gold") + 1]) if "--gold" in sys.argv     else REPO / "results" / "phase9" / "tau3_gold_compiled_v1.json"
 
 sys.path.insert(0, str(REPO))
 from src.ir.parser import parse_text
@@ -50,12 +51,14 @@ def _flat(v):
     return _FLAT.get(k, "Any")
 
 
-def load_verified_schemas():
+def load_verified_schemas(domain=None):
     m = json.loads((REPO / "results" / "phase9" /
                     "verified_registry_manifest.json").read_text(encoding="utf-8"))
     schemas = {}
     for key, t in m["tools"].items():
-        name = key.split(".", 1)[1]
+        dom0, name = key.split(".", 1)
+        if domain is not None and dom0 != domain:
+            continue   # bare tool names must not cross domains
         flat_out = {}
         desc = t["output_schema"]
         if desc.get("kind") == "struct":
@@ -90,6 +93,14 @@ def skeleton_from_reconstructed(prog):
                                "producer": f"p{a['producer_step']}",
                                "field": a.get("path", "")}
                 depends.append(f"p{a['producer_step']}")
+            elif c == "DUAL_SOURCE":
+                # canonical side = the runtime ref (acceptable_sources
+                # keeps the literal side for equivalence-class scoring)
+                cand = (a.get("candidates") or [{}])[0]
+                args[param] = {"kind": "runtime_ref",
+                               "producer": f"p{cand.get('producer_step', 0)}",
+                               "field": cand.get("path", "")}
+                depends.append(f"p{cand.get('producer_step', 0)}")
             elif c == "runtime_ref_multi":
                 args[param] = {"kind": "runtime_ref_multi",
                                "elements": [
@@ -153,15 +164,16 @@ def main():
     from tau2.domains.retail.environment import get_environment as retail_env
     envs = {"airline": airline_env, "retail": retail_env}
 
-    gold = json.loads((REPO / "results" / "phase9" /
-                       "tau3_gold_compiled_v1.json").read_text(encoding="utf-8"))
-    schemas = load_verified_schemas()
+    gold = json.loads(GOLD_IN.read_text(encoding="utf-8"))
+    schemas_by_dom = {d: load_verified_schemas(d)
+                        for d in ("retail", "airline")}
 
     results = []
     for t in gold["tasks"]:
-        if not t["strict_v1"]:
+        if not t.get("strict_v1", t.get("strict_v2")):
             continue
-        tid, dom, sid = t["task_id"], t["domain"], t["source_task_id"]
+        tid, dom, sid = t["task_id"], t["domain"], t.get("source_task_id") or t["task_id"].rsplit("_", 1)[1]
+        schemas = schemas_by_dom[dom]
         cur_tasks = json.loads(
             (TAU2_SRC / "data" / "tau2" / "domains" / dom / "tasks.json")
             .read_text(encoding="utf-8"))
@@ -290,7 +302,7 @@ def main():
     # ---- group-aware split ----
     groups = {}
     for t in gold["tasks"]:
-        if not t["strict_v1"]:
+        if not t.get("strict_v1", t.get("strict_v2")):
             continue
         r = next((x for x in results if x["task_id"] == t["task_id"]), None)
         template = tuple(n["tool"] for n in t["program"])

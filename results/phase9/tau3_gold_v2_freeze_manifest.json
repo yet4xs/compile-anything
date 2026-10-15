@@ -1,0 +1,57 @@
+{
+ "summary": {
+  "preregistration_commit": "3d78f7a",
+  "admitted_v2": [
+   "tau3_airline_3",
+   "tau3_airline_41",
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_25",
+   "tau3_retail_62",
+   "tau3_retail_65"
+  ],
+  "condition_A_test": [
+   "tau3_retail_62",
+   "tau3_retail_65"
+  ],
+  "condition_A_groups": 4,
+  "condition_B_test": [
+   "tau3_airline_3",
+   "tau3_airline_41"
+  ],
+  "threshold": ">=15 tasks & >=8 groups for FORMAL test; current A test below threshold -> DIAGNOSTIC only",
+  "explored_excluded": [],
+  "leakage": {
+   "tool_overlap_A_train_test": "retail-only, tools shared by design within-domain (documented deviation)",
+   "groups_never_straddle": true,
+   "source_ids_unique": true
+  }
+ },
+ "groups": {
+  "('retail', None, ('find_user_id_by_name_zip', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_0",
+   "tau3_retail_1"
+  ],
+  "('retail', 'isabella_johansson_2152', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_order_details'))": [
+   "tau3_retail_25"
+  ],
+  "('retail', 'chen_johnson_4204', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details'))": [
+   "tau3_retail_62"
+  ],
+  "('retail', 'james_kovacs_9247', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details'))": [
+   "tau3_retail_65"
+  ],
+  "('airline', 'anya_garcia_5901', ('get_reservation_details', 'get_user_details'))": [
+   "tau3_airline_3"
+  ],
+  "('airline', 'amelia_davis_8890', ('get_user_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details'))": [
+   "tau3_airline_41"
+  ]
+ },
+ "input_sha256": {
+  "retail/db.json": "69771c8c71d2cf8fa767574c3a65999a",
+  "retail/tasks.json": "c07e89e811d345bc062461aeff7de7d7",
+  "airline/db.json": "55b232f2101d058fab0deea60d306675",
+  "airline/tasks.json": "4588a63c1fa9844914c058b1d3dc107e"
+ }
+}
