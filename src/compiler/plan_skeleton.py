@@ -36,6 +36,12 @@ class SkeletonNode:
     arguments: Dict = field(default_factory=dict)
     effect_class: Optional[str] = None     # filled from oracle/registry
 
+    # arguments values may be:
+    #   literal: any JSON value (compile-time constant)
+    #   runtime_ref: {"kind": "runtime_ref", "producer": "p0",
+    #                 "field": "user_id"}
+    #   unresolved: None (missing; lowering will report)
+
 
 @dataclass
 class PlanSkeleton:

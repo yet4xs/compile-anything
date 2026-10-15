@@ -1,0 +1,942 @@
+{
+ "summary": {
+  "all_tasks": {
+   "M0-T": {
+    "n": 14,
+    "failures": {
+     "WRONG_TOOL": 2,
+     "TASKIR_SYNTAX": 9,
+     "OTHER_INVALID": 2,
+     "NO_RUNTIME_BINDING": 1
+    }
+   },
+   "M0-J": {
+    "n": 14,
+    "failures": {
+     "JSON_SYNTAX": 12,
+     "OTHER_INVALID": 1,
+     "NO_RUNTIME_BINDING": 1
+    }
+   },
+   "M1": {
+    "n": 14,
+    "failures": {
+     "LOWERING_OTHER": 2,
+     "FORWARD_REF": 3,
+     "NONEXISTENT_FIELD": 4,
+     "SKELETON_SCHEMA": 3,
+     "GENUINE_NESTED_ACCESS": 2
+    }
+   }
+  },
+  "binding_exact_only": {
+   "M0-T": {
+    "n": 1,
+    "failures": {
+     "TASKIR_SYNTAX": 1
+    }
+   },
+   "M0-J": {
+    "n": 1,
+    "failures": {
+     "JSON_SYNTAX": 1
+    }
+   },
+   "M1": {
+    "n": 1,
+    "failures": {
+     "FORWARD_REF": 1
+    }
+   }
+  },
+  "m1": {
+   "n": 14,
+   "json_syntax_pass": 14,
+   "skeleton_valid": 11,
+   "failures": {
+    "LOWERING_OTHER": 2,
+    "FORWARD_REF": 3,
+    "NONEXISTENT_FIELD": 4,
+    "SKELETON_SCHEMA": 3,
+    "GENUINE_NESTED_ACCESS": 2
+   },
+   "totals": {
+    "n_valid_runtime_refs": 43,
+    "n_valid_producer": 22,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 10,
+    "n_nonexistent_producer": 11,
+    "n_genuine_nested_access": 3
+   },
+   "by_tier": {
+    "VALUE_OBSERVABLE": {
+     "FORWARD_REF": 2,
+     "NONEXISTENT_FIELD": 1,
+     "GENUINE_NESTED_ACCESS": 1
+    },
+    "BINDING_EXACT": {
+     "FORWARD_REF": 1
+    },
+    "FAILED_REPLAY": {
+     "NONEXISTENT_FIELD": 1,
+     "SKELETON_SCHEMA": 1,
+     "GENUINE_NESTED_ACCESS": 1
+    },
+    "REPLAY_EXECUTABLE": {
+     "LOWERING_OTHER": 2,
+     "NONEXISTENT_FIELD": 2,
+     "SKELETON_SCHEMA": 2
+    }
+   }
+  },
+  "tier_distribution": {
+   "REPLAY_EXECUTABLE": 18,
+   "VALUE_OBSERVABLE": 12,
+   "FAILED_REPLAY": 9,
+   "BINDING_EXACT": 3
+  }
+ },
+ "details": [
+  {
+   "task_id": "tau3_retail_91",
+   "arm": "M0-T",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": true,
+   "failure": "WRONG_TOOL",
+   "info": {
+    "gold_tools": [
+     "exchange_delivered_order_items",
+     "return_delivered_order_items"
+    ]
+   },
+   "taskir_valid_parse": true,
+   "pred_tools": [
+    "return_delivered_order_items"
+   ]
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "arm": "M0-T",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: line 19: bad return target '%p5, %p6'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "arm": "M0-T",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": false,
+   "failure": "OTHER_INVALID",
+   "info": {
+    "validator_codes": [
+     "STRUCT"
+    ]
+   },
+   "taskir_valid_parse": true
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "arm": "M0-T",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": true,
+   "failure": "NO_RUNTIME_BINDING",
+   "info": {
+    "binding": {
+     "n_ref": 3,
+     "n_pred": 0,
+     "n_correct": 0,
+     "extra": 0
+    }
+   },
+   "taskir_valid_parse": true
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "arm": "M0-T",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: line 9: cannot parse node line: 'if %ext0 == \"canceled\":'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "arm": "M0-T",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": true,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: line 26: unbalanced parentheses in EXEC_ACTION node"
+   }
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "arm": "M0-T",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: line 6: cannot parse node line: '%ext:ext_user_id = EXTRACT_FIELD(%p0, field=\"user_id\")'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "arm": "M0-T",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: line 19: bad return target '%p5, %p6'"
+   }
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "arm": "M0-T",
+   "tier": "BINDING_EXACT",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: no nodes found"
+   }
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "arm": "M0-T",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: no nodes found"
+   }
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "arm": "M0-T",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: no nodes found"
+   }
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "arm": "M0-T",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": true,
+   "failure": "WRONG_TOOL",
+   "info": {
+    "gold_tools": [
+     "exchange_delivered_order_items"
+    ]
+   },
+   "taskir_valid_parse": true,
+   "pred_tools": [
+    "extract_field",
+    "lookup_entity"
+   ]
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "arm": "M0-T",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": true,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "TASKIR_SYNTAX",
+   "info": {
+    "error": "parse: line 10: cannot parse node line: 'RETURN_IF_FALSE(condition=%same_user, hint=\"EXEC_ACTION\", effect=\"state_transition_irr"
+   }
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "arm": "M0-T",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": null,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": false,
+   "failure": "OTHER_INVALID",
+   "info": {
+    "validator_codes": [
+     "STRUCT"
+    ]
+   },
+   "taskir_valid_parse": true
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "arm": "M0-J",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "arm": "M0-J",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": true,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 1988 (char 1987)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "arm": "M0-J",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "arm": "M0-J",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "arm": "M0-J",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": false,
+   "failure": "OTHER_INVALID",
+   "info": {
+    "validator_codes": [
+     "TYPE_MISMATCH"
+    ]
+   }
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "arm": "M0-J",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": true,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 1923 (char 1922)"
+   }
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "arm": "M0-J",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": true,
+   "failure": "NO_RUNTIME_BINDING",
+   "info": {
+    "binding": {
+     "n_ref": 8,
+     "n_pred": 0,
+     "n_correct": 0,
+     "extra": 0
+    }
+   }
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "arm": "M0-J",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": true,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 1970 (char 1969)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "arm": "M0-J",
+   "tier": "BINDING_EXACT",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "arm": "M0-J",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "arm": "M0-J",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "arm": "M0-J",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "arm": "M0-J",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting property name enclosed in double quotes: line 1 column 508 (char 507)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "arm": "M0-J",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": true,
+   "raw_log_truncated": false,
+   "json_syntax": false,
+   "skeleton_valid": null,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "JSON_SYNTAX",
+   "info": {
+    "error": "Expecting ',' delimiter: line 1 column 63 (char 62)"
+   }
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "arm": "M1",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "LOWERING_OTHER",
+   "info": {
+    "lowering_errors": [
+     "unresolved x1"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 1,
+    "n_valid_producer": 1,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "arm": "M1",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "FORWARD_REF",
+   "info": {
+    "lowering_errors": [
+     "runtime_ref order_id: producer 'p1' not yet defined"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 3,
+    "n_valid_producer": 0,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 2,
+    "n_nonexistent_producer": 1,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "arm": "M1",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "NONEXISTENT_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'default_address' not in find_user_id_by_name_zip output_schema ['user_id']\", node='%ext0')]"
+    ],
+    "nested_fields": [],
+    "nonexistent_fields": [
+     "default_address"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 2,
+    "n_valid_producer": 2,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "arm": "M1",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "LOWERING_OTHER",
+   "info": {
+    "lowering_errors": [
+     "unresolved x1"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 2,
+    "n_valid_producer": 2,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "arm": "M1",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "NONEXISTENT_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'user_id' not in get_reservation_details output_schema ['cabin', 'flights', 'reservation_id', 'status']\", node='%ext0')]"
+    ],
+    "nested_fields": [],
+    "nonexistent_fields": [
+     "user_id"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 1,
+    "n_valid_producer": 1,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "arm": "M1",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "NONEXISTENT_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'default_address' not in find_user_id_by_name_zip output_schema ['user_id']\", node='%ext0')]"
+    ],
+    "nested_fields": [],
+    "nonexistent_fields": [
+     "default_address"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 3,
+    "n_valid_producer": 3,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "arm": "M1",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": false,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "SKELETON_SCHEMA",
+   "info": {
+    "errors": [
+     "p2: capability 'reason_about_flights' not in runtime registry"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 2,
+    "n_valid_producer": 2,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "arm": "M1",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "FORWARD_REF",
+   "info": {
+    "lowering_errors": [
+     "runtime_ref order_id: producer 'p1' not yet defined"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 5,
+    "n_valid_producer": 1,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 3,
+    "n_nonexistent_producer": 1,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "arm": "M1",
+   "tier": "BINDING_EXACT",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "FORWARD_REF",
+   "info": {
+    "lowering_errors": [
+     "runtime_ref order_id: producer 'p1' not yet defined"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 5,
+    "n_valid_producer": 0,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 2,
+    "n_nonexistent_producer": 3,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "arm": "M1",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "NONEXISTENT_FIELD",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'order_id' not in get_product_details output_schema ['in_stock', 'price', 'product_id', 'sku']\", node='%ext0')]"
+    ],
+    "nested_fields": [],
+    "nonexistent_fields": [
+     "order_id"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 1,
+    "n_valid_producer": 1,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "arm": "M1",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": false,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "SKELETON_SCHEMA",
+   "info": {
+    "errors": [
+     "p2: capability 'find_product_id_by_description' not in runtime registry",
+     "p3: capability 'find_product_id_by_description' not in runtime registry"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 6,
+    "n_valid_producer": 0,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 2,
+    "n_nonexistent_producer": 4,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "arm": "M1",
+   "tier": "REPLAY_EXECUTABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": false,
+   "lowering_ok": null,
+   "taskir_valid": null,
+   "failure": "SKELETON_SCHEMA",
+   "info": {
+    "errors": [
+     "p1: capability '...' not in runtime registry",
+     "p2: capability '...' not in runtime registry"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 1,
+    "n_valid_producer": 0,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 1,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 0
+   }
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "arm": "M1",
+   "tier": "VALUE_OBSERVABLE",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "GENUINE_NESTED_ACCESS",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'orders[0].order_id' not in get_user_details output_schema ['default_address', 'orders', 'user_id']\", node='%ext1'), Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'orders[1].order_id' not in get_user_details output_schema ['default_address', 'orders', 'user_id']\", node='%ext4')]"
+    ],
+    "nested_fields": [
+     "orders[0].order_id"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 7,
+    "n_valid_producer": 5,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 2,
+    "n_genuine_nested_access": 2
+   }
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "arm": "M1",
+   "tier": "FAILED_REPLAY",
+   "hit_generation_cap": false,
+   "raw_log_truncated": false,
+   "json_syntax": true,
+   "skeleton_valid": true,
+   "lowering_ok": false,
+   "taskir_valid": null,
+   "failure": "GENUINE_NESTED_ACCESS",
+   "info": {
+    "lowering_errors": [
+     "validator: [Issue(code='FIELD_NOT_FOUND', severity='error', msg=\"EXTRACT_FIELD 'orders[0].order_id' not in get_user_details output_schema ['default_address', 'orders', 'user_id']\", node='%ext1')]"
+    ],
+    "nested_fields": [
+     "orders[0].order_id"
+    ]
+   },
+   "m1_metrics": {
+    "json_syntax_pass": true,
+    "n_valid_runtime_refs": 4,
+    "n_valid_producer": 4,
+    "n_correct_output_field": 0,
+    "n_forward_reference": 0,
+    "n_nonexistent_producer": 0,
+    "n_genuine_nested_access": 1
+   }
+  }
+ ]
+}

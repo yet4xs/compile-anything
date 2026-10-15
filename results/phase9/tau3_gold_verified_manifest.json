@@ -1,0 +1,1309 @@
+{
+ "summary": {
+  "n_tasks": 53,
+  "tier_counts": {
+   "REPLAY_EXECUTABLE": 21,
+   "VALUE_OBSERVABLE": 17,
+   "BINDING_EXACT": 9,
+   "FAILED_REPLAY": 6
+  },
+  "BINDING_EXACT": [
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_25",
+   "tau3_retail_33",
+   "tau3_retail_43",
+   "tau3_retail_52",
+   "tau3_retail_58",
+   "tau3_retail_62",
+   "tau3_retail_65"
+  ],
+  "VALUE_OBSERVABLE": [
+   "tau3_retail_11",
+   "tau3_retail_13",
+   "tau3_retail_14",
+   "tau3_retail_15",
+   "tau3_retail_18",
+   "tau3_retail_19",
+   "tau3_retail_20",
+   "tau3_retail_23",
+   "tau3_retail_27",
+   "tau3_retail_48",
+   "tau3_retail_5",
+   "tau3_retail_53",
+   "tau3_retail_56",
+   "tau3_retail_6",
+   "tau3_retail_7",
+   "tau3_retail_8",
+   "tau3_retail_9"
+  ],
+  "REPLAY_EXECUTABLE": [
+   "tau3_airline_18",
+   "tau3_airline_2",
+   "tau3_airline_30",
+   "tau3_airline_32",
+   "tau3_airline_37",
+   "tau3_airline_39",
+   "tau3_airline_4",
+   "tau3_airline_41",
+   "tau3_airline_42",
+   "tau3_airline_43",
+   "tau3_airline_44",
+   "tau3_airline_7",
+   "tau3_retail_100",
+   "tau3_retail_107",
+   "tau3_retail_29",
+   "tau3_retail_51",
+   "tau3_retail_60",
+   "tau3_retail_91",
+   "tau3_retail_92",
+   "tau3_retail_95",
+   "tau3_retail_99"
+  ],
+  "FAILED_REPLAY": [
+   "tau3_retail_2",
+   "tau3_retail_3",
+   "tau3_retail_35",
+   "tau3_retail_37",
+   "tau3_retail_4",
+   "tau3_retail_64"
+  ],
+  "by_domain": {
+   "airline": {
+    "REPLAY_EXECUTABLE": 12
+   },
+   "retail": {
+    "BINDING_EXACT": 9,
+    "REPLAY_EXECUTABLE": 9,
+    "VALUE_OBSERVABLE": 17,
+    "FAILED_REPLAY": 6
+   }
+  },
+  "by_split_BINDING_EXACT": {
+   "train": 8,
+   "dev": 1
+  },
+  "dep_stats": {
+   "total": 233,
+   "USER_LATENT": 18,
+   "REPAIRED_UNIQUE": 92,
+   "LABEL_EXACT": 24,
+   "AMBIGUOUS": 75,
+   "LABEL_EXACT_ROOT_SCALAR": 21,
+   "UNEXECUTABLE_CONTEXT": 3
+  },
+  "note": "BINDING_EXACT is the only tier admissible to strict Binding Exact evaluation; VALUE_OBSERVABLE tasks carry AMBIGUOUS deps (value real, provenance not unique); previous 9B-2.1 'VERIFIED' tier corresponds to none of these exactly and is renamed OBSERVABLE_CANDIDATE (superseded by this manifest)."
+ },
+ "tasks": [
+  {
+   "task_id": "tau3_airline_18",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "USER_LATENT": 4
+   },
+   "n_unanswerable_literals": 11,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "update_reservation_flights",
+     "values": [
+      "JG7FMM"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "cabin",
+     "tool": "update_reservation_flights",
+     "values": [
+      "economy"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "flights",
+     "tool": "update_reservation_flights",
+     "values": [
+      "{'flight_number': 'HAT028', 'date': '202",
+      "{'flight_number': 'HAT277', 'date': '202"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_id",
+     "tool": "update_reservation_flights",
+     "values": [
+      "credit_card_2929732"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_2",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "noah_muller_9847"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_30",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 2,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "1N99U6"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_32",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "USER_LATENT": 2,
+    "LABEL_EXACT": 2
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "ivan_rossi_8555"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "domain": "airline",
+   "split": "test",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1,
+    "AMBIGUOUS": 2
+   },
+   "n_unanswerable_literals": 2,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "M20IZO"
+     ]
+    },
+    {
+     "node": "p3",
+     "step": 3,
+     "param": "payment_id",
+     "tool": "update_reservation_flights",
+     "values": [
+      "credit_card_9074831"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_39",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 9,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 6,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "amelia_davis_8890"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_4",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "sophia_silva_7557"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_41",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 6,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 6
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "amelia_davis_8890"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "domain": "airline",
+   "split": "test",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 8,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 6
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "sophia_martin_4574"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "domain": "airline",
+   "split": "test",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 4
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "mohamed_hernandez_5188"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_44",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 28,
+   "dep_verdict_counts": {
+    "USER_LATENT": 3,
+    "AMBIGUOUS": 20,
+    "REPAIRED_UNIQUE": 4,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 2,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "user_id",
+     "tool": "get_user_details",
+     "values": [
+      "sophia_silva_7557"
+     ]
+    },
+    {
+     "node": "p16",
+     "step": 16,
+     "param": "cabin",
+     "tool": "update_reservation_flights",
+     "values": [
+      "business"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_7",
+   "domain": "airline",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 3,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "XEHM4B"
+     ]
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "reservation_id",
+     "tool": "get_reservation_details",
+     "values": [
+      "59XX6W"
+     ]
+    },
+    {
+     "node": "p2",
+     "step": 2,
+     "param": "cabin",
+     "tool": "update_reservation_flights",
+     "values": [
+      "business"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_0",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 2,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_1",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 2,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_100",
+   "domain": "retail",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 5,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "#W3295833"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "8926329222",
+      "5312063289"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "7160999700",
+      "6956751343"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "credit_card_3261838"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_107",
+   "domain": "retail",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 6,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "#W1304208"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "1615379700"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "8106223139"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "paypal_1679017"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 5,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 3,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_13",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_14",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 5,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 3,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_15",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 5,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 2,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_18",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "LABEL_EXACT": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_19",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 5,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 2,
+    "LABEL_EXACT": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_2",
+   "domain": "retail",
+   "split": "train",
+   "tier": "FAILED_REPLAY",
+   "n_runtime_deps": 9,
+   "dep_verdict_counts": {
+    "UNEXECUTABLE_CONTEXT": 1,
+    "REPAIRED_UNIQUE": 4,
+    "AMBIGUOUS": 3,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "6086499569"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_20",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 8,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 5,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_23",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 12,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 6,
+    "REPAIRED_UNIQUE": 4,
+    "LABEL_EXACT": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_25",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 3,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_27",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_29",
+   "domain": "retail",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 5,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p5",
+     "step": 5,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "5753502325"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "domain": "retail",
+   "split": "test",
+   "tier": "FAILED_REPLAY",
+   "n_runtime_deps": 10,
+   "dep_verdict_counts": {
+    "UNEXECUTABLE_CONTEXT": 1,
+    "REPAIRED_UNIQUE": 4,
+    "AMBIGUOUS": 3,
+    "LABEL_EXACT_ROOT_SCALAR": 2
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "6086499569"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_33",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 2,
+    "LABEL_EXACT_ROOT_SCALAR": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_35",
+   "domain": "retail",
+   "split": "train",
+   "tier": "FAILED_REPLAY",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p5",
+     "step": 5,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "6704763132"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_37",
+   "domain": "retail",
+   "split": "train",
+   "tier": "FAILED_REPLAY",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 1
+   },
+   "n_unanswerable_literals": 2,
+   "unanswerable_examples": [
+    {
+     "node": "p3",
+     "step": 3,
+     "param": "item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "6117189161",
+      "7453605304",
+      "3799046073"
+     ]
+    },
+    {
+     "node": "p3",
+     "step": 3,
+     "param": "new_item_ids",
+     "tool": "modify_pending_order_items",
+     "values": [
+      "6700049080",
+      "5320792178",
+      "3234800602"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "FAILED_REPLAY",
+   "n_runtime_deps": 12,
+   "dep_verdict_counts": {
+    "LABEL_EXACT": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 2,
+    "AMBIGUOUS": 4,
+    "REPAIRED_UNIQUE": 4,
+    "UNEXECUTABLE_CONTEXT": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "6086499569"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_43",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "domain": "retail",
+   "split": "test",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 2
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_5",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 2,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_51",
+   "domain": "retail",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p2",
+     "step": 2,
+     "param": "product_id",
+     "tool": "get_product_details",
+     "values": [
+      "8940227892"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_52",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_53",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 5,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 2,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_56",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 4,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 3
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 2,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 2,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 1,
+   "unanswerable_examples": [
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "order_id",
+     "tool": "get_order_details",
+     "values": [
+      "#W5061109"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_62",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 2,
+   "dep_verdict_counts": {
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "FAILED_REPLAY",
+   "n_runtime_deps": 7,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 2,
+    "REPAIRED_UNIQUE": 2,
+    "LABEL_EXACT": 2,
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_65",
+   "domain": "retail",
+   "split": "train",
+   "tier": "BINDING_EXACT",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "LABEL_EXACT_ROOT_SCALAR": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_7",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "domain": "retail",
+   "split": "test",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_9",
+   "domain": "retail",
+   "split": "train",
+   "tier": "VALUE_OBSERVABLE",
+   "n_runtime_deps": 3,
+   "dep_verdict_counts": {
+    "AMBIGUOUS": 1,
+    "REPAIRED_UNIQUE": 1,
+    "LABEL_EXACT": 1
+   },
+   "n_unanswerable_literals": 0,
+   "unanswerable_examples": []
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "domain": "retail",
+   "split": "test",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 5,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "#W7553978"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "4545791457",
+      "3098764622",
+      "1631806422"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "credit_card_5902940"
+     ]
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "9494281769"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_92",
+   "domain": "retail",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 4,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "#W7553978"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "4545791457",
+      "3098764622",
+      "1631806422"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "credit_card_5902940"
+     ]
+    },
+    {
+     "node": "p1",
+     "step": 1,
+     "param": "item_ids",
+     "tool": "return_delivered_order_items",
+     "values": [
+      "9494281769"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "domain": "retail",
+   "split": "dev",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 5,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "#W2905754"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "3478699712"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "9844888101"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "credit_card_3677959"
+     ]
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_99",
+   "domain": "retail",
+   "split": "train",
+   "tier": "REPLAY_EXECUTABLE",
+   "n_runtime_deps": 1,
+   "dep_verdict_counts": {
+    "USER_LATENT": 1
+   },
+   "n_unanswerable_literals": 6,
+   "unanswerable_examples": [
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "order_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "#W4689314"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "5996159312"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "new_item_ids",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "8363011723"
+     ]
+    },
+    {
+     "node": "p0",
+     "step": 0,
+     "param": "payment_method_id",
+     "tool": "exchange_delivered_order_items",
+     "values": [
+      "credit_card_3951670"
+     ]
+    }
+   ]
+  }
+ ]
+}

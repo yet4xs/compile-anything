@@ -262,7 +262,23 @@ def gen_and_eval(model, tok, rec, arm, protocol):
               "binding_exact": False, "binding_f1": 0.0,
               "tool_match": False, "execution": False,
               "latency_s": lat, "gen_tokens": ntok,
-              "raw": text[:2000]}
+              "hit_generation_cap": ntok >= 698,
+              # Full, untruncated model output (audit requirement 9B-2.2 T0.3);
+              # the 2000-char preview kept separately for log readability.
+              "raw": text,
+              "raw_preview": text[:2000],
+              "raw_log_truncated": len(text) > 2000}
+
+    # Stage-separated compilation outcomes (audit requirement 9B-2.2 T0.4):
+    # json_syntax / skeleton_valid / lowering_ok / taskir_valid are recorded
+    # independently so offline rescoring never has to infer them from raw.
+    result["json_syntax"] = bool(taskir) if arm in ("M0-J", "M1") else None
+    result["skeleton_valid"] = None
+    result["lowering_ok"] = None
+    if arm == "M1":
+        result["skeleton_valid"] = taskir != ""
+    if arm in ("M0-J", "M1"):
+        result["lowering_ok"] = bool(taskir)
 
     if not taskir:
         return result
@@ -288,7 +304,7 @@ def gen_and_eval(model, tok, rec, arm, protocol):
         n_ref_b = max(1, a["n_ref_bindings"])
         n_pred_b = max(1, a["n_pred_bindings"])
         result["binding_f1"] = round(
-            2 * a["n_correct"] / (n_ref_b + n_pred_b), 4)
+            2 * a["n_correct_bindings"] / (n_ref_b + n_pred_b), 4)
     # Execution
     if result["validator"]:
         from src.runtime.mock_capability_registry import (

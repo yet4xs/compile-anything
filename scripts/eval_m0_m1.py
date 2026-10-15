@@ -221,6 +221,8 @@ def main(splits=("dev_sft", "test_sft", "test_samefamily"), limit=0):
                         taskir = ""
                     low_ms = round((time.time() - t0) * 1000, 1)
                 m = metrics(taskir, sk_text, rec)
+                m["raw_output"] = text[:4000]
+                m["taskir_text"] = taskir[:4000]
                 m.update({"arm": arm, "split": sp, "task_id": rec["task_id"],
                           "latency_s": lat, "gen_tokens": ntok,
                           "lowering_ms": low_ms,
@@ -300,6 +302,9 @@ def main(splits=("dev_sft", "test_sft", "test_samefamily"), limit=0):
                 "fixed": fixed, "broken": broken}
 
     os.makedirs("results/phase8b", exist_ok=True)
+    with open("results/phase8b/m0_m1_outputs.jsonl", "w") as f:
+        for r in details:
+            f.write(json.dumps(r, ensure_ascii=False, default=str) + "\n")
     with open("results/phase8b/m0_m1_comparison.json", "w") as f:
         json.dump({"summary": summary, "details": details}, f, indent=2,
                   ensure_ascii=False)

@@ -1,7 +1,7 @@
 """Robust SSH fetch/run helper for the BitHub server (banner errors are frequent)."""
 import sys, time, paramiko
 
-HOST, PORT, USER, PW = 'xj-member.bitahub.com', 42042, 'root', '^^x-CC71i9Ms6CW'
+HOST, PORT, USER, PW = 'xj-member.bitahub.com', 42220, 'root', '^^x-CC71i9Ms6CW'
 
 
 def connect(max_attempts=6):
