@@ -1,0 +1,1087 @@
+{
+ "summary": {
+  "n_tasks": 53,
+  "admitted_v1": [
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_25",
+   "tau3_retail_62",
+   "tau3_retail_65"
+  ],
+  "n_admitted": 5,
+  "eligible_for_future_test_split": [
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_25",
+   "tau3_retail_62",
+   "tau3_retail_65"
+  ],
+  "split_policy": "All admitted v1 tasks stay in the TRAIN partition; a frozen test split is deferred until >=15 admitted tasks exist (current: 5). Tasks used in Phase 9B-2/9B-2.2 error analysis are permanently excluded from test.",
+  "leakage_checks": {
+   "task_ids_unique": true,
+   "source_task_ids_unique": true,
+   "admitted_overlap_with_explored": [],
+   "note": "tau3 exposes no template/family ids; source_task_id uniqueness is the strongest available leakage guarantee and is verified above"
+  },
+  "criteria": [
+   "1 no unobservable constants (strict_v1)",
+   "2 every param has a determined source",
+   "3 refs use real replay output paths",
+   "4 reconstruction executes on the official simulator with live runtime-ref resolution (args + final DB state match)",
+   "5 split hygiene: explored tasks excluded from test"
+  ],
+  "blockers_for_other_tasks": {
+   "('AMBIGUOUS', 'ENV_STATE', 'UNKNOWN')": [
+    "tau3_airline_18",
+    "tau3_airline_30",
+    "tau3_airline_37",
+    "tau3_airline_7",
+    "tau3_retail_2",
+    "tau3_retail_3",
+    "tau3_retail_4"
+   ],
+   "('USER_LATENT',)": [
+    "tau3_airline_2",
+    "tau3_airline_4",
+    "tau3_airline_41",
+    "tau3_airline_43"
+   ],
+   "('AMBIGUOUS', 'ENV_STATE', 'UNKNOWN', 'USER_LATENT')": [
+    "tau3_airline_32",
+    "tau3_airline_44"
+   ],
+   "('AMBIGUOUS', 'USER_LATENT')": [
+    "tau3_airline_39",
+    "tau3_airline_42"
+   ],
+   "('ENV_STATE',)": [
+    "tau3_retail_100",
+    "tau3_retail_107",
+    "tau3_retail_37",
+    "tau3_retail_60",
+    "tau3_retail_91",
+    "tau3_retail_92",
+    "tau3_retail_95",
+    "tau3_retail_99"
+   ],
+   "('AMBIGUOUS',)": [
+    "tau3_retail_11",
+    "tau3_retail_13",
+    "tau3_retail_14",
+    "tau3_retail_15",
+    "tau3_retail_18",
+    "tau3_retail_19",
+    "tau3_retail_20",
+    "tau3_retail_23",
+    "tau3_retail_27",
+    "tau3_retail_33",
+    "tau3_retail_43",
+    "tau3_retail_48",
+    "tau3_retail_5",
+    "tau3_retail_52",
+    "tau3_retail_53",
+    "tau3_retail_56",
+    "tau3_retail_58",
+    "tau3_retail_6",
+    "tau3_retail_64",
+    "tau3_retail_7",
+    "tau3_retail_8",
+    "tau3_retail_9"
+   ],
+   "('AMBIGUOUS', 'ENV_STATE')": [
+    "tau3_retail_29",
+    "tau3_retail_35",
+    "tau3_retail_51"
+   ]
+  }
+ },
+ "tasks": [
+  {
+   "task_id": "tau3_airline_18",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "18",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 10,
+    "UNKNOWN": 5,
+    "runtime_ref": 1,
+    "AMBIGUOUS": 4
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_2",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "2",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_30",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "30",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 1,
+    "runtime_ref": 5,
+    "AMBIGUOUS": 1,
+    "UNKNOWN": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_32",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "32",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 6,
+    "AMBIGUOUS": 3,
+    "ENV_STATE": 1,
+    "UNKNOWN": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_37",
+   "domain": "airline",
+   "origin_split": "test",
+   "source_task_id": "37",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 2,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 3,
+    "LITERAL": 1,
+    "UNKNOWN": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_39",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "39",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 7,
+    "AMBIGUOUS": 3
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_4",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "4",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 5
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_41",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "41",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 7
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "domain": "airline",
+   "origin_split": "test",
+   "source_task_id": "42",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 7,
+    "AMBIGUOUS": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_43",
+   "domain": "airline",
+   "origin_split": "test",
+   "source_task_id": "43",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 5
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_44",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "44",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "USER_LATENT": 1,
+    "runtime_ref": 14,
+    "AMBIGUOUS": 29,
+    "ENV_STATE": 1,
+    "UNKNOWN": 3
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_airline_7",
+   "domain": "airline",
+   "origin_split": "train",
+   "source_task_id": "7",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 3,
+    "runtime_ref": 2,
+    "UNKNOWN": 1,
+    "AMBIGUOUS": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_0",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "0",
+   "admitted_v1": true,
+   "strict_v1": true,
+   "executed_with_live_refs": true,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 5,
+    "runtime_ref": 3,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": true
+  },
+  {
+   "task_id": "tau3_retail_1",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "1",
+   "admitted_v1": true,
+   "strict_v1": true,
+   "executed_with_live_refs": true,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 5,
+    "runtime_ref": 3,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": true
+  },
+  {
+   "task_id": "tau3_retail_100",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "100",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 6,
+    "runtime_ref": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_107",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "107",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 7,
+    "runtime_ref": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "11",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 2,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_13",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "13",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 2,
+    "runtime_ref": 3,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_14",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "14",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 2,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_15",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "15",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 3,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_18",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "18",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_19",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "19",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 5,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_2",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "2",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "UNKNOWN": 1,
+    "ENV_STATE": 1,
+    "runtime_ref": 6,
+    "AMBIGUOUS": 3,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_20",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "20",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 9,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_23",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "23",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 7,
+    "AMBIGUOUS": 8,
+    "runtime_ref_multi": 5
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_25",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "25",
+   "admitted_v1": true,
+   "strict_v1": true,
+   "executed_with_live_refs": true,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 5
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": true
+  },
+  {
+   "task_id": "tau3_retail_27",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "27",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_29",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "29",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 5,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 2,
+    "ENV_STATE": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_3",
+   "domain": "retail",
+   "origin_split": "test",
+   "source_task_id": "3",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": false,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "UNKNOWN": 1,
+    "ENV_STATE": 1,
+    "runtime_ref": 7,
+    "AMBIGUOUS": 4,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_33",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "33",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 5,
+    "runtime_ref": 8,
+    "AMBIGUOUS": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_35",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "35",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 3,
+    "AMBIGUOUS": 3,
+    "ENV_STATE": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_37",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "37",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 3,
+    "ENV_STATE": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_4",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "4",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": false,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "UNKNOWN": 1,
+    "ENV_STATE": 1,
+    "runtime_ref": 7,
+    "AMBIGUOUS": 6,
+    "runtime_ref_multi": 3
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_43",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "43",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 7,
+    "runtime_ref": 5,
+    "AMBIGUOUS": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "domain": "retail",
+   "origin_split": "test",
+   "source_task_id": "48",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 3,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_5",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "5",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 3,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_51",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "51",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "ENV_STATE": 1,
+    "runtime_ref": 3,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_52",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "52",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_53",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "53",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 2,
+    "runtime_ref_multi": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_56",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "56",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 5,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "58",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "6",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "60",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "ENV_STATE": 1,
+    "runtime_ref": 3,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_62",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "62",
+   "admitted_v1": true,
+   "strict_v1": true,
+   "executed_with_live_refs": true,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 4
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": true
+  },
+  {
+   "task_id": "tau3_retail_64",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "64",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 5,
+    "AMBIGUOUS": 4,
+    "runtime_ref_multi": 4
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_65",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "65",
+   "admitted_v1": true,
+   "strict_v1": true,
+   "executed_with_live_refs": true,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 3,
+    "runtime_ref": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": true
+  },
+  {
+   "task_id": "tau3_retail_7",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "7",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "domain": "retail",
+   "origin_split": "test",
+   "source_task_id": "8",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_9",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "9",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "LITERAL": 4,
+    "runtime_ref": 4,
+    "AMBIGUOUS": 1,
+    "runtime_ref_multi": 2
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "domain": "retail",
+   "origin_split": "test",
+   "source_task_id": "91",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 6,
+    "runtime_ref": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_92",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "92",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 5,
+    "runtime_ref": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "domain": "retail",
+   "origin_split": "dev",
+   "source_task_id": "95",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 6,
+    "runtime_ref_multi": 1,
+    "runtime_ref": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": true,
+   "eligible_for_future_test_split": false
+  },
+  {
+   "task_id": "tau3_retail_99",
+   "domain": "retail",
+   "origin_split": "train",
+   "source_task_id": "99",
+   "admitted_v1": false,
+   "strict_v1": false,
+   "executed_with_live_refs": false,
+   "final_state_match": true,
+   "param_class_counts": {
+    "ENV_STATE": 7,
+    "runtime_ref": 1
+   },
+   "ir_integration": "requires_typed_access_and_list_refs",
+   "explored_in_analysis": false,
+   "eligible_for_future_test_split": false
+  }
+ ]
+}

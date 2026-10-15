@@ -90,6 +90,35 @@ class Negative(unittest.TestCase):
             with self.assertRaises(PathTypeError, msg=bad):
                 parse_path(bad)
 
+    def test_name_directly_after_index_rejected(self):
+        """9B-2.3 Task 4: 'orders[0]id' must not parse."""
+        with self.assertRaises(PathTypeError):
+            parse_path("orders[0]id")
+
+    def test_index_after_separator_rejected(self):
+        """9B-2.3 Task 4: 'orders.[0]' must not parse."""
+        with self.assertRaises(PathTypeError):
+            parse_path("orders.[0]")
+
+    def test_dunder_and_private_paths_rejected(self):
+        for bad in ("orders[0].__class__", "user.__dict__", "_private"):
+            with self.assertRaises(PathTypeError, msg=bad):
+                parse_path(bad)
+
+    def test_runtime_dunder_attribute_rejected(self):
+        class Obj:
+            pass
+        with self.assertRaises(PathTypeError) as cm:
+            resolve_path(Obj(), parse_path("value")[:0] or [Field("__class__")])
+        self.assertEqual(cm.exception.code, "PARSE_ERROR")
+
+    def test_runtime_undeclared_attribute_rejected(self):
+        class Obj:
+            value = 1
+        with self.assertRaises(PathTypeError) as cm:
+            resolve_path(Obj(), [Field("nope")])
+        self.assertEqual(cm.exception.code, "FIELD_NOT_FOUND")
+
     def test_runtime_index_out_of_range(self):
         with self.assertRaises(PathTypeError) as cm:
             resolve_path({"orders": []}, parse_path("orders[0].order_id"))

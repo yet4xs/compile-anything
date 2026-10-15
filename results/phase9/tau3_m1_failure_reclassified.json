@@ -69,14 +69,6 @@
     "n_genuine_nested_access": 3
    },
    "by_tier": {
-    "VALUE_OBSERVABLE": {
-     "FORWARD_REF": 2,
-     "NONEXISTENT_FIELD": 1,
-     "GENUINE_NESTED_ACCESS": 1
-    },
-    "BINDING_EXACT": {
-     "FORWARD_REF": 1
-    },
     "FAILED_REPLAY": {
      "NONEXISTENT_FIELD": 1,
      "SKELETON_SCHEMA": 1,
@@ -86,7 +78,23 @@
      "LOWERING_OTHER": 2,
      "NONEXISTENT_FIELD": 2,
      "SKELETON_SCHEMA": 2
+    },
+    "BINDING_EXACT": {
+     "FORWARD_REF": 1
+    },
+    "VALUE_OBSERVABLE": {
+     "FORWARD_REF": 2,
+     "NONEXISTENT_FIELD": 1,
+     "GENUINE_NESTED_ACCESS": 1
     }
+   },
+   "gold_v1_binding": {
+    "n_scored": 21,
+    "calls_bijection_complete": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 1,
+    "n_gold_bindings": 121,
+    "strict_binding_exact": 0
    }
   },
   "tier_distribution": {
@@ -117,7 +125,23 @@
    "taskir_valid_parse": true,
    "pred_tools": [
     "return_delivered_order_items"
-   ]
+   ],
+   "gold_v1_binding": {
+    "n_gold_calls": 2,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     1,
+     2
+    ],
+    "n_gold_bindings": 1,
+    "n_pred_bindings": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 1,
+    "strict_binding_exact": false
+   }
   },
   {
    "task_id": "tau3_retail_8",
@@ -150,7 +174,23 @@
      "STRUCT"
     ]
    },
-   "taskir_valid_parse": true
+   "taskir_valid_parse": true,
+   "gold_v1_binding": {
+    "n_gold_calls": 12,
+    "n_pred_calls": 4,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     1,
+     3
+    ],
+    "n_gold_bindings": 8,
+    "n_pred_bindings": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 8,
+    "strict_binding_exact": false
+   }
   },
   {
    "task_id": "tau3_airline_37",
@@ -171,7 +211,23 @@
      "extra": 0
     }
    },
-   "taskir_valid_parse": true
+   "taskir_valid_parse": true,
+   "gold_v1_binding": {
+    "n_gold_calls": 4,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2
+    ],
+    "n_gold_bindings": 4,
+    "n_pred_bindings": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 4,
+    "strict_binding_exact": false
+   }
   },
   {
    "task_id": "tau3_airline_43",
@@ -298,7 +354,23 @@
    "pred_tools": [
     "extract_field",
     "lookup_entity"
-   ]
+   ],
+   "gold_v1_binding": {
+    "n_gold_calls": 2,
+    "n_pred_calls": 2,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     1
+    ],
+    "n_gold_bindings": 2,
+    "n_pred_bindings": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 2,
+    "strict_binding_exact": false
+   }
   },
   {
    "task_id": "tau3_retail_11",
@@ -331,7 +403,23 @@
      "STRUCT"
     ]
    },
-   "taskir_valid_parse": true
+   "taskir_valid_parse": true,
+   "gold_v1_binding": {
+    "n_gold_calls": 13,
+    "n_pred_calls": 4,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     1,
+     3
+    ],
+    "n_gold_bindings": 10,
+    "n_pred_bindings": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 8,
+    "gold_sourced_params": 10,
+    "strict_binding_exact": false
+   }
   },
   {
    "task_id": "tau3_retail_91",
@@ -408,6 +496,22 @@
     "validator_codes": [
      "TYPE_MISMATCH"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2
+    ],
+    "n_gold_bindings": 5,
+    "n_pred_bindings": 2,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 1,
+    "gold_sourced_params": 5,
+    "strict_binding_exact": false
    }
   },
   {
@@ -443,6 +547,24 @@
      "n_correct": 0,
      "extra": 0
     }
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 10,
+    "n_pred_calls": 6,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     1,
+     2,
+     4
+    ],
+    "n_gold_bindings": 7,
+    "n_pred_bindings": 0,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 3,
+    "gold_sourced_params": 7,
+    "strict_binding_exact": false
    }
   },
   {
@@ -566,6 +688,22 @@
      "unresolved x1"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 2,
+    "n_pred_calls": 2,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     1
+    ],
+    "n_gold_bindings": 1,
+    "n_pred_bindings": 1,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 1,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 1,
@@ -591,6 +729,22 @@
     "lowering_errors": [
      "runtime_ref order_id: producer 'p1' not yet defined"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2
+    ],
+    "n_gold_bindings": 6,
+    "n_pred_bindings": 2,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 1,
+    "gold_sourced_params": 6,
+    "strict_binding_exact": false
    },
    "m1_metrics": {
     "json_syntax_pass": true,
@@ -622,6 +776,21 @@
      "default_address"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 12,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     2
+    ],
+    "n_gold_bindings": 8,
+    "n_pred_bindings": 2,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 8,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 2,
@@ -647,6 +816,22 @@
     "lowering_errors": [
      "unresolved x1"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 4,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     1,
+     2
+    ],
+    "n_gold_bindings": 4,
+    "n_pred_bindings": 2,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 4,
+    "strict_binding_exact": false
    },
    "m1_metrics": {
     "json_syntax_pass": true,
@@ -678,6 +863,21 @@
      "user_id"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 2,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0
+    ],
+    "n_gold_bindings": 5,
+    "n_pred_bindings": 1,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 1,
+    "gold_sourced_params": 5,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 1,
@@ -708,6 +908,22 @@
      "default_address"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2
+    ],
+    "n_gold_bindings": 4,
+    "n_pred_bindings": 3,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 2,
+    "gold_sourced_params": 4,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 3,
@@ -733,6 +949,22 @@
     "errors": [
      "p2: capability 'reason_about_flights' not in runtime registry"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 10,
+    "n_pred_calls": 4,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2
+    ],
+    "n_gold_bindings": 7,
+    "n_pred_bindings": 2,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 3,
+    "gold_sourced_params": 7,
+    "strict_binding_exact": false
    },
    "m1_metrics": {
     "json_syntax_pass": true,
@@ -760,6 +992,23 @@
      "runtime_ref order_id: producer 'p1' not yet defined"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 6,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2,
+     5
+    ],
+    "n_gold_bindings": 6,
+    "n_pred_bindings": 5,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 1,
+    "gold_sourced_params": 6,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 5,
@@ -785,6 +1034,22 @@
     "lowering_errors": [
      "runtime_ref order_id: producer 'p1' not yet defined"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     2
+    ],
+    "n_gold_bindings": 8,
+    "n_pred_bindings": 2,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 1,
+    "gold_sourced_params": 6,
+    "strict_binding_exact": false
    },
    "m1_metrics": {
     "json_syntax_pass": true,
@@ -816,6 +1081,22 @@
      "order_id"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 4,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     1,
+     2
+    ],
+    "n_gold_bindings": 5,
+    "n_pred_bindings": 1,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 1,
+    "gold_sourced_params": 5,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 1,
@@ -843,6 +1124,22 @@
      "p3: capability 'find_product_id_by_description' not in runtime registry"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 8,
+    "n_pred_calls": 5,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     2,
+     3
+    ],
+    "n_gold_bindings": 9,
+    "n_pred_bindings": 4,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 4,
+    "gold_sourced_params": 9,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 6,
@@ -869,6 +1166,23 @@
      "p1: capability '...' not in runtime registry",
      "p2: capability '...' not in runtime registry"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 2,
+    "n_pred_calls": 3,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     0,
+     1,
+     2
+    ],
+    "n_gold_bindings": 2,
+    "n_pred_bindings": 1,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 6,
+    "gold_sourced_params": 2,
+    "strict_binding_exact": false
    },
    "m1_metrics": {
     "json_syntax_pass": true,
@@ -899,6 +1213,23 @@
      "orders[0].order_id"
     ]
    },
+   "gold_v1_binding": {
+    "n_gold_calls": 6,
+    "n_pred_calls": 6,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     1,
+     2,
+     3
+    ],
+    "n_gold_bindings": 9,
+    "n_pred_bindings": 7,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 0,
+    "gold_unsourced_params": 2,
+    "gold_sourced_params": 6,
+    "strict_binding_exact": false
+   },
    "m1_metrics": {
     "json_syntax_pass": true,
     "n_valid_runtime_refs": 7,
@@ -927,6 +1258,21 @@
     "nested_fields": [
      "orders[0].order_id"
     ]
+   },
+   "gold_v1_binding": {
+    "n_gold_calls": 13,
+    "n_pred_calls": 4,
+    "calls_bijection_complete": false,
+    "unmatched_pred_calls": [
+     3
+    ],
+    "n_gold_bindings": 10,
+    "n_pred_bindings": 4,
+    "n_bindings_exact": 0,
+    "n_bindings_root_scalar_equiv": 1,
+    "gold_unsourced_params": 8,
+    "gold_sourced_params": 10,
+    "strict_binding_exact": false
    },
    "m1_metrics": {
     "json_syntax_pass": true,

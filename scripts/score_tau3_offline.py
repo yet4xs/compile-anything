@@ -40,6 +40,9 @@ from src.compiler.plan_skeleton import skeleton_from_dict, validate_skeleton, ha
 from src.compiler.skeleton_lowering import lower_skeleton
 from src.eval.canonical_dataflow_matcher import (
     canonical_from_skeleton, canonical_from_taskir, canonical_call_binding_match)
+from src.eval.gold_binding_scorer import (
+    score_prediction, calls_from_skeleton_nodes,
+    bindings_from_skeleton_nodes)
 
 FIELD_IN_ERR = re.compile(r"EXTRACT_FIELD '([^']+)'")
 
@@ -210,6 +213,70 @@ def score_detail(detail, rec, repaired_task, real_fields_by_tool):
     return out
 
 
+def extract_pred_from_taskir(mod):
+    """Calls + bindings from a parsed TaskIR module, in program order.
+
+    Returns (calls, bindings):
+      calls:    [(tool, {param: literal})]
+      bindings: [(consumer_call_idx, param, producer_call_idx, field_path)]
+    EXTRACT_FIELD intermediaries are resolved through to their producing
+    call; a direct call-to-call ref (no field) yields path "".
+    """
+    ext_map = {}
+    for n in mod.program.nodes:
+        if n.op == "EXTRACT_FIELD" and n.inputs:
+            ext_map[n.id] = (n.inputs[0], str(n.params.get("field", "")))
+    calls, bindings = [], []
+    ssa_to_call = {}
+    for n in mod.program.nodes:
+        if n.op == "EXTRACT_FIELD":
+            continue
+        tool = n.params.get("action") or (n.hints or {}).get("tool", "")
+        literals = {k: v for k, v in n.params.items() if k != "action"}
+        calls.append((tool, literals))
+        ssa_to_call[n.id] = len(calls) - 1
+        # resolve param_refs through ext chains
+        for pk, ref in (n.param_refs or {}).items():
+            field, prod_ssa = "", ref
+            if ref in ext_map:
+                prod_ssa, field = ext_map[ref]
+            literals.pop(pk, None)
+            if prod_ssa in ssa_to_call:
+                bindings.append((len(calls) - 1, pk,
+                                 ssa_to_call[prod_ssa], field))
+    return calls, bindings
+
+
+def gold_v1_metrics(detail, rec, gold_v1_task):
+    """Score one prediction against the RECONSTRUCTED v1 gold program
+    (bijection, no index alignment; root-scalar equivalence tracked)."""
+    if gold_v1_task is None:
+        return None
+    program = gold_v1_task["program"]
+    if detail["arm"] == "M1":
+        m = re.search(r"\{.*\}", detail["raw"], re.S)
+        if not m:
+            return None
+        try:
+            sk = json.loads(m.group(0))
+            nodes = sk.get("nodes", sk if isinstance(sk, list) else [])
+            calls = calls_from_skeleton_nodes(nodes)
+            bindings = bindings_from_skeleton_nodes(nodes)
+        except Exception:
+            return None
+    else:
+        try:
+            taskir = detail["raw"] if detail["arm"] == "M0-T" else to_text(
+                module_from_dict(json.loads(
+                    re.search(r"\{.*\}", detail["raw"], re.S).group(0))))
+            mod = parse_text(taskir)
+            calls, bindings = extract_pred_from_taskir(mod)
+        except Exception:
+            return None
+    r = score_prediction(calls, bindings, program)
+    return {k: v for k, v in r.items() if k != "details"}
+
+
 def m1_deep_metrics(detail, rec, repaired_task, real_fields_by_tool):
     """Advisor-required M1 metrics: count runtime refs and their quality
     against the repaired gold."""
@@ -302,6 +369,10 @@ def main():
         (REPO / "results/phase9/tau3_gold_verified_manifest.json")
         .read_text(encoding="utf-8"))
     tier_by_id = {t["task_id"]: t["tier"] for t in manifest["tasks"]}
+    gold_v1 = json.loads(
+        (REPO / "results/phase9/tau3_gold_compiled_v1.json")
+        .read_text(encoding="utf-8"))
+    gold_v1_by_id = {t["task_id"]: t for t in gold_v1["tasks"]}
 
     # real top-level output fields per tool from replay observations
     real_fields = {}
@@ -333,6 +404,9 @@ def main():
                "hit_generation_cap": d.get("gen_tokens", 0) >= 698,
                "raw_log_truncated": len(d.get("raw", "")) >= 2000,
                **s}
+        gv = gold_v1_metrics(d, rec, gold_v1_by_id.get(d["task_id"]))
+        if gv:
+            row["gold_v1_binding"] = gv
         if d["arm"] == "M1":
             row["m1_metrics"] = m1_deep_metrics(d, rec, rt, real_fields_by_tool)
         rows.append(row)
@@ -347,6 +421,7 @@ def main():
         return out
 
     m1 = [r for r in rows if r["arm"] == "M1"]
+    v1rows = [r for r in rows if r.get("gold_v1_binding")]
     m1_summary = {
         "n": len(m1),
         "json_syntax_pass": sum(bool(r.get("json_syntax")) for r in m1),
@@ -361,6 +436,21 @@ def main():
         "by_tier": {tier: dict(Counter(r["failure"] for r in m1
                                        if r["tier"] == tier))
                     for tier in {r["tier"] for r in m1}},
+        "gold_v1_binding": {
+            "n_scored": len(v1rows),
+            "calls_bijection_complete": sum(
+                r["gold_v1_binding"]["calls_bijection_complete"]
+                for r in v1rows),
+            "n_bindings_exact": sum(
+                r["gold_v1_binding"]["n_bindings_exact"] for r in v1rows),
+            "n_bindings_root_scalar_equiv": sum(
+                r["gold_v1_binding"]["n_bindings_root_scalar_equiv"]
+                for r in v1rows),
+            "n_gold_bindings": sum(
+                r["gold_v1_binding"]["n_gold_bindings"] for r in v1rows),
+            "strict_binding_exact": sum(
+                r["gold_v1_binding"]["strict_binding_exact"] for r in v1rows),
+        },
     }
 
     summary = {

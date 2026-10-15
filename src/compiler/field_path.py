@@ -86,33 +86,59 @@ class CheckedPath:
 def parse_path(text: str) -> PyList[Step]:
     """Parse 'orders[0].order_id' into [Field, Index, Field].
 
-    Raises PathTypeError(PARSE_ERROR) on malformed input — this is the field
-    SYNTAX gate that the 9B-2.1 classifier was missing.
+    Strict grammar (audit requirement 9B-2.3 Task 4): a name must follow
+    ']' only via '.', an index must follow a name or ']' — never a bare
+    '.' — and field names may not be dunder/prefixed-underscore paths.
+    Raises PathTypeError(PARSE_ERROR) on malformed input — this is the
+    field SYNTAX gate that the 9B-2.1 classifier was missing.
     """
+    def check_name(name: str, pos: int):
+        if not name:
+            raise PathTypeError("PARSE_ERROR", f"empty name at {pos}", pos)
+        if name.startswith("__"):
+            raise PathTypeError(
+                "PARSE_ERROR", f"dunder field {name!r} not allowed", pos)
+        if name.startswith("_"):
+            raise PathTypeError(
+                "PARSE_ERROR", f"private field {name!r} not allowed", pos)
+
     steps: PyList[Step] = []
     tok = ""
     i = 0
     expect = "name"       # "name" | "index"
-    after_index = False   # just closed ']' — a '.' separator is allowed
+    after_index = False   # just closed ']' — a '.' separator is required
+    pending_sep = False   # just consumed '.' — a name must follow
     while i < len(text):
         c = text[i]
         if c == ".":
             if after_index:
                 after_index = False  # separator between ] and next name
-            elif expect != "name" or not tok:
+                pending_sep = True
+            elif expect == "index":
+                raise PathTypeError("PARSE_ERROR",
+                                    f"'.' inside index at {i} in {text!r}", i)
+            elif pending_sep or not tok:
                 raise PathTypeError("PARSE_ERROR",
                                     f"unexpected '.' at {i} in {text!r}", i)
             else:
+                check_name(tok, i)
                 steps.append(Field(tok)); tok = ""
+                pending_sep = True
         elif c == "[":
+            if pending_sep:
+                raise PathTypeError(
+                    "PARSE_ERROR",
+                    f"'[' must follow a name, got '.' at {i} in {text!r}", i)
             after_index = False
             if expect != "name" or (tok == "" and not steps):
                 raise PathTypeError("PARSE_ERROR",
                                     f"unexpected '[' at {i} in {text!r}", i)
             if tok:
+                check_name(tok, i)
                 steps.append(Field(tok)); tok = ""
             expect = "index"
         elif c == "]":
+            pending_sep = False
             after_index = False
             if expect != "index":
                 raise PathTypeError("PARSE_ERROR",
@@ -124,7 +150,13 @@ def parse_path(text: str) -> PyList[Step]:
             expect = "name"
             after_index = True
         else:
-            after_index = False
+            if after_index:
+                raise PathTypeError(
+                    "PARSE_ERROR",
+                    f"name must follow ']' via '.', got {c!r} at {i} "
+                    f"in {text!r}", i)
+            if pending_sep:
+                pending_sep = False
             if expect == "index" and c in " -":
                 raise PathTypeError("PARSE_ERROR",
                                     f"bad index char {c!r} in {text!r}", i)
@@ -133,14 +165,13 @@ def parse_path(text: str) -> PyList[Step]:
     if expect == "index":
         raise PathTypeError("PARSE_ERROR", f"unterminated index in {text!r}",
                             i)
-    if after_index and (tok or steps and isinstance(steps[-1], Index)):
-        pass  # path may legitimately end right after an index
-    if tok:
-        steps.append(Field(tok))
-    elif not steps:
-        raise PathTypeError("PARSE_ERROR", "empty path", 0)
-    elif not after_index and text.rstrip()[-1:] == ".":
+    if pending_sep:
         raise PathTypeError("PARSE_ERROR", f"trailing '.' in {text!r}", i)
+    if tok:
+        check_name(tok, i)
+        steps.append(Field(tok))
+    if not steps:
+        raise PathTypeError("PARSE_ERROR", "empty path", 0)
     return steps
 
 
@@ -202,7 +233,12 @@ def check_path(declared: Type, steps: PyList[Step]) -> CheckedPath:
 
 def resolve_path(value, steps: PyList[Step]):
     """Runtime resolution with the same failure codes (the dynamic half of
-    the boundary: list bounds, real dict keys, real object fields)."""
+    the boundary: list bounds, real dict keys, real object fields).
+
+    Object attribute access is restricted to public attributes
+    (no underscore prefixes) — dunder/private paths can never traverse
+    into object internals, only into declared schema fields.
+    """
     cur = value
     for k, st in enumerate(steps):
         if st is not None and isinstance(st, Field):
@@ -213,6 +249,11 @@ def resolve_path(value, steps: PyList[Step]):
                         f"runtime: '{st.name}' not in dict", k)
                 cur = cur[st.name]
             else:
+                if st.name.startswith("_"):
+                    raise PathTypeError(
+                        "PARSE_ERROR",
+                        f"runtime: private/dunder field '{st.name}' "
+                        "not allowed", k)
                 if not hasattr(cur, st.name):
                     raise PathTypeError(
                         "FIELD_NOT_FOUND",

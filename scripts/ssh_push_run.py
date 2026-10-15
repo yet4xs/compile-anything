@@ -3,24 +3,9 @@
 Usage:
   python ssh_push_run.py --push local:remote [--push ...] -- cmd
 """
-import sys, time, argparse, paramiko
-
-HOST, PORT, USER, PW = 'xj-member.bitahub.com', 42220, 'root', '^^x-CC71i9Ms6CW'
-
-
-def connect(max_attempts=6):
-    last = None
-    for i in range(max_attempts):
-        try:
-            ssh = paramiko.SSHClient()
-            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(HOST, port=PORT, username=USER, password=PW,
-                        timeout=25, banner_timeout=45, auth_timeout=25)
-            return ssh
-        except Exception as e:
-            last = e
-            time.sleep(4 + 3 * i)
-    raise SystemExit(f'SSH failed after {max_attempts} attempts: {last}')
+import sys, argparse
+sys.path.insert(0, __file__.rsplit('/', 1)[0] or '.')
+from scripts.ssh_config import connect  # env-based, host-key pinned
 
 
 def main():
