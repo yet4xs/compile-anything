@@ -68,7 +68,9 @@ class CompileInputV2Test(unittest.TestCase):
                         t = next(x for x in tasks if int(x["id"]) == src)
                         v2 = " ".join(render_compile_input(
                             t.get("user_scenario")).split())
-                        for val in rec["instruction"].values():
+                        for key, val in rec["instruction"].items():
+                            if key == "domain":   # metadata, not scenario
+                                continue
                             s = " ".join(str(val).strip().split())
                             if s and s not in ("None",):
                                 self.assertIn(s[:60], v2)
