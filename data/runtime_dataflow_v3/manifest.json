@@ -1,0 +1,28 @@
+{
+ "n_generated": 160,
+ "n_valid": 160,
+ "n_train": 130,
+ "n_dev": 30,
+ "stats": {
+  "nested": 320,
+  "multi": 160,
+  "scalar_root": 160,
+  "dual": 0,
+  "templates": 2,
+  "valid": 160,
+  "exec_ok": 12,
+  "exec_tried": 30
+ },
+ "isolation": {
+  "domains": [
+   "retail"
+  ],
+  "airline_tools": 0,
+  "test_acting_users_excluded": 11,
+  "no_task_id_in_targets": true
+ },
+ "provenance": {
+  "registry": "verified_registry_manifest (957e1ba)",
+  "entities": "official retail db.json (5ade54e)"
+ }
+}
