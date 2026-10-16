@@ -1,0 +1,240 @@
+{
+ "summary": {
+  "adjudication_provenance": "MACHINE-ADJUDICATED (owner-directed); +lookup-prefix expansion (owner option B)",
+  "admitted_v2_2": [
+   "tau3_airline_3",
+   "tau3_airline_41",
+   "tau3_airline_42",
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_100",
+   "tau3_retail_107",
+   "tau3_retail_11",
+   "tau3_retail_13",
+   "tau3_retail_14",
+   "tau3_retail_15",
+   "tau3_retail_17",
+   "tau3_retail_18",
+   "tau3_retail_19",
+   "tau3_retail_20",
+   "tau3_retail_25",
+   "tau3_retail_27",
+   "tau3_retail_33",
+   "tau3_retail_34",
+   "tau3_retail_40",
+   "tau3_retail_41",
+   "tau3_retail_42",
+   "tau3_retail_43",
+   "tau3_retail_48",
+   "tau3_retail_5",
+   "tau3_retail_52",
+   "tau3_retail_53",
+   "tau3_retail_56",
+   "tau3_retail_58",
+   "tau3_retail_6",
+   "tau3_retail_62",
+   "tau3_retail_65",
+   "tau3_retail_7",
+   "tau3_retail_71",
+   "tau3_retail_72",
+   "tau3_retail_8",
+   "tau3_retail_9",
+   "tau3_retail_91",
+   "tau3_retail_92",
+   "tau3_retail_95",
+   "tau3_retail_98",
+   "tau3_retail_99"
+  ],
+  "condition_A_test": [
+   "tau3_retail_100",
+   "tau3_retail_17",
+   "tau3_retail_18",
+   "tau3_retail_27",
+   "tau3_retail_33",
+   "tau3_retail_40",
+   "tau3_retail_41",
+   "tau3_retail_42",
+   "tau3_retail_5",
+   "tau3_retail_53",
+   "tau3_retail_56",
+   "tau3_retail_62",
+   "tau3_retail_65",
+   "tau3_retail_71",
+   "tau3_retail_72"
+  ],
+  "condition_A_test_groups": 13,
+  "condition_A_train": [
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_107",
+   "tau3_retail_11",
+   "tau3_retail_13",
+   "tau3_retail_14",
+   "tau3_retail_15",
+   "tau3_retail_19",
+   "tau3_retail_20",
+   "tau3_retail_25",
+   "tau3_retail_34",
+   "tau3_retail_43",
+   "tau3_retail_48",
+   "tau3_retail_52",
+   "tau3_retail_58",
+   "tau3_retail_6",
+   "tau3_retail_7",
+   "tau3_retail_8",
+   "tau3_retail_9",
+   "tau3_retail_91",
+   "tau3_retail_92",
+   "tau3_retail_95",
+   "tau3_retail_98",
+   "tau3_retail_99"
+  ],
+  "condition_B_test": [
+   "tau3_airline_3",
+   "tau3_airline_41",
+   "tau3_airline_42"
+  ],
+  "threshold_check": {
+   "tasks": 15,
+   "groups": 13,
+   "formal_test": true
+  },
+  "explored_excluded": [
+   "tau3_airline_42",
+   "tau3_retail_11",
+   "tau3_retail_48",
+   "tau3_retail_58",
+   "tau3_retail_6",
+   "tau3_retail_8",
+   "tau3_retail_91",
+   "tau3_retail_95"
+  ],
+  "known_defects": [
+   "tau3_retail_60: TYPE_MISMATCH new_item_ids scalar binding (explored-only, not in any test set)"
+  ],
+  "leakage": {
+   "groups_never_straddle": true,
+   "source_ids_unique": true
+  }
+ },
+ "groups": {
+  "('airline', 'anya_garcia_5901', ('get_reservation_details', 'get_user_details'))": [
+   "tau3_airline_3"
+  ],
+  "('airline', 'amelia_davis_8890', ('get_user_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details'))": [
+   "tau3_airline_41"
+  ],
+  "('airline', 'sophia_martin_4574', ('get_user_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'cancel_reservation', 'cancel_reservation'))": [
+   "tau3_airline_42"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_0",
+   "tau3_retail_1"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'modify_pending_order_items', 'return_delivered_order_items'))": [
+   "tau3_retail_100"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items'))": [
+   "tau3_retail_107"
+  ],
+  "('retail', 'mia_garcia_4516', ('find_user_id_by_email', 'get_user_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items', 'return_delivered_order_items'))": [
+   "tau3_retail_11",
+   "tau3_retail_14"
+  ],
+  "('retail', 'mia_garcia_4516', ('find_user_id_by_email', 'get_user_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items'))": [
+   "tau3_retail_13"
+  ],
+  "('retail', 'fatima_johnson_7581', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_product_details', 'modify_pending_order_items'))": [
+   "tau3_retail_15"
+  ],
+  "('retail', 'fatima_johnson_7581', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'modify_pending_order_address'))": [
+   "tau3_retail_17"
+  ],
+  "('retail', 'mei_davis_8935', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_18"
+  ],
+  "('retail', 'mei_davis_8935', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'return_delivered_order_items'))": [
+   "tau3_retail_19"
+  ],
+  "('retail', 'ethan_garcia_1261', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'get_product_details', 'get_product_details', 'modify_pending_order_items', 'get_order_details'))": [
+   "tau3_retail_20"
+  ],
+  "('retail', 'isabella_johansson_2152', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_order_details'))": [
+   "tau3_retail_25"
+  ],
+  "('retail', 'isabella_johansson_2152', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_27"
+  ],
+  "('retail', 'noah_patel_6952', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'modify_user_address'))": [
+   "tau3_retail_33"
+  ],
+  "('retail', 'noah_patel_6952', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'modify_pending_order_address'))": [
+   "tau3_retail_34"
+  ],
+  "('retail', 'isabella_lopez_6490', ('find_user_id_by_email', 'get_user_details', 'get_order_details', 'modify_pending_order_payment'))": [
+   "tau3_retail_40"
+  ],
+  "('retail', 'mei_patel_7272', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'modify_pending_order_address', 'modify_pending_order_address', 'modify_user_address', 'get_product_details', 'get_order_details', 'modify_pending_order_items'))": [
+   "tau3_retail_41",
+   "tau3_retail_42"
+  ],
+  "('retail', 'lucas_santos_6600', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'modify_user_address'))": [
+   "tau3_retail_43"
+  ],
+  "('retail', 'daiki_johnson_9523', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items'))": [
+   "tau3_retail_48"
+  ],
+  "('retail', 'mei_kovacs_8020', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'return_delivered_order_items'))": [
+   "tau3_retail_5"
+  ],
+  "('retail', 'sofia_li_9219', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_52"
+  ],
+  "('retail', 'sofia_li_9219', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items'))": [
+   "tau3_retail_53"
+  ],
+  "('retail', 'ivan_hernandez_6923', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_product_details', 'modify_pending_order_items'))": [
+   "tau3_retail_56"
+  ],
+  "('retail', 'ivan_hernandez_6923', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_58"
+  ],
+  "('retail', 'mei_kovacs_8020', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+   "tau3_retail_6",
+   "tau3_retail_7",
+   "tau3_retail_8",
+   "tau3_retail_9"
+  ],
+  "('retail', 'chen_johnson_4204', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details'))": [
+   "tau3_retail_62"
+  ],
+  "('retail', 'james_kovacs_9247', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details'))": [
+   "tau3_retail_65"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'modify_pending_order_address', 'modify_pending_order_items'))": [
+   "tau3_retail_71",
+   "tau3_retail_72"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'return_delivered_order_items', 'exchange_delivered_order_items'))": [
+   "tau3_retail_91"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items', 'return_delivered_order_items'))": [
+   "tau3_retail_92"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items'))": [
+   "tau3_retail_95"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items', 'cancel_pending_order'))": [
+   "tau3_retail_98"
+  ],
+  "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items'))": [
+   "tau3_retail_99"
+  ]
+ },
+ "input_sha256": {
+  "retail/db.json": "69771c8c71d2cf8fa767574c3a65999a",
+  "retail/tasks.json": "c07e89e811d345bc062461aeff7de7d7",
+  "airline/db.json": "55b232f2101d058fab0deea60d306675",
+  "airline/tasks.json": "4588a63c1fa9844914c058b1d3dc107e"
+ }
+}

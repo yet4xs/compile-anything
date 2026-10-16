@@ -193,7 +193,7 @@ def main():
 
     results = []
     for t in gold["tasks"]:
-        if not t.get("strict_v2_1", t.get("strict_v1", t.get("strict_v2"))):
+        if not t.get("strict_v2_2", t.get("strict_v2_1", t.get("strict_v1", t.get("strict_v2")))):
             continue
         tid, dom, sid = t["task_id"], t["domain"], t.get("source_task_id") or t["task_id"].rsplit("_", 1)[1]
         schemas = schemas_by_dom[dom]
@@ -260,12 +260,17 @@ def main():
                        initialization_actions=(
                            init.initialization_actions if init else None),
                        message_history=[], strict=True)
+        # reference replay from the GOLD PROGRAM's own literal values —
+        # for prefix-expanded tasks the official raw actions lack the
+        # lookup prefix, so comparing against them would always fail
         ref = []
-        for act in (task.evaluation_criteria.actions or []):
-            e = {"tool": act.name, "args": dict(act.arguments or {}),
+        for node in t["program"]:
+            args_d = {p2: a2.get("value")
+                      for p2, a2 in node["arguments"].items()}
+            e = {"tool": node["tool"], "args": args_d,
                  "ok": True, "out": None, "hash": None}
             try:
-                e["out"] = env2.tools.tools[act.name](**(act.arguments or {}))
+                e["out"] = env2.tools.tools[node["tool"]](**args_d)
             except Exception:
                 e["ok"] = False
             e["hash"] = env2.tools.get_db_hash()
@@ -325,7 +330,7 @@ def main():
     # ---- group-aware split ----
     groups = {}
     for t in gold["tasks"]:
-        if not t.get("strict_v2_1", t.get("strict_v1", t.get("strict_v2"))):
+        if not t.get("strict_v2_2", t.get("strict_v2_1", t.get("strict_v1", t.get("strict_v2")))):
             continue
         r = next((x for x in results if x["task_id"] == t["task_id"]), None)
         template = tuple(n["tool"] for n in t["program"])

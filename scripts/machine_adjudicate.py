@@ -57,7 +57,14 @@ def adjudicate(it):
                 return (f"ACCEPT_{i+1}",
                         f"R2 profile-copy: user's own address on file; "
                         f"order addresses are shipping echoes of it")
-        return "NONE", "R4 address param without a profile candidate"
+        # profile absent: copy-from-order semantics (gold sets an order's
+        # address equal to another order's address)
+        for i, c in enumerate(cands):
+            if c["path"].startswith("address."):
+                return (f"ACCEPT_{i+1}",
+                        f"R2 order-address-copy: shipping address of the "
+                        f"source order (profile candidate absent)")
+        return "NONE", "R4 address param without any address candidate"
 
     tools = DEDICATED.get(param, set())
     if tools:

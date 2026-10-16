@@ -1,0 +1,5981 @@
+{
+ "summary": {
+  "n_candidates": 43,
+  "compiled": 42,
+  "validated": 42,
+  "executed": 42,
+  "admitted_v2": [
+   "tau3_airline_3",
+   "tau3_airline_41",
+   "tau3_airline_42",
+   "tau3_retail_0",
+   "tau3_retail_1",
+   "tau3_retail_100",
+   "tau3_retail_107",
+   "tau3_retail_11",
+   "tau3_retail_13",
+   "tau3_retail_14",
+   "tau3_retail_15",
+   "tau3_retail_17",
+   "tau3_retail_18",
+   "tau3_retail_19",
+   "tau3_retail_20",
+   "tau3_retail_25",
+   "tau3_retail_27",
+   "tau3_retail_33",
+   "tau3_retail_34",
+   "tau3_retail_40",
+   "tau3_retail_41",
+   "tau3_retail_42",
+   "tau3_retail_43",
+   "tau3_retail_48",
+   "tau3_retail_5",
+   "tau3_retail_52",
+   "tau3_retail_53",
+   "tau3_retail_56",
+   "tau3_retail_58",
+   "tau3_retail_6",
+   "tau3_retail_62",
+   "tau3_retail_65",
+   "tau3_retail_7",
+   "tau3_retail_71",
+   "tau3_retail_72",
+   "tau3_retail_8",
+   "tau3_retail_9",
+   "tau3_retail_91",
+   "tau3_retail_92",
+   "tau3_retail_95",
+   "tau3_retail_98",
+   "tau3_retail_99"
+  ],
+  "make_tool_call_equiv_all": false,
+  "groups": {
+   "('airline', 'anya_garcia_5901', ('get_reservation_details', 'get_user_details'))": [
+    "tau3_airline_3"
+   ],
+   "('airline', 'amelia_davis_8890', ('get_user_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details'))": [
+    "tau3_airline_41"
+   ],
+   "('airline', 'sophia_martin_4574', ('get_user_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'get_reservation_details', 'cancel_reservation', 'cancel_reservation'))": [
+    "tau3_airline_42"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+    "tau3_retail_0",
+    "tau3_retail_1"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'modify_pending_order_items', 'return_delivered_order_items'))": [
+    "tau3_retail_100"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items'))": [
+    "tau3_retail_107"
+   ],
+   "('retail', 'mia_garcia_4516', ('find_user_id_by_email', 'get_user_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items', 'return_delivered_order_items'))": [
+    "tau3_retail_11",
+    "tau3_retail_14"
+   ],
+   "('retail', 'mia_garcia_4516', ('find_user_id_by_email', 'get_user_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items'))": [
+    "tau3_retail_13"
+   ],
+   "('retail', 'fatima_johnson_7581', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_product_details', 'modify_pending_order_items'))": [
+    "tau3_retail_15"
+   ],
+   "('retail', 'fatima_johnson_7581', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'modify_pending_order_address'))": [
+    "tau3_retail_17"
+   ],
+   "('retail', 'mei_davis_8935', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+    "tau3_retail_18"
+   ],
+   "('retail', 'mei_davis_8935', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'return_delivered_order_items'))": [
+    "tau3_retail_19"
+   ],
+   "('retail', 'ethan_garcia_1261', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'get_product_details', 'get_product_details', 'modify_pending_order_items', 'get_order_details'))": [
+    "tau3_retail_20"
+   ],
+   "('retail', 'isabella_johansson_2152', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_order_details'))": [
+    "tau3_retail_25"
+   ],
+   "('retail', 'isabella_johansson_2152', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+    "tau3_retail_27"
+   ],
+   "('retail', 'noah_patel_6952', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'modify_user_address'))": [
+    "tau3_retail_33"
+   ],
+   "('retail', 'noah_patel_6952', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'modify_pending_order_address'))": [
+    "tau3_retail_34"
+   ],
+   "('retail', 'isabella_lopez_6490', ('find_user_id_by_email', 'get_user_details', 'get_order_details', 'modify_pending_order_payment'))": [
+    "tau3_retail_40"
+   ],
+   "('retail', 'mei_patel_7272', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'modify_pending_order_address', 'modify_pending_order_address', 'modify_user_address', 'get_product_details', 'get_order_details', 'modify_pending_order_items'))": [
+    "tau3_retail_41",
+    "tau3_retail_42"
+   ],
+   "('retail', 'lucas_santos_6600', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'modify_user_address'))": [
+    "tau3_retail_43"
+   ],
+   "('retail', 'daiki_johnson_9523', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items'))": [
+    "tau3_retail_48"
+   ],
+   "('retail', 'mei_kovacs_8020', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'return_delivered_order_items'))": [
+    "tau3_retail_5"
+   ],
+   "('retail', 'sofia_li_9219', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+    "tau3_retail_52"
+   ],
+   "('retail', 'sofia_li_9219', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items'))": [
+    "tau3_retail_53"
+   ],
+   "('retail', 'ivan_hernandez_6923', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_product_details', 'modify_pending_order_items'))": [
+    "tau3_retail_56"
+   ],
+   "('retail', 'ivan_hernandez_6923', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+    "tau3_retail_58"
+   ],
+   "('retail', 'mei_kovacs_8020', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items'))": [
+    "tau3_retail_6",
+    "tau3_retail_7",
+    "tau3_retail_8",
+    "tau3_retail_9"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'find_user_id_by_name_zip', 'get_order_details', 'get_product_details', 'modify_pending_order_items'))": [
+    "tau3_retail_60"
+   ],
+   "('retail', 'chen_johnson_4204', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details'))": [
+    "tau3_retail_62"
+   ],
+   "('retail', 'james_kovacs_9247', ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details'))": [
+    "tau3_retail_65"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_product_details', 'modify_pending_order_address', 'modify_pending_order_items'))": [
+    "tau3_retail_71",
+    "tau3_retail_72"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'return_delivered_order_items', 'exchange_delivered_order_items'))": [
+    "tau3_retail_91"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'return_delivered_order_items', 'return_delivered_order_items'))": [
+    "tau3_retail_92"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items'))": [
+    "tau3_retail_95"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items', 'cancel_pending_order'))": [
+    "tau3_retail_98"
+   ],
+   "('retail', None, ('find_user_id_by_name_zip', 'get_user_details', 'get_order_details', 'get_order_details', 'get_product_details', 'get_product_details', 'get_product_details', 'exchange_delivered_order_items', 'exchange_delivered_order_items'))": [
+    "tau3_retail_99"
+   ]
+  },
+  "literal_risk_total": 52
+ },
+ "tasks": [
+  {
+   "task_id": "tau3_airline_3",
+   "domain": "airline",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 0
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 2
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_41",
+   "domain": "airline",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 0
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 8
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_airline_42",
+   "domain": "airline",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 0
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 10
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": false,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "124e39a664b56402bcd09cb8a6a9cece6acb8462337c969799d5658e3250f263"
+    },
+    {
+     "ssa": "%p8",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b639c432f8e71934af09e96cdec12c1d768daef8258450a25d7aed63ad8e1621"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b639c432f8e71934af09e96cdec12c1d768daef8258450a25d7aed63ad8e1621"
+    },
+    {
+     "ssa": "%p9",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "768a1bf6bcedc298cdf5f7ce0d7956a12bfd383adcdc6531e8ed1ebfc605374a"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_0",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 0
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "19122"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst5",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "a109be174767fde0ebb50fe3be37cdb2f1ce017fefd7bd29ea3e4d38bd3ac25a"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_1",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 0
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "19122"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst4",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst5",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "eab1dde2ca84a093a334a25db9258213e882d849bb487a966d69c056a67c2846"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_100",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 8
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "85049"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst10",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "195edf13e33b3b88416396b277362f0ff3d0a47e15563c9b94fb5b1f5f44ac36"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "195edf13e33b3b88416396b277362f0ff3d0a47e15563c9b94fb5b1f5f44ac36"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "195edf13e33b3b88416396b277362f0ff3d0a47e15563c9b94fb5b1f5f44ac36"
+    },
+    {
+     "ssa": "%lst13",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "195edf13e33b3b88416396b277362f0ff3d0a47e15563c9b94fb5b1f5f44ac36"
+    },
+    {
+     "ssa": "%ext13",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "195edf13e33b3b88416396b277362f0ff3d0a47e15563c9b94fb5b1f5f44ac36"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "1af6e2cc79b3269e48afc34defd97506284156cbfc07926950dac9200855849c"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_107",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 8
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "last_name",
+      "value": "Ito"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "75284"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "4aaf07950708e135f28f0cea24f0f03fc31e14cc9ef4389c2e3005c14cd47321"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "4aaf07950708e135f28f0cea24f0f03fc31e14cc9ef4389c2e3005c14cd47321"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "4aaf07950708e135f28f0cea24f0f03fc31e14cc9ef4389c2e3005c14cd47321"
+    },
+    {
+     "ssa": "%lst11",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "4aaf07950708e135f28f0cea24f0f03fc31e14cc9ef4389c2e3005c14cd47321"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "4aaf07950708e135f28f0cea24f0f03fc31e14cc9ef4389c2e3005c14cd47321"
+    },
+    {
+     "ssa": "%lst12",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "4aaf07950708e135f28f0cea24f0f03fc31e14cc9ef4389c2e3005c14cd47321"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "8111ebca39106dc47090d13df4491130add9e194d7d71697cf909a9a0be50040"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_11",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "84943061237258722a54ff9d43b1fb754e86fe3b56305f64b951111a2fe6b52e"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "84943061237258722a54ff9d43b1fb754e86fe3b56305f64b951111a2fe6b52e"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "84943061237258722a54ff9d43b1fb754e86fe3b56305f64b951111a2fe6b52e"
+    },
+    {
+     "ssa": "%lst11",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "84943061237258722a54ff9d43b1fb754e86fe3b56305f64b951111a2fe6b52e"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "84943061237258722a54ff9d43b1fb754e86fe3b56305f64b951111a2fe6b52e"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "05695f333e6ae8961f827b95bd6aeec5b1d417c315d83c627799632dff79792b"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_13",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "21462ba8f4c96b1917313f5ffb284dbe8a358527671a9e87abb1db4384e5bed4"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_14",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst5",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "d5794469f6fec02f8fdb4cfa480a87df5862def68b7d82c213e242460e9a3ddd"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "d5794469f6fec02f8fdb4cfa480a87df5862def68b7d82c213e242460e9a3ddd"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "d5794469f6fec02f8fdb4cfa480a87df5862def68b7d82c213e242460e9a3ddd"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "d5794469f6fec02f8fdb4cfa480a87df5862def68b7d82c213e242460e9a3ddd"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "d5794469f6fec02f8fdb4cfa480a87df5862def68b7d82c213e242460e9a3ddd"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "6351938a2a69905bed11ed932017971167d30590cc4f506c2ce3d16a5fcfd8b0"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_15",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 7
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78712"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "fe6b690f4810cc007afcc2e7047c8a116f8bde45d222db53d981b4ffb8c83ef5"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_17",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78712"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "582f5d9c8242800c8bd77208017d9074c34e8b69b8e0cbfc2cb464dd5f604f98"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_18",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "80217"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst5",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "ae5647e967420cfac562d751d0be73b9a2401247f5a44efb5818b59e77946ff9"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_19",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 7
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "80217"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "ef45b3de7b49e6bcaadd92c36aca03321e35c7ce99276c09fbf508febe36cd17"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_20",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 10
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "80280"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst12",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext13",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext14",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext15",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst16",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext16",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p8",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "d43fdfd87998ef6d749f84282c5211231d0877a98ae6ade7864ab2790ed0120f"
+    },
+    {
+     "ssa": "%ext17",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "d43fdfd87998ef6d749f84282c5211231d0877a98ae6ade7864ab2790ed0120f"
+    },
+    {
+     "ssa": "%p9",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "d43fdfd87998ef6d749f84282c5211231d0877a98ae6ade7864ab2790ed0120f"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_25",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "32286"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_27",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "32286"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "08a9f35dd8ee39c46d1538800cc251a33131272e6a540842f110fcb5b23cd8a5"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_33",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "10108"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "5fe996d49aefd73c215343df13c30e1d43a1b28fbba0d813e61aa9495f40e7bc"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_34",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "10108"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "bac92290376c0e4ce24ecbcd5e8e95706672a39fc10c5692eb17592b25c22e5b"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_40",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 4
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": []
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "09f9be39b93d78b44f54e7e3a0806a6227c420fb4a2e5e4b97861c7a8ff5a24d"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_41",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 10
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "76165"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "0fb30e95639cdd2337698e6c5d2bc23544fd9054d516d3bc28442ff76ccb72ed"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "0fb30e95639cdd2337698e6c5d2bc23544fd9054d516d3bc28442ff76ccb72ed"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "0fb30e95639cdd2337698e6c5d2bc23544fd9054d516d3bc28442ff76ccb72ed"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "e2fe805f955a157481bf588f9a8f558890ba0943696e8260887c60d9eaa2e459"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%p8",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%lst13",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext13",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%lst14",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext14",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%p9",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "c3bd28c101572f04483eac972adc7fd520cef4bba4959848120690ed0c762700"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_42",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 10
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "76165"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "0fb30e95639cdd2337698e6c5d2bc23544fd9054d516d3bc28442ff76ccb72ed"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "0fb30e95639cdd2337698e6c5d2bc23544fd9054d516d3bc28442ff76ccb72ed"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "0fb30e95639cdd2337698e6c5d2bc23544fd9054d516d3bc28442ff76ccb72ed"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "e2fe805f955a157481bf588f9a8f558890ba0943696e8260887c60d9eaa2e459"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%p8",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%lst13",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext13",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%lst14",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%ext14",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "48286128e93f1100dc37a5dc06f7e3d652257d9c3d9944e9a64c13800fff7df3"
+    },
+    {
+     "ssa": "%p9",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "c3bd28c101572f04483eac972adc7fd520cef4bba4959848120690ed0c762700"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_43",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "80239"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "a533bdac3eb69d9607ea2eeb31473ea5aab66c546831c46d6b2f0b912f569a09"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_48",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "80273"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "f97ba40e5b916df2f3c32c5522d0bc38f8df0b87e263252da36197726af23028"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_5",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28236"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst5",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "9f1e45fc84a6995edead46216e4f7b07c27c4511524aedb38dc898ab9c52e866"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_52",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "last_name",
+      "value": "Li"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78260"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst5",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "0a993bd7f7029816e26055cbef876c8c0d62570e4c8ad16389962fff00b22dba"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_53",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "last_name",
+      "value": "Li"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78260"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "75f2e3a64f604bca023262edbc448acfaafd5f1988a5edb9b9c7a5f35b59ed33"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_56",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 7
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "92133"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "aa54036bba8dcaffc217e37461b7f0bde695b81db351900d6be7e9e16677fcf9"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_58",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "92133"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst9",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "381a3546df6ca590a8702da1b50479e059a5830e7e405b951e133d7ea42de545"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_6",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28236"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "2053905d31cc52d9e2833383690e2a1853ea66cc0074b0e306699ad516950da7"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_60",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": false,
+     "errors": [
+      "validator: [Issue(code='TYPE_MISMATCH', severity='error', msg='param_ref new_item_ids=%ext8 type Str incompatible with modify_pending_order_items input_schema (List[Any])', node='%p7')]"
+     ]
+    },
+    "validate": null,
+    "execute": null,
+    "step_audit": null,
+    "make_tool_call_equiv": null,
+    "literal_risk": []
+   }
+  },
+  {
+   "task_id": "tau3_retail_62",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 5
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "77004"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_65",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 3
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "95190"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_7",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28236"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "4759f292bd7623e928c516a8c5297bb10e9a4751f5b59011b4694f77a42624eb"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_71",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28243"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%lst11",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%lst12",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "c14be7c97f71be56b7f5bbb1bf5e1791c8f1b1f5ea9fb724eb52df49e5c02e8a"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_72",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28243"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%lst11",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%lst12",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "5cf258776f30f4eb9a7fe97000be4ab4a91665d9f22caff69d1dea3675f5aa74"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "c14be7c97f71be56b7f5bbb1bf5e1791c8f1b1f5ea9fb724eb52df49e5c02e8a"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_8",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28236"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b9f3a1f4d12b2c566be5d4095911feeeb042d85824351897dcba3faf9f5920e4"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_9",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "28236"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "c0bf2b8ebfe464fbdd844b2a8b92216354b0e23a886ec8b443978d41a4631851"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_91",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 7
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78705"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%lst11",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%lst12",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "513010e85e47d540e3f67f010bcd1aba3007afccc88835116b073867442c90a9"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_92",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 6
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Mei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78705"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%lst10",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "ebb5d05a7947c6224b4ffd5996a77cdbc4c3d89fdfa324f099e8403585586ecb"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "034b3692aa700cbd3e064bf6fbce2a3c1fdaf42ff36c5ffd51b5fcb557e0b5e6"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_95",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 7
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "first_name",
+      "value": "Lei"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "32255"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst6",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst7",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b43bfc63042a16597cf490064e342c88fa03148aefde387a08eeb26372342c1a"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b43bfc63042a16597cf490064e342c88fa03148aefde387a08eeb26372342c1a"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b43bfc63042a16597cf490064e342c88fa03148aefde387a08eeb26372342c1a"
+    },
+    {
+     "ssa": "%lst10",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b43bfc63042a16597cf490064e342c88fa03148aefde387a08eeb26372342c1a"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b43bfc63042a16597cf490064e342c88fa03148aefde387a08eeb26372342c1a"
+    },
+    {
+     "ssa": "%lst11",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b43bfc63042a16597cf490064e342c88fa03148aefde387a08eeb26372342c1a"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "a0d1b0eab2e1e283dbf84607d02b637eb6bc61fc1cd4c8d3bed3d3377ecbba6b"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_98",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 11
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "last_name",
+      "value": "Li"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78260"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst9",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst10",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p8",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%ext13",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%lst14",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%ext14",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%ext15",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%lst16",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b2db6d354cc96455fa717e8b7d858b65141a68917ebb1c1f8958e788a9a7a48a"
+    },
+    {
+     "ssa": "%p9",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "485c216e8a0656010e10a39c524f99777a4b79bea66e0bd6d60441d39bef54f5"
+    },
+    {
+     "ssa": "%ext16",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "485c216e8a0656010e10a39c524f99777a4b79bea66e0bd6d60441d39bef54f5"
+    },
+    {
+     "ssa": "%p10",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "a38fddcc78ebe2ba2a41b1cffaff27fd678aa60e52c505a0cd0a43e3963ea641"
+    }
+   ]
+  },
+  {
+   "task_id": "tau3_retail_99",
+   "domain": "retail",
+   "stages": {
+    "compile": {
+     "ok": true
+    },
+    "validate": {
+     "ok": true,
+     "errors": [],
+     "dynamic_boundary_warnings": 1
+    },
+    "execute": {
+     "ok": true,
+     "n_calls": 9
+    },
+    "step_audit": {
+     "args_and_tools_match": true,
+     "final_db_hash_match": true
+    },
+    "make_tool_call_equiv": true,
+    "literal_risk": [
+     {
+      "step": 0,
+      "param": "last_name",
+      "value": "Li"
+     },
+     {
+      "step": 0,
+      "param": "zip",
+      "value": "78260"
+     }
+    ]
+   },
+   "admitted_v2": true,
+   "trace": [
+    {
+     "ssa": "%p0",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext0",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p1",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext1",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p2",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext2",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p3",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext3",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p4",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext4",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p5",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext5",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p6",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext6",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext7",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst8",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext8",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%lst9",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%ext9",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "b25c9cb211f5efcaee5dd646054a73c4a9f43f4f5acc32c10713cd9f9ac20e9c"
+    },
+    {
+     "ssa": "%p7",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%ext10",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%ext11",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%ext12",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%lst13",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%ext13",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%ext14",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%lst15",
+     "op": "MAKE_LIST",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%ext15",
+     "op": "EXTRACT_FIELD",
+     "ok": true,
+     "hash": "891f65224c24a7c55dca97bae1db07368591c2a3cfad7f461c121d1c84a18c40"
+    },
+    {
+     "ssa": "%p8",
+     "op": "EXEC_ACTION",
+     "ok": true,
+     "hash": "0d4c506b6ae15e332aee2ce381dadcbc63f3962631028ad07a466953b458bf6b"
+    }
+   ]
+  }
+ ]
+}
