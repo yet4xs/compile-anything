@@ -96,11 +96,34 @@ def skeleton_from_reconstructed(prog):
             elif c == "DUAL_SOURCE":
                 # canonical side = the runtime ref (acceptable_sources
                 # keeps the literal side for equivalence-class scoring)
-                cand = (a.get("candidates") or [{}])[0]
+                cand = (a.get("candidates") or a.get("acceptable")
+                        or [{}])[0]
                 args[param] = {"kind": "runtime_ref",
                                "producer": f"p{cand.get('producer_step', 0)}",
                                "field": cand.get("path", "")}
                 depends.append(f"p{cand.get('producer_step', 0)}")
+            elif c == "SAME_ENTITY_ECHO":
+                # all candidates are the same entity. Lists compile as
+                # per-element multi-refs (MAKE_LIST); scalars bind directly.
+                if isinstance(a.get("value"), (list, tuple)) and                         a.get("elements"):
+                    elems = []
+                    for e in a["elements"]:
+                        ec = (e.get("candidates")
+                              or e.get("acceptable") or [{}])[0]
+                        elems.append({"producer":
+                                      f"p{ec.get('producer_step', 0)}",
+                                      "field": ec.get("path", "")})
+                    args[param] = {"kind": "runtime_ref_multi",
+                                   "elements": elems}
+                    depends.extend(e["producer"] for e in elems)
+                else:
+                    cand = (a.get("candidates") or a.get("acceptable")
+                            or [{}])[0]
+                    args[param] = {"kind": "runtime_ref",
+                                   "producer":
+                                       f"p{cand.get('producer_step', 0)}",
+                                   "field": cand.get("path", "")}
+                    depends.append(f"p{cand.get('producer_step', 0)}")
             elif c == "runtime_ref_multi":
                 args[param] = {"kind": "runtime_ref_multi",
                                "elements": [
@@ -170,7 +193,7 @@ def main():
 
     results = []
     for t in gold["tasks"]:
-        if not t.get("strict_v1", t.get("strict_v2")):
+        if not t.get("strict_v2_1", t.get("strict_v1", t.get("strict_v2"))):
             continue
         tid, dom, sid = t["task_id"], t["domain"], t.get("source_task_id") or t["task_id"].rsplit("_", 1)[1]
         schemas = schemas_by_dom[dom]
@@ -302,7 +325,7 @@ def main():
     # ---- group-aware split ----
     groups = {}
     for t in gold["tasks"]:
-        if not t.get("strict_v1", t.get("strict_v2")):
+        if not t.get("strict_v2_1", t.get("strict_v1", t.get("strict_v2"))):
             continue
         r = next((x for x in results if x["task_id"] == t["task_id"]), None)
         template = tuple(n["tool"] for n in t["program"])
