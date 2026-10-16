@@ -1,0 +1,73 @@
+{
+ "gates": {
+  "owner_rotation_statement": false,
+  "gold_manifest_present": true,
+  "v3_manifest_present": true,
+  "tau3_md5_match": true
+ },
+ "manifest_sha256_pins": {
+  "gold_v2_1_freeze": "b0e6bfebe10867e9ab221f4b7f0966b52830eb716f7a0e4b7176e9f6f755ea29",
+  "training_v3_manifest": "6bb5bb11d8253e4b9e2e66c889feb61379e7724e5a9bc0a3f72d15b71bbbf394"
+ },
+ "token_budget": {
+  "available": true,
+  "v3_train": {
+   "M0-T": {
+    "n": 60,
+    "min": 327,
+    "median": 344,
+    "max": 347
+   },
+   "M0-J": {
+    "n": 60,
+    "min": 857,
+    "median": 917,
+    "max": 920
+   },
+   "M1": {
+    "n": 60,
+    "min": 352,
+    "median": 387,
+    "max": 390
+   }
+  },
+  "gold_test": {
+   "M0-T": {
+    "n": 8,
+    "min": 172,
+    "median": 383,
+    "max": 432
+   },
+   "M0-J": {
+    "n": 8,
+    "min": 442,
+    "median": 1057,
+    "max": 1198
+   },
+   "M1": {
+    "n": 8,
+    "min": 193,
+    "median": 467,
+    "max": 535
+   }
+  },
+  "recommended_max_new_tokens": {
+   "M0-T": 864,
+   "M0-J": 2396,
+   "M1": 1070
+  }
+ },
+ "run_spec": {
+  "seeds": [
+   44,
+   45,
+   46
+  ],
+  "ci": "Clopper-Pearson (src/eval/stats_ci.py)",
+  "paired_test": "exact McNemar",
+  "raw_policy": "full untruncated raw + raw_preview + raw_log_truncated + hit_generation_cap (9B-2.2 contract)",
+  "cap_hit_rule": "report per arm x protocol; >5% invalidates the comparison",
+  "optional_api_baseline": "owner approval + budget; keys from env vars only; frozen test once"
+ },
+ "verdict": "BLOCKED"
+}
