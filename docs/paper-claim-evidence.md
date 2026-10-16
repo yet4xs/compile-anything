@@ -35,3 +35,16 @@ EXEC_ACTION grounding is the dominant observed cross-domain failure
 
 
 > **Phase 6A.5 修订**：第 5 行 Schema 条件化效应更名为 capability-marker conditioning —— xLAM 19,700 条的 capability 块为常量 `["EXEC_ACTION"]`（字符串迭代 bug）。数字不变；禁止把 E5C-S−E1-A 差值归因于 capability semantics。详见 docs/phase6/phase5c-capability-audit.md 与 paper_snapshot_v2。
+
+## Phase 9B-2.5 更新(2026-10-16)
+
+- **输入源修复**: compile_input_v2(全披露单轮协议);airline 进入
+  strict 池的系统原因已消除(勘误见 phase9b-2.5-review.md)。
+- **Gold v2.1(machine-adjudicated)**: strict 33/117,生产 E2E 33/33;
+  条件 A test 12 任务/11 组(诊断级,差 3 到正式线);条件 B test 3。
+  声明力:机器裁决,无人工独立性声明;annotator_A/B 留空可复核。
+- **8D-2B 支柱收窄**: M0-J 失败机理改为"不终止/过度生成后被截断";
+  "M1 100%" 限定为未见拓扑、已见工具与字段;嵌套路径/列表引用在
+  训练语料中为 0 —— GPU 重跑前必须先做训练数据 v3。
+- **定位收窄**: "首个运行时数据流 benchmark" 撤回,改为"验证深度与
+  类型系统差异"(NESTFUL/NesTools/ToolHop 对比表见 survey 勘误)。

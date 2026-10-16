@@ -98,3 +98,23 @@ M1 的 Skeleton JSON 只需要:
 ### Paper-Ready Statement
 
 > Direct IR generation fails for format-dependent reasons: text generation fails on DSL syntax (48% parse failure) while JSON AST generation fails on structural verbosity (83% malformed JSON). In both cases, the model cannot express runtime dataflow bindings (0% binding exact). Semantic skeleton generation avoids both failure modes by operating at a higher abstraction level where the model only specifies intent, and the compiler deterministically constructs the runtime dataflow.
+
+
+## 勘误(Phase 9B-2.5 T7,2026-10-16)
+
+M0-J 的 218 条解析失败中,175 条撞上 700-token 生成上限(oracle 84 +
+distractor 91),其中 166 条在截断前生成的节点数**已超过 gold 目标**
+(见 results/phase9/three_arm_generation_audit.json,数字与独立复核
+一致)。失败机理修正:
+
+- ~~"JSON 冗长导致语法错误"~~ → **"不终止/过度生成,被截断后 JSON
+  残缺"**。0% 结论不变,但归因改变:模型不停止,而非格式本身不可写。
+- **范围声明**: test 的 5 个工具 5/5 出现在 train(只 held-out 了
+  拓扑 fan_out_in / repeated_tool);test 的 runtime_ref 字段仅
+  user_id 与 score;全 v2 语料嵌套路径 0、列表多引用 0。"M1 100%"
+  限定为**未见拓扑、已见工具与字段**,偏离 §2.1 的跨域设定。
+- **模板记忆信号**: 训练目标携带不可由输入推出的 task_id
+  (instruction 中 0/134 出现);预测中 M0-T 泄漏训练集 ID
+  (oracle 22/132、distractor 12/132,按本仓库口径,与独立复核的
+  132/132 计数口径差异已列于审计 JSON)、M1 134/264。v3 训练目标
+  必须删除一切不可推出的标识符。

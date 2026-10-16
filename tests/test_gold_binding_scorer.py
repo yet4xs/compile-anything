@@ -8,7 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from src.eval.gold_binding_scorer import (
-    score_prediction, calls_from_skeleton_nodes,
+    score_prediction, score_prediction_v3, calls_from_skeleton_nodes,
     bindings_from_skeleton_nodes, gold_bindings_from_program)
 
 # Reconstructed-gold-style program: find_user -> get_order(order_id ref)
@@ -194,6 +194,86 @@ class ScorerTest(unittest.TestCase):
         self.assertEqual(r["n_bindings_exact"]
                          + r["n_bindings_root_scalar_equiv"], 1)
         self.assertFalse(r["strict_binding_exact"])
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+class V3Test(unittest.TestCase):
+    """Phase 9B-2.5 T4: equivalence-class scoring."""
+
+    def _prog(self, cls, canonical, acceptable=None, dual_value=None):
+        arg = ({"class": cls, "producer_step": canonical[0],
+                "path": canonical[1],
+                "acceptable": [{"producer_step": s, "path": p}
+                               for s, p in (acceptable or [])]}
+               if cls != "DUAL_SOURCE"
+               else {"class": cls, "value": dual_value,
+                     "candidates": [{"producer_step": canonical[0],
+                                     "path": canonical[1]}]})
+        return [
+            {"step": 0, "tool": "find", "arguments": {}},
+            {"step": 1, "tool": "get",
+             "arguments": {"uid": {"class": "runtime_ref",
+                                    "producer_step": 0, "path": ""}}},
+            {"step": 2, "tool": "use",
+             "arguments": {"x": arg}},
+        ]
+
+    def test_same_entity_alternative_in_class(self):
+        prog = self._prog("runtime_ref", (1, "orders[0].order_id"),
+                          acceptable=[(1, "orders[0].order_id"),
+                                      (1, "fulfillments[0].order_id")])
+        r = score_prediction_v3(
+            [("find", {}), ("get", {}), ("use", {})],
+            [(1, "uid", 0, ""), (2, "x", 1, "fulfillments[0].order_id")],
+            prog)
+        self.assertTrue(r["equivalence_class_exact"], r)
+        self.assertFalse(r["strict_origin_exact"])
+
+    def test_cross_entity_same_value_rejected(self):
+        prog = self._prog("runtime_ref", (1, "orders[0].order_id"),
+                          acceptable=[(1, "orders[0].order_id")])
+        r = score_prediction_v3([("find", {}), ("get", {}), ("use", {})],
+                                [(2, "x", 1, "orders[1].order_id")], prog)
+        self.assertFalse(r["equivalence_class_exact"])
+        self.assertFalse(r["strict_origin_exact"])
+
+    def test_dual_source_literal_or_ref_both_match(self):
+        prog = self._prog("DUAL_SOURCE", (1, "user_id"), dual_value="u_1")
+        # literal side
+        r1 = score_prediction_v3(
+            [("find", {}), ("get", {}), ("use", {"x": "u_1"})], [], prog)
+        self.assertTrue(r1["value_match"])
+        # ref side
+        r2 = score_prediction_v3(
+            [("find", {}), ("get", {}), ("use", {})],
+            [(1, "uid", 0, ""), (2, "x", 1, "user_id")], prog)
+        self.assertTrue(r2["value_match"], r2)
+        self.assertTrue(r2["equivalence_class_exact"], r2)
+
+    def test_multi_ref_element_slots(self):
+        prog = [
+            {"step": 0, "tool": "get",
+             "arguments": {}},
+            {"step": 1, "tool": "use",
+             "arguments": {"ids": {
+                 "class": "runtime_ref_multi",
+                 "elements": [
+                     {"producer_step": 0, "path": "items[0].id",
+                      "acceptable": [{"producer_step": 0,
+                                      "path": "items[0].id"},
+                                     {"producer_step": 0,
+                                      "path": "stock[0].id"}]},
+                     {"producer_step": 0, "path": "items[1].id"}]}}},
+        ]
+        r = score_prediction_v3(
+            [("get", {}), ("use", {})],
+            [(1, "ids", 0, "stock[0].id"), (1, "ids", 0, "items[1].id")],
+            prog)
+        self.assertTrue(r["equivalence_class_exact"], r)
+        self.assertFalse(r["strict_origin_exact"])
 
 
 if __name__ == "__main__":

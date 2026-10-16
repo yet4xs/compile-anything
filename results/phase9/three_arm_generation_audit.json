@@ -1,0 +1,34 @@
+{
+ "m0j": {
+  "n_details": 264,
+  "parse_failures": 218,
+  "cap_hits_total": 175,
+  "cap_hits_by_protocol": {
+   "oracle": 84,
+   "distractor": 91
+  },
+  "cap_hit_overgenerated_vs_gold": 166
+ },
+ "target_hygiene": {
+  "n_train": 134,
+  "instruction_contains_task_id": 0,
+  "m1_targets_with_task_id": 134
+ },
+ "prediction_leakage": {
+  "m0t_by_protocol_leak": {
+   "oracle|leak=True": 22,
+   "oracle|leak=False": 110,
+   "distractor|leak=False": 120,
+   "distractor|leak=True": 12
+  },
+  "m1_leaked": 134,
+  "m1_total": 264
+ },
+ "gold_m0j_token_length": {
+  "available": true,
+  "n": 44,
+  "min": 216,
+  "max": 352,
+  "median": 351
+ }
+}

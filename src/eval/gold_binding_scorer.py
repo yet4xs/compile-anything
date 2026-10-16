@@ -267,3 +267,155 @@ def calls_from_skeleton_nodes(nodes):
              {k: v for k, v in (n.get("arguments") or {}).items()
               if not (isinstance(v, dict) and v.get("kind") == "runtime_ref")})
             for n in nodes]
+
+
+# ── v3: equivalence-class scoring (Phase 9B-2.5 T4) ─────────────────────
+
+def gold_calls_v3(program):
+    """[(tool, fixed_literals, dual_params)] — LITERAL params are fixed;
+    DUAL_SOURCE params may be satisfied by literal OR by a binding."""
+    calls = []
+    for node in program:
+        fixed, dual = {}, {}
+        for param, a in node["arguments"].items():
+            if a["class"] == "LITERAL":
+                fixed[param] = a["value"]
+            elif a["class"] == "DUAL_SOURCE":
+                dual[param] = a.get("value")
+        calls.append((node["tool"], fixed, dual))
+    return calls
+
+
+def gold_bindings_v3(program):
+    """[(consumer_step, param, canonical_step, canonical_path,
+    acceptable_set, optional)] — acceptable_set always includes the
+    canonical. DUAL_SOURCE params emit an OPTIONAL ref slot: satisfied by
+    the literal side at call matching, or by an in-class binding."""
+    out = []
+    for node in program:
+        for param, a in node["arguments"].items():
+            cls = a["class"]
+            if cls == "DUAL_SOURCE":
+                cands = a.get("candidates") or []
+                if cands:
+                    c = cands[0]
+                    out.append((node["step"], param,
+                                c.get("producer_step"), c.get("path", ""),
+                                {(x.get("producer_step"), x.get("path", ""))
+                                 for x in cands}, True))
+                continue
+            if cls == "runtime_ref":
+                acc = {(a.get("producer_step"), a.get("path", ""))}
+                for s in a.get("acceptable") or []:
+                    acc.add((s.get("producer_step"), s.get("path", "")))
+                out.append((node["step"], param, a.get("producer_step"),
+                            a.get("path", ""), acc, False))
+            elif cls == "runtime_ref_multi":
+                for i, e in enumerate(a.get("elements", [])):
+                    acc = {(e.get("producer_step"), e.get("path", ""))}
+                    for s in e.get("acceptable") or []:
+                        acc.add((s.get("producer_step"), s.get("path", "")))
+                    out.append((node["step"], f"{param}[{i}]",
+                                e.get("producer_step"), e.get("path", ""),
+                                acc, False))
+    return out
+
+
+def _calls_match_v3(pcall, gcall):
+    """tool equal; fixed literals equal; dual params satisfied by literal
+    of the right value (extra pred literal) or by a binding (absent)."""
+    pt, plits = pcall
+    gt, gfixed, gdual = gcall
+    if pt != gt:
+        return False
+    for k, v in gfixed.items():
+        if plits.get(k) != v and k not in plits or plits.get(k) != v:
+            if k in plits and plits[k] != v:
+                return False
+            if k not in plits:
+                return False   # bound params were popped from plits
+    for k, v in gdual.items():
+        if k in plits and plits[k] != v:
+            return False       # wrong literal value
+    return True
+
+
+def score_prediction_v3(pred_calls, pred_bindings, gold_program,
+                        end_state=None):
+    """Equivalence-class scoring. Metrics:
+      value_match             call bijection complete (dual params may be
+                              literal or bound)
+      strict_origin_exact     every binding equals the canonical source
+      equivalence_class_exact every binding inside acceptable_sources
+      one-to-one slot consumption; end_state reported separately.
+    """
+    gcalls = gold_calls_v3(gold_program)
+    gbindings = gold_bindings_v3(gold_program)
+    unsourced = sum(1 for node in gold_program
+                    for a in node["arguments"].values()
+                    if a["class"] not in ("LITERAL", "DUAL_SOURCE",
+                                          "runtime_ref",
+                                          "runtime_ref_multi",
+                                          "SAME_ENTITY_ECHO"))
+
+    # greedy-then-backtrack bijection over tool-equal candidate pairs
+    from itertools import permutations
+    cand_map = {}
+    for i, pc in enumerate(pred_calls):
+        for j, gc in enumerate(gcalls):
+            if _calls_match_v3(pc, gc):
+                cand_map.setdefault(i, []).append(j)
+    mapping = {}
+    used = set()
+
+    def bt(i):
+        if i == len(pred_calls):
+            return True
+        for j in cand_map.get(i, []):
+            if j in used:
+                continue
+            mapping[i] = j
+            used.add(j)
+            if bt(i + 1):
+                return True
+            del mapping[i]
+            used.discard(j)
+        return False
+
+    complete = bt(0) and len(mapping) == len(gcalls)
+
+    # binding scoring with slot consumption
+    used_slots = set()
+    n_exact = n_equiv = 0
+    for (cidx, param, pidx, ppath) in pred_bindings:
+        g = mapping.get(cidx)
+        pg = mapping.get(pidx)
+        if g is None or pg is None:
+            continue
+        for bi, (gc, prm, cstep, cpath, acc, _opt) in enumerate(gbindings):
+            if bi in used_slots or gc != g:
+                continue
+            if prm != param and not prm.startswith(param + "["):
+                continue
+            if (pg, ppath) == (cstep, cpath):
+                used_slots.add(bi); n_exact += 1; break
+            if (pg, ppath) in acc:
+                used_slots.add(bi); n_equiv += 1; break
+    required = [b for b in gbindings if not b[5]]
+    n_slots = len(required)
+    value_match = complete and len(pred_calls) == len(gcalls)
+    return {
+        "n_gold_calls": len(gcalls),
+        "n_pred_calls": len(pred_calls),
+        "value_match": value_match,
+        "n_binding_slots": n_slots,
+        "n_bindings_canonical": n_exact,
+        "n_bindings_in_class": n_equiv,
+        "strict_origin_exact": (value_match and n_exact >= n_slots
+                                and unsourced == 0),
+        "equivalence_class_exact": (value_match
+                                    and n_exact + n_equiv >= n_slots
+                                    and unsourced == 0),
+        "gold_unsourced_params": unsourced,
+        "end_state_success": end_state,
+    }
