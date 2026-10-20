@@ -1,0 +1,29 @@
+{
+ "n_generated": 330,
+ "n_train": 280,
+ "n_dev": 50,
+ "templates": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "n_templates": 8,
+ "distinct_users": 254,
+ "isolation": {
+  "domains": [
+   "retail"
+  ],
+  "test_acting_users_excluded": 11,
+  "no_task_id_in_targets": true
+ },
+ "provenance": {
+  "registry": "verified_registry_manifest",
+  "entities": "official retail db (5ade54e)"
+ },
+ "valid": "all tasks pass strict lowering + typed validation"
+}

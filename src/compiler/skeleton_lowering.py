@@ -84,6 +84,7 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
             skill_out[n.id] = "Any"
     last_mutating = None
     field_ssa: Dict[tuple, str] = {}  # (producer_id, field) → EXTRACT_FIELD SSA
+    n_lists = 0                                 # MAKE_LIST id counter
     for i, n in enumerate(sk.nodes):
         sid = f"%p{i}"
         ssa_of[n.id] = sid
@@ -132,7 +133,8 @@ def lower_skeleton(sk: PlanSkeleton, domain: str,
                                      f'field="{field_name}")')
                         field_ssa[key] = ext_id
                     ext_ids.append(field_ssa[key])
-                list_id = f"%lst{len(field_ssa)}"
+                list_id = f"%lst{n_lists}"
+                n_lists += 1
                 lines.append(f"{list_id} = MAKE_LIST(" +
                              ", ".join(ext_ids) + ")")
                 param_refs[k] = list_id
