@@ -18,17 +18,33 @@ TOFU auto-trust is disabled. Accepted keys are pinned in
 .ssh_known_fingerprints (untracked) and any later mismatch aborts.
 """
 import hashlib
+import json
 import os
 from pathlib import Path
 
 import paramiko
 
-HOST = os.environ.get("BITAHUB_HOST", "xj-member.bitahub.com")
-PORT = int(os.environ.get("BITAHUB_PORT", "42220"))
-USER = os.environ.get("BITAHUB_USER", "root")
-PW = os.environ.get("BITAHUB_PW")                     # optional (key auth otherwise)
-KEY_FILE = os.environ.get("BITAHUB_KEY_FILE")         # optional
-KNOWN_HOSTS = os.environ.get(
+# untracked local fallback so secrets never appear on command lines or in
+# the repo: scripts/.ssh_env_local  {"PW": "...", "PORT": 42238, ...}
+_LOCAL_ENV = Path(__file__).resolve().parent / ".ssh_env_local"
+
+
+def _env(name, default=None):
+    if os.environ.get(name) is not None:
+        return os.environ[name]
+    try:
+        return json.loads(_LOCAL_ENV.read_text(encoding="utf-8")).get(
+            name, default)
+    except Exception:
+        return default
+
+
+HOST = _env("BITAHUB_HOST", "xj-member.bitahub.com")
+PORT = int(_env("BITAHUB_PORT") or _env("PORT") or "42220")
+USER = _env("BITAHUB_USER", "root")
+PW = _env("BITAHUB_PW") or _env("PW")                 # optional (key auth otherwise)
+KEY_FILE = _env("BITAHUB_KEY_FILE")                   # optional
+KNOWN_HOSTS = _env(
     "BITAHUB_KNOWN_HOSTS",
     os.path.join(os.path.expanduser("~"), ".ssh", "known_hosts"))
 
@@ -61,7 +77,7 @@ class PinnedKeyPolicy(paramiko.MissingHostKeyPolicy):
     loaded from known_hosts), any later key change aborts the connection.
     """
 
-    EXPECTED = os.environ.get("BITAHUB_EXPECTED_FINGERPRINT")
+    EXPECTED = _env("BITAHUB_EXPECTED_FINGERPRINT") or _env("EXPECTED_FINGERPRINT")
 
     def missing_host_key(self, client, hostname, key):
         h = hashlib.sha256(key.asbytes()).hexdigest()

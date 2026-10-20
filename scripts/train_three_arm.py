@@ -5,9 +5,12 @@ Usage: nohup python scripts/train_three_arm.py > 3arm.log 2>&1 &
 """
 import json, os, sys, time, re, gc, random, math, hashlib, argparse
 
-ROOT = "/ccfa2026/compile-anything"
+ROOT = "/ccfa2026/compile-anything" if os.path.isdir(
+    "/ccfa2026/compile-anything") else os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-os.chdir(ROOT)
+if os.getcwd() != ROOT:
+    os.chdir(ROOT)
 
 import torch
 from torch.utils.data import Dataset

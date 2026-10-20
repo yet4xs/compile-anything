@@ -42,3 +42,4 @@ data/sft_v3_1/
 data/compiler_corpus_v4/*.jsonl
 data/bfcl_training/xlam_train.jsonl
 .ssh_known_fingerprints
+scripts/.ssh_env_local
