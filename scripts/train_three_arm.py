@@ -5,9 +5,10 @@ Usage: nohup python scripts/train_three_arm.py > 3arm.log 2>&1 &
 """
 import json, os, sys, time, re, gc, random, math, hashlib, argparse
 
-ROOT = "/ccfa2026/compile-anything" if os.path.isdir(
-    "/ccfa2026/compile-anything") else os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__)))
+_HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# prefer THIS checkout; the legacy absolute path only if it is us
+ROOT = _HERE if os.path.isfile(
+    os.path.join(_HERE, "scripts", "train_three_arm.py")) else     "/ccfa2026/compile-anything"
 sys.path.insert(0, ROOT)
 if os.getcwd() != ROOT:
     os.chdir(ROOT)
