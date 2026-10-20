@@ -168,8 +168,12 @@ def train_arm(arm, train_rows, tok, seed, out_dir):
     steps_per_epoch = math.ceil(len(train_rows) / eff_batch)
     max_steps = int(steps_per_epoch * 3)  # 3 epochs
 
+    _ck = os.environ.get("GRAD_CKPT") == "1"
+    if _ck:
+        base.enable_input_require_grads()
     targs = TrainingArguments(
         output_dir=out_dir, per_device_train_batch_size=per_dev,
+        gradient_checkpointing=_ck,
         gradient_accumulation_steps=accum, num_train_epochs=1.0,
         max_steps=max_steps, learning_rate=2e-4,
         lr_scheduler_type="cosine", warmup_ratio=0.03,

@@ -33,7 +33,9 @@ GOLD = "results/phase9/tau3_gold_compiled_v2_2.json"
 FREEZE = "results/phase9/tau3_gold_v2_2_freeze_manifest.json"
 REG = "results/phase9/verified_registry_manifest.json"
 TAU2_TASKS = "/root/tau2_tasks"   # raw tasks dumped locally below
-MAX_NEW = {"M0-T": 864, "M0-J": 2396, "M1": 1070}
+_F = float(__import__("os").environ.get("EVAL_FACTOR", "2"))
+MAX_NEW = {k: int(v * _F) for k, v in
+          {"M0-T": 864, "M0-J": 2396, "M1": 1070}.items()}
 
 
 def build_eval_records():
@@ -128,12 +130,15 @@ def main():
         "weights/Qwen2.5-3B-Instruct", trust_remote_code=True,
         torch_dtype=torch.bfloat16, device_map="auto")
 
-    out_path = f"results/phase9/v3_frozen_predictions_s{args.seed}.jsonl"
+    out_path = f"results/phase9/{__import__('os').environ.get('EVAL_TAG', 'v3')}_frozen_predictions_s{args.seed}.jsonl"
     os.makedirs("results/phase9", exist_ok=True)
     fout = open(out_path, "w", encoding="utf-8")
 
-    for arm, sys_p in (("M0-T", SYS_M0T), ("M0-J", SYS_M0J), ("M1", SYS_M1)):
-        adapter = f"runs_v3/{arm.lower().replace('-', '')}_s{args.seed}/final"
+    _arms = __import__("os").environ.get("EVAL_ARMS", "M0-T,M0-J,M1").split(",")
+    _sys = {"M0-T": SYS_M0T, "M0-J": SYS_M0J, "M1": SYS_M1}
+    for arm in _arms:
+        sys_p = _sys[arm]
+        adapter = f"{__import__('os').environ.get('V3RUNS', 'runs_v3')}/{arm.lower().replace('-', '')}_s{args.seed}/final"
         if not os.path.exists(adapter):
             print(f"skip {arm} (no adapter)")
             continue

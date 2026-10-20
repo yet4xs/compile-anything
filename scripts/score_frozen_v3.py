@@ -51,10 +51,11 @@ def pred_side(arm, raw):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seed", type=int, default=44)
+    ap.add_argument("--tag", default="v3")
     args = ap.parse_args()
 
     pred_file = REPO / "results/phase9" / \
-        f"v3_frozen_predictions_s{args.seed}.jsonl"
+        f"{args.tag}_frozen_predictions_s{args.seed}.jsonl"
     rows = [json.loads(l) for l in
             open(pred_file, encoding="utf-8") if l.strip()]
     gold = json.loads((REPO / "results/phase9/tau3_gold_compiled_v2_2.json")
@@ -111,7 +112,7 @@ def main():
 
     out = {"seed": args.seed, "n_predictions": len(details), "table": table,
            "cap_rule": "any arm x protocol cap-hit > 5% invalidates"}
-    outf = REPO / "results/phase9" / f"v3_frozen_scores_s{args.seed}.json"
+    outf = REPO / "results/phase9" / f"{args.tag}_frozen_scores_s{args.seed}.json"
     outf.write_text(json.dumps(out, indent=1, ensure_ascii=False),
                     encoding="utf-8")
     print(json.dumps(out, indent=1, ensure_ascii=False))

@@ -27,8 +27,9 @@ from src.ir.taskir import module_to_dict
 from src.eval.schema_render_v2 import render_tool
 from transformers import AutoTokenizer  # server-side
 
-DATA = "data/runtime_dataflow_v3"
-RUNS = "runs_v3"
+import os
+DATA = os.environ.get("V3DATA", "data/runtime_dataflow_v3")
+RUNS = os.environ.get("V3RUNS", "runs_v3")
 _FLAT = {"list": "List[Any]", "struct": "Struct", "dict": "Dict",
          "scalar_root": "Any"}
 
@@ -93,6 +94,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", default="44")
     ap.add_argument("--protocol", default="distractor")
+    ap.add_argument("--arms", default="m0t,m0j,m1")
     args = ap.parse_args()
     seeds = [int(s) for s in args.seeds.split(",")]
     from scripts.train_three_arm import train_arm  # needs torch/peft
@@ -116,8 +118,9 @@ def main():
         rows_by_arm["m1"].append({"user": user, "target": m1})
 
     logs = {}
+    arms = [a.strip() for a in args.arms.split(",")]
     for seed in seeds:
-        for arm in ("m0t", "m0j", "m1"):
+        for arm in arms:
             out = f"{RUNS}/{arm}_s{seed}"
             os.makedirs(out, exist_ok=True)
             logs[f"{arm}_s{seed}"] = train_arm(
