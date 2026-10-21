@@ -1,0 +1,565 @@
+{
+ "seed": 44,
+ "n_predictions": 108,
+ "table": {
+  "A|M0-J|both": {
+   "value_match": {
+    "n": 30,
+    "k": 1,
+    "rate": 0.0333,
+    "cp95": [
+     0.0008,
+     0.1722
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 30,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.1157
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 30,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.1157
+    ]
+   },
+   "parse_ok_rate": 0.833,
+   "cap_hit_rate": 0.0
+  },
+  "A|M0-J|distractor": {
+   "value_match": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "parse_ok_rate": 0.933,
+   "cap_hit_rate": 0.0
+  },
+  "A|M0-J|oracle": {
+   "value_match": {
+    "n": 15,
+    "k": 1,
+    "rate": 0.0667,
+    "cp95": [
+     0.0017,
+     0.3195
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "parse_ok_rate": 0.733,
+   "cap_hit_rate": 0.0
+  },
+  "A|M0-T|both": {
+   "value_match": {
+    "n": 30,
+    "k": 1,
+    "rate": 0.0333,
+    "cp95": [
+     0.0008,
+     0.1722
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 30,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.1157
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 30,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.1157
+    ]
+   },
+   "parse_ok_rate": 0.667,
+   "cap_hit_rate": 0.0
+  },
+  "A|M0-T|distractor": {
+   "value_match": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "parse_ok_rate": 0.6,
+   "cap_hit_rate": 0.0
+  },
+  "A|M0-T|oracle": {
+   "value_match": {
+    "n": 15,
+    "k": 1,
+    "rate": 0.0667,
+    "cp95": [
+     0.0017,
+     0.3195
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "parse_ok_rate": 0.733,
+   "cap_hit_rate": 0.0
+  },
+  "A|M1|both": {
+   "value_match": {
+    "n": 30,
+    "k": 2,
+    "rate": 0.0667,
+    "cp95": [
+     0.0082,
+     0.2207
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 30,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.1157
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 30,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.1157
+    ]
+   },
+   "parse_ok_rate": 0.7,
+   "cap_hit_rate": 0.0
+  },
+  "A|M1|distractor": {
+   "value_match": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "parse_ok_rate": 0.667,
+   "cap_hit_rate": 0.0
+  },
+  "A|M1|oracle": {
+   "value_match": {
+    "n": 15,
+    "k": 2,
+    "rate": 0.1333,
+    "cp95": [
+     0.0166,
+     0.4046
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 15,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.218
+    ]
+   },
+   "parse_ok_rate": 0.733,
+   "cap_hit_rate": 0.0
+  },
+  "B|M0-J|both": {
+   "value_match": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "parse_ok_rate": 0.333,
+   "cap_hit_rate": 0.0
+  },
+  "B|M0-J|distractor": {
+   "value_match": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "parse_ok_rate": 0.667,
+   "cap_hit_rate": 0.0
+  },
+  "B|M0-J|oracle": {
+   "value_match": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "parse_ok_rate": 0.0,
+   "cap_hit_rate": 0.0
+  },
+  "B|M0-T|both": {
+   "value_match": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "parse_ok_rate": 1.0,
+   "cap_hit_rate": 0.0
+  },
+  "B|M0-T|distractor": {
+   "value_match": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "parse_ok_rate": 1.0,
+   "cap_hit_rate": 0.0
+  },
+  "B|M0-T|oracle": {
+   "value_match": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "parse_ok_rate": 1.0,
+   "cap_hit_rate": 0.0
+  },
+  "B|M1|both": {
+   "value_match": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 6,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.4593
+    ]
+   },
+   "parse_ok_rate": 0.833,
+   "cap_hit_rate": 0.0
+  },
+  "B|M1|distractor": {
+   "value_match": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "parse_ok_rate": 1.0,
+   "cap_hit_rate": 0.0
+  },
+  "B|M1|oracle": {
+   "value_match": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "equivalence_class_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "strict_origin_exact": {
+    "n": 3,
+    "k": 0,
+    "rate": 0.0,
+    "cp95": [
+     0.0,
+     0.7076
+    ]
+   },
+   "parse_ok_rate": 0.667,
+   "cap_hit_rate": 0.0
+  }
+ },
+ "cap_rule": "any arm x protocol cap-hit > 5% invalidates"
+}
