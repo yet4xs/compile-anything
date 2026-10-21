@@ -1,0 +1,19 @@
+{
+ "n_train": 294,
+ "n_dev": 50,
+ "gold_shaped_added": 14,
+ "excluded_user_overlap_with_test": [
+  "tau3_retail_15",
+  "tau3_retail_19",
+  "tau3_retail_25",
+  "tau3_retail_34",
+  "tau3_retail_52",
+  "tau3_retail_58",
+  "tau3_retail_6",
+  "tau3_retail_7",
+  "tau3_retail_8",
+  "tau3_retail_9"
+ ],
+ "test_users_guarded": 11,
+ "provenance": "v3.1 synthesis + condition_A_train gold programs (freeze manifest, leak-free partition)"
+}
