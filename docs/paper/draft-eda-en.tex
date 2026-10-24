@@ -1,0 +1,325 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\title{From Raw Hardware Manuals to Checkable Operation Contracts:\\
+Provenance-Anchored Extraction, Evidence-Conditioned Plans,\\
+and Refusable Completion Claims}
+
+\author{\IEEEauthorblockN{Anonymous}
+\IEEEauthorblockA{Double-blind submission}}
+
+\maketitle
+
+\begin{abstract}
+Large language models are increasingly used to generate device drivers and
+initialization sequences from chip manuals, yet existing evaluations mostly
+operate on \emph{curated} specifications or reference implementations. They
+avoid three properties of real documentation: requirements span
+\emph{multiple files and sentences}; verification actions themselves have
+\emph{side effects} (reading a shadowed register resets its write phase);
+and when evidence is insufficient, the correct behavior is to \emph{refuse}
+rather than to answer. We present an auditable pipeline. First, we extract
+\emph{contract tables} from fixed-commit raw manuals---each entry anchored
+by a verbatim quote, file, line number, and file hash (22 entries across
+two IPs, 100\% machine-verified), with documented contradictions retained
+explicitly rather than adjudicated. Second, contracts compile to
+deterministic CPU checkers that replay operation sequences against
+scenario oracles and emit four-way verdicts: success, violation (with
+contract ID), insufficient evidence, or budget infeasible. Third, under
+identical documents, budget, and a frozen protocol, we compare three
+methods: direct generation, generation with per-step citations, and a
+pipeline of structured extraction, compiled self-checking, and one
+repair round. Across ten task variants on OpenTitan AES and SPI\_HOST:
+direct generation succeeds on 2/10, cited generation on 1/10 (citations
+verify against stated lines in 0/42 cases), and the pipeline on 9/10
+while submitting zero plans with known violations. Structured extraction
+recovers the complete contract on 9/10 variants---including reporting
+the manuals' own contradiction as an entry. Ablations localize the
+direct-generation failure to cross-sentence evidence obligations
+(12/12 violations, reproduced by a larger model) and attribute the
+pipeline's gains to two compiled mechanisms: evidence-depth checking
+($k{+}1$ polls) and observation-value simulation. All contract tables,
+checkers, frozen protocols, call ledgers, and raw outputs are open.
+\end{abstract}
+
+\begin{IEEEkeywords}
+hardware manuals, operation contracts, provenance,
+evidence-conditioned planning, LLM evaluation
+\end{IEEEkeywords}
+
+\section{Introduction}
+Embedded software correctness hinges on a handful of cross-file manual
+facts. After configuring the AES control register and before writing the
+initial key, software must \emph{re-check} that the unit is idle---a
+requirement assembled from two adjacent sentences in the programmer's
+guide plus a semantics section of the shared register-tool documentation.
+No single sentence states it completely. Similar structures govern
+SPI\_HOST's ``exactly one more segment may queue'' boundary. LLM-based
+driver generation is growing rapidly, but evaluations largely bypass such
+\emph{conditional evidence obligations}: curated field lists, reference
+RTL scoring, or treating a returned value as hardware completion.
+
+\subsection{Gap}
+Neighbor works each cover part of the space; three combined properties
+remain untested simultaneously: (i) the input is \emph{raw multi-file
+documentation} with real cross-references, redundancy, and
+contradictions; (ii) \emph{side effects of verification actions} enter
+the verdict---checking a shadowed register changes its state, so
+``poll once more'' is not free; (iii) \emph{completion claims are
+conditioned} on actually observed readiness, and refusal must be
+distinguishable from violation. Driver verification (Termite-2~\cite{termite2})
+assumes a device model is given; NL-to-formula work (nl2spec~\cite{nl2spec})
+handles single sentences; embedded-agent benchmarks~\cite{embedbench}
+use curated tasks; assertion generation~\cite{assertllm2} targets SVA.
+We claim no ``first''; the contribution is the combination and its
+auditability.
+
+\subsection{This paper}
+We recast manual-to-sequence generation as manual~$\rightarrow$~contract~%
+$\rightarrow$~checker~$\rightarrow$~plan, and run controlled experiments
+asking: what exactly do strong models lose when planning directly from
+raw documents, and how much of the gap can machinery recover
+mechanically?
+
+Contributions, each mapped to an experiment:
+\begin{enumerate}
+\item \textbf{Provenance-anchored contract extraction}
+      (Sec.~\ref{sec:contract}): verbatim-quote/line/hash triple-anchored
+      contract tables; documented contradictions retained (22 entries,
+      100\% machine-verified).
+\item \textbf{Contract-compiled checkers} (Sec.~\ref{sec:checker}):
+      deterministic CPU state machines; four-way verdicts with replayable
+      traces; 20 contract-level tests including shadow-reset and recovery
+      paths.
+\item \textbf{Controlled comparison and failure decomposition}
+      (Sec.~\ref{sec:exp}): ten paired variants, frozen protocols,
+      per-call ledgers; cross-sentence obligation failures (12/12,
+      model-general), unreliable citations (0/42), extraction
+      completeness (9/10), interception/repair attribution, and two
+      mechanism increments each validated by ablation.
+\end{enumerate}
+
+\section{Related Work}
+\textbf{Driver verification and device models.} Termite-2~\cite{termite2}
+synthesizes and verifies drivers over given device models, explicitly
+distinguishing hardware events from software acknowledgments; its models
+come from manual curation. We do not synthesize drivers; we test recovery
+of checkable contracts from raw documents, with observation side effects
+inside the same state machine.
+
+\textbf{Runtime shielding and assumption learning.} Shield
+synthesis~\cite{shield} minimally interferes given signal traces;
+assumption learning~\cite{assume} infers environment assumptions for
+given models. Our ``missing information $\rightarrow$ retained unknown''
+echoes this, but evidence comes from document text, and learned
+conditions are never promoted to manual promises.
+
+\textbf{NL to specifications and assertions.} nl2spec~\cite{nl2spec}
+maps single sentences to LTL fragments with interaction;
+AssertLLM~\cite{assertllm} and AssertLLM2~\cite{assertllm2} generate SVA
+from full specifications and score with FPV/mutation kill counts. Our
+output is side-effectful MMIO operation sequences with conditioned
+completion claims; our oracle needs no reference RTL.
+
+\textbf{Embedded agents and repair benchmarks.}
+EmbedBench~\cite{embedbench} evaluates agents with curated tasks on
+simulators; DevGen~\cite{devgen} builds QEMU models from driver sources;
+HWE-Bench~\cite{hwebench} does repository-level repair. Our input is
+uncurated raw manuals, and we score evidence discipline, not task
+completion.
+
+\textbf{Evaluation integrity.} All batches were preregistration-frozen
+before execution, with per-call ledgers; three infrastructure defects
+(thinking-budget exhaustion, array-parse failure, accidental VCS sweep)
+were declared void with full records retained---mirroring accepted
+practice in measurement engineering.
+
+\section{Contract Tables: Provenance-Anchored Extraction}
+\label{sec:contract}
+
+\subsection{Triple anchoring}
+Each entry carries a verbatim quote, file, line number, and the file's
+SHA-256 prefix; every entry is machine-verified to exist verbatim within
+a $\pm2$-line window of the stated line. AES contributes 13 entries and
+SPI\_HOST 9 (Tables in the artifact), covering preconditions (AES
+C1/C4; SPI S1), ordering (C3; S3), protocols (C5 two-write; S2
+queue exception), side effects (C6 read-resets-phase), error paths
+(C7; S5), completion evidence (C8; S7), and an explicit cross-file
+merge requirement (C10).
+
+\subsection{Retained contradictions}
+SPI's \texttt{EVENT\_ENABLE.IDLE} has two contradictory official
+descriptions (guide line 145 vs.\ register table line 439). The conflict
+is entry S8: both quotes recorded, \emph{not adjudicated}, and the
+interrupt branch excluded from task scope. Notably, in extraction the
+model itself emits a \texttt{CONFLICT\_RETAINED} entry in 3/4
+variants---a structured interface invites reporting contradictions
+rather than resolving them silently.
+
+\subsection{No-guessing}
+Unbounded busy windows (C13) and boundary cases are retained as unknowns;
+checkers are parameterized accordingly (budget infeasibility is separated
+from violation), never filled with defaults.
+
+\section{Checkers: Contracts to Replayable Verdicts}
+\label{sec:checker}
+\texttt{AESInitChecker} and \texttt{SPISubmitChecker} compile contracts
+into deterministic state machines: input is an operation sequence
+(reads/writes with registers) plus a scenario object (a deterministic
+read environment standing in for RTL); output is one of four
+verdicts---\textsc{Success}, \textsc{Violation(contract id)},
+\textsc{InsufficientEvidence}, \textsc{BudgetInfeasible}---with
+per-step state snapshots. Two semantic rulings deserve note: a read
+between the two shadowed writes resets the write phase (C6), so the
+documented recovery path (write a fresh equal pair) is modeled; and
+``transmission complete'' requires final observations of
+\texttt{READY=1} \emph{and} \texttt{TXEMPTY=1} (S7)---readiness to
+accept commands is not completion. Twenty contract-level tests pass,
+including these subtle paths.
+
+\section{Controlled Experiments}
+\label{sec:exp}
+
+\subsection{Setup}
+Task families: AES, six variants (busy windows 0/3/5/10; initially
+busy; never ready); SPI, four variants (likewise parameterized).
+Scenario parameters are visible to all methods. Information input is
+byte-identical across methods (four to five full source files per IP,
+fixed commit). Model: \texttt{glm-5.3-flash}, temperature 0, thinking
+low; budgets frozen. Methods: (A) one direct call; (B) one call with
+per-step citations; (C) extraction call + plan call + pre-submit
+self-check + at most one checker-feedback repair. The oracle---checkers
+compiled from our human contract tables---scores all methods and is
+given to none (upper-bound principle). Fairness arm (v8): A and B
+receive the same repair budget with feedback from a \emph{generic}
+structural checker (existence-level rules only; no human contract, no
+depth, no observation values). A second model (\texttt{glm-5.3},
+larger) runs arm A unrepaired.
+
+\subsection{Main results}
+\begin{table}[t]
+\centering
+\caption{Ten paired task variants; correct = frozen per-variant rule
+(never-ready variants: honest stop / budget exhaustion counts as
+correct). Repair feedback for A$^+$/B$^+$ is generic-structural; for C
+it comes from checkers compiled from its own extraction plus given
+scenario parameters.}
+\label{tab:main}
+\begin{tabular}{lccccc}
+\toprule
+ & A & B & A$^+$ & B$^+$ & C \\
+\midrule
+AES (6) & 0/6 & 0/6 & 1/6 & 2/6 & \textbf{5/6} \\
+SPI (4) & 2/4 & 1/4 & 3/4 & 3/4 & \textbf{4/4} \\
+\midrule
+Total & 2/10 & 1/10 & 4/10 & 5/10 & \textbf{9/10} \\
+Violations & 8 & 9 & 6 & 4\,{\scriptsize(+1 unp.)} & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+Paired exact McNemar: C vs.\ A, 7--0 ($p{=}.016$); vs.\ A$^+$, 5--0
+($p{=}.0625$); vs.\ B$^+$, 4--0 ($p{=}.125$). Direction is consistent
+with zero discordant losses; at $n{=}10$ post-repair significance is
+limited and reported as such. The larger unrepaired model
+(\texttt{glm-5.3}) scores 4/10 with the \emph{same} violation pattern
+as the flash model.
+
+\subsection{Failure decomposition}
+\textbf{(i) Cross-sentence obligations are a systematic blind spot.}
+All 12 direct plans violate AES C1/C4---``re-check idle after
+configuration'' is assembled from adjacent sentences plus shared
+semantics; models read each sentence and lose the combination at
+planning time. SPI's explicit single-sentence rules are far easier for
+direct generation (A 2/4), giving the benchmark a measurable difficulty
+spectrum by document structure.
+
+\textbf{(ii) Citations do not fix planning, and are themselves
+unreliable.} B's per-line citations verify against the stated lines in
+0/42 cases (strict line-exact criterion)---fluent reference, wrong
+referent.
+
+\textbf{(iii) Extraction completeness is an interface effect.} The same
+model under a structured extraction interface recovers the full contract
+on 9/10 variants, including the conflict entry. Accessibility is not
+the bottleneck; the interface is.
+
+\textbf{(iv) Interception and repair, disentangled from budget.}
+Same-budget generic repair lifts baselines to 4--5/10 by fixing
+existence-level errors; the remaining gap (T2--T4, U2-class) maps
+exactly onto the two compiled mechanisms: evidence depth---$k{+}1$
+polls, because models proceed after $k$ busy readings without ever
+observing readiness (the T2 lesson)---and observation-value simulation,
+which rejects submitting a command after \emph{observing} not-ready
+(U4). Both increments were validated by zero-API rescoring of saved
+plans followed by single repair calls.
+
+\textbf{(v) Honest refusal occurs across arms.} B$^+$ on the
+never-ready SPI variant and the larger model on the never-ready AES
+variant both stop with \textsc{InsufficientEvidence}---the four-way
+verdict design is exercised by real behavior, not by fiat.
+
+\subsection{Boundaries}
+Ten variants across two families; one model family plus one
+cross-check; the oracle is compiled from human (machine-adjudicated)
+contract tables---weaker than independent dual adjudication, with all
+materials open for re-auditing; formal-model-to-RTL consistency is
+unverified (independent future work); C's repair feedback encodes
+scenario compilation that baselines' generic feedback does not---this
+is the mechanism under test, stated explicitly. No seed/temperature
+repetition (owner decision).
+
+\section{Discussion}
+For the ``manuals as programs'' position, our evidence supports a
+bounded strong claim: when correctness turns on cross-sentence evidence
+obligations and observation side effects, letting models do
+\emph{structured contract extraction} and deterministic checkers do
+\emph{pre-submit adjudication} drives wrong submissions to zero and
+multiplies end-to-end correctness on two real IPs. It does not support
+``checkers necessarily raise final accuracy'' (the U4 counterexample
+before value-awareness) nor ``extraction equals understanding''
+(contradiction adjudication remains out of scope). For benchmark
+builders, triple anchoring, retained contradictions, and refusal-grade
+verdicts transfer directly to other IP families.
+
+\section{Conclusion}
+We recast manual-to-sequence generation as
+manual$\rightarrow$contract$\rightarrow$checker$\rightarrow$plan, show
+that strong models fail specifically at cross-sentence evidence
+obligations, recover most of the gap with two attributable compiled
+mechanisms, and localize what remains to observation-value semantics.
+Data, code, protocols, and ledgers are open.
+
+\section*{Content Generated by AI}
+Per conference policy: the artifact code, extraction and checking
+pipelines, experiment execution, and the structured draft of this
+manuscript were produced by an AI assistant under the authors'
+direction; all verdicts are computed by deterministic scripts; the
+authors verified the results and bear full responsibility.
+
+\begin{thebibliography}{9}
+\bibitem{termite2} L. Ryzhyk et al., ``Terminator-2: device drivers
+without drivers,'' \emph{OSDI}, 2014.
+\bibitem{nl2spec} C. Hahn et al., ``nl2spec: Interactively translating
+unstructured natural language to temporal logic with large language
+models,'' \emph{CAV}, 2023.
+\bibitem{shield} R. Bloem et al., ``Shield synthesis,'' \emph{TACAS},
+2015.
+\bibitem{assume} J. M. Cobleigh et al., ``Learning assumptions for
+compositional verification,'' \emph{TACAS}, 2003.
+\bibitem{assertllm} Z. Xie et al., ``AssertLLM: Generating SVA
+assertions from natural language descriptions,'' \emph{ASP-DAC}, 2025.
+\bibitem{assertllm2} AssertLLM2, arXiv:2605.27472, 2026.
+\bibitem{embedbench} EmbedAgent/EmbedBench, \emph{ICSE}, 2026;
+arXiv:2506.11003.
+\bibitem{devgen} DevGen, \emph{ACL System Demonstrations}, 2026.
+\bibitem{hwebench} HWE-Bench, arXiv:2604.14709, 2026.
+\end{thebibliography}
+
+\end{document}
