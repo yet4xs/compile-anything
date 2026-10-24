@@ -1,0 +1,30 @@
+{
+ "schema": "raw_api_usage_ledger_v5",
+ "batch": {
+  "planned": 2,
+  "attempts": 1,
+  "http200": 1,
+  "reported_tokens": {
+   "prompt_tokens": 407,
+   "completion_tokens": 364,
+   "total_tokens": 771
+  }
+ },
+ "calls": [
+  {
+   "tag": "C3v7/U4",
+   "http_status": 200,
+   "usage": {
+    "completion_tokens": 364,
+    "completion_tokens_details": {
+     "reasoning_tokens": 55
+    },
+    "prompt_tokens": 407,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 771
+   }
+  }
+ ]
+}

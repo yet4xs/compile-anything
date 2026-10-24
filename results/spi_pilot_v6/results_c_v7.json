@@ -1,0 +1,31 @@
+[
+ {
+  "task": "U1",
+  "v7_action": "submit",
+  "v7_reason": "pass",
+  "oracle": "SUCCESS",
+  "correct": true
+ },
+ {
+  "task": "U2",
+  "v7_action": "submit",
+  "v7_reason": "pass",
+  "oracle": "SUCCESS",
+  "correct": true
+ },
+ {
+  "task": "U3",
+  "v7_action": "submit",
+  "v7_reason": "pass",
+  "oracle": "SUCCESS",
+  "correct": true
+ },
+ {
+  "task": "U4",
+  "v7_action": "reject",
+  "v7_reason": "COMMAND submitted while the last observation was READY=0 (S1/S2 边界:不得带着已知未就绪前进)",
+  "correct": true,
+  "repair": "submitted",
+  "oracle2": "INSUFFICIENT_EVIDENCE"
+ }
+]

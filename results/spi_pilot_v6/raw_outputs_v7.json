@@ -1,0 +1,6 @@
+[
+ {
+  "tag": "C3v7/U4",
+  "content": "{\"plan\": [{\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"READY\", \"value\": null}, {\"op\": \"write\", \"reg\": \"COMMAND\", \"field\": null, \"value\": \"0x00000010\"}, {\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"READY\", \"value\": null}, {\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"READY\", \"value\": null}, {\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"READY\", \"value\": null}, {\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"ACTIVE\", \"value\": null}, {\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"TXEMPTY\", \"value\": null}, {\"op\": \"read\", \"reg\": \"STATUS\", \"field\": \"CMDQD\", \"value\": null}, {\"op\": \"read\", \"reg\": \"ERROR_STATUS\", \"field\": null, \"value\": null}, {\"op\": \"read\", \"reg\": \"ERROR_STATUS\", \"field\": \"CMDBUSY\", \"value\": null}]}\n\n说明：首次提交前确认 READY=1;提交第 1 条命令后有限次轮询(3 次)READY 均未就绪，按规则停止，不再提交其余 2 个 segment(仅提交 1 个 segment,避免在已知未就绪时写入 COMMAND)。"
+ }
+]
