@@ -1,0 +1,97 @@
+{
+ "frozen_at": "2026-10-24 (pre-call)",
+ "preregistration": "docs/paper/aes-pilot-preregistration-20261024.md",
+ "task": "AES 初始化:给出合法控制配置,产出操作计划(到初始密钥全部写完),说明支持继续的观测。",
+ "documents": {
+  "pg": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\1\\body.raw",
+   "sha256": "5ce86a50e9419ad0a1721189016228182b29aa68d2535b345ef64f48e1e25c55"
+  },
+  "th": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\0\\body.raw",
+   "sha256": "d4ed1cd3ca50ce6c33fac3f8305445391b9c9d02533a793bccc18fbf1bec3f60"
+  },
+  "reg": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\2\\body.raw",
+   "sha256": "146ca2a54d6624c13ec3113a216f00dd65751243fa1fab6c81e17b5352da9664"
+  },
+  "hj": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\3\\body.raw",
+   "sha256": "e8b3257675aec5abce3c3946cb3bb989297fbb7c30659d3169531a6ae7eec572"
+  },
+  "rg": {
+   "path": "data\\upstream_snapshots\\opentitan_protocol_docs_20261024\\slots\\1\\body.raw",
+   "sha256": "7f8aae6b64e778a4f6181bbfcb55f0b30137db0b46e65d62cfe5927c343ced51"
+  }
+ },
+ "variants": [
+  {
+   "id": "T1",
+   "key_len": "aes128",
+   "scenario": {
+    "initial_idle": true,
+    "ctrl_commit_busy_polls": 0
+   },
+   "given": "写 CTRL 提交后单元立即回到 idle(0 次忙轮询)。"
+  },
+  {
+   "id": "T2",
+   "key_len": "aes128",
+   "scenario": {
+    "initial_idle": true,
+    "ctrl_commit_busy_polls": 3
+   },
+   "given": "写 CTRL 提交后单元忙 3 次 STATUS 轮询,之后回到 idle。"
+  },
+  {
+   "id": "T3",
+   "key_len": "aes192",
+   "scenario": {
+    "initial_idle": true,
+    "ctrl_commit_busy_polls": 5
+   },
+   "given": "忙 5 次轮询后 idle。"
+  },
+  {
+   "id": "T4",
+   "key_len": "aes256",
+   "scenario": {
+    "initial_idle": true,
+    "ctrl_commit_busy_polls": 10
+   },
+   "given": "忙 10 次轮询后 idle。"
+  },
+  {
+   "id": "T5",
+   "key_len": "aes256",
+   "scenario": {
+    "initial_idle": false,
+    "ctrl_commit_busy_polls": 0,
+    "initial_busy_polls": 1
+   },
+   "given": "初始时单元非 idle;第一次 STATUS 轮询返回 IDLE=0,第二次起返回 IDLE=1(初始忙 1 次)。"
+  },
+  {
+   "id": "T6",
+   "key_len": "aes128",
+   "scenario": {
+    "initial_idle": true,
+    "ctrl_commit_busy_polls": 0,
+    "never_idle_after_ctrl": true
+   },
+   "given": "写 CTRL 提交后单元无限期忙(预算内不会回到 idle)。"
+  }
+ ],
+ "model": {
+  "name": "glm-4.6",
+  "endpoint": "official v4 chat/completions",
+  "temperature": 0,
+  "max_tokens": 4096,
+  "calls_per_variant": {
+   "A": 1,
+   "B": 1,
+   "C": 2
+  }
+ },
+ "oracle": "src/contract/aes_init_checker.py @ 338a15ac (contract table v1, 13 entries machine-verified)"
+}
