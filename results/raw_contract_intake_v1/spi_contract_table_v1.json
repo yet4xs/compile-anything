@@ -1,0 +1,150 @@
+{
+ "meta": {
+  "task": "SPI_HOST 多 segment 提交:何时允许写 COMMAND、何时可宣告传输完成(polling 口径)",
+  "source_commit": "3a7f6947247254fcc2fd05143c18a2646f75c7ee",
+  "scope_exclusions": [
+   "中断分支整体排除(任务限 polling);EVENT_ENABLE.IDLE 的两处矛盾描述见 S8,不裁定、不采信任一方作为 gold"
+  ],
+  "files": {
+   "pg": {
+    "path": "hw/ip/spi_host/doc/programmers_guide.md",
+    "slot": 5,
+    "sha256_prefix": "1d509c8ce4f95324"
+   },
+   "reg": {
+    "path": "hw/ip/spi_host/doc/registers.md",
+    "slot": 6,
+    "sha256_prefix": "ce105dc81ba7cfb5"
+   }
+  }
+ },
+ "entries": [
+  {
+   "id": "S1",
+   "kind": "precondition",
+   "text": "COMMAND 仅应在 STATUS.READY 置位时写入。",
+   "quote": "The [`COMMAND`](registers.md#command) should only be written when [`STATUS.READY`](registers.md#status) is asserted.",
+   "src": {
+    "file": "pg",
+    "line": 140
+   },
+   "scope": "每次 COMMAND 写的硬前置",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S2",
+   "kind": "queueing",
+   "text": "处理中可再排队恰好一个 segment descriptor。",
+   "quote": "While each command segment is being processed, the SPI_HOST has room to queue up exactly one additional segment descriptor in the Command Clock Domain Crossing.",
+   "src": {
+    "file": "pg",
+    "line": 142
+   },
+   "scope": "队列容量:已提交 1 个在处理时,最多再排 1 个",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S3",
+   "kind": "ordering",
+   "text": "第二个 descriptor 已提交后,必须等状态机完成当前 segment 才能继续提交。",
+   "quote": "Once a second command segment descriptor has been submitted, software must wait for the state machine to finish processing the current segment before submitting more.",
+   "src": {
+    "file": "pg",
+    "line": 143
+   },
+   "scope": "第 3 个及以后的 COMMAND 写的前置",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S4",
+   "kind": "evidence",
+   "text": "软件可轮询 STATUS.READY 判断何时可安全插入下一个 descriptor。",
+   "quote": "Software can poll the [`STATUS.READY`](registers.md#status) field to determine when it is safe to insert another segment descriptor.",
+   "src": {
+    "file": "pg",
+    "line": 144
+   },
+   "scope": "polling 路径的就绪证据",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S5",
+   "kind": "error-condition",
+   "text": "READY 为低时写 COMMAND 是错误并触发中断(寄存器表独立支撑 S1)。",
+   "quote": "Writing to COMMAND when READY is low is an error, and will trigger an interrupt.",
+   "src": {
+    "file": "reg",
+    "line": 156
+   },
+   "scope": "与 S1 互为印证;错误路径为 CMDBUSY",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S6",
+   "kind": "evidence",
+   "text": "ACTIVE 置位表示正在处理先前发出的命令——区分'已接收'与'已完成'。",
+   "quote": "When high, indicates the SPI host is processing a previously issued command.",
+   "src": {
+    "file": "reg",
+    "line": 157
+   },
+   "scope": "完成判定的组成证据",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S7",
+   "kind": "completion",
+   "text": "TX 完成证据须含 TXEMPTY(发送 FIFO 空);TXQD 为未发送字数(活动期可能高估)。",
+   "quote": "When high, indicates that the transmit data fifo is empty.",
+   "src": {
+    "file": "reg",
+    "line": 159
+   },
+   "scope": "TXEMPTY 与 READY 共同构成'全部发送完成'的最小 polling 证据;仅 READY 不足以宣称 TX 完成(READY 表可接收命令)",
+   "mechanizable": "yes",
+   "verified": true
+  },
+  {
+   "id": "S8",
+   "kind": "conflict-retained",
+   "text": "未裁定文本冲突: 指南把 EVENT_ENABLE.IDLE 描述为'当 STATUS.READY 置位时触发事件中断';寄存器表定义 IDLE='ACTIVE 变低时'、READY='READY 变高时'。",
+   "quote": "Otherwise the [`EVENT_ENABLE.IDLE`](registers.md#event_enable) bit can be enabled (along with [`INTR_ENABLE.spi_event`](registers.md#intr_enable)) to trigger an event interrupt whenever [`STATUS.READY`](registers.md#status) is asserted.",
+   "src": {
+    "file": "pg",
+    "line": 145
+   },
+   "conflicting_quote": "Assert to send a spi_event interrupt whenever [`STATUS.ACTIVE`](#status)\n   goes low",
+   "conflicting_src": {
+    "file": "reg",
+    "line": 439
+   },
+   "scope": "冲突保留,不作为 gold 依据;中断分支已整体排除于任务范围",
+   "mechanizable": "n/a",
+   "verified": true,
+   "conflict_verified": true
+  },
+  {
+   "id": "S9",
+   "kind": "rx-evidence",
+   "text": "RX segment 提交后,收到第一个字起 RX FIFO 可用,RXQD 可轮询字数。",
+   "quote": "the received data will be available in the RX FIFO after the first word has been received.",
+   "src": {
+    "file": "pg",
+    "line": 149
+   },
+   "scope": "RX 部分任务的证据;本 pilot 的变体不含 RX 时仅作范围说明",
+   "mechanizable": "yes",
+   "verified": true
+  }
+ ],
+ "open_questions": [
+  "OQ1: S2 的'恰好一个'在 READY=1 且队列尚空时是否也限制并发(S1/S4 已覆盖提交前置,不重复建序)——按 polling 口径建模为: 第 k(k>=3) 个 COMMAND 前必须有新 READY=1 观测。",
+  "OQ2: '完成'的完整定义(最后 segment 处理完=ACTIVE 变低)文档未给出软件可轮询的 ACTIVE 下降沿事件;本 pilot 的完成口径=最后 COMMAND 后观测到 READY=1 且 TXEMPTY=1,不宣称更多。"
+ ]
+}

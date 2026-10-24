@@ -1,0 +1,85 @@
+{
+ "frozen_at": "2026-10-24 (pre-call, v6)",
+ "preregistration": "docs/paper/spi-pilot-preregistration-20261024.md",
+ "task": "SPI_HOST: 提交 3 个发送 segment,以 polling 证据(不使用中断)支持每步提交并最终宣告全部发送完成。",
+ "documents": {
+  "pg": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\5\\body.raw",
+   "sha256": "1d509c8ce4f953248664d01ed1437f5efe117aae2377b73553e0bc3514e95613"
+  },
+  "th": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\4\\body.raw",
+   "sha256": "b33f4ca68279ffb39f02447647b1c134787dd503cc0ee3bfec12b5bac24a8904"
+  },
+  "reg": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\6\\body.raw",
+   "sha256": "ce105dc81ba7cfb5e6265c10ea3ae04dc0b5e17055014cd59804dbe1dbd95252"
+  },
+  "hj": {
+   "path": "data\\upstream_snapshots\\opentitan_raw_contract_inputs_20261024\\slots\\7\\body.raw",
+   "sha256": "6a2c7fdc6bc041d006fd68c1f74c5991e286f007573866b429ec163240240be5"
+  }
+ },
+ "variants": [
+  {
+   "id": "U1",
+   "scenario": {
+    "segments": 3,
+    "ready_windows": [
+     0,
+     0,
+     0
+    ],
+    "txempty_after": 1
+   },
+   "given": "每条命令提交后 SPI 立即回到 READY=1;最后一条命令后第 1 次轮询起 TXEMPTY=1。"
+  },
+  {
+   "id": "U2",
+   "scenario": {
+    "segments": 3,
+    "ready_windows": [
+     0,
+     1,
+     2
+    ],
+    "txempty_after": 3
+   },
+   "given": "命令 1 提交后立即就绪;命令 2 后忙 1 次轮询;命令 3 后忙 2 次;TXEMPTY 在最后命令后第 3 次轮询起为 1。"
+  },
+  {
+   "id": "U3",
+   "scenario": {
+    "segments": 3,
+    "ready_windows": [
+     2,
+     3,
+     4
+    ],
+    "txempty_after": 5
+   },
+   "given": "命令 1 后忙 2 次、命令 2 后忙 3 次、命令 3 后忙 4 次;TXEMPTY 第 5 次轮询起为 1。"
+  },
+  {
+   "id": "U4",
+   "scenario": {
+    "segments": 3,
+    "ready_windows": [
+     0,
+     0,
+     0
+    ],
+    "txempty_after": 1,
+    "never_ready": true
+   },
+   "given": "第 1 条命令提交后 STATUS 永远不再就绪(预算内不会恢复)。"
+  }
+ ],
+ "model": {
+  "name": "glm-5.3-flash",
+  "temperature": 0,
+  "max_tokens": 8192,
+  "thinking": "enabled/low"
+ },
+ "oracle": "src/contract/spi_submit_checker.py (contract table v1, 9/9 verified)"
+}
