@@ -1,0 +1,149 @@
+[
+ {
+  "task": "T1",
+  "method": "C_v3",
+  "flags": {
+   "initial_idle_gate": true,
+   "ctrl_before_key": true,
+   "recheck_after_ctrl": true,
+   "ctrl_two_write": true,
+   "key_all_registers": true,
+   "read_resets_phase": true
+  },
+  "entries_n": 6,
+  "entry_ids": [
+   "CTRL_BEFORE_KEY",
+   "CTRL_TWO_WRITE",
+   "INIT_IDLE",
+   "KEY_ALL_REGS",
+   "READ_RESETS_PHASE",
+   "RECHECK_AFTER_CTRL"
+  ],
+  "self_check": "pass",
+  "judgment": "SUCCESS",
+  "contract": null,
+  "submitted": true
+ },
+ {
+  "task": "T2",
+  "method": "C_v3",
+  "flags": {
+   "initial_idle_gate": true,
+   "ctrl_before_key": true,
+   "recheck_after_ctrl": true,
+   "ctrl_two_write": true,
+   "key_all_registers": true,
+   "read_resets_phase": true
+  },
+  "entries_n": 6,
+  "entry_ids": [
+   "CTRL_BEFORE_KEY",
+   "CTRL_TWO_WRITE",
+   "INIT_IDLE",
+   "KEY_ALL_REGS",
+   "READ_RESETS_PHASE",
+   "RECHECK_AFTER_CTRL"
+  ],
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T3",
+  "method": "C_v3",
+  "flags": {
+   "initial_idle_gate": true,
+   "ctrl_before_key": true,
+   "recheck_after_ctrl": true,
+   "ctrl_two_write": true,
+   "key_all_registers": true,
+   "read_resets_phase": true
+  },
+  "entries_n": 6,
+  "entry_ids": [
+   "CTRL_BEFORE_KEY",
+   "CTRL_TWO_WRITE",
+   "INIT_IDLE",
+   "KEY_ALL_REGS",
+   "READ_RESETS_PHASE",
+   "RECHECK_AFTER_CTRL"
+  ],
+  "self_check": "no recheck after ctrl",
+  "judgment": "NO_VALID_PLAN",
+  "submitted": false
+ },
+ {
+  "task": "T4",
+  "method": "C_v3",
+  "flags": {
+   "initial_idle_gate": true,
+   "ctrl_before_key": true,
+   "recheck_after_ctrl": true,
+   "ctrl_two_write": true,
+   "key_all_registers": true,
+   "read_resets_phase": true
+  },
+  "entries_n": 6,
+  "entry_ids": [
+   "CTRL_BEFORE_KEY",
+   "CTRL_TWO_WRITE",
+   "INIT_IDLE",
+   "KEY_ALL_REGS",
+   "READ_RESETS_PHASE",
+   "RECHECK_AFTER_CTRL"
+  ],
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T5",
+  "method": "C_v3",
+  "flags": {
+   "initial_idle_gate": true,
+   "ctrl_before_key": true,
+   "recheck_after_ctrl": true,
+   "ctrl_two_write": true,
+   "key_all_registers": true,
+   "read_resets_phase": true
+  },
+  "entries_n": 6,
+  "entry_ids": [
+   "CTRL_BEFORE_KEY",
+   "CTRL_TWO_WRITE",
+   "INIT_IDLE",
+   "KEY_ALL_REGS",
+   "READ_RESETS_PHASE",
+   "RECHECK_AFTER_CTRL"
+  ],
+  "self_check": "no recheck after ctrl",
+  "judgment": "NO_VALID_PLAN",
+  "submitted": false
+ },
+ {
+  "task": "T6",
+  "method": "C_v3",
+  "flags": {
+   "initial_idle_gate": true,
+   "ctrl_before_key": true,
+   "recheck_after_ctrl": true,
+   "ctrl_two_write": true,
+   "key_all_registers": true,
+   "read_resets_phase": true
+  },
+  "entries_n": 6,
+  "entry_ids": [
+   "CTRL_BEFORE_KEY",
+   "CTRL_TWO_WRITE",
+   "INIT_IDLE",
+   "KEY_ALL_REGS",
+   "READ_RESETS_PHASE",
+   "RECHECK_AFTER_CTRL"
+  ],
+  "self_check": "key regs 0/16",
+  "judgment": "NO_VALID_PLAN",
+  "submitted": false
+ }
+]

@@ -1,0 +1,200 @@
+[
+ {
+  "task": "T1",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T1",
+  "method": "B",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "cites_total": 6,
+  "cites_valid": 0
+ },
+ {
+  "task": "T1",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T2",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T2",
+  "method": "B",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "cites_total": 7,
+  "cites_valid": 0
+ },
+ {
+  "task": "T2",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T3",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T3",
+  "method": "B",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "cites_total": 10,
+  "cites_valid": 0
+ },
+ {
+  "task": "T3",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T4",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T4",
+  "method": "B",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "cites_total": 7,
+  "cites_valid": 0
+ },
+ {
+  "task": "T4",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T5",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C1"
+ },
+ {
+  "task": "T5",
+  "method": "B",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C1",
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T5",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C1",
+  "submitted": true
+ },
+ {
+  "task": "T6",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T6",
+  "method": "B",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "cites_total": 12,
+  "cites_valid": 0
+ },
+ {
+  "task": "T6",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "INSUFFICIENT_EVIDENCE",
+  "contract": "C8",
+  "submitted": true
+ }
+]

@@ -1,0 +1,219 @@
+{
+ "schema": "raw_api_usage_ledger_v5",
+ "batch": {
+  "planned": 12,
+  "attempts": 12,
+  "http200": 12,
+  "reported_tokens": {
+   "prompt_tokens": 628481,
+   "completion_tokens": 8379,
+   "total_tokens": 636860
+  }
+ },
+ "calls": [
+  {
+   "tag": "C1v3/T1",
+   "http_status": 200,
+   "seconds": 8.86,
+   "usage": {
+    "completion_tokens": 662,
+    "completion_tokens_details": {
+     "reasoning_tokens": 71
+    },
+    "prompt_tokens": 52060,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52722
+   },
+   "error": null
+  },
+  {
+   "tag": "C2v3/T1",
+   "http_status": 200,
+   "seconds": 6.74,
+   "usage": {
+    "completion_tokens": 412,
+    "completion_tokens_details": {
+     "reasoning_tokens": 26
+    },
+    "prompt_tokens": 52672,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 53084
+   },
+   "error": null
+  },
+  {
+   "tag": "C1v3/T2",
+   "http_status": 200,
+   "seconds": 12.11,
+   "usage": {
+    "completion_tokens": 830,
+    "completion_tokens_details": {
+     "reasoning_tokens": 284
+    },
+    "prompt_tokens": 52060,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52890
+   },
+   "error": null
+  },
+  {
+   "tag": "C2v3/T2",
+   "http_status": 200,
+   "seconds": 10.19,
+   "usage": {
+    "completion_tokens": 629,
+    "completion_tokens_details": {
+     "reasoning_tokens": 249
+    },
+    "prompt_tokens": 52628,
+    "prompt_tokens_details": {
+     "cached_tokens": 51968
+    },
+    "total_tokens": 53257
+   },
+   "error": null
+  },
+  {
+   "tag": "C1v3/T3",
+   "http_status": 200,
+   "seconds": 9.49,
+   "usage": {
+    "completion_tokens": 687,
+    "completion_tokens_details": {
+     "reasoning_tokens": 105
+    },
+    "prompt_tokens": 52060,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52747
+   },
+   "error": null
+  },
+  {
+   "tag": "C2v3/T3",
+   "http_status": 200,
+   "seconds": 7.63,
+   "usage": {
+    "completion_tokens": 514,
+    "completion_tokens_details": {
+     "reasoning_tokens": 69
+    },
+    "prompt_tokens": 52655,
+    "prompt_tokens_details": {
+     "cached_tokens": 51968
+    },
+    "total_tokens": 53169
+   },
+   "error": null
+  },
+  {
+   "tag": "C1v3/T4",
+   "http_status": 200,
+   "seconds": 16.15,
+   "usage": {
+    "completion_tokens": 1074,
+    "completion_tokens_details": {
+     "reasoning_tokens": 345
+    },
+    "prompt_tokens": 52060,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 53134
+   },
+   "error": null
+  },
+  {
+   "tag": "C2v3/T4",
+   "http_status": 200,
+   "seconds": 13.84,
+   "usage": {
+    "completion_tokens": 972,
+    "completion_tokens_details": {
+     "reasoning_tokens": 241
+    },
+    "prompt_tokens": 52802,
+    "prompt_tokens_details": {
+     "cached_tokens": 51968
+    },
+    "total_tokens": 53774
+   },
+   "error": null
+  },
+  {
+   "tag": "C1v3/T5",
+   "http_status": 200,
+   "seconds": 12.89,
+   "usage": {
+    "completion_tokens": 903,
+    "completion_tokens_details": {
+     "reasoning_tokens": 298
+    },
+    "prompt_tokens": 52060,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52963
+   },
+   "error": null
+  },
+  {
+   "tag": "C2v3/T5",
+   "http_status": 200,
+   "seconds": 9.01,
+   "usage": {
+    "completion_tokens": 573,
+    "completion_tokens_details": {
+     "reasoning_tokens": 138
+    },
+    "prompt_tokens": 52700,
+    "prompt_tokens_details": {
+     "cached_tokens": 51968
+    },
+    "total_tokens": 53273
+   },
+   "error": null
+  },
+  {
+   "tag": "C1v3/T6",
+   "http_status": 200,
+   "seconds": 11.6,
+   "usage": {
+    "completion_tokens": 741,
+    "completion_tokens_details": {
+     "reasoning_tokens": 156
+    },
+    "prompt_tokens": 52060,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52801
+   },
+   "error": null
+  },
+  {
+   "tag": "C2v3/T6",
+   "http_status": 200,
+   "seconds": 17.37,
+   "usage": {
+    "completion_tokens": 382,
+    "completion_tokens_details": {
+     "reasoning_tokens": 290
+    },
+    "prompt_tokens": 52664,
+    "prompt_tokens_details": {
+     "cached_tokens": 51968
+    },
+    "total_tokens": 53046
+   },
+   "error": null
+  }
+ ]
+}
