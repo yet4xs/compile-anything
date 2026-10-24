@@ -91,3 +91,26 @@ T6 正确处理的精确定义: 判定 ∈ {BUDGET_INFEASIBLE, INSUFFICIENT_EVID
 要么耗尽预算;两者均计为正确。伪造证据继续写或违反其他契约仍为错。
 触发场景: 检查器在 never-idle 下,停止型计划判 INSUFFICIENT_EVIDENCE,
 无限轮询型判 BUDGET_INFEASIBLE——两者都是"未做错事"。
+
+---
+
+## VOID 声明与 v2 修正案(run 1 之后、run 2 之前)
+
+**run 1 = VOID**(24 调用,1.35M tokens,记录完整保留于 void_run1/):
+15/18 UNPARSEABLE 的成因为配置缺陷,非方法差异——(i) 预注册误写
+model=glm-4.6,与既往全部批次(glm-5.3 家族)不一致;(ii) 未设置
+thinking/reasoning_effort,glm 思考模型把 4096 输出预算耗尽在
+reasoning(样本: completion 4096,reasoning 4081),JSON 正文为空。
+此为基础设施错误,类比 8D-2B 的截断门控:如实报告、修配置、重跑,
+**不视为在同一探针上变提示捞结果**——任务、文档、提示正文、
+判定与评分全部与 v1 逐字相同。
+
+**v2 变更(仅两处,调用前冻结)**:
+1. 请求配置: model=glm-5.3-flash,thinking {type: enabled},
+   reasoning_effort low,temperature 0,max_tokens 8192。
+2. C 的机械映射缺陷修复: v1 的关键词存在性检测使用了整理者措辞,
+   模型输出不可能逐字命中(结果 0/6,退化为恒通过)。v2 改为 C1
+   输出 schema 增加固定枚举字段 id ∈ {INIT_IDLE, CTRL_BEFORE_KEY,
+   RECHECK_AFTER_CTRL, CTRL_TWO_WRITE, KEY_ALL_REGS,
+   READ_RESETS_PHASE};机械映射 = 该枚举的集合存在性(无语义解释)。
+   C1 提示相应增加枚举定义(其余逐字不变)。

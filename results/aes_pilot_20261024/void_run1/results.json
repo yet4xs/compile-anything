@@ -1,0 +1,190 @@
+[
+ {
+  "task": "T1",
+  "method": "A",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null
+ },
+ {
+  "task": "T1",
+  "method": "B",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null,
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T1",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "C4",
+  "submitted": true
+ },
+ {
+  "task": "T2",
+  "method": "A",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null
+ },
+ {
+  "task": "T2",
+  "method": "B",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null,
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T2",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "judgment": "UNPARSEABLE",
+  "submitted": false
+ },
+ {
+  "task": "T3",
+  "method": "A",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null
+ },
+ {
+  "task": "T3",
+  "method": "B",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null,
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T3",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "judgment": "UNPARSEABLE",
+  "submitted": false
+ },
+ {
+  "task": "T4",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "T4",
+  "method": "B",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null,
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T4",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "judgment": "UNPARSEABLE",
+  "submitted": false
+ },
+ {
+  "task": "T5",
+  "method": "A",
+  "plan_ok": true,
+  "judgment": "VIOLATION",
+  "contract": "C1"
+ },
+ {
+  "task": "T5",
+  "method": "B",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null,
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T5",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "judgment": "UNPARSEABLE",
+  "submitted": false
+ },
+ {
+  "task": "T6",
+  "method": "A",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null
+ },
+ {
+  "task": "T6",
+  "method": "B",
+  "plan_ok": false,
+  "judgment": "UNPARSEABLE",
+  "contract": null,
+  "cites_total": 0,
+  "cites_valid": 0
+ },
+ {
+  "task": "T6",
+  "method": "C",
+  "flags": {
+   "initial_idle_gate": false,
+   "ctrl_before_key": false,
+   "recheck_after_ctrl": false,
+   "ctrl_two_write": false,
+   "key_all_registers": false,
+   "read_resets_phase": false
+  },
+  "entries_n": 0,
+  "judgment": "UNPARSEABLE",
+  "submitted": false
+ }
+]
