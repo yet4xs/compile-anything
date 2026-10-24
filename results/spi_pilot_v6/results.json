@@ -1,0 +1,132 @@
+[
+ {
+  "task": "U1",
+  "method": "A",
+  "judgment": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U1",
+  "method": "B",
+  "judgment": "VIOLATION",
+  "contract": "UNKNOWN_OP"
+ },
+ {
+  "task": "U1",
+  "method": "C",
+  "flags": {
+   "cmd_ready_gate": true,
+   "queue_one_more": true,
+   "wait_after_full": true,
+   "txempty_done": true,
+   "conflict_retained": true
+  },
+  "entry_ids": [
+   "CMD_READY_GATE",
+   "CONFLICT_RETAINED",
+   "QUEUE_ONE_MORE",
+   "TXEMPTY_DONE",
+   "WAIT_AFTER_FULL"
+  ],
+  "self_check": "pass",
+  "judgment": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U2",
+  "method": "A",
+  "judgment": "VIOLATION",
+  "contract": "S3"
+ },
+ {
+  "task": "U2",
+  "method": "B",
+  "judgment": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U2",
+  "method": "C",
+  "flags": {
+   "cmd_ready_gate": true,
+   "queue_one_more": true,
+   "wait_after_full": true,
+   "txempty_done": true,
+   "conflict_retained": true
+  },
+  "entry_ids": [
+   "CMD_READY_GATE",
+   "CONFLICT_RETAINED",
+   "QUEUE_ONE_MORE",
+   "TXEMPTY_DONE",
+   "WAIT_AFTER_FULL"
+  ],
+  "self_check": "pass",
+  "judgment": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U3",
+  "method": "A",
+  "judgment": "VIOLATION",
+  "contract": "S1"
+ },
+ {
+  "task": "U3",
+  "method": "B",
+  "judgment": "VIOLATION",
+  "contract": "S7"
+ },
+ {
+  "task": "U3",
+  "method": "C",
+  "flags": {
+   "cmd_ready_gate": true,
+   "queue_one_more": true,
+   "wait_after_full": true,
+   "txempty_done": true,
+   "conflict_retained": true
+  },
+  "entry_ids": [
+   "CMD_READY_GATE",
+   "CONFLICT_RETAINED",
+   "QUEUE_ONE_MORE",
+   "TXEMPTY_DONE",
+   "WAIT_AFTER_FULL"
+  ],
+  "self_check": "pass",
+  "judgment": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U4",
+  "method": "A",
+  "judgment": "INSUFFICIENT_EVIDENCE",
+  "contract": null
+ },
+ {
+  "task": "U4",
+  "method": "B",
+  "judgment": "VIOLATION",
+  "contract": "UNKNOWN_OP"
+ },
+ {
+  "task": "U4",
+  "method": "C",
+  "flags": {
+   "cmd_ready_gate": true,
+   "queue_one_more": true,
+   "wait_after_full": false,
+   "txempty_done": true,
+   "conflict_retained": false
+  },
+  "entry_ids": [
+   "CMD_READY_GATE",
+   "QUEUE_ONE_MORE",
+   "TXEMPTY_DONE"
+  ],
+  "self_check": "pass",
+  "judgment": "VIOLATION",
+  "contract": "S1"
+ }
+]
