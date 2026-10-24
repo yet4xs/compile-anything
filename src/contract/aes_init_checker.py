@@ -44,8 +44,11 @@ class Scenario:
     """确定性读环境:k 次 STATUS 轮询返回 IDLE=0,之后 1。"""
 
     def __init__(self, initial_idle=True, ctrl_commit_busy_polls=0,
-                 key_busy_polls=0, never_idle_after_ctrl=False):
+                 key_busy_polls=0, never_idle_after_ctrl=False,
+                 initial_busy_polls=0):
         self.initial_idle = initial_idle
+        self.initial_busy_polls = initial_busy_polls
+        self._initial_polls = 0
         self.ctrl_busy = ctrl_commit_busy_polls
         self.key_busy = key_busy_polls
         self.never = never_idle_after_ctrl
@@ -62,12 +65,15 @@ class Scenario:
 
     def read_status_idle(self):
         if not self._ctrl_committed:
-            return self.initial_idle          # C1 阶段
+            if self.initial_busy_polls and \
+                    self._initial_polls < self.initial_busy_polls:
+                self._initial_polls += 1
+                return False
+            return self.initial_idle
         if self.never:
-            return False                       # C13 无界忙(预算不可行场景)
+            return False
         if self._key_started:
-            return True                        # 密钥阶段忙窗口极短,文档未定义;
-                                               # 保持 True,不假设额外门槛(unknown 不补猜)
+            return True
         if self._polls_since_ctrl_commit < self.ctrl_busy:
             self._polls_since_ctrl_commit += 1
             return False

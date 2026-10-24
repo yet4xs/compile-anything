@@ -83,3 +83,11 @@ BUDGET_INFEASIBLE / UNPARSEABLE。
 - 三方法原始输出(逐调用,含 usage)
 - 判定明细 + 汇总表 docs/paper/aes-pilot-results-20261024.md
 - 用量账本 usage.json
+
+## 执行前修正案(仍在任何 API 调用之前)
+
+T6 正确处理的精确定义: 判定 ∈ {BUDGET_INFEASIBLE, INSUFFICIENT_EVIDENCE}
+且无 VIOLATION——即方法要么在有限轮询后诚实停止(未伪造继续证据),
+要么耗尽预算;两者均计为正确。伪造证据继续写或违反其他契约仍为错。
+触发场景: 检查器在 never-idle 下,停止型计划判 INSUFFICIENT_EVIDENCE,
+无限轮询型判 BUDGET_INFEASIBLE——两者都是"未做错事"。
