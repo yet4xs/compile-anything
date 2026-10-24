@@ -1,0 +1,616 @@
+{
+ "schema": "raw_api_usage_ledger_v5",
+ "batch": {
+  "attempts": 34,
+  "http200": 33,
+  "reported_tokens": {
+   "prompt_tokens": 1612295,
+   "completion_tokens": 24376,
+   "total_tokens": 1636671
+  }
+ },
+ "calls": [
+  {
+   "tag": "A/T1",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 19.03,
+   "usage": {
+    "completion_tokens": 909,
+    "completion_tokens_details": {
+     "reasoning_tokens": 498
+    },
+    "prompt_tokens": 52130,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 53039
+   },
+   "error": null
+  },
+  {
+   "tag": "A2/T1",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 10.03,
+   "usage": {
+    "completion_tokens": 585,
+    "completion_tokens_details": {
+     "reasoning_tokens": 43
+    },
+    "prompt_tokens": 52780,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 53365
+   },
+   "error": null
+  },
+  {
+   "tag": "B/T1",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 19.02,
+   "usage": {
+    "completion_tokens": 906,
+    "completion_tokens_details": {
+     "reasoning_tokens": 321
+    },
+    "prompt_tokens": 52149,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 53055
+   },
+   "error": null
+  },
+  {
+   "tag": "B2/T1",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 9.55,
+   "usage": {
+    "completion_tokens": 619,
+    "completion_tokens_details": {
+     "reasoning_tokens": 64
+    },
+    "prompt_tokens": 52792,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 53411
+   },
+   "error": null
+  },
+  {
+   "tag": "A/T2",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 11.04,
+   "usage": {
+    "completion_tokens": 613,
+    "completion_tokens_details": {
+     "reasoning_tokens": 184
+    },
+    "prompt_tokens": 52131,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 52744
+   },
+   "error": null
+  },
+  {
+   "tag": "B/T2",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 19.13,
+   "usage": {
+    "completion_tokens": 1012,
+    "completion_tokens_details": {
+     "reasoning_tokens": 348
+    },
+    "prompt_tokens": 52150,
+    "prompt_tokens_details": {
+     "cached_tokens": 27840
+    },
+    "total_tokens": 53162
+   },
+   "error": null
+  },
+  {
+   "tag": "A/T3",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 9.76,
+   "usage": {
+    "completion_tokens": 634,
+    "completion_tokens_details": {
+     "reasoning_tokens": 185
+    },
+    "prompt_tokens": 52122,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 52756
+   },
+   "error": null
+  },
+  {
+   "tag": "B/T3",
+   "model": "glm-5.3-flash",
+   "http_status": null,
+   "seconds": 169.6,
+   "usage": {},
+   "error": "RemoteDisconnected: Remote end closed connection without response"
+  },
+  {
+   "tag": "A/T4",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 21.32,
+   "usage": {
+    "completion_tokens": 881,
+    "completion_tokens_details": {
+     "reasoning_tokens": 386
+    },
+    "prompt_tokens": 52122,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 53003
+   },
+   "error": null
+  },
+  {
+   "tag": "A2/T4",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 12.4,
+   "usage": {
+    "completion_tokens": 1068,
+    "completion_tokens_details": {
+     "reasoning_tokens": 30
+    },
+    "prompt_tokens": 52952,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 54020
+   },
+   "error": null
+  },
+  {
+   "tag": "B/T4",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 14.66,
+   "usage": {
+    "completion_tokens": 929,
+    "completion_tokens_details": {
+     "reasoning_tokens": 270
+    },
+    "prompt_tokens": 52141,
+    "prompt_tokens_details": {
+     "cached_tokens": 27840
+    },
+    "total_tokens": 53070
+   },
+   "error": null
+  },
+  {
+   "tag": "A/T5",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 11.49,
+   "usage": {
+    "completion_tokens": 578,
+    "completion_tokens_details": {
+     "reasoning_tokens": 212
+    },
+    "prompt_tokens": 52144,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 52722
+   },
+   "error": null
+  },
+  {
+   "tag": "B/T5",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 16.58,
+   "usage": {
+    "completion_tokens": 988,
+    "completion_tokens_details": {
+     "reasoning_tokens": 303
+    },
+    "prompt_tokens": 52163,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 53151
+   },
+   "error": null
+  },
+  {
+   "tag": "A/T6",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 12.88,
+   "usage": {
+    "completion_tokens": 695,
+    "completion_tokens_details": {
+     "reasoning_tokens": 301
+    },
+    "prompt_tokens": 52128,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52823
+   },
+   "error": null
+  },
+  {
+   "tag": "B/T6",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 11.12,
+   "usage": {
+    "completion_tokens": 630,
+    "completion_tokens_details": {
+     "reasoning_tokens": 244
+    },
+    "prompt_tokens": 52147,
+    "prompt_tokens_details": {
+     "cached_tokens": 27840
+    },
+    "total_tokens": 52777
+   },
+   "error": null
+  },
+  {
+   "tag": "A/U1",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 16.28,
+   "usage": {
+    "completion_tokens": 378,
+    "completion_tokens_details": {
+     "reasoning_tokens": 171
+    },
+    "prompt_tokens": 43617,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 43995
+   },
+   "error": null
+  },
+  {
+   "tag": "B/U1",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 14.2,
+   "usage": {
+    "completion_tokens": 639,
+    "completion_tokens_details": {
+     "reasoning_tokens": 188
+    },
+    "prompt_tokens": 43636,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 44275
+   },
+   "error": null
+  },
+  {
+   "tag": "A/U2",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 7.51,
+   "usage": {
+    "completion_tokens": 268,
+    "completion_tokens_details": {
+     "reasoning_tokens": 123
+    },
+    "prompt_tokens": 43637,
+    "prompt_tokens_details": {
+     "cached_tokens": 27904
+    },
+    "total_tokens": 43905
+   },
+   "error": null
+  },
+  {
+   "tag": "A2/U2",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 7.5,
+   "usage": {
+    "completion_tokens": 368,
+    "completion_tokens_details": {
+     "reasoning_tokens": 0
+    },
+    "prompt_tokens": 43936,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 44304
+   },
+   "error": null
+  },
+  {
+   "tag": "B/U2",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 27.56,
+   "usage": {
+    "completion_tokens": 1407,
+    "completion_tokens_details": {
+     "reasoning_tokens": 352
+    },
+    "prompt_tokens": 43656,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 45063
+   },
+   "error": null
+  },
+  {
+   "tag": "A/U3",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 23.19,
+   "usage": {
+    "completion_tokens": 1206,
+    "completion_tokens_details": {
+     "reasoning_tokens": 814
+    },
+    "prompt_tokens": 43627,
+    "prompt_tokens_details": {
+     "cached_tokens": 27904
+    },
+    "total_tokens": 44833
+   },
+   "error": null
+  },
+  {
+   "tag": "B/U3",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 22.66,
+   "usage": {
+    "completion_tokens": 1393,
+    "completion_tokens_details": {
+     "reasoning_tokens": 359
+    },
+    "prompt_tokens": 43646,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 45039
+   },
+   "error": null
+  },
+  {
+   "tag": "A/U4",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 14.19,
+   "usage": {
+    "completion_tokens": 631,
+    "completion_tokens_details": {
+     "reasoning_tokens": 332
+    },
+    "prompt_tokens": 43604,
+    "prompt_tokens_details": {
+     "cached_tokens": 27904
+    },
+    "total_tokens": 44235
+   },
+   "error": null
+  },
+  {
+   "tag": "B/U4",
+   "model": "glm-5.3-flash",
+   "http_status": 200,
+   "seconds": 14.71,
+   "usage": {
+    "completion_tokens": 840,
+    "completion_tokens_details": {
+     "reasoning_tokens": 80
+    },
+    "prompt_tokens": 43623,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 44463
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/T1",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 13.88,
+   "usage": {
+    "completion_tokens": 755,
+    "completion_tokens_details": {
+     "reasoning_tokens": 208
+    },
+    "prompt_tokens": 52130,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 52885
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/T2",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 14.23,
+   "usage": {
+    "completion_tokens": 793,
+    "completion_tokens_details": {
+     "reasoning_tokens": 308
+    },
+    "prompt_tokens": 52131,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52924
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/T3",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 10.69,
+   "usage": {
+    "completion_tokens": 759,
+    "completion_tokens_details": {
+     "reasoning_tokens": 244
+    },
+    "prompt_tokens": 52122,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52881
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/T4",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 9.59,
+   "usage": {
+    "completion_tokens": 819,
+    "completion_tokens_details": {
+     "reasoning_tokens": 176
+    },
+    "prompt_tokens": 52122,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52941
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/T5",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 11.35,
+   "usage": {
+    "completion_tokens": 746,
+    "completion_tokens_details": {
+     "reasoning_tokens": 253
+    },
+    "prompt_tokens": 52144,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52890
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/T6",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 3.57,
+   "usage": {
+    "completion_tokens": 140,
+    "completion_tokens_details": {
+     "reasoning_tokens": 74
+    },
+    "prompt_tokens": 52128,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 52268
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/U1",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 7.03,
+   "usage": {
+    "completion_tokens": 284,
+    "completion_tokens_details": {
+     "reasoning_tokens": 173
+    },
+    "prompt_tokens": 43617,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 43901
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/U2",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 9.27,
+   "usage": {
+    "completion_tokens": 596,
+    "completion_tokens_details": {
+     "reasoning_tokens": 302
+    },
+    "prompt_tokens": 43637,
+    "prompt_tokens_details": {
+     "cached_tokens": 43520
+    },
+    "total_tokens": 44233
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/U3",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 9.98,
+   "usage": {
+    "completion_tokens": 648,
+    "completion_tokens_details": {
+     "reasoning_tokens": 138
+    },
+    "prompt_tokens": 43627,
+    "prompt_tokens_details": {
+     "cached_tokens": 43520
+    },
+    "total_tokens": 44275
+   },
+   "error": null
+  },
+  {
+   "tag": "A53/U4",
+   "model": "glm-5.3",
+   "http_status": 200,
+   "seconds": 15.46,
+   "usage": {
+    "completion_tokens": 659,
+    "completion_tokens_details": {
+     "reasoning_tokens": 225
+    },
+    "prompt_tokens": 43604,
+    "prompt_tokens_details": {
+     "cached_tokens": 43520
+    },
+    "total_tokens": 44263
+   },
+   "error": null
+  }
+ ]
+}

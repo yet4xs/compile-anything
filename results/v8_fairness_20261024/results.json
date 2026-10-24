@@ -1,0 +1,214 @@
+[
+ {
+  "task": "T1",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "C4",
+  "generic_check": "no recheck after ctrl",
+  "repaired": true,
+  "final": "SUCCESS",
+  "final_contract": null
+ },
+ {
+  "task": "T1",
+  "arm": "B",
+  "init": "VIOLATION",
+  "repaired": true,
+  "final": "SUCCESS"
+ },
+ {
+  "task": "T2",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "C4",
+  "generic_check": "pass",
+  "final": "VIOLATION",
+  "final_contract": "C4"
+ },
+ {
+  "task": "T2",
+  "arm": "B",
+  "init": "SUCCESS",
+  "final": "SUCCESS"
+ },
+ {
+  "task": "T3",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "C4",
+  "generic_check": "pass",
+  "final": "VIOLATION",
+  "final_contract": "C4"
+ },
+ {
+  "task": "T3",
+  "arm": "B",
+  "init": "UNPARSEABLE",
+  "final": "UNPARSEABLE"
+ },
+ {
+  "task": "T4",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "C4",
+  "generic_check": "no recheck after ctrl",
+  "repaired": true,
+  "final": "VIOLATION",
+  "final_contract": "C4"
+ },
+ {
+  "task": "T4",
+  "arm": "B",
+  "init": "VIOLATION",
+  "final": "VIOLATION"
+ },
+ {
+  "task": "T5",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "C1",
+  "generic_check": "pass",
+  "final": "VIOLATION",
+  "final_contract": "C1"
+ },
+ {
+  "task": "T5",
+  "arm": "B",
+  "init": "VIOLATION",
+  "final": "VIOLATION"
+ },
+ {
+  "task": "T6",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "C4",
+  "generic_check": "pass",
+  "final": "VIOLATION",
+  "final_contract": "C4"
+ },
+ {
+  "task": "T6",
+  "arm": "B",
+  "init": "VIOLATION",
+  "final": "VIOLATION"
+ },
+ {
+  "task": "U1",
+  "arm": "A",
+  "init": "SUCCESS",
+  "init_contract": null,
+  "final": "SUCCESS",
+  "final_contract": null
+ },
+ {
+  "task": "U1",
+  "arm": "B",
+  "init": "SUCCESS",
+  "final": "SUCCESS"
+ },
+ {
+  "task": "U2",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "S1",
+  "generic_check": "first COMMAND without any STATUS read",
+  "repaired": true,
+  "final": "SUCCESS",
+  "final_contract": null
+ },
+ {
+  "task": "U2",
+  "arm": "B",
+  "init": "VIOLATION",
+  "final": "VIOLATION"
+ },
+ {
+  "task": "U3",
+  "arm": "A",
+  "init": "SUCCESS",
+  "init_contract": null,
+  "final": "SUCCESS",
+  "final_contract": null
+ },
+ {
+  "task": "U3",
+  "arm": "B",
+  "init": "SUCCESS",
+  "final": "SUCCESS"
+ },
+ {
+  "task": "U4",
+  "arm": "A",
+  "init": "VIOLATION",
+  "init_contract": "S1",
+  "generic_check": "pass",
+  "final": "VIOLATION",
+  "final_contract": "S1"
+ },
+ {
+  "task": "U4",
+  "arm": "B",
+  "init": "INSUFFICIENT_EVIDENCE",
+  "final": "INSUFFICIENT_EVIDENCE"
+ },
+ {
+  "task": "T1",
+  "arm": "A-glm5.3",
+  "final": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "T2",
+  "arm": "A-glm5.3",
+  "final": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T3",
+  "arm": "A-glm5.3",
+  "final": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T4",
+  "arm": "A-glm5.3",
+  "final": "VIOLATION",
+  "contract": "C4"
+ },
+ {
+  "task": "T5",
+  "arm": "A-glm5.3",
+  "final": "VIOLATION",
+  "contract": "C1"
+ },
+ {
+  "task": "T6",
+  "arm": "A-glm5.3",
+  "final": "INSUFFICIENT_EVIDENCE",
+  "contract": null
+ },
+ {
+  "task": "U1",
+  "arm": "A-glm5.3",
+  "final": "VIOLATION",
+  "contract": "S1"
+ },
+ {
+  "task": "U2",
+  "arm": "A-glm5.3",
+  "final": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U3",
+  "arm": "A-glm5.3",
+  "final": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "U4",
+  "arm": "A-glm5.3",
+  "final": "VIOLATION",
+  "contract": "UNKNOWN_OP"
+ }
+]
