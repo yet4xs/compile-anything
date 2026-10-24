@@ -1,0 +1,73 @@
+{
+ "schema": "raw_api_usage_ledger_v5",
+ "batch": {
+  "planned": 4,
+  "attempts": 4,
+  "http200": 3,
+  "reported_tokens": {
+   "prompt_tokens": 158604,
+   "completion_tokens": 2421,
+   "total_tokens": 161025
+  }
+ },
+ "calls": [
+  {
+   "tag": "C3v5/T2",
+   "http_status": 200,
+   "seconds": 11.14,
+   "usage": {
+    "completion_tokens": 669,
+    "completion_tokens_details": {
+     "reasoning_tokens": 138
+    },
+    "prompt_tokens": 52800,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "total_tokens": 53469
+   },
+   "error": null
+  },
+  {
+   "tag": "C3v5/T3",
+   "http_status": 200,
+   "seconds": 11.49,
+   "usage": {
+    "completion_tokens": 730,
+    "completion_tokens_details": {
+     "reasoning_tokens": 115
+    },
+    "prompt_tokens": 52789,
+    "prompt_tokens_details": {
+     "cached_tokens": 32768
+    },
+    "total_tokens": 53519
+   },
+   "error": null
+  },
+  {
+   "tag": "C3v5/T4",
+   "http_status": 200,
+   "seconds": 12.49,
+   "usage": {
+    "completion_tokens": 1022,
+    "completion_tokens_details": {
+     "reasoning_tokens": 135
+    },
+    "prompt_tokens": 53015,
+    "prompt_tokens_details": {
+     "cached_tokens": 52032
+    },
+    "total_tokens": 54037
+   },
+   "error": null
+  },
+  {
+   "tag": "C3v5/T5",
+   "http_status": null,
+   "seconds": 15.01,
+   "usage": {},
+   "error": "URLError: <urlopen error Tunnel connection failed: 504 Gateway Timeout>"
+  }
+ ]
+}

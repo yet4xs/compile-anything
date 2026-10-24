@@ -1,0 +1,38 @@
+[
+ {
+  "task": "T1",
+  "action": "no-repair",
+  "v4": "pass"
+ },
+ {
+  "task": "T2",
+  "action": "repair",
+  "final": "submitted",
+  "oracle": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "T3",
+  "action": "repair",
+  "final": "submitted",
+  "oracle": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "T4",
+  "action": "repair",
+  "final": "submitted",
+  "oracle": "SUCCESS",
+  "contract": null
+ },
+ {
+  "task": "T5",
+  "action": "repair",
+  "final": "NO_VALID_PLAN(unparseable)"
+ },
+ {
+  "task": "T6",
+  "action": "no-repair",
+  "v4": "pass"
+ }
+]
