@@ -1,0 +1,44 @@
+[
+ {
+  "task": "T1",
+  "v4_depth": "pass",
+  "fixable": false,
+  "reason": "pass",
+  "oracle_if_submitted": "SUCCESS"
+ },
+ {
+  "task": "T2",
+  "v4_depth": "decline",
+  "fixable": true,
+  "reason": "post-ctrl window 3: only 3 reads before first key write (need 4)",
+  "oracle_if_submitted": "NOT_SUBMITTED(v4)"
+ },
+ {
+  "task": "T3",
+  "v4_depth": "decline",
+  "fixable": true,
+  "reason": "post-ctrl window 5: only 0 reads before first key write (need 6)",
+  "oracle_if_submitted": "NOT_SUBMITTED(v4)"
+ },
+ {
+  "task": "T4",
+  "v4_depth": "decline",
+  "fixable": true,
+  "reason": "post-ctrl window 10: only 1 reads before first key write (need 11)",
+  "oracle_if_submitted": "NOT_SUBMITTED(v4)"
+ },
+ {
+  "task": "T5",
+  "v4_depth": "decline",
+  "fixable": true,
+  "reason": "post-ctrl window 0: only 0 reads before first key write (need 1)",
+  "oracle_if_submitted": "NOT_SUBMITTED(v4)"
+ },
+ {
+  "task": "T6",
+  "v4_depth": "pass",
+  "fixable": false,
+  "reason": "n/a (structure handles)",
+  "oracle_if_submitted": "INSUFFICIENT_EVIDENCE"
+ }
+]
