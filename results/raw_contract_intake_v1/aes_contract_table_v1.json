@@ -1,0 +1,210 @@
+{
+ "meta": {
+  "task": "AES 初始化:控制寄存器配置完成后,什么证据允许继续写入密钥",
+  "source_commit": "3a7f6947247254fcc2fd05143c18a2646f75c7ee",
+  "scope_note": "覆盖 CTRL_SHADOWED 配置→KEY 写入;IV 写入同构另行追加。无实现代码、旧模型结果或参考计划参与整理。",
+  "files": {
+   "pg": {
+    "path": "hw/ip/aes/doc/programmers_guide.md",
+    "slot": 1,
+    "sha256_prefix": "5ce86a50e9419ad0"
+   },
+   "reg": {
+    "path": "hw/ip/aes/doc/registers.md",
+    "slot": 2,
+    "sha256_prefix": "146ca2a54d6624c1"
+   },
+   "th": {
+    "path": "hw/ip/aes/doc/theory_of_operation.md",
+    "slot": 0,
+    "sha256_prefix": "d4ed1cd3ca50ce6c"
+   },
+   "hj": {
+    "path": "hw/ip/aes/data/aes.hjson",
+    "slot": 3,
+    "sha256_prefix": "e8b3257675aec5ab"
+   },
+   "rg": {
+    "path": "util/reggen/README.md",
+    "slot": "protocol/1",
+    "sha256_prefix": "7f8aae6b64e778a4"
+   }
+  }
+ },
+ "entries": [
+  {
+   "id": "C1",
+   "kind": "precondition",
+   "text": "Before initialization, software must ensure that the AES unit is idle by checking STATUS.IDLE.",
+   "quote": "Before initialization, software must ensure that the AES unit is idle by checking [`STATUS.IDLE`](registers.md#status).",
+   "src": {
+    "file": "pg",
+    "line": 16
+   },
+   "scope": "初始化序列开始前;IDLE=1 为必要证据",
+   "mechanizable": "yes: 检查动作必须读取 STATUS 且 IDLE 位为 1",
+   "verified": true
+  },
+  {
+   "id": "C2",
+   "kind": "violation-condition",
+   "text": "非 idle 时写 CTRL_SHADOWED/KEY/IV 被忽略。",
+   "quote": "If the AES unit is not idle, write operations to CTRL_SHADOWED, the Initial Key registers KEY_SHARE0_0 - KEY_SHARE1_7 and initialization vector (IV) registers IV_0 - IV_3 are ignored.",
+   "src": {
+    "file": "pg",
+    "line": 17
+   },
+   "scope": "对三类寄存器的写在 IDLE=0 时无效果(静默忽略,非错误)",
+   "mechanizable": "yes: 非 Idle 下的这些写标记为 no_effect",
+   "verified": true
+  },
+  {
+   "id": "C3",
+   "kind": "ordering",
+   "text": "必须先配置 CTRL_SHADOWED 再提供初始密钥。",
+   "quote": "To initialize the AES unit, software must first provide the configuration to the CTRL_SHADOWED register.",
+   "src": {
+    "file": "pg",
+    "line": 19
+   },
+   "scope": "控制配置在密钥写入之前",
+   "mechanizable": "yes: 序列顺序检查",
+   "verified": true
+  },
+  {
+   "id": "C4",
+   "kind": "precondition",
+   "text": "写 CTRL_SHADOWED 可能触发 PRNG 重播种,因此写密钥前必须再次检查 idle。",
+   "quote": "Since writing this register may initiate the reseeding of the internal PRNGs, software must check that the AES unit is idle before providing the initial key.",
+   "src": {
+    "file": "pg",
+    "line": 20
+   },
+   "scope": "第二次 idle 检查在控制写与密钥写之间;证据为再次读 STATUS.IDLE=1",
+   "mechanizable": "yes: ctrl 写后必须存在一次 IDLE=1 的读,先于任一 KEY 写",
+   "verified": true
+  },
+  {
+   "id": "C5",
+   "kind": "write-protocol",
+   "text": "CTRL_SHADOWED 为 shadowed 寄存器:需两次写,值一致才提交。",
+   "quote": "This register is shadowed, meaning two subsequent write operations are required to change its content.",
+   "src": {
+    "file": "hj",
+    "line": 653
+   },
+   "scope": "CTRL_SHADOWED 的提交协议",
+   "mechanizable": "yes: 两次写 + 值相等;不等则 update error(reggen 语义)",
+   "verified": true
+  },
+  {
+   "id": "C6",
+   "kind": "side-effect(read)",
+   "text": "读操作把 shadow 寄存器放回第一阶段(清除 phase 追踪)。",
+   "quote": "If needed, software can put the shadow register back into the first phase by performing a read operation.",
+   "src": {
+    "file": "rg",
+    "line": 967
+   },
+   "scope": "shadowed 寄存器读副作用;CTRL_SHADOWED 为 RW 型(非 RO/RW1S/RW0C 例外),副作用适用",
+   "mechanizable": "yes: 读 CTRL_SHADOWED 复位 phase;RW1S/RW0C 的原始值语义与 RO 例外按 reggen 969-978 行",
+   "verified": true
+  },
+  {
+   "id": "C7",
+   "kind": "error-condition",
+   "text": "第二写与 shadow 不匹配→update error,shadow 回退为 committed 值。",
+   "quote": "If the data of the second write does **not** match the contents stored in the shadow register, an update error is signaled to the hardware with a pulse on err_update, and the shadow register takes again on the value of the committed register.",
+   "src": {
+    "file": "rg",
+    "line": 960
+   },
+   "scope": "shadow 两写协议的失败分支;对 CTRL_SHADOWED 体现为 STATUS.ALERT_RECOV_CTRL_UPDATE_ERR 可观测",
+   "mechanizable": "yes: 状态机分支",
+   "verified": true
+  },
+  {
+   "id": "C8",
+   "kind": "write-protocol",
+   "text": "密钥分两 share 写;无论 key 长度两 share 全部 8 个寄存器都必须至少写一次;顺序无关。",
+   "quote": "Independent of the selected key length, software must always write all 8 32-bit registers of both shares. Each register must be written at least once. The order in which the key registers are written does not matter.",
+   "src": {
+    "file": "pg",
+    "line": 27
+   },
+   "scope": "KEY_SHARE0_0..7 与 KEY_SHARE1_0..7 共 16 个写,最少各一次;未用位写随机值推荐非强制",
+   "mechanizable": "yes: 16 寄存器写覆盖计数",
+   "verified": true
+  },
+  {
+   "id": "C9",
+   "kind": "evidence",
+   "text": "实际密钥=两 share 异或;仅作语义说明,非软件必须验证项。",
+   "quote": "The actual initial key used for encryption corresponds to the value obtained by XORing KEY_SHARE0_0 - KEY_SHARE0_7 with KEY_SHARE1_0 - KEY_SHARE1_7.",
+   "src": {
+    "file": "pg",
+    "line": 24
+   },
+   "scope": "说明性;检查器不强制",
+   "mechanizable": "n/a",
+   "verified": true
+  },
+  {
+   "id": "C10",
+   "kind": "cross-file-merge",
+   "text": "shadowed:true 只声明两次写需求;完整流程须合并 IP 级 IDLE 门槛(pg 16/17/22-23)与共享 phase 语义(rg 955-1001)。单字段不构成完整规范。",
+   "quote": "shadowed: \"true\",",
+   "src": {
+    "file": "hj",
+    "line": 664
+   },
+   "scope": "跨文件合并要求:pg(顺序/门槛)+hjson(协议声明)+reggen(两写与读副作用语义)",
+   "mechanizable": "yes: 契约表本身即合并产物",
+   "verified": true
+  },
+  {
+   "id": "C11",
+   "kind": "evidence",
+   "text": "提供初始密钥会启动 PRNG 重播种,故写 IV 前必须再查 idle(IV 流程同构,本任务范围外但同文档支撑)。",
+   "quote": "Since providing the initial key initiate the reseeding of the internal PRNGs, software must check that the AES unit is idle before writing the IV registers.",
+   "src": {
+    "file": "pg",
+    "line": 35
+   },
+   "scope": "IV 写入前置;保留为后续扩展条目",
+   "mechanizable": "yes(同 C4 模式)",
+   "verified": true
+  },
+  {
+   "id": "C12",
+   "kind": "evidence-support",
+   "text": "执行触发操作期间 IDLE 位为 0;处理器必须在触发后续动作前查状态寄存器;KEY/IV 写在忙时被忽略。",
+   "quote": "While executing any of the triggered operations, the AES unit will set the IDLE bit in the Status Register to zero. The processor must check the Status Register before triggering further actions.",
+   "src": {
+    "file": "reg",
+    "lines": "401-403"
+   },
+   "scope": "registers.md 从硬件侧独立支撑 pg 的 idle 门槛;互为印证",
+   "mechanizable": "yes: IDLE 语义的第二来源",
+   "verified": true
+  },
+  {
+   "id": "C13",
+   "kind": "unknown",
+   "text": "配置写(PRNG 重播种)完成到 IDLE 重新置 1 之间的时长界限未在文档给出;检查器不假设轮询次数上限。",
+   "quote": "writing this register may initiate the reseeding of the internal PRNGs",
+   "src": {
+    "file": "pg",
+    "line": 20
+   },
+   "scope": "无界的忙等待;与既有 temporal 结论一致(长周期压力单列)",
+   "mechanizable": "partial: 状态模型允许任意轮询步数;预算不可行与违反分开计",
+   "verified": true
+  }
+ ],
+ "open_questions": [
+  "OQ1: CTRL_SHADOWED 两写之间插入的读会把 phase 复位(C6)——文档允许且推荐用于恢复,但两写间读是否应视为'合法但需重新两写'由状态机建模;无明文禁止。",
+  "OQ2: C2 的'忽略'是否可被软件观测区分(无状态变化无错误标志)——文档未给出;检查器按静默忽略建模。",
+  "OQ3: KEY_TOUCH_FORCES_RESEED(th 314-315)改变 C4 的忙窗口行为;CTRL_AUX_SHADOWED 未配置时的默认语义需单独核对后再入表。"
+ ]
+}
