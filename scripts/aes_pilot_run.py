@@ -26,14 +26,12 @@ OUTD = REPO / "results/aes_pilot_20261024"
 
 # ── 冻结的机械映射: C 自抽契约条目 → 自检检查器参数(执行前固定) ──
 # 只允许从条目的 kind 与目标寄存器做存在性检测;不做语义解释。
-C_KEY_MAP = {
-    "initial_idle_gate": ["STATUS.IDLE 在任何初始化写之前检查"],
-    "ctrl_before_key": ["KEY 写必须在 CTRL 配置之后"],
-    "recheck_after_ctrl": ["CTRL 提交后、KEY 写之前必须再次检查 IDLE"],
-    "ctrl_two_write": ["CTRL_SHADOWED 需要两次相同写入"],
-    "key_all_registers": ["全部 16 个 KEY 寄存器至少写一次"],
-    "read_resets_phase": ["读 shadowed 寄存器会复位两写阶段"],
-}
+C_ENUM = {"INIT_IDLE": "initial_idle_gate",
+          "CTRL_BEFORE_KEY": "ctrl_before_key",
+          "RECHECK_AFTER_CTRL": "recheck_after_ctrl",
+          "CTRL_TWO_WRITE": "ctrl_two_write",
+          "KEY_ALL_REGS": "key_all_registers",
+          "READ_RESETS_PHASE": "read_resets_phase"}
 
 
 def docs_block():
@@ -55,8 +53,10 @@ def task_stmt(v):
 
 
 def call(model_msgs, tag):
-    payload = {"model": "glm-4.6", "messages": model_msgs,
-               "temperature": 0, "max_tokens": 4096}
+    payload = {"model": "glm-5.3-flash", "messages": model_msgs,
+               "temperature": 0, "max_tokens": 8192,
+               "thinking": {"type": "enabled"}, "reasoning_effort": "low",
+               "stream": False}
     r = complete(payload, timeout=180)
     u = (r.get("response") or {}).get("usage", {})
     rec = {"tag": tag, "http_status": r["http_status"],
@@ -97,15 +97,9 @@ def oracle(v, steps):
 
 
 def compile_own_checker(entries):
-    """机械映射:自抽条目 → 检查器开关。冻结于本文件(C_KEY_MAP)。"""
-    text = json.dumps(entries, ensure_ascii=False)
-    flags = {f: (kw in text) for f, kws in
-             ((f, [f]) for f in C_KEY_MAP) for kw in kws}
-    # 存在性检测改为按条目 kind/target 字段关键词
-    flags = {}
-    for f, kws in C_KEY_MAP.items():
-        flags[f] = any(kw in text for kw in kws)
-    return flags
+    """v2 机械映射:模型自报枚举 id 的集合存在性,无语义解释。"""
+    ids = {e.get("id") for e in entries if isinstance(e, dict)}
+    return {f: (eid in ids) for eid, f in C_ENUM.items()}
 
 
 def own_check(flags, steps):
@@ -201,12 +195,12 @@ def main():
         # ── C 两段 ──
         rC1, uC1 = call([{"role": "system", "content":
                           "从文档抽取机器可检查的契约条目。输出 JSON 数组,"
-                          "每条 {kind,target,quote,file,line};kind 取 "
+                          "每条 {id,kind,target,quote,file,line};kind 取 "
                           "precondition/side_effect/ordering/protocol/"
-                          "completion。覆盖: 初始化写之前的 idle 门槛、"
-                          "CTRL 与 KEY 顺序、CTRL 后是否需要再查、"
-                          "shadowed 两写、key 寄存器覆盖要求、读副作用。"
-                          "没有依据的不要写。"},
+                          "completion;id 必须取自枚举 {INIT_IDLE, "
+                          "CTRL_BEFORE_KEY, RECHECK_AFTER_CTRL, "
+                          "CTRL_TWO_WRITE, KEY_ALL_REGS, "
+                          "READ_RESETS_PHASE} 之一。没有依据的不要写。"},
                          {"role": "user", "content": doc}],
                         f"C1/{v['id']}")
         usage_recs.append(uC1)
